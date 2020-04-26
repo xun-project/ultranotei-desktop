@@ -4,11 +4,11 @@
 	branch = 3.4
 [submodule "zlib"]
 	path = zlib
-	url = https://bitbucket.org/xunteam/zlib.git
+	url = https://bitbucket.org/xunteam/zlib/src/master/
 [submodule "tor"]
 	path = tor
-	url = https://github.com/torproject/tor.git
+	url = https://bitbucket.org/xunteam/tor/src/master/
 [submodule "cryptonote"]
 	path = cryptonote
-	url = https://UltraNote@bitbucket.org/xunteam/ultranote.git
+	url = https://bitbucket.org/xunteam/ultranotei-core/src/master/
 	branch = master
