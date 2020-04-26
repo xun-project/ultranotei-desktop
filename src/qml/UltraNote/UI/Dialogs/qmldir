@@ -1,0 +1,16 @@
+module UltraNote.UI.Dialogs
+
+AddressBookDialog 1.0 AddressBookDialog.qml
+ChangePasswordDialog 1.0 ChangePasswordDialog.qml
+ConnectionSettingsDialog 1.0 ConnectionSettingsDialog.qml
+DownloadProgressDialog 1.0 DownloadProgressDialog.qml
+FiatSymbolDialog 1.0 FiatSymbolDialog.qml
+ImportPrivateKeyDialog 1.0 ImportPrivateKeyDialog.qml
+MessageDetailsDialog 1.0 MessageDetailsDialog.qml
+MessageDialog 1.0 MessageDialog.qml
+NewRemoteNodeDialog 1.0 NewRemoteNodeDialog.qml
+RequestPasswordDialog 1.0 RequestPasswordDialog.qml
+TransactionDetailsDialog 1.0 TransactionDetailsDialog.qml
+DepositDetailsDialog 1.0 DepositDetailsDialog.qml
+UploadProgressDialog 1.0 UploadProgressDialog.qml
+NewAddressDialog 1.0 NewAddressDialog.qml

@@ -1,0 +1,5 @@
+module UltraNote.UI
+
+singleton Theme 1.0 Theme.qml
+AppWindow 1.0 AppWindow.qmls
+Splash 1.0 Splash.qml

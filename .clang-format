@@ -1,0 +1,34 @@
+BasedOnStyle: WebKit
+
+Standard: Cpp11
+ColumnLimit: 150
+CommentPragmas: "^!|^:"
+PointerBindsToType: true
+BreakBeforeBinaryOperators: NonAssignment
+BreakConstructorInitializersBeforeComma: false
+BreakBeforeBraces: Custom
+BraceWrapping:
+    AfterClass: true
+    AfterControlStatement: false
+    AfterEnum: true
+    AfterFunction: true
+    AfterNamespace: true
+    AfterObjCDeclaration: false
+    AfterStruct: true
+    AfterUnion: false
+    BeforeCatch: false
+    BeforeElse: false
+    IndentBraces: false
+AlignAfterOpenBracket: true
+AlwaysBreakTemplateDeclarations: true
+AllowShortFunctionsOnASingleLine: false
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false
+SortIncludes: true
+ForEachMacros:   [ foreach, Q_FOREACH, BOOST_FOREACH, forever, Q_FOREVER, QBENCHMARK, QBENCHMARK_ONCE ]
+ContinuationIndentWidth: 0
+ConstructorInitializerAllOnOneLineOrOnePerLine: true
+ConstructorInitializerIndentWidth: 8
+IndentCaseLabels: true
+NamespaceIndentation: All
+Cpp11BracedListStyle: true

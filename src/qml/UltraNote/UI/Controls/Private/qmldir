@@ -1,0 +1,3 @@
+module UltraNote.UI.Controls.Private
+
+UNWindowStatusBar 1.0 UNWindowStatusBar.qml

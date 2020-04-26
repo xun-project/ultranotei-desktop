@@ -1,0 +1,10 @@
+.idea/
+build/
+nbproject/
+*~
+CMakeLists.txt.user
+uncrustify.cfg
+*.o
+*.a
+CMakeFiles
+.DS_Store

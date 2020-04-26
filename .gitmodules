@@ -1,0 +1,14 @@
+[submodule "libqrencode"]
+	path = libqrencode
+	url = https://github.com/fukuchi/libqrencode.git
+	branch = 3.4
+[submodule "zlib"]
+	path = zlib
+	url = https://bitbucket.org/xunteam/zlib.git
+[submodule "tor"]
+	path = tor
+	url = https://github.com/torproject/tor.git
+[submodule "cryptonote"]
+	path = cryptonote
+	url = https://UltraNote@bitbucket.org/xunteam/ultranote.git
+	branch = master

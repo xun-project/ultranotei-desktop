@@ -1,0 +1,43 @@
+module UltraNote.UI.Controls
+
+singleton UNFontsFactory 1.0 UNFontsFactory.qml
+
+UNButton 1.0 UNButton.qml
+UNImage 1.0 UNImage.qml
+UNMouseArea 1.0 UNMouseArea.qml
+UNTextArea 1.0 UNTextArea.qml
+UNToolTipLabel 1.0 UNToolTipLabel.qml
+UNStepSlider 1.0 UNStepSlider.qml
+UNTableHeaderLabel 1.0 UNTableHeaderLabel.qml
+UNAnimatedImage 1.0 UNAnimatedImage.qml
+UNCheckBox 1.0 UNCheckBox.qml
+UNLabel 1.0 UNLabel.qml
+UNTableView 1.0 UNTableView.qml
+UNToolTip 1.0 UNToolTip.qml
+UNFluidDrawer 1.0 UNFluidDrawer.qml
+UNElevatedPanel 1.0 UNElevatedPanel.qml
+UNFramelessApplicationWindow 1.0 UNFramelessApplicationWindow.qml
+UNPage 1.0 UNPage.qml
+UNDialog 1.0 UNDialog.qml
+UNRadioButton 1.0 UNRadioButton.qml
+UNDrawerMainActionButton 1.0 UNDrawerMainActionButton.qml
+UNDrawerListItem 1.0 UNDrawerListItem.qml
+UNLayoutSpacer 1.0 UNLayoutSpacer.qml
+UNIcon 1.0 UNIcon.qml
+UNScrollIndicator 1.0 UNScrollIndicator.qml
+UNHorizontalSeparator 1.0 UNHorizontalSeparator.qml
+UNBalanceReportDialog 1.0 UNBalanceReportDialog.qml
+UNBalanceReport 1.0 UNBalanceReport.qml
+UNBalanceReportRow 1.0 UNBalanceReportRow.qml
+UNTextField 1.0 UNTextField.qml
+UNSpinBox 1.0 UNSpinBox.qml
+UNSlider 1.0 UNSlider.qml
+UNMenu 1.0 UNMenu.qml
+UNMenuItem 1.0 UNMenuItem.qml
+UNStatusBarMenuButton 1.0 UNStatusBarMenuButton.qml
+UNAmountBox 1.0 UNAmountBox.qml
+UNBrowserService 1.0 UNBrowserService.qml
+BrowserDialog 1.0 BrowserDialog.qml
+BrowserWindow 1.0 BrowserWindow.qml
+DownloadView 1.0 DownloadView.qml
+FindBar 1.0 FindBar.qml
