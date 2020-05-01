@@ -21,15 +21,13 @@ UNPage {
 
     readonly property real spinWidth: 250
     readonly property real listItemHeight: 40
-    property string address: ""
+    property int selectedAddressIndex: 0
     property bool addressBookIsOpen: false
-
     Connections {
         target: _addressBookDialog
         onVisibleChanged:{
             if(-1 !== walletAdapter.addressBookTableModel.selectedRow && addressBookIsOpen){
-                address = walletAdapter.addressBookTableModel.selectedAddress
-                _recepientsListView.model.setAddress(0, address)
+                _recepientsListView.model.setAddress(selectedAddressIndex, walletAdapter.addressBookTableModel.selectedAddress)
                 walletAdapter.addressBookTableModel.selectedRow = -1
             }
             addressBookIsOpen = !addressBookIsOpen
@@ -42,8 +40,7 @@ UNPage {
 
     Component.onCompleted: {
         if(_globalProperties.addressIsExposed){
-            address = _globalProperties.sendToAddress
-            _recepientsListView.model.setAddress(0, address)
+            _recepientsListView.model.setAddress(0, _globalProperties.sendToAddress)
         }
     }
 
@@ -77,10 +74,6 @@ UNPage {
     ColorDialog {
         id: colorDialog
         currentColor: "black"
-    }
-
-    MessageDialog {
-        id: errorDialog
     }
 
     contentItem: Item {
@@ -167,9 +160,8 @@ UNPage {
                                     id: sendToTextField
                                     Layout.fillWidth: true
                                     Layout.alignment: Qt.AlignVCenter
-                                    text: _page.address
-                                    onTextChanged: _page.address = text
-                                    onEditingFinished: _recepientsListView.model.setAddress(index, sendToTextField.text)
+                                    text: address
+                                    onEditingFinished: _recepientsListView.model.setAddress(index, text)
                                 }
 
                                 UNIcon {
@@ -185,6 +177,7 @@ UNPage {
                                     toolTip: qsTr("Address Book")
 
                                     onClicked: {
+                                        _page.selectedAddressIndex = index
                                         _addressBookDialog.open()
                                     }
                                 }
@@ -200,9 +193,7 @@ UNPage {
                                     source: "qrc:/icons/resources/icons/clipboard_copy_icon.svg"
                                     toolTip: qsTr("Paste from Clipboard")
 
-                                    onClicked: {
-                                        _recepientsListView.model.setAddress(index, clipboard.text())
-                                    }
+                                    onClicked: _recepientsListView.model.setAddress(index, clipboard.text())
                                 }
 
                                 UNIcon {
@@ -218,10 +209,9 @@ UNPage {
                                     source: "qrc:/icons/resources/icons/remove_item_icon.svg"
                                     toolTip: qsTr("Remove Recipient")
 
-                                    onClicked: {
-                                        _recepientsListView.model.removeUser(index)
-                                    }
+                                    onClicked: _recepientsListView.model.removeUser(index)
                                 }
+                                UNLayoutSpacer {}
                             }
                         }
                     }
@@ -825,8 +815,7 @@ UNPage {
                 _encryptedMessageTextArea._textArea.text = text
             }
             onError: {
-                errorDialog.text = message
-                errorDialog.visible = true
+                _messageDialogProperties.showMessage(qsTr("Error"), qsTr(message))
             }
         }
     }
