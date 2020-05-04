@@ -56,9 +56,9 @@ void Worker::run() {
     std::memset(&hash, 0, sizeof(hash));
       
     if (NodeAdapter::instance().getLastKnownBlockHeight() <= 200) {
-        Crypto::cn_slow_hash_v6(context, localJob.blob.data(), localJob.blob.size(), hash);
+        Crypto::cn_slow_hash(context, localJob.blob.data(), localJob.blob.size(), hash);
     } else {
-        Crypto::cn_lite_slow_hash_v1(context, localJob.blob.data(), localJob.blob.size(), hash);
+        Crypto::cn_conceal_slow_hash_v0(context, localJob.blob.data(), localJob.blob.size(), hash);
     }
       
     ++m_hashCounter;
