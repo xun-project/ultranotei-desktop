@@ -12,9 +12,6 @@ typedef QPair<CryptoNote::TransactionId, CryptoNote::TransferId> TransactionTran
 class TransactionsTableModel : public QAbstractTableModel
 {
     Q_OBJECT
-    QML_CONSTANT_PROPERTY(int, columnCount, ColumnName::Count)
-    QML_READABLE_PROPERTY(int, rowCount, setRowCount, 0)
-    QML_READABLE_PROPERTY(QString, transactionDetails, setTransactionDetails, "")
 public:
     enum ColumnName {
         State,
@@ -56,6 +53,11 @@ private:
     void sortTransfers();
     QByteArray toCsv() const;
     const QString m_transactionDetailsTemplate;
+
+private:
+    QML_CONSTANT_PROPERTY(int, columnCount, ColumnName::Count)
+    QML_READABLE_PROPERTY(int, rowCount, setRowCount, 0)
+    QML_READABLE_PROPERTY(QString, transactionDetails, setTransactionDetails, "")
 };
 
 } // WalletGui
