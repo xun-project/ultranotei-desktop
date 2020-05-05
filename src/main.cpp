@@ -42,8 +42,8 @@ using namespace WalletGui;
 
 int main(int argc, char* argv[]) {
   QApplication app(argc, argv);
-  QApplication::setApplicationName("UltraNotewallet");
-  QApplication::setOrganizationName("XUN");
+  QApplication::setApplicationName("UltraNoteInfinity");
+  QApplication::setOrganizationName("XUNI");
   QApplication::setOrganizationDomain("Cryptocurrency");
   QApplication::setApplicationVersion(Settings::instance().getVersion());
   QApplication::setQuitOnLastWindowClosed(false);

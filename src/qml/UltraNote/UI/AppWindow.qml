@@ -18,7 +18,7 @@ UNFramelessApplicationWindow {
 
     visible: true
 
-    title: currencyAdapter.getCurrencyDisplayName() + qsTr(" Wallet ") + settings.getVersion()
+    title: currencyAdapter.getCurrencyDisplayName() + qsTr(" Infinity ") + settings.getVersion()
 
     backgroundColor: Theme.pageBackgroundColor
     statusBarColor: Theme.statusBarColor

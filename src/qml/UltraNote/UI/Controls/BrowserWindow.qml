@@ -412,7 +412,7 @@ FocusScope {
                         text: qsTr("Bookmarks")
                         onTriggered: {
                             var backgroundTab = tabs.createEmptyTab(currentWebView.profile);
-                            backgroundTab.item.loadHtml(browserUtils.getBookmarks(), "ultranotewallet://bookmarks")
+                            backgroundTab.item.loadHtml(browserUtils.getBookmarks(), "ultranoteinfinity://bookmarks")
                             tabs.currentIndex = tabs.count - 1;
                         }
                     }
@@ -475,7 +475,7 @@ FocusScope {
                     anchors.left: parent.left
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.leftMargin: 6
-                    text: styleData.title  === "ultranotewallet://bookmarks" ? "Bookmarks" : styleData.title
+                    text: styleData.title  === "ultranoteinfinity://bookmarks" ? "Bookmarks" : styleData.title
                     elide: Text.ElideRight
                     color: styleData.selected ? Theme.pageTitleColor : "gray"
                 }

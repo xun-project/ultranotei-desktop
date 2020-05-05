@@ -24,8 +24,8 @@ inline QString BrowserUtils::getBookmarks()
 #endif
 
 #ifdef Q_OS_LINUX
-    //QFile bkfile(QDir::homePath() + "/.UltraNoteWallet/bookmarks.html");
-    QString path(QDir::homePath() +"/.UltraNoteWallet/");
+    //QFile bkfile(QDir::homePath() + "/.UltraNoteInfinity/bookmarks.html");
+    QString path(QDir::homePath() +"/.UltraNoteInfinity/");
     QDir dir;
     if (!dir.exists(path))
        dir.mkpath(path);
@@ -33,7 +33,7 @@ inline QString BrowserUtils::getBookmarks()
 #endif
 
 #ifdef Q_OS_MACOS
-    QFile bkfile(QDir::homePath() + "/.UltraNoteWallet/bookmarks.html");
+    QFile bkfile(QDir::homePath() + "/.UltraNoteInfinity/bookmarks.html");
 #endif
 
     if (!bkfile.isOpen()) {
@@ -55,8 +55,8 @@ inline void BrowserUtils::addBookmark(const QUrl& currentUrl, const QString& pag
 #endif
 
 #ifdef Q_OS_LINUX
-    //QFile bookmarks(QDir::homePath() + "/.UltraNoteWallet/bookmarks.html");
-    QString path(QDir::homePath() +"/.UltraNoteWallet/");
+    //QFile bookmarks(QDir::homePath() + "/.UltraNoteInfinity/bookmarks.html");
+    QString path(QDir::homePath() +"/.UltraNoteInfinity/");
     QDir dir;
     if (!dir.exists(path))
        dir.mkpath(path);
@@ -64,7 +64,7 @@ inline void BrowserUtils::addBookmark(const QUrl& currentUrl, const QString& pag
 #endif
 
 #ifdef Q_OS_MACOS
-    QFile bookmarks(QDir::homePath() + "/.UltraNoteWallet/bookmarks.html");
+    QFile bookmarks(QDir::homePath() + "/.UltraNoteInfinity/bookmarks.html");
 #endif
 
     if (!bookmarks.isOpen()) {

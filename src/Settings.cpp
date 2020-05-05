@@ -97,7 +97,7 @@ void Settings::load() {
     setMiningPoolList(poolList);
   }
   QStringList defaultNodesList;
-    defaultNodesList << "node1.ultranote.org:33000" << "node2.ultranote.org:33000" << "node3.ultranote.org:33000";
+    defaultNodesList << "node1.ultranote.org:43000" << "node2.ultranote.org:43000" << "node3.ultranote.org:43000";
   if (!m_settings.contains(OPTION_RPCNODES)) {
     setRPCNodesList(QStringList() << defaultNodesList);
   } else {
@@ -116,7 +116,7 @@ void Settings::load() {
 
 QStringList Settings::resetPools() {
     QStringList defaultPoolList;
-    defaultPoolList << defaultPoolList << "alpha.ultranote.org:3333" << "alpha.ultranote.org:5555" << "alpha.ultranote.org:7777" << "alpha.ultranote.org:8888" << "gamma.ultranote.org:5555" << "gamma.ultranote.org:7777" << "gamma.ultranote.org:8888";
+    defaultPoolList << defaultPoolList << "infinity.ultranote.org:3333" << "infinity.ultranote.org:5555" << "infinity.ultranote.org:7777" << "infinity.ultranote.org:8888";
     setMiningPoolList(QStringList() << defaultPoolList);
     return defaultPoolList;
 }

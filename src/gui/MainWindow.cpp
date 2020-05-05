@@ -98,14 +98,14 @@ void MainWindow::connectToSignals()
 
 void MainWindow::initUi()
 {
-    setWindowTitle(QString("%1 Wallet %2").arg(CurrencyAdapter::instance().getCurrencyDisplayName()).arg(Settings::instance().getVersion()));
+    setWindowTitle(QString("%1 Infinity %2").arg(CurrencyAdapter::instance().getCurrencyDisplayName()).arg(Settings::instance().getVersion()));
 #ifdef Q_OS_WIN32
     if (QSystemTrayIcon::isSystemTrayAvailable()) {
         m_trayIcon = new QSystemTrayIcon(QPixmap(":images/cryptonote"), this);
         connect(m_trayIcon, &QSystemTrayIcon::activated, this, &MainWindow::trayActivated);
     }
 #endif
-    m_ui->m_aboutCryptonoteAction->setText(QString(tr("About %1 Wallet")).arg(CurrencyAdapter::instance().getCurrencyDisplayName()));
+    m_ui->m_aboutCryptonoteAction->setText(QString(tr("About %1 Infinity")).arg(CurrencyAdapter::instance().getCurrencyDisplayName()));
 
     m_ui->m_overviewFrame->hide();
     m_ui->m_sendFrame->hide();

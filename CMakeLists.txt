@@ -29,7 +29,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS ON)
 
 # load common definitions
-include(UltraNoteWallet.cmake)
+include(UltraNoteInfinity.cmake)
 project(${UN_PROJECT_NAME} C CXX)
 
 # One shouldn't generate the BUILD project directly in the SOURCES folder!
@@ -182,22 +182,22 @@ set(CRYPTONOTE_SOURCES
   cryptonote/src/Common/StringOutputStream.cpp
   cryptonote/src/Common/StringView.cpp
   cryptonote/src/Common/VectorOutputStream.cpp
-  cryptonote/src/crypto/blake256.c
+  #cryptonote/src/crypto/blake256.c
   cryptonote/src/crypto/chacha8.c
   cryptonote/src/crypto/crypto-ops-data.c
   cryptonote/src/crypto/crypto-ops.c
   cryptonote/src/crypto/crypto.cpp
   cryptonote/src/crypto/groestl.c
-  cryptonote/src/crypto/hash-extra-blake.c
-  cryptonote/src/crypto/hash-extra-groestl.c
-  cryptonote/src/crypto/hash-extra-jh.c
-  cryptonote/src/crypto/hash-extra-skein.c
+  #cryptonote/src/crypto/hash-extra-blake.c
+  #cryptonote/src/crypto/hash-extra-groestl.c
+  #cryptonote/src/crypto/hash-extra-jh.c
+  #cryptonote/src/crypto/hash-extra-skein.c
   cryptonote/src/crypto/hash.c
-  cryptonote/src/crypto/jh.c
+  #cryptonote/src/crypto/jh.c
   cryptonote/src/crypto/keccak.c
   cryptonote/src/crypto/oaes_lib.c
   cryptonote/src/crypto/random.c
-  cryptonote/src/crypto/skein.c
+  #cryptonote/src/crypto/skein.c
   cryptonote/src/crypto/tree-hash.c
   cryptonote/src/crypto/aux_hash.c
   cryptonote/src/crypto/cryptonight.cpp 
@@ -402,9 +402,9 @@ if (APPLE)
 
 elseif (UNIX)
   install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
-  install(FILES src/ultranotewallet.desktop DESTINATION share/applications)
+  install(FILES src/ultranoteinfinity.desktop DESTINATION share/applications)
   install(FILES src/images/UltraNoteLogo.png DESTINATION share/pixmaps RENAME ultranote.png)
-  install(FILES COPYING DESTINATION share/doc/ultranotewallet)
+  install(FILES COPYING DESTINATION share/doc/ultranoteinfinity)
   install(PROGRAMS build/release/tor/bin/tor DESTINATION bin)
 
 	SET(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")

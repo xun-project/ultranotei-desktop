@@ -87,7 +87,7 @@ void Updater::replyFinished (QNetworkReply *reply)
         
         if (ourVersion < remoteVersion) {
             
-            if (QMessageBox::warning(nullptr, QObject::tr("New version available"), QObject::tr("There is an update available for the UltraNote Wallet.\nDo you want to download it now?"), QMessageBox::Ok, QMessageBox::Cancel) == QMessageBox::Ok) {
+            if (QMessageBox::warning(nullptr, QObject::tr("New version available"), QObject::tr("There is an update available for the UltraNote Infinity.\nDo you want to download it now?"), QMessageBox::Ok, QMessageBox::Cancel) == QMessageBox::Ok) {
                 QString link = "https://ultranote.org/#wallet";
                 QDesktopServices::openUrl(QUrl(link));
             }
