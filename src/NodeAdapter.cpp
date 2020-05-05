@@ -135,7 +135,8 @@ bool NodeAdapter::init() {
   } else if(connection.compare("local") == 0) {
     QUrl localNodeUrl = QUrl::fromUserInput(QString("127.0.0.1:%1").arg(CryptoNote::RPC_DEFAULT_PORT));
 
-    m_node = createRpcNode(CurrencyAdapter::instance().getCurrency(), *this, localNodeUrl.host().toStdString(), localNodeUrl.port());
+    m_node = createRpcNode(CurrencyAdapter::instance().getCurrency(), LoggerAdapter::instance().getLoggerManager(), *this,
+                           localNodeUrl.host().toStdString(), localNodeUrl.port());
 
     QTimer initTimer;
     initTimer.setInterval(3000);
@@ -169,7 +170,8 @@ bool NodeAdapter::init() {
   } else if(connection.compare("remote") == 0) {
       QUrl remoteNodeUrl = QUrl::fromUserInput(Settings::instance().getCurrentRemoteNode());
       //m_node = createRpcNode(CurrencyAdapter::instance().getCurrency(), *this, localNodeUrl.host().toStdString(), localNodeUrl.port());
-      m_node = createRpcNode(CurrencyAdapter::instance().getCurrency(), *this, remoteNodeUrl.host().toStdString(), remoteNodeUrl.port());
+      m_node = createRpcNode(CurrencyAdapter::instance().getCurrency(), LoggerAdapter::instance().getLoggerManager(), *this,
+                             remoteNodeUrl.host().toStdString(), remoteNodeUrl.port());
       QTimer initTimer;
       initTimer.setInterval(3000);
       initTimer.setSingleShot(true);
@@ -189,7 +191,8 @@ bool NodeAdapter::init() {
       }
   } else {
       QUrl localNodeUrl = QUrl::fromUserInput(QString("127.0.0.1:%1").arg(CryptoNote::RPC_DEFAULT_PORT));
-      m_node = createRpcNode(CurrencyAdapter::instance().getCurrency(), *this, localNodeUrl.host().toStdString(), localNodeUrl.port());
+      m_node = createRpcNode(CurrencyAdapter::instance().getCurrency(), LoggerAdapter::instance().getLoggerManager(), *this,
+                             localNodeUrl.host().toStdString(), localNodeUrl.port());
       QTimer initTimer;
       initTimer.setInterval(3000);
       initTimer.setSingleShot(true);

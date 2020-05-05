@@ -9,7 +9,7 @@
 #include <QDebug>
 
 #define SERVER_URL "https://api.coingecko.com/api/v3/"
-#define COIN_NAME "xun"
+#define COIN_NAME "xuni"
 #define PRICE_CHECK_PERIOD_SEC 300
 
 namespace WalletGui {

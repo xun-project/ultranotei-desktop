@@ -18,7 +18,7 @@
 #include <QQmlEngine>
 #include <Wallet/LegacyKeysImporter.h>
 #include <Wallet/WalletErrors.h>
-#include <crypto/chacha.h>
+#include <crypto/chacha8.h>
 
 #include "CurrencyAdapter.h"
 #include "NodeAdapter.h"
@@ -628,12 +628,12 @@ bool WalletAdapter::getAccountKeys(CryptoNote::AccountKeys& _keys)
 
 void WalletAdapter::encryptAttachment(QByteArray& attachment, QByteArray& encryptionKey)
 {
-    for (int i = 0; i < CHACHA_KEY_SIZE; ++i) {
+    for (int i = 0; i < CHACHA8_KEY_SIZE; ++i) {
         encryptionKey.append(Crypto::rand<char>());
     }
 
     uint64_t nonce = SWAP64LE(static_cast<int64_t>(attachment.size()));
-    Crypto::chacha(10, attachment.data(), static_cast<size_t>(attachment.size()),
+    Crypto::chacha8(10, attachment.data(), static_cast<size_t>(attachment.size()),
         reinterpret_cast<uint8_t*>(encryptionKey.data()), reinterpret_cast<uint8_t*>(&nonce),
         attachment.data());
 }
@@ -641,7 +641,7 @@ void WalletAdapter::encryptAttachment(QByteArray& attachment, QByteArray& encryp
 void WalletAdapter::decryptAttachment(QByteArray& attachment, QByteArray& encryptionKey)
 {
     uint64_t nonce = SWAP64LE(static_cast<int64_t>(attachment.size()));
-    Crypto::chacha(10, attachment.data(), static_cast<size_t>(attachment.size()),
+    Crypto::chacha8(10, attachment.data(), static_cast<size_t>(attachment.size()),
         reinterpret_cast<uint8_t*>(encryptionKey.data()), reinterpret_cast<uint8_t*>(&nonce),
         attachment.data());
 }
@@ -652,8 +652,8 @@ void WalletAdapter::sendTransaction(const QVector<CryptoNote::WalletLegacyTransf
     Q_CHECK_PTR(m_wallet);
     try {
         lock();
-        m_sentTransactionId = m_wallet->sendTransaction(_transfers.toStdVector(), _fee, NodeAdapter::instance().convertPaymentId(_paymentId), _mixin, 0,
-            _messages.toStdVector());
+        Crypto::SecretKey _transactionsk;
+        m_sentTransactionId = m_wallet->sendTransaction(_transactionsk, _transfers.toStdVector(), _fee, NodeAdapter::instance().convertPaymentId(_paymentId), _mixin, 0, _messages.toStdVector());
         setStatusBarText(tr("Sending transaction"));
     } catch (std::system_error&) {
         unlock();
@@ -666,7 +666,8 @@ void WalletAdapter::sendMessage(const QVector<CryptoNote::WalletLegacyTransfer>&
     Q_CHECK_PTR(m_wallet);
     try {
         lock();
-        m_sentMessageId = m_wallet->sendTransaction(_transfers.toStdVector(), _fee, "", _mixin, 0, _messages.toStdVector(), _ttl);
+        Crypto::SecretKey _transactionsk;
+        m_sentMessageId = m_wallet->sendTransaction(_transactionsk,_transfers.toStdVector(), _fee, "", _mixin, 0, _messages.toStdVector(), _ttl);
         setStatusBarText(tr("Sending messages"));
     } catch (std::system_error&) {
         unlock();

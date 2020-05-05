@@ -29,7 +29,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS ON)
 
 # load common definitions
-include(UltraNoteWallet.cmake)
+include(UltraNoteInfinity.cmake)
 project(${UN_PROJECT_NAME} C CXX)
 
 # One shouldn't generate the BUILD project directly in the SOURCES folder!
@@ -167,6 +167,7 @@ set(CRYPTONOTE_SOURCES
   cryptonote/external/miniupnpc/upnpcommands.c
   cryptonote/external/miniupnpc/upnpreplyparse.c
   cryptonote/src/Common/Base58.cpp
+  cryptonote/src/Common/Base64.cpp  
   cryptonote/src/Common/CommandLine.cpp
   cryptonote/src/Common/Util.cpp
   cryptonote/src/Common/StringTools.cpp
@@ -174,31 +175,32 @@ set(CRYPTONOTE_SOURCES
   cryptonote/src/Common/ConsoleTools.cpp
   cryptonote/src/Common/MemoryInputStream.cpp
   cryptonote/src/Common/PathTools.cpp
+  cryptonote/src/Common/DnsTools.cpp
   cryptonote/src/Common/StdInputStream.cpp
   cryptonote/src/Common/StdOutputStream.cpp
   cryptonote/src/Common/StreamTools.cpp
   cryptonote/src/Common/StringOutputStream.cpp
   cryptonote/src/Common/StringView.cpp
   cryptonote/src/Common/VectorOutputStream.cpp
-  cryptonote/src/crypto/blake256.c
-  cryptonote/src/crypto/chacha.c
+  #cryptonote/src/crypto/blake256.c
+  cryptonote/src/crypto/chacha8.c
   cryptonote/src/crypto/crypto-ops-data.c
   cryptonote/src/crypto/crypto-ops.c
   cryptonote/src/crypto/crypto.cpp
   cryptonote/src/crypto/groestl.c
-  cryptonote/src/crypto/hash-extra-blake.c
-  cryptonote/src/crypto/hash-extra-groestl.c
-  cryptonote/src/crypto/hash-extra-jh.c
-  cryptonote/src/crypto/hash-extra-skein.c
+  #cryptonote/src/crypto/hash-extra-blake.c
+  #cryptonote/src/crypto/hash-extra-groestl.c
+  #cryptonote/src/crypto/hash-extra-jh.c
+  #cryptonote/src/crypto/hash-extra-skein.c
   cryptonote/src/crypto/hash.c
-  cryptonote/src/crypto/jh.c
+  #cryptonote/src/crypto/jh.c
   cryptonote/src/crypto/keccak.c
   cryptonote/src/crypto/oaes_lib.c
   cryptonote/src/crypto/random.c
-  cryptonote/src/crypto/skein.c
-  cryptonote/src/crypto/slow-hash.c
-  cryptonote/src/crypto/slow-hash.cpp
+  #cryptonote/src/crypto/skein.c
   cryptonote/src/crypto/tree-hash.c
+  cryptonote/src/crypto/aux_hash.c
+  cryptonote/src/crypto/cryptonight.cpp 
   cryptonote/src/CryptoNoteCore/BlockchainIndices.cpp
   cryptonote/src/CryptoNoteCore/BlockchainMessages.cpp
   cryptonote/src/CryptoNoteCore/BlockIndex.cpp
@@ -207,6 +209,7 @@ set(CRYPTONOTE_SOURCES
   cryptonote/src/CryptoNoteCore/CryptoNoteTools.cpp
   cryptonote/src/CryptoNoteCore/Currency.cpp
   cryptonote/src/CryptoNoteCore/DepositIndex.cpp
+  cryptonote/src/CryptoNoteCore/InvestmentIndex.cpp
   cryptonote/src/CryptoNoteCore/MinerConfig.cpp
   cryptonote/src/CryptoNoteCore/Transaction.cpp
   cryptonote/src/CryptoNoteCore/Account.cpp
@@ -293,7 +296,17 @@ include_directories(BEFORE ${CMAKE_BINARY_DIR}
 
 file(GLOB_RECURSE SOURCES src/*.cpp)
 file(GLOB_RECURSE HEADERS src/*.h src/*.hpp)
+file(GLOB_RECURSE FORMS src/gui/ui/*.ui)
 set(QRC src/resources.qrc)
+
+qt5_wrap_ui(UIS ${FORMS})
+qt5_add_resources(RCC ${QRC})
+
+if("${ARCH}" STREQUAL "default")
+    set(ARCH_FLAG "")
+  else()
+    set(ARCH_FLAG "-march=x86-64")
+  endif()
 
 # Detect Build Platform
 #
@@ -354,7 +367,7 @@ target_link_libraries(${CRYPTONOTE_LIB} ${Boost_LIBRARIES})
 add_subdirectory(zlib EXCLUDE_FROM_ALL)
 
 # Build UltraNote app
-add_executable(${PROJECT_NAME} ${BUILD_PLATFORM} ${BUILD_RESOURCES} ${SOURCES} ${HEADERS} ${QRC})
+add_executable(${PROJECT_NAME} ${BUILD_PLATFORM} ${BUILD_RESOURCES} ${SOURCES} ${HEADERS} ${QRC} ${UIS} ${RCC})
 set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_DEFINITIONS _GNU_SOURCE)
 target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES} ${QTMAIN} zlibstatic ${CRYPTONOTE_LIB} ${QRENCODE_LIB} Qt5::Gui Qt5::Quick Qt5::QuickControls2 Qt5::Widgets Qt5::Network Qt5::Multimedia Qt5::WebEngine Qt5::WebEngineWidgets Qt5::Qml)
 
@@ -389,9 +402,9 @@ if (APPLE)
 
 elseif (UNIX)
   install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
-  install(FILES src/ultranotewallet.desktop DESTINATION share/applications)
+  install(FILES src/ultranoteinfinity.desktop DESTINATION share/applications)
   install(FILES src/images/UltraNoteLogo.png DESTINATION share/pixmaps RENAME ultranote.png)
-  install(FILES COPYING DESTINATION share/doc/ultranotewallet)
+  install(FILES COPYING DESTINATION share/doc/ultranoteinfinity)
   install(PROGRAMS build/release/tor/bin/tor DESTINATION bin)
 
 	SET(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")

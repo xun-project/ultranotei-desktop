@@ -13,7 +13,7 @@ Window {
     height: _background.height
 
     //TODO move
-    title: currencyAdapter.getCurrencyDisplayName() + qsTr(" Wallet ") + settings.getVersion()
+    title: currencyAdapter.getCurrencyDisplayName() + qsTr(" Infinity ") + settings.getVersion()
     modality: Qt.ApplicationModal
     flags: Qt.SplashScreen
     color: "transparent"

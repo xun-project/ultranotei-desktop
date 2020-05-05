@@ -328,7 +328,7 @@ ApplicationWindow {
                     horizontalAlignment: Label.AlignHCenter
                     verticalAlignment: Label.AlignVCenter
 
-                    text: currencyAdapter.getCurrencyDisplayName() + qsTr(" Wallet ") + settings.getVersion()
+                    text: currencyAdapter.getCurrencyDisplayName() + qsTr(" Infinity ") + settings.getVersion()
                 }
 
 

@@ -18,7 +18,10 @@ UNDialog {
     implicitWidth: 800
 
     closePolicy: Popup.CloseOnEscape
-    onAccepted: walletAdapter.saveConnectionSettings()
+    onAccepted: {
+        walletAdapter.saveConnectionSettings()
+        _messageDialogProperties.showMessage(qsTr("Connection settings changed"), qsTr("Connection mode will be changed after restarting the wallet"))
+    }
     onRejected: _connectionSettingsDialog.close()
     title: qsTr("Connection settings")
     modal: true
