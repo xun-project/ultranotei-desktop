@@ -10,4 +10,4 @@
 	url = https://bitbucket.org/xunteam/tor/src/master/
 [submodule "cryptonote"]
 	path = cryptonote
-	url = https://bitbucket.org/xunteam/ultranotei-core/commits/b2eaf1a2a85db1e413589ed79bdccb4310f36c91
+	url = https://bitbucket.org/xunteam/ultranotei-core.git
