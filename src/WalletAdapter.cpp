@@ -33,7 +33,7 @@ const quint32 MSECS_IN_MINUTE = 60 * 1000;
 const quint32 LAST_BLOCK_INFO_UPDATING_INTERVAL = 1 * MSECS_IN_MINUTE;
 const quint32 LAST_BLOCK_INFO_WARNING_INTERVAL = 1 * MSECS_IN_HOUR;
 
-const quint16 COMMENT_CHAR_PRICE = 10000;
+const quint16 COMMENT_CHAR_PRICE = 100;
 
 WalletAdapter& WalletAdapter::instance()
 {
