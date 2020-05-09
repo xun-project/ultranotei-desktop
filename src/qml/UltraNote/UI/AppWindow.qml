@@ -357,7 +357,8 @@ UNFramelessApplicationWindow {
                                             append({"text": qsTr("Send Message"), "iconSource": "qrc:/icons/resources/icons/drawer_send_message_list_item_icon.svg", "page": _sendMessagePageComponent, "pageObjectName": "send_message_page" })
                                             append({"text": qsTr("Address Book"), "iconSource": "qrc:/icons/resources/icons/drawer_address_book_list_item_icon.svg", "page": _addressBookPageComponent, "pageObjectName": "address_book_page" })
                                             append({"text": qsTr("Mining"), "iconSource": "qrc:/icons/resources/icons/drawer_mining_list_item_icon.svg", "page": _miningPageComponent, "pageObjectName": "mining_page" })
-                                            append({"text": qsTr("Search"), "iconSource": "qrc:/icons/resources/icons/drawer_search_list_item_icon.svg", "page": _searchPageComponent, "pageObjectName": "search_page" })
+                                            //disable search tab
+                                            //append({"text": qsTr("Search"), "iconSource": "qrc:/icons/resources/icons/drawer_search_list_item_icon.svg", "page": _searchPageComponent, "pageObjectName": "search_page" })
                                             append({"text": qsTr("Browser"), "iconSource": "qrc:/icons/resources/icons/earth-globe_icon.svg", "page": _browserPageComponent, "pageObjectName": "browser_page" })
                                         }
                                     }
@@ -870,13 +871,14 @@ UNFramelessApplicationWindow {
                         }
                     }
 
-                    Component {
+                    //disable search tab
+                    /*Component {
                         id: _searchPageComponent
 
                         SearchPage {
                             id: _searchPageComponentItem
                         }
-                    }
+                    }*/
                     Component {
                         id: _browserPageComponent
 
