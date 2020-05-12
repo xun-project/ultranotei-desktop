@@ -59,7 +59,7 @@ UNDialog {
 
             spacing: 0
 
-            UNLabel {
+            UNLabelSelectable {
                 Layout.fillWidth: true
                 Layout.preferredHeight: implicitHeight
                 Layout.maximumHeight: implicitHeight
@@ -69,7 +69,7 @@ UNDialog {
                 type: UNLabel.Type.TypeNormal
 
                 color: Theme.dialogTextColor
-                elide: Label.ElideNone
+                //elide: Label.ElideNone
                 wrapMode: Label.WrapAnywhere
                 horizontalAlignment: Label.AlignLeft
                 verticalAlignment: Label.AlignVCenter

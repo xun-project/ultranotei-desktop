@@ -12,6 +12,7 @@ UNTableHeaderLabel 1.0 UNTableHeaderLabel.qml
 UNAnimatedImage 1.0 UNAnimatedImage.qml
 UNCheckBox 1.0 UNCheckBox.qml
 UNLabel 1.0 UNLabel.qml
+UNLabelSelectable 1.0 UNLabelSelectable.qml
 UNTableView 1.0 UNTableView.qml
 UNToolTip 1.0 UNToolTip.qml
 UNFluidDrawer 1.0 UNFluidDrawer.qml

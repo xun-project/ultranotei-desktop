@@ -1234,6 +1234,25 @@ UNFramelessApplicationWindow {
                 }
 
                 UNMenuItem {
+                    text: qsTr("Optimize Wallet")
+                    onClicked: walletAdapter.optimizeClicked()
+                }
+
+                UNMenuItem {
+                    checkable: true
+                    checked: walletAdapter.isAutoOpimizationEnabled()
+                    text: qsTr("Auto Optimization")
+
+                    onClicked: {
+
+                        if(walletAdapter.isAutoOpimizationEnabled())
+                            _messageDialogProperties.showMessage("Auto Optimization", "Auto Optimization Disabled.")
+                        else _messageDialogProperties.showMessage("Auto Optimization", "Auto Optimization Enabled. Your wallet will be optimized automatically every 15 minutes.")
+                        walletAdapter.autoOptimizeClicked()
+                    }
+                }
+
+                UNMenuItem {
                     text: qsTr("Exit")
 
                     onClicked: {
