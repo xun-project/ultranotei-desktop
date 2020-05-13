@@ -1075,6 +1075,10 @@ UNFramelessApplicationWindow {
             id: _importPrivateKeyDialog
         }
 
+        OptimizeTransactionsDialog {
+            id: _OptimizeTransactionsDialog
+        }
+
         FiatSymbolDialog {
             id: _fiatSymbolDialog
 
@@ -1235,7 +1239,7 @@ UNFramelessApplicationWindow {
 
                 UNMenuItem {
                     text: qsTr("Optimize Wallet")
-                    onClicked: walletAdapter.optimizeClicked()
+                    onClicked: _OptimizeTransactionsDialog.open()
                 }
 
                 UNMenuItem {

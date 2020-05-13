@@ -14,3 +14,4 @@ TransactionDetailsDialog 1.0 TransactionDetailsDialog.qml
 DepositDetailsDialog 1.0 DepositDetailsDialog.qml
 UploadProgressDialog 1.0 UploadProgressDialog.qml
 NewAddressDialog 1.0 NewAddressDialog.qml
+OptimizeTransactionsDialog 1.0 OptimizeTransactionsDialog.qml

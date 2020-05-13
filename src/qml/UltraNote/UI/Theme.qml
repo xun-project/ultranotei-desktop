@@ -100,6 +100,11 @@ QtObject {
     readonly property color dialogTitleTextColor: "#232f34"
     readonly property color dialogActionButtonColor: "#344955"
 
+    //DialogInfinity
+    readonly property color dialogInfinityBackgroundColor: "#282D31"
+    readonly property color dialogInfinityTextColor: "#C2DDDD"
+    readonly property color dialogInfinityTitleTextColor: "#C2DDDD"
+
     //TextArea
     readonly property color textAreaActiveColor: "#E0E0E0"
     readonly property color textAreaBackgroundColor: "#4a6572"

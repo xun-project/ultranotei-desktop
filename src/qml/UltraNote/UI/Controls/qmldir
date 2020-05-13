@@ -42,3 +42,4 @@ BrowserDialog 1.0 BrowserDialog.qml
 BrowserWindow 1.0 BrowserWindow.qml
 DownloadView 1.0 DownloadView.qml
 FindBar 1.0 FindBar.qml
+UNDialogInfinity 1.0 UNDialogInfinity.qml
