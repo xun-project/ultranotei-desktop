@@ -38,7 +38,7 @@ cmake -DCMAKE_PREFIX_PATH=$HOME/Qt/5.13.2/gcc_64 -DCMAKE_BUILD_TYPE=Release ../.
 
 cd ../..
 make -j4
-make package
+make package-deb
 ```
 
 You can find the executable and the DEB package under `build/release`.
