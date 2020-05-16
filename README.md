@@ -16,7 +16,7 @@ or install them using your distribution's package manager.
 Debian example:
 Installing dependencies:
 ```
-sudo apt-get install build-essential git cmake libboost-all-dev libqrencode-dev qt5-default qttools5-dev qttools5-dev-tools qtdeclarative5-dev qtquickcontrols2-5-dev qtmultimedia5-dev qtwebengine5-dev libqt5webenginewidgets5 libssl-dev libevent-dev
+sudo apt-get install build-essential git cmake automake libboost-all-dev libqrencode-dev qt5-default qttools5-dev qttools5-dev-tools qtdeclarative5-dev qtquickcontrols2-5-dev qtmultimedia5-dev qtwebengine5-dev libqt5webenginewidgets5 libssl-dev libevent-dev
 
 ```
 
@@ -45,7 +45,7 @@ You can find the executable and the DEB package under `build/release`.
 
 [NOTE] you need to find the package provider or compile the required Qt version by yourself on some systems which have no modern Qt versions in their package repositories.
 
-[NOTE] UltraNoteWallet depends on Qt 5.13-5.14 mostly because of modern QML dependencies. Since current Ubuntu repository Qt versions are low (5.9) the fatest solution is to provide the deb package with a requirement to install Qt libraries manually. After installing the libraries user should launch the shell command to apply the Qt libraries path to LD_LIBRARY_PATH variable on desktop application start:
+[NOTE] UltraNoteiWallet depends on Qt 5.13-5.14 mostly because of modern QML dependencies. Since current Ubuntu repository Qt versions are low (5.9) the fatest solution is to provide the deb package with a requirement to install Qt libraries manually. After installing the libraries user should launch the shell command to apply the Qt libraries path to LD_LIBRARY_PATH variable on desktop application start:
 ```
 echo "$HOME/Qt/5.13.2/gcc_64/lib" | sudo tee /etc/ld.so.conf.d/qt-mobility.conf && sudo ldconfig -v
 ```
@@ -155,7 +155,7 @@ set BOOST_LIBRARYDIR=C:\local\boost_1_72_0\lib64-msvc-14.1
 # Add C:\Program Files\OpenSSL-Win64 to your system path.
 
 # fetch sources
-git clone https://UltraNote@bitbucket.org/xunteam/ultranotewallet.git
+git clone https://bitbucket.org/xunteam/ultranotewallet-infinity.git
 cd UltraNoteWallet
 git submodule init
 git submodule update
@@ -189,17 +189,17 @@ Now you can collect all binaries and pack it:
 
 ```
 cd Release
-windeployqt UltraNoteWallet.exe
+windeployqt UltraNoteInfinity.exe
 cd ..
 cpack -C Release
 
 ```
 
-This will generate the UltraNoteWallet installation package inside the build directory. [Example: ```UltraNoteWallet-2.0-beta-win64.exe```]
+This will generate the UltraNoteWallet installation package inside the build directory. [Example: ```UltraNoteInfinity-1.0.2-beta-win64.exe```]
 
 NOTE: the Windows packages are not signed by certificate.
 
-Alternatively you can use the Visual Studio GUI for building. To do so, run just the first cmake command from the command list above ["%CMAKE_PATH%"\cmake.exe] with option ```-G "Visual Studio 15 2017 Win64"``` instead of ```-G "NMake Makefiles```", then open the generated file `build/release/UltraNoteWallet.sln` in Visual Studio. Select build type 'Release' and build the target 'UltraNoteWallet' or for a distribution package build target 'PACKAGE'.
+Alternatively you can use the Visual Studio GUI for building. To do so, run just the first cmake command from the command list above ["%CMAKE_PATH%"\cmake.exe] with option ```-G "Visual Studio 15 2017 Win64"``` instead of ```-G "NMake Makefiles```", then open the generated file `build/release/UltraNoteInfinity.sln` in Visual Studio. Select build type 'Release' and build the target 'UltraNoteWallet' or for a distribution package build target 'PACKAGE'.
 
 When compiling from Visual Studio you need to add /bigobj switch flag in UltraNoteWallet project, C/C++->Command Line
 
