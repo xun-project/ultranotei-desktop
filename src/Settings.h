@@ -42,6 +42,10 @@ public:
   QString getAddressBookFile() const;
   QString getUnreadMessagesFile() const;
   QStringList getMiningPoolList() const;
+  QString getAutoOptimizationStatus() const;
+  void setAutoOptimizationStatus(const QString& _status);
+  quint64 getOptimizationInterval() const;
+  bool isTrackingMode() const;
   bool isEncrypted() const;
   Q_INVOKABLE QString getVersion() const;
   QString getConnection() const;
@@ -55,6 +59,7 @@ public:
 #endif
   QString getFiatSymbol() const;
 
+  void setTrackingMode(bool _tracking);
   void setWalletFile(const QString& _file);
   void setEncrypted(bool _encrypted);
   void setCurrentTheme(const QString& _theme);

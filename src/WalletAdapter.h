@@ -29,6 +29,7 @@
 #include "gui/MiningService.h"
 #include "qmlhelpers.h"
 #include <IWalletLegacy.h>
+#include "gui/OptimizationService.h"
 
 namespace WalletGui {
 
@@ -53,6 +54,7 @@ class WalletAdapter : public QObject, public CryptoNote::IWalletLegacyObserver {
     QML_READABLE_PROPERTY(QString, encryptionStateToolTip, setEncryptionStateToolTip, "")
     QML_READABLE_PROPERTY(QString, synchronizationStateIcon, setSynchronizationStateIcon, "")
     QML_READABLE_PROPERTY(QString, synchronizationStateToolTip, setSynchronizationStateToolTip, "")
+    QML_READABLE_PROPERTY(QString, optimizationState, setOptimizationState, "(Optimization not required)")
     QML_READABLE_PROPERTY(bool, synchronizationStatePlaying, setSynchronizationStatePlaying, false)
     QML_CONSTANT_PROPERTY_PTR(FiatConverter, fiatConverter)
     QML_CONSTANT_PROPERTY_PTR(DepositTableModel, depositTableModel)
@@ -98,6 +100,9 @@ public:
     bool getTorEnabled();
 
     Q_INVOKABLE QString toLocalFile(const QUrl& fileUrl) const;
+    Q_INVOKABLE bool optimizeClicked();
+    Q_INVOKABLE void autoOptimizeClicked();
+    Q_INVOKABLE bool isAutoOpimizationEnabled() const;
 
 	QString getAddress() const;
     quint64 getActualBalance() const;
@@ -151,6 +156,10 @@ public:
 		qreal amount, int fee, int anonLevel);
 	Q_INVOKABLE quint16 getCommentCharPrice();
 
+    quint64 getNumUnlockedOutputs() const;
+    void optimizationDelay();
+    void optimizeWallet();
+
     WalletAdapter();
         ~WalletAdapter() = default;
 
@@ -188,6 +197,8 @@ private:
 	Q_SLOT void newTransactionSoundEffect(CryptoNote::TransactionId _transactionId);
     void updateBlockStatusTextWithDelay();
     void encryptedFlagChanged(bool encrypted);
+    void checkTrackingMode();
+    Q_SLOT void updateOptimizationLabel();
 
 Q_SIGNALS:
     void walletInitCompletedSignal(int _error, const QString& _errorText);
@@ -217,6 +228,7 @@ Q_SIGNALS:
     void updateBlockStatusTextWithDelaySignal();
     void isWalletEncryptedChanged();
     void isStartOnLoginEnabledChanged();
+    void autoOptimizationChanged();
     void updateTORSetting();
     void showMessage(const QString& title, const QString& text);
 

@@ -30,6 +30,7 @@ Q_DECL_CONSTEXPR char OPTION_DAEMON_PORT[] = "daemonPort";
 Q_DECL_CONSTEXPR char OPTION_REMOTE_NODE[] = "remoteNode";
 Q_DECL_CONSTEXPR char OPTION_FIAT_SYMBOL[] = "fiatSymbol";
 Q_DECL_CONSTEXPR char OPTION_DEFAULT_FIAT_SYMBOL[] = "usd";
+Q_DECL_CONSTEXPR char OPTION_AUTOOPTIMIZATION[] = "autoOptimization";
 
 Settings& Settings::instance() {
   static Settings inst;
@@ -241,6 +242,40 @@ QStringList Settings::getMiningPoolList() const {
   }
 
   return res;
+}
+
+QString WalletGui::Settings::getAutoOptimizationStatus() const
+{
+    QString status;
+    if (m_settings.contains(OPTION_AUTOOPTIMIZATION))
+    {
+        status = m_settings.value(OPTION_AUTOOPTIMIZATION).toString();
+    }
+    return status;
+}
+
+void WalletGui::Settings::setAutoOptimizationStatus(const QString& _status)
+{
+    m_settings.insert(OPTION_AUTOOPTIMIZATION, _status);
+    saveSettings();
+}
+
+quint64 WalletGui::Settings::getOptimizationInterval() const
+{
+    const quint64 DEFAULT_OPTIMIZATION_PERIOD = 1000 * 60 * 15; /* 15 Minutes */
+    return DEFAULT_OPTIMIZATION_PERIOD;
+}
+
+bool WalletGui::Settings::isTrackingMode() const
+{
+    return m_settings.contains("tracking") ? m_settings.value("tracking").toBool() : false;
+}
+
+void Settings::setTrackingMode(bool _tracking) {
+    if (isTrackingMode() != _tracking) {
+        m_settings.insert("tracking", _tracking);
+        saveSettings();
+    }
 }
 
 bool Settings::isStartOnLoginEnabled() const {

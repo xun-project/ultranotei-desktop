@@ -14,6 +14,9 @@ Dialog {
     property int maximumContentSize: _privateProperties.defaultMaximumContentSize
     property alias buttonContainer: _buttonBoxItem
     property color overlayColor: _privateProperties.defaultOverlayColor
+    property color dialogBackgroundColor: Theme.dialogBackgroundColor
+    property color dialogTitleTextColor: Theme.dialogTitleTextColor
+    property bool  headerAlignmentCenter: false
     property alias buttons: _buttonsBox.model
 
     signal accepted()
@@ -62,7 +65,7 @@ Dialog {
 
         elevation: 24
 
-        color: Theme.dialogBackgroundColor
+        color: _itm.dialogBackgroundColor
     }
 
     header: UNLabel {
@@ -73,10 +76,11 @@ Dialog {
         topPadding: 30
 
         type: UNLabel.Type.TypeDialogTitle
-        color: Theme.dialogTitleTextColor
+        color: _itm.dialogTitleTextColor
         text: _itm.title
         wrapMode: Label.WordWrap
         elide: Label.ElideNone
+        horizontalAlignment: _itm.headerAlignmentCenter? Label.AlignHCenter : Label.AlignLeft
     }
 
     footer: Item {

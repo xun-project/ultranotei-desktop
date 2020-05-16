@@ -102,6 +102,7 @@
         <file>qml/UltraNote/UI/Controls/UNTableHeaderLabel.qml</file>
         <file>qml/UltraNote/UI/Controls/UNAnimatedImage.qml</file>
         <file>qml/UltraNote/UI/Controls/UNLabel.qml</file>
+        <file>qml/UltraNote/UI/Controls/UNLabelSelectable.qml</file>
         <file>qml/UltraNote/UI/Controls/UNTableView.qml</file>
         <file>qml/UltraNote/UI/Controls/UNToolTip.qml</file>
         <file>qml/UltraNote/UI/Dialogs/AddressBookDialog.qml</file>
@@ -116,6 +117,7 @@
         <file>qml/UltraNote/UI/Dialogs/RequestPasswordDialog.qml</file>
         <file>qml/UltraNote/UI/Dialogs/TransactionDetailsDialog.qml</file>
         <file>qml/UltraNote/UI/Dialogs/UploadProgressDialog.qml</file>
+        <file>qml/UltraNote/UI/Dialogs/OptimizeTransactionsDialog.qml</file>
         <file>qml/UltraNote/UI/Pages/AddressBookPage.qml</file>
         <file>qml/UltraNote/UI/Pages/DepositsPage.qml</file>
         <file>qml/UltraNote/UI/Pages/MessagesPage.qml</file>
@@ -141,6 +143,7 @@
         <file>qml/UltraNote/UI/Controls/Private/qmldir</file>
         <file>qml/UltraNote/UI/Controls/UNPage.qml</file>
         <file>qml/UltraNote/UI/Controls/UNDialog.qml</file>
+        <file>qml/UltraNote/UI/Controls/UNDialogInfinity.qml</file>
         <file>qml/UltraNote/UI/Controls/UNFontsFactory.qml</file>
         <file>qml/UltraNote/UI/Controls/UNRadioButton.qml</file>
         <file>qml/UltraNote/UI/Controls/UNDrawerMainActionButton.qml</file>

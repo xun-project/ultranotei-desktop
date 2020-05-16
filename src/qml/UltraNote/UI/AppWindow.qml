@@ -1075,6 +1075,10 @@ UNFramelessApplicationWindow {
             id: _importPrivateKeyDialog
         }
 
+        OptimizeTransactionsDialog {
+            id: _OptimizeTransactionsDialog
+        }
+
         FiatSymbolDialog {
             id: _fiatSymbolDialog
 
@@ -1230,6 +1234,25 @@ UNFramelessApplicationWindow {
                         _messageDialogProperties.okCancel = true
                         _messageDialogProperties.acceptCallback = walletAdapter.resetWallet
                         _messageDialogProperties.text = qsTr("Your wallet will be reset and restored from blockchain.\nAre you sure?")
+                    }
+                }
+
+                UNMenuItem {
+                    text: qsTr("Optimize Wallet")
+                    onClicked: _OptimizeTransactionsDialog.open()
+                }
+
+                UNMenuItem {
+                    checkable: true
+                    checked: walletAdapter.isAutoOpimizationEnabled()
+                    text: qsTr("Auto Optimization")
+
+                    onClicked: {
+
+                        if(walletAdapter.isAutoOpimizationEnabled())
+                            _messageDialogProperties.showMessage("Auto Optimization", "Auto Optimization Disabled.")
+                        else _messageDialogProperties.showMessage("Auto Optimization", "Auto Optimization Enabled. Your wallet will be optimized automatically every 15 minutes.")
+                        walletAdapter.autoOptimizeClicked()
                     }
                 }
 

@@ -11,6 +11,7 @@
 #include <QLocale>
 #include <QUrl>
 #include <QVector>
+#include <QMessageBox>
 
 #include <Common/Base58.h>
 #include <Common/Util.h>
@@ -191,6 +192,15 @@ WalletAdapter::WalletAdapter()
     }
 
     connect(this, &WalletAdapter::updateTORSetting, this, &WalletAdapter::setTorSettings);
+
+    //initialize the optimization service
+    OptimizationService* optimizationService = new OptimizationService(this);
+    QObject::connect(this, &WalletAdapter::walletInitCompletedSignal, optimizationService, &OptimizationService::walletOpened);
+    QObject::connect(this, &WalletAdapter::walletCloseCompletedSignal, optimizationService, &OptimizationService::walletClosed);
+    QObject::connect(this, &WalletAdapter::walletSynchronizationProgressUpdatedSignal, optimizationService, &OptimizationService::synchronizationProgressUpdated, Qt::QueuedConnection);
+    QObject::connect(this, &WalletAdapter::walletSynchronizationCompletedSignal, optimizationService, &OptimizationService::synchronizationCompleted, Qt::QueuedConnection);
+    QObject::connect(this, &WalletAdapter::walletSynchronizationCompletedSignal, this, &WalletAdapter::updateOptimizationLabel, Qt::QueuedConnection);
+    
     m_newTransactionsNotificationTimer.setInterval(500);
 	//QTimer::singleShot(1500, this, SLOT(updateWalletTransactions()));
 }
@@ -548,6 +558,77 @@ QString WalletAdapter::toLocalFile(const QUrl& fileUrl) const
     return fileUrl.toLocalFile();
 }
 
+bool WalletAdapter::optimizeClicked()
+{
+    if (Settings::instance().isTrackingMode())
+    {
+        //show message here
+        //QMessageBox::information(this, tr("Tracking Wallet"), "This is a tracking wallet. This action is not available.");
+        return false;
+    }
+    else
+    {
+        quint64 numUnlockedOutputs;
+        numUnlockedOutputs = WalletAdapter::instance().getNumUnlockedOutputs();
+        WalletAdapter::instance().optimizeWallet();
+        while (WalletAdapter::instance().getNumUnlockedOutputs() > 100)
+        {
+            numUnlockedOutputs = WalletAdapter::instance().getNumUnlockedOutputs();
+            if (numUnlockedOutputs == 0)
+                break;
+            WalletAdapter::instance().optimizeWallet();
+            optimizationDelay();
+        }
+        return true;
+    }
+}
+
+void WalletAdapter::autoOptimizeClicked()
+{
+    if (Settings::instance().getAutoOptimizationStatus() == "enabled")
+         Settings::instance().setAutoOptimizationStatus("disabled");
+    else Settings::instance().setAutoOptimizationStatus("enabled");
+}
+
+bool WalletAdapter::isAutoOpimizationEnabled() const
+{
+    return Settings::instance().getAutoOptimizationStatus() == "enabled";
+}
+
+void WalletAdapter::optimizeWallet()
+{
+    Q_CHECK_PTR(m_wallet);
+    std::vector<CryptoNote::WalletLegacyTransfer> transfers;
+    std::vector<CryptoNote::TransactionMessage> messages;
+    std::string extraString;
+    uint64_t fee = CryptoNote::parameters::MINIMUM_FEE;
+    uint64_t mixIn = 0;
+    uint64_t unlockTimestamp = 0;
+    uint64_t ttl = 0;
+    Crypto::SecretKey transactionSK;
+    try {
+        lock();
+        m_sentTransactionId = m_wallet->sendTransaction(transactionSK, transfers, fee, extraString, mixIn, unlockTimestamp, messages, ttl);
+        setStatusBarText(tr("OPTIMIZING WALLET"));
+    }
+    catch (std::system_error&) {
+        unlock();
+    }
+}
+
+quint64 WalletAdapter::getNumUnlockedOutputs() const
+{
+    Q_CHECK_PTR(m_wallet);
+    return m_wallet->getNumUnlockedOutputs();
+}
+
+void WalletAdapter::optimizationDelay()
+{
+    QTime dieTime = QTime::currentTime().addSecs(1);
+    while (QTime::currentTime() < dieTime)
+        QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
+}
+
 quint64 WalletAdapter::getTransactionCount() const
 {
     Q_CHECK_PTR(m_wallet);
@@ -754,7 +835,7 @@ void WalletAdapter::onWalletInitCompleted(int _error, const QString& _errorText)
         if (!QFile::exists(Settings::instance().getWalletFile())) {
             save(true, true);
         }
-
+        checkTrackingMode();//check traking mode when wallet open
         break;
     }
     case CryptoNote::error::WRONG_PASSWORD:
@@ -865,6 +946,30 @@ void WalletAdapter::onWalletSendTransactionCompleted(CryptoNote::TransactionId _
     Q_EMIT walletTransactionCreatedSignal(_transactionId);
 
     save(true, true);
+}
+
+void WalletAdapter::checkTrackingMode()
+{
+    CryptoNote::AccountKeys keys;
+    WalletAdapter::instance().getAccountKeys(keys);
+    if (keys.spendSecretKey == boost::value_initialized<Crypto::SecretKey>())
+    {
+        Settings::instance().setTrackingMode(true);
+    }
+    else
+    {
+        Settings::instance().setTrackingMode(false);
+    }
+}
+
+void WalletAdapter::updateOptimizationLabel()
+{
+    quint64 numUnlockedOutputs;
+    numUnlockedOutputs = WalletAdapter::instance().getNumUnlockedOutputs();
+    if (numUnlockedOutputs >= 100)
+        setOptimizationState("Recommended [" + QString::number(numUnlockedOutputs) + "]");
+    else
+        setOptimizationState("Not required [" + QString::number(numUnlockedOutputs) + "]");
 }
 
 void WalletAdapter::transactionUpdated(CryptoNote::TransactionId _transactionId)
