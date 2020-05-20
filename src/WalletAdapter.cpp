@@ -734,7 +734,8 @@ void WalletAdapter::sendTransaction(const QVector<CryptoNote::WalletLegacyTransf
     try {
         lock();
         Crypto::SecretKey _transactionsk;
-        m_sentTransactionId = m_wallet->sendTransaction(_transactionsk, _transfers.toStdVector(), _fee, NodeAdapter::instance().convertPaymentId(_paymentId), _mixin, 0, _messages.toStdVector());
+        std::vector<CryptoNote::WalletLegacyTransfer> transfers = _transfers.toStdVector();
+        m_sentTransactionId = m_wallet->sendTransaction(_transactionsk, transfers, _fee, NodeAdapter::instance().convertPaymentId(_paymentId), _mixin, 0, _messages.toStdVector());
         setStatusBarText(tr("Sending transaction"));
     } catch (std::system_error&) {
         unlock();
@@ -748,7 +749,8 @@ void WalletAdapter::sendMessage(const QVector<CryptoNote::WalletLegacyTransfer>&
     try {
         lock();
         Crypto::SecretKey _transactionsk;
-        m_sentMessageId = m_wallet->sendTransaction(_transactionsk,_transfers.toStdVector(), _fee, "", _mixin, 0, _messages.toStdVector(), _ttl);
+        std::vector<CryptoNote::WalletLegacyTransfer> transfers = _transfers.toStdVector();
+        m_sentMessageId = m_wallet->sendTransaction(_transactionsk, transfers, _fee, "", _mixin, 0, _messages.toStdVector(), _ttl);
         setStatusBarText(tr("Sending messages"));
     } catch (std::system_error&) {
         unlock();

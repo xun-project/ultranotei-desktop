@@ -47,7 +47,7 @@ int CurrencyAdapter::calculateInterest(int amount, int term) {
 }
 
 quint64 CurrencyAdapter::calculateInterest(quint64 _amount, quint32 _term, uint32_t height) const {
-    return m_currency.calculateInterestMaths(_amount, _term, height);
+    return m_currency.calculateInterest(_amount, _term, height);
 }
 
 int CurrencyAdapter::getMinimumFee() const {
