@@ -374,7 +374,7 @@ target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES} ${QTMAIN} zlibstatic ${
 if (APPLE)
   set_target_properties(${PROJECT_NAME} PROPERTIES MACOSX_BUNDLE_INFO_PLIST "${CMAKE_SOURCE_DIR}/contrib/macos/MacOSXBundleInfo.plist.in")
 elseif (UNIX)
-  target_link_libraries(${PROJECT_NAME} -lpthread)
+  target_link_libraries(${PROJECT_NAME} -lpthread -lresolv)
 elseif (WIN32)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /bigobj")
   target_link_libraries(${PROJECT_NAME} Imm32 Iphlpapi Winmm)
