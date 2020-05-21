@@ -41,12 +41,16 @@
 using namespace WalletGui;
 
 int main(int argc, char* argv[]) {
+  QApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
+  QtWebEngine::initialize();
+
   QApplication app(argc, argv);
   QApplication::setApplicationName("UltraNoteInfinity");
   QApplication::setOrganizationName("XUNI");
   QApplication::setOrganizationDomain("Cryptocurrency");
   QApplication::setApplicationVersion(Settings::instance().getVersion());
   QApplication::setQuitOnLastWindowClosed(false);
+
 
 #ifndef Q_OS_MAC
   QApplication::setStyle(QStyleFactory::create("Fusion"));
@@ -116,8 +120,6 @@ int main(int argc, char* argv[]) {
           font.close();
       }
   }
-
-  QtWebEngine::initialize();
 
   QQmlApplicationEngine engine;
   BrowserUtils browserUtils;
