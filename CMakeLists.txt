@@ -209,7 +209,6 @@ set(CRYPTONOTE_SOURCES
   cryptonote/src/CryptoNoteCore/CryptoNoteTools.cpp
   cryptonote/src/CryptoNoteCore/Currency.cpp
   cryptonote/src/CryptoNoteCore/DepositIndex.cpp
-  cryptonote/src/CryptoNoteCore/InvestmentIndex.cpp
   cryptonote/src/CryptoNoteCore/MinerConfig.cpp
   cryptonote/src/CryptoNoteCore/Transaction.cpp
   cryptonote/src/CryptoNoteCore/Account.cpp
@@ -375,7 +374,7 @@ target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES} ${QTMAIN} zlibstatic ${
 if (APPLE)
   set_target_properties(${PROJECT_NAME} PROPERTIES MACOSX_BUNDLE_INFO_PLIST "${CMAKE_SOURCE_DIR}/contrib/macos/MacOSXBundleInfo.plist.in")
 elseif (UNIX)
-  target_link_libraries(${PROJECT_NAME} -lpthread)
+  target_link_libraries(${PROJECT_NAME} -lpthread -lresolv)
 elseif (WIN32)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /bigobj")
   target_link_libraries(${PROJECT_NAME} Imm32 Iphlpapi Winmm)
