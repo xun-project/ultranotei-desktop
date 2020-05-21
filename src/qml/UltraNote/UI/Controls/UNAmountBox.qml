@@ -8,7 +8,7 @@ import UltraNote.UI 1.0
 TextField {
     id: _AmountEditBox
     property real value: 0
-    property string resetDecimals: "0.00000000"
+    property string resetDecimals: "0.000000"
     text: resetDecimals
     height: 40
     implicitHeight: height
