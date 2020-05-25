@@ -42,7 +42,7 @@ QString CurrencyAdapter::getCurrencyTicker() const {
   return WALLET_CURRENCY_TICKER;
 }
 
-int CurrencyAdapter::calculateInterest(int amount, int term) {
+quint64 CurrencyAdapter::calculateInterest(quint64 amount, quint32 term) {
     return CurrencyAdapter::instance().calculateInterest(amount, term, NodeAdapter::instance().getLastKnownBlockHeight());
 }
 

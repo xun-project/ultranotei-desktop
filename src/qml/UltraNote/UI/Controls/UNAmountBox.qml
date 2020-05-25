@@ -9,6 +9,10 @@ TextField {
     id: _AmountEditBox
     property real value: 0
     property string resetDecimals: "0.000000"
+    property real maxLimitNumber: 1000000000000
+    property string maxLimitString: "1000000.000000"
+    property real minLimitNumber: 1000000
+    property string minLimitString: "1.000000"
     text: resetDecimals
     height: 40
     implicitHeight: height
@@ -26,7 +30,17 @@ TextField {
     }
     onTextChanged: {
         if(text){
-            value = Number.fromLocaleString(text) * _globalProperties.actStepSize
+            if(text.indexOf(".") !== -1  &&  (text.indexOf(".") + 7) < text.length )
+                _AmountEditBox.text = text.substring(0, text.indexOf(".") + 7)
+
+            value = Number.fromLocaleString(_AmountEditBox.text) * _globalProperties.actStepSize
+
+            if(value > maxLimitNumber){
+                _AmountEditBox.text = maxLimitString
+            }
+            else if(value < minLimitNumber){
+                _AmountEditBox.text = minLimitString
+            }
         }
     }
     function updateFee(newValue , locale){
