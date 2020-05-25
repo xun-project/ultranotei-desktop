@@ -11,8 +11,8 @@ TextField {
     property string resetDecimals: "0.000000"
     property real maxLimitNumber: 1000000000000
     property string maxLimitString: "1000000.000000"
-    property real minLimitNumber: 1000000
-    property string minLimitString: "1.000000"
+    property real minLimitNumber: 0
+    property string minLimitString: "0.000000"
     text: resetDecimals
     height: 40
     implicitHeight: height
@@ -26,7 +26,7 @@ TextField {
 
     validator: DoubleValidator {
         bottom: 0
-        top:  100000000.0
+        top:  1000000.0
     }
     onTextChanged: {
         if(text){
