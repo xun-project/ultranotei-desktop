@@ -5,7 +5,7 @@ ChangePasswordDialog 1.0 ChangePasswordDialog.qml
 ConnectionSettingsDialog 1.0 ConnectionSettingsDialog.qml
 DownloadProgressDialog 1.0 DownloadProgressDialog.qml
 FiatSymbolDialog 1.0 FiatSymbolDialog.qml
-ImportPrivateKeyDialog 1.0 ImportPrivateKeyDialog.qml
+ImportPrivateKeysDialog 1.0 ImportPrivateKeysDialog.qml
 MessageDetailsDialog 1.0 MessageDetailsDialog.qml
 MessageDialog 1.0 MessageDialog.qml
 NewRemoteNodeDialog 1.0 NewRemoteNodeDialog.qml
@@ -15,3 +15,6 @@ DepositDetailsDialog 1.0 DepositDetailsDialog.qml
 UploadProgressDialog 1.0 UploadProgressDialog.qml
 NewAddressDialog 1.0 NewAddressDialog.qml
 OptimizeTransactionsDialog 1.0 OptimizeTransactionsDialog.qml
+ImportWalletDialog 1.0 ImportWalletDialog.qml
+ImportTrackingWalletDialog 1.0 ImportTrackingWalletDialog.qml
+ImportSeedDialog 1.0 ImportSeedDialog.qml

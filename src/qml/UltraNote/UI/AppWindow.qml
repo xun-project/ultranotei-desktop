@@ -518,12 +518,12 @@ UNFramelessApplicationWindow {
                                         checkable: false
                                         checked: false
                                         iconSource: "qrc:/icons/resources/icons/drawer_wallet_actions_list_item_icon.svg"
-                                        text: qsTr("Import Private Key")
+                                        text: qsTr("Import Private Keys")
                                         defaultColor: Theme.drawerTextColor
                                         activeColor: Theme.drawerActiveTextColor
 
                                         onClicked: {
-                                            _importPrivateKeyDialog.open()
+                                            _importPrivateKeysDialog.open()
                                         }
                                     }
 
@@ -1071,13 +1071,25 @@ UNFramelessApplicationWindow {
             id: _connectionSettingsDialog
         }
 
-        ImportPrivateKeyDialog {
-            id: _importPrivateKeyDialog
+        ImportPrivateKeysDialog {
+            id: _importPrivateKeysDialog
         }
 
         OptimizeTransactionsDialog {
             id: _OptimizeTransactionsDialog
         }
+
+        ImportWalletDialog {
+            id: _ImportWalletDialog
+        }
+
+        ImportTrackingWalletDialog {
+            id: _ImportTrackingWalletDialog
+        }
+        ImportSeedDialog {
+            id: _ImportSeedDialog
+        }
+
 
         FiatSymbolDialog {
             id: _fiatSymbolDialog
@@ -1205,10 +1217,10 @@ UNFramelessApplicationWindow {
                 }
 
                 UNMenuItem {
-                    text: qsTr("Import Private Key")
+                    text: qsTr("Import Wallet")
 
                     onClicked: {
-                        _importPrivateKeyDialog.open()
+                        _ImportWalletDialog.open()
                     }
                 }
 

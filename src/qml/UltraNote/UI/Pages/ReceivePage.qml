@@ -16,7 +16,7 @@ UNPage {
     contentItem: Item {
         anchors.fill: parent
 
-        transform: [
+        /*transform: [
             Scale {
                 id: scale;
                 xScale: yScale;
@@ -26,255 +26,414 @@ UNPage {
                 x: (_page.width - _pageContent.childrenRect.width * scale.xScale) / 2;
                 y: (_page.height - _pageContent.childrenRect.height * scale.yScale) / 2;
             }
-        ]
+        ]*/
 
-        Column {
-            id: _pageContent
+        Flickable {
+            anchors.fill: parent
+            anchors.margins: 20
 
-            anchors.left: parent.left
-            anchors.right: parent.right
+            //clip: true
 
-            height: childrenRect.height
+            boundsBehavior: Flickable.StopAtBounds
+            contentHeight: _pageContent.height
 
-            spacing: 0
+            Column {
+                id: _pageContent
 
-            Item{
                 anchors.left: parent.left
                 anchors.right: parent.right
-                height: 24
-            }
 
-            Rectangle {
-                id: _publicAddressItem
+                height: childrenRect.height
 
-                property string addressText: walletAdapter.publicAddress
+                spacing: 0
 
-                anchors.horizontalCenter: parent.horizontalCenter
-
-                width: 352
-                height: 416
-
-                onAddressTextChanged: _publicAddressQrImage.sourceText = addressText
-
-                color: Theme.barcodeBackgroundColor
-                border.color : Theme.barcodeBackgroundBorderColor
-
-                radius: 15
-
-                Column {
-                    anchors.fill: parent
-
-                    anchors.margins: 24
-
-                    spacing: 24
-
-                    Item {
-                        anchors.left: parent.left
-                        anchors.right: parent.right
-
-                        height: 24
-
-                        UNLabel {
-                            anchors.left: parent.left
-                            anchors.verticalCenter: parent.verticalCenter
-
-                            height: implicitHeight
-
-                            type: UNLabel.Type.TypeExtraBold
-                            size: 18
-                            font.letterSpacing: 1.15
-                            elide: Label.ElideNone
-                            wrapMode: Label.NoWrap
-                            color: Theme.barcodeTitleColor
-                            horizontalAlignment: Label.AlignLeft
-                            verticalAlignment: Label.AlignVCenter
-
-                            text: qsTr("Public Address key")
-                        }
-
-                        UNIcon {
-                            anchors.right: parent.right
-                            anchors.verticalCenter: parent.verticalCenter
-
-                            size: 24
-                            source: "qrc:/icons/resources/icons/clipboard_copy_icon.svg"
-                            toolTip: qsTr("Copy to Clipboard")
-                            color: Theme.barcodeIconColor
-                            clickable: true
-
-                            onClicked: {
-                                clipboard.setText(_publicAddressItem.addressText)
-                            }
-                        }
-                    }
-
-                    QrImage {
-                        id: _publicAddressQrImage
-
-                        anchors.horizontalCenter: parent.horizontalCenter
-
-                        height: 300
-                        width: height
-
-                        visible: "" !== _publicAddressQrImage.sourceText
-                    }
+                Item{
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    height: 24
                 }
-            }
 
-            Item{
-                anchors.left: parent.left
-                anchors.right: parent.right
-                height: 24
-            }
+                Rectangle {
+                    id: _publicAddressItem
 
-            Rectangle {
-                id: _privateAddressItem
+                    property string addressText: walletAdapter.publicAddress
 
-                property string addressText: walletAdapter.privateKey
-                property bool addressVisible: false
+                    anchors.horizontalCenter: parent.horizontalCenter
 
-                anchors.horizontalCenter: parent.horizontalCenter
+                    width: 250
+                    height: 307
 
-                width: 352
-                height: 416
+                    onAddressTextChanged: _publicAddressQrImage.sourceText = addressText
 
-                onAddressTextChanged: _privateAddressQrImage.sourceText = _privateAddressItem.addressText
+                    color: Theme.barcodeBackgroundColor
+                    border.color : Theme.barcodeBackgroundBorderColor
 
-                color: Theme.barcodeBackgroundColor
-                border.color : Theme.barcodeBackgroundBorderColor
+                    radius: 15
 
-                radius: 15
+                    Column {
+                        anchors.fill: parent
 
-                Column {
-                    anchors.fill: parent
+                        anchors.margins: 24
 
-                    anchors.margins: 24
+                        spacing: 24
 
-                    spacing: 24
-
-                    Item {
-                        anchors.left: parent.left
-                        anchors.right: parent.right
-
-                        height: 24
-
-                        UNLabel {
+                        Item {
                             anchors.left: parent.left
-                            anchors.verticalCenter: parent.verticalCenter
-
-                            height: implicitHeight
-
-                            type: UNLabel.Type.TypeExtraBold
-                            size: 18
-                            font.letterSpacing: 1.15
-                            elide: Label.ElideNone
-                            wrapMode: Label.NoWrap
-                            color: Theme.barcodeTitleColor
-                            horizontalAlignment: Label.AlignLeft
-                            verticalAlignment: Label.AlignVCenter
-
-                            text: qsTr("Private Address key")
-                        }
-
-                        UNIcon {
                             anchors.right: parent.right
-                            anchors.verticalCenter: parent.verticalCenter
 
-                            size:24
-                            source: "qrc:/icons/resources/icons/clipboard_copy_icon.svg"
-                            toolTip: qsTr("Copy to Clipboard")
-                            color: Theme.barcodeIconColor
-                            clickable: true
+                            height: 24
 
-                            onClicked: {
-                                clipboard.setText(_privateAddressItem.addressText)
+                            UNLabel {
+                                anchors.left: parent.left
+                                anchors.verticalCenter: parent.verticalCenter
+
+                                height: implicitHeight
+
+                                type: UNLabel.Type.TypeExtraBold
+                                size: 15
+                                font.letterSpacing: 1.15
+                                elide: Label.ElideNone
+                                wrapMode: Label.NoWrap
+                                color: Theme.barcodeTitleColor
+                                horizontalAlignment: Label.AlignLeft
+                                verticalAlignment: Label.AlignVCenter
+
+                                text: qsTr("Public Address key")
+                            }
+
+                            UNIcon {
+                                anchors.right: parent.right
+                                anchors.verticalCenter: parent.verticalCenter
+
+                                size: 24
+                                source: "qrc:/icons/resources/icons/clipboard_copy_icon.svg"
+                                toolTip: qsTr("Copy to Clipboard")
+                                color: Theme.barcodeIconColor
+                                clickable: true
+
+                                onClicked: {
+                                    clipboard.setText(_publicAddressItem.addressText)
+                                }
                             }
                         }
-                    }
-
-                    Item {
-                        anchors.horizontalCenter: parent.horizontalCenter
-
-                        height: 300
-                        width: height
 
                         QrImage {
-                            id: _privateAddressQrImage
+                            id: _publicAddressQrImage
 
-                            anchors.fill: parent
+                            anchors.horizontalCenter: parent.horizontalCenter
 
-                            visible: "" !== _privateAddressQrImage.sourceText
+                            dimension : 215
+                            height: 215
+                            width: height
+
+                            visible: "" !== _publicAddressQrImage.sourceText
+                        }
+                    }
+                }
+
+                Item{
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    height: 24
+                }
+
+                Rectangle {
+                    id: _privateSpendKeyItem
+
+                    property string addressText: walletAdapter.privateSpendKey
+                    property bool addressVisible: false
+
+                    anchors.horizontalCenter: parent.horizontalCenter
+
+                    width: 250
+                    height: 307
+
+                    onAddressTextChanged: _privateSpendKeyQrImage.sourceText = _privateSpendKeyItem.addressText
+
+                    color: Theme.barcodeBackgroundColor
+                    border.color : Theme.barcodeBackgroundBorderColor
+
+                    radius: 15
+
+                    Column {
+                        anchors.fill: parent
+
+                        anchors.margins: 24
+
+                        spacing: 24
+
+                        Item {
+                            anchors.left: parent.left
+                            anchors.right: parent.right
+
+                            height: 24
+
+                            UNLabel {
+                                anchors.left: parent.left
+                                anchors.verticalCenter: parent.verticalCenter
+
+                                height: implicitHeight
+
+                                type: UNLabel.Type.TypeExtraBold
+                                size: 15
+                                font.letterSpacing: 1.15
+                                elide: Label.ElideNone
+                                wrapMode: Label.NoWrap
+                                color: Theme.barcodeTitleColor
+                                horizontalAlignment: Label.AlignLeft
+                                verticalAlignment: Label.AlignVCenter
+
+                                text: qsTr("Private Spend key")
+                            }
+
+                            UNIcon {
+                                anchors.right: parent.right
+                                anchors.verticalCenter: parent.verticalCenter
+
+                                size:24
+                                source: "qrc:/icons/resources/icons/clipboard_copy_icon.svg"
+                                toolTip: qsTr("Copy to Clipboard")
+                                color: Theme.barcodeIconColor
+                                clickable: true
+
+                                onClicked: {
+                                    clipboard.setText(_privateSpendKeyItem.addressText)
+                                }
+                            }
                         }
 
-                        Rectangle {
-                            id: _privateAddressQrImageHover
+                        Item {
+                            anchors.horizontalCenter: parent.horizontalCenter
 
-                            anchors.fill: parent
-                            color: "white"
-                            opacity: !_privateAddressItem.addressVisible || (_privateAddressItem.addressVisible && _privateAddressItemMouseArea.containsMouse) ? 1.0 : 0.0
+                            height: 215
+                            width: height
 
-                            Behavior on opacity {
-                                OpacityAnimator {
-                                    duration: 200
+                            QrImage {
+                                id: _privateSpendKeyQrImage
+                                anchors.fill: parent
+
+                                dimension : 215
+                                height: 215
+                                width: height
+
+                                visible: "" !== _privateSpendKeyQrImage.sourceText
+                            }
+
+                            Rectangle {
+                                id: _privateSpendKeyQrImageHover
+
+                                anchors.fill: parent
+                                color: "white"
+                                opacity: !_privateSpendKeyItem.addressVisible || (_privateSpendKeyItem.addressVisible && _privateSpendKeyItemMouseArea.containsMouse) ? 1.0 : 0.0
+
+                                Behavior on opacity {
+                                    OpacityAnimator {
+                                        duration: 200
+                                    }
+                                }
+
+                                Column {
+                                    anchors.centerIn: parent
+
+                                    spacing: 16
+
+                                    UNLabel {
+                                        anchors.horizontalCenter: parent.horizontalCenter
+
+                                        height: implicitHeight
+
+                                        type: UNLabel.Type.TypeExtraBold
+                                        size: 15
+                                        font.letterSpacing: 1.15
+                                        elide: Label.ElideNone
+                                        wrapMode: Label.NoWrap
+                                        color: Theme.privateBarcodeOverlayTextColor
+                                        horizontalAlignment: Label.AlignLeft
+                                        verticalAlignment: Label.AlignVCenter
+
+                                        text: _privateSpendKeyItem.addressVisible ? qsTr("Click to Hide") : qsTr("Click to Show")
+                                    }
+
+                                    UNIcon {
+                                        anchors.horizontalCenter: parent.horizontalCenter
+
+                                        size: 38
+
+                                        source: _privateSpendKeyItem.addressVisible ? "qrc:/icons/resources/icons/qrcode_hidden_icon.svg" : "qrc:/icons/resources/icons/qrcode_visible_icon.svg"
+
+                                        color: Theme.privateBarcodeOverlayIconColor
+                                        clickable: false
+                                    }
                                 }
                             }
 
-                            Column {
-                                anchors.centerIn: parent
+                            MouseArea {
+                                id: _privateSpendKeyItemMouseArea
 
-                                spacing: 16
+                                anchors.fill: parent
 
-                                UNLabel {
-                                    anchors.horizontalCenter: parent.horizontalCenter
+                                hoverEnabled: true
 
-                                    height: implicitHeight
-
-                                    type: UNLabel.Type.TypeExtraBold
-                                    size: 18
-                                    font.letterSpacing: 1.15
-                                    elide: Label.ElideNone
-                                    wrapMode: Label.NoWrap
-                                    color: Theme.privateBarcodeOverlayTextColor
-                                    horizontalAlignment: Label.AlignLeft
-                                    verticalAlignment: Label.AlignVCenter
-
-                                    text: _privateAddressItem.addressVisible ? qsTr("Click to Hide") : qsTr("Click to Show")
+                                onClicked: {
+                                    _privateSpendKeyItem.addressVisible = !_privateSpendKeyItem.addressVisible
                                 }
-
-                                UNIcon {
-                                    anchors.horizontalCenter: parent.horizontalCenter
-
-                                    size: 48
-
-                                    source: _privateAddressItem.addressVisible ? "qrc:/icons/resources/icons/qrcode_hidden_icon.svg" : "qrc:/icons/resources/icons/qrcode_visible_icon.svg"
-
-                                    color: Theme.privateBarcodeOverlayIconColor
-                                    clickable: false
-                                }
-                            }
-                        }
-
-                        MouseArea {
-                            id: _privateAddressItemMouseArea
-
-                            anchors.fill: parent
-
-                            hoverEnabled: true
-
-                            onClicked: {
-                                _privateAddressItem.addressVisible = !_privateAddressItem.addressVisible
                             }
                         }
                     }
                 }
-            }
 
-            Item{
-                anchors.left: parent.left
-                anchors.right: parent.right
-                height: 96
+                Item{
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    height: 24
+                }
+
+                Rectangle {
+                    id: _privateViewKeyItem
+
+                    property string addressText: walletAdapter.privateViewKey
+                    property bool addressVisible: false
+
+                    anchors.horizontalCenter: parent.horizontalCenter
+
+                    width: 250
+                    height: 307
+
+                    onAddressTextChanged: _privateViewKeyQrImage.sourceText = _privateViewKeyItem.addressText
+
+                    color: Theme.barcodeBackgroundColor
+                    border.color : Theme.barcodeBackgroundBorderColor
+
+                    radius: 15
+
+                    Column {
+                        anchors.fill: parent
+
+                        anchors.margins: 24
+
+                        spacing: 24
+
+                        Item {
+                            anchors.left: parent.left
+                            anchors.right: parent.right
+
+                            height: 24
+
+                            UNLabel {
+                                anchors.left: parent.left
+                                anchors.verticalCenter: parent.verticalCenter
+
+                                height: implicitHeight
+
+                                type: UNLabel.Type.TypeExtraBold
+                                size: 15
+                                font.letterSpacing: 1.15
+                                elide: Label.ElideNone
+                                wrapMode: Label.NoWrap
+                                color: Theme.barcodeTitleColor
+                                horizontalAlignment: Label.AlignLeft
+                                verticalAlignment: Label.AlignVCenter
+
+                                text: qsTr("Private View key")
+                            }
+
+                            UNIcon {
+                                anchors.right: parent.right
+                                anchors.verticalCenter: parent.verticalCenter
+
+                                size:24
+                                source: "qrc:/icons/resources/icons/clipboard_copy_icon.svg"
+                                toolTip: qsTr("Copy to Clipboard")
+                                color: Theme.barcodeIconColor
+                                clickable: true
+
+                                onClicked: {
+                                    clipboard.setText(_privateViewKeyItem.addressText)
+                                }
+                            }
+                        }
+
+                        Item {
+                            anchors.horizontalCenter: parent.horizontalCenter
+
+                            height: 215
+                            width: height
+
+                            QrImage {
+                                id: _privateViewKeyQrImage
+
+                                anchors.fill: parent
+                                dimension : 215
+                                height: 215
+                                width: height
+
+                                visible: "" !== _privateViewKeyQrImage.sourceText
+                            }
+
+                            Rectangle {
+                                id: _privateViewKeyQrImageHover
+
+                                anchors.fill: parent
+                                color: "white"
+                                opacity: !_privateViewKeyItem.addressVisible || (_privateViewKeyItem.addressVisible && _privateViewKeyItemMouseArea.containsMouse) ? 1.0 : 0.0
+
+                                Behavior on opacity {
+                                    OpacityAnimator {
+                                        duration: 200
+                                    }
+                                }
+
+                                Column {
+                                    anchors.centerIn: parent
+
+                                    spacing: 16
+
+                                    UNLabel {
+                                        anchors.horizontalCenter: parent.horizontalCenter
+
+                                        height: implicitHeight
+
+                                        type: UNLabel.Type.TypeExtraBold
+                                        size: 15
+                                        font.letterSpacing: 1.15
+                                        elide: Label.ElideNone
+                                        wrapMode: Label.NoWrap
+                                        color: Theme.privateBarcodeOverlayTextColor
+                                        horizontalAlignment: Label.AlignLeft
+                                        verticalAlignment: Label.AlignVCenter
+
+                                        text: _privateViewKeyItem.addressVisible ? qsTr("Click to Hide") : qsTr("Click to Show")
+                                    }
+
+                                    UNIcon {
+                                        anchors.horizontalCenter: parent.horizontalCenter
+
+                                        size: 38
+
+                                        source: _privateViewKeyItem.addressVisible ? "qrc:/icons/resources/icons/qrcode_hidden_icon.svg" : "qrc:/icons/resources/icons/qrcode_visible_icon.svg"
+
+                                        color: Theme.privateBarcodeOverlayIconColor
+                                        clickable: false
+                                    }
+                                }
+                            }
+
+                            MouseArea {
+                                id: _privateViewKeyItemMouseArea
+
+                                anchors.fill: parent
+
+                                hoverEnabled: true
+
+                                onClicked: {
+                                    _privateViewKeyItem.addressVisible = !_privateViewKeyItem.addressVisible
+                                }
+                            }
+                        }
+                    }
+                }
+
             }
         }
     }
 }
-

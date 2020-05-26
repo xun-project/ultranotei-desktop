@@ -67,7 +67,11 @@ class WalletAdapter : public QObject, public CryptoNote::IWalletLegacyObserver {
     QML_CONSTANT_PROPERTY_PTR(MiningService, miningService)
 
     QML_READABLE_PROPERTY(QString, publicAddress, setPublicAddress, "")
-    QML_READABLE_PROPERTY(QString, privateKey, setPrivateKey, "")
+    QML_READABLE_PROPERTY(QString, privateSpendKey, setprivateSpendKey, "")
+    QML_READABLE_PROPERTY(QString, privateViewKey, setPrivateViewKey, "")
+    QML_READABLE_PROPERTY(QString, guiKey, setguiKey, "")
+    QML_READABLE_PROPERTY(QString, mnemonicSeed, setMnemonicSeed, "")
+
 public:
     enum ConnectionMode {
         CONNECTION_MODE_UNKNOWN = -1,
@@ -103,6 +107,7 @@ public:
     Q_INVOKABLE bool optimizeClicked();
     Q_INVOKABLE void autoOptimizeClicked();
     Q_INVOKABLE bool isAutoOpimizationEnabled() const;
+    Q_INVOKABLE void importsecretkeys(QString spendKey, QString viewKey, QString walletFilePath);
 
 	QString getAddress() const;
     quint64 getActualBalance() const;
@@ -199,7 +204,7 @@ private:
     void encryptedFlagChanged(bool encrypted);
     void checkTrackingMode();
     Q_SLOT void updateOptimizationLabel();
-
+    void setPrivateKeys();
 Q_SIGNALS:
     void walletInitCompletedSignal(int _error, const QString& _errorText);
     void walletCloseCompletedSignal();

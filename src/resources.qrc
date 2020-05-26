@@ -110,7 +110,7 @@
         <file>qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml</file>
         <file>qml/UltraNote/UI/Dialogs/DownloadProgressDialog.qml</file>
         <file>qml/UltraNote/UI/Dialogs/FiatSymbolDialog.qml</file>
-        <file>qml/UltraNote/UI/Dialogs/ImportPrivateKeyDialog.qml</file>
+        <file>qml/UltraNote/UI/Dialogs/ImportPrivateKeysDialog.qml</file>
         <file>qml/UltraNote/UI/Dialogs/MessageDetailsDialog.qml</file>
         <file>qml/UltraNote/UI/Dialogs/MessageDialog.qml</file>
         <file>qml/UltraNote/UI/Dialogs/NewRemoteNodeDialog.qml</file>
@@ -118,6 +118,9 @@
         <file>qml/UltraNote/UI/Dialogs/TransactionDetailsDialog.qml</file>
         <file>qml/UltraNote/UI/Dialogs/UploadProgressDialog.qml</file>
         <file>qml/UltraNote/UI/Dialogs/OptimizeTransactionsDialog.qml</file>
+        <file>qml/UltraNote/UI/Dialogs/ImportWalletDialog.qml</file>
+        <file>qml/UltraNote/UI/Dialogs/ImportTrackingWalletDialog.qml</file>
+        <file>qml/UltraNote/UI/Dialogs/ImportSeedDialog.qml</file>
         <file>qml/UltraNote/UI/Pages/AddressBookPage.qml</file>
         <file>qml/UltraNote/UI/Pages/DepositsPage.qml</file>
         <file>qml/UltraNote/UI/Pages/MessagesPage.qml</file>
