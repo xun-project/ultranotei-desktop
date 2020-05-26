@@ -31,7 +31,7 @@ UNDialogInfinity {
             return
         }
 
-        walletAdapter.importsecretkeys(_PrivateSpendkeyTextField.text
+        walletAdapter.importSecretkeys(_PrivateSpendkeyTextField.text
                                        , _PrivateViewkeyTextField.text
                                        ,_walletPathField.text)
 
@@ -40,6 +40,7 @@ UNDialogInfinity {
         _walletPathField.text = ""
 
         _importPrivateKeysDialog.close()
+        _ImportWalletDialog.close()
     }
 
     headerAlignmentCenter: true
@@ -86,7 +87,7 @@ UNDialogInfinity {
                 horizontalAlignment: Label.AlignLeft
                 verticalAlignment: Label.AlignVCenter
 
-                text: qsTr("create your wallet with the secret spend and view key")
+                text: qsTr("Create your wallet with the secret spend and view key")
             }
 
             UNLayoutSpacer {
@@ -225,7 +226,11 @@ UNDialogInfinity {
                 Layout.fillWidth: true
                 text: qsTr("CANCEL")
                 activeBorderColor: "#444444"
-                onClicked: _importPrivateKeysDialog.close()
+                onClicked:
+                {
+                    _ImportWalletDialog.close()
+                    _importPrivateKeysDialog.close()
+                }
             }
         }
     }
@@ -237,7 +242,7 @@ UNDialogInfinity {
 
         selectExisting: false
         folder: shortcuts.home
-        title: qsTr("New wallet file")
+        title: qsTr("Wallet file")
         defaultSuffix: "wallet"
         nameFilters: ["Wallet Files (*.wallet)"]
 

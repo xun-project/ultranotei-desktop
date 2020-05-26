@@ -107,7 +107,9 @@ public:
     Q_INVOKABLE bool optimizeClicked();
     Q_INVOKABLE void autoOptimizeClicked();
     Q_INVOKABLE bool isAutoOpimizationEnabled() const;
-    Q_INVOKABLE void importsecretkeys(QString spendKey, QString viewKey, QString walletFilePath);
+    Q_INVOKABLE void importSecretkeys(QString spendKey, QString viewKey, QString walletFilePath);
+    Q_INVOKABLE void importTrackingkey(QString keyString, QString filePath);
+    Q_INVOKABLE void importMnemonicSeed(QString seed, QString filePath);
 
 	QString getAddress() const;
     quint64 getActualBalance() const;

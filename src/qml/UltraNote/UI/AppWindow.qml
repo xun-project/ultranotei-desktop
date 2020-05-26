@@ -1089,7 +1089,9 @@ UNFramelessApplicationWindow {
         ImportSeedDialog {
             id: _ImportSeedDialog
         }
-
+        SeedTrackingKeyDialog {
+            id: _SeedTrackingKeyDialog
+        }
 
         FiatSymbolDialog {
             id: _fiatSymbolDialog
@@ -1247,6 +1249,12 @@ UNFramelessApplicationWindow {
                         _messageDialogProperties.acceptCallback = walletAdapter.resetWallet
                         _messageDialogProperties.text = qsTr("Your wallet will be reset and restored from blockchain.\nAre you sure?")
                     }
+                }
+
+                UNMenuItem {
+                    text: qsTr("View Seed")
+
+                    onClicked: _SeedTrackingKeyDialog.open()
                 }
 
                 UNMenuItem {

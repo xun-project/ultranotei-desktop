@@ -598,7 +598,7 @@ bool WalletAdapter::isAutoOpimizationEnabled() const
     return Settings::instance().getAutoOptimizationStatus() == "enabled";
 }
 
-void WalletAdapter::importsecretkeys(QString spendKey, QString viewKey, QString walletFilePath)
+void WalletAdapter::importSecretkeys(QString spendKey, QString viewKey, QString walletFilePath)
 {
     if (spendKey.isEmpty() || walletFilePath.isEmpty())
     {
@@ -661,6 +661,130 @@ void WalletAdapter::importsecretkeys(QString spendKey, QString viewKey, QString 
     }
 
     WalletAdapter::instance().setWalletFile(walletFilePath);
+    WalletAdapter::instance().createWithKeys(keys);
+}
+
+void WalletAdapter::importTrackingkey(QString keyString, QString filePath)
+{
+    if (keyString.isEmpty() || filePath.isEmpty())
+    {
+        return;
+    }
+    if (keyString.size() != 256)
+    {
+        emit showMessage(tr("Tracking key is not valid"), tr("The tracking key you entered is not valid."));
+        return;
+    }
+
+    if (!filePath.endsWith(".wallet"))
+    {
+        filePath.append(".wallet");
+    }
+
+    CryptoNote::AccountKeys keys;
+
+    std::string public_spend_key_string = keyString.mid(0, 64).toStdString();
+    std::string public_view_key_string = keyString.mid(64, 64).toStdString();
+    std::string private_spend_key_string = keyString.mid(128, 64).toStdString();
+    std::string private_view_key_string = keyString.mid(192, 64).toStdString();
+
+    Crypto::Hash public_spend_key_hash;
+    Crypto::Hash public_view_key_hash;
+    Crypto::Hash private_spend_key_hash;
+    Crypto::Hash private_view_key_hash;
+
+    size_t size;
+    if (!Common::fromHex(public_spend_key_string, &public_spend_key_hash, sizeof(public_spend_key_hash), size) || size != sizeof(public_spend_key_hash))
+    {
+        emit showMessage(tr("Key is not valid"), tr("The public spend key you entered is not valid."));
+        return;
+    }
+    if (!Common::fromHex(public_view_key_string, &public_view_key_hash, sizeof(public_view_key_hash), size) || size != sizeof(public_view_key_hash))
+    {
+        emit showMessage(tr("Key is not valid"), tr("The public view key you entered is not valid."));
+        return;
+    }
+    if (!Common::fromHex(private_spend_key_string, &private_spend_key_hash, sizeof(private_spend_key_hash), size) || size != sizeof(private_spend_key_hash))
+    {
+        emit showMessage(tr("Key is not valid"), tr("The private spend key you entered is not valid."));
+        return;
+    }
+    if (!Common::fromHex(private_view_key_string, &private_view_key_hash, sizeof(private_view_key_hash), size) || size != sizeof(private_view_key_hash))
+    {
+        emit showMessage(tr("Key is not valid"), tr("The private view key you entered is not valid."));
+        return;
+    }
+
+    Crypto::PublicKey public_spend_key = *(struct Crypto::PublicKey*) & public_spend_key_hash;
+    Crypto::PublicKey public_view_key = *(struct Crypto::PublicKey*) & public_view_key_hash;
+    Crypto::SecretKey private_spend_key = *(struct Crypto::SecretKey*) & private_spend_key_hash;
+    Crypto::SecretKey private_view_key = *(struct Crypto::SecretKey*) & private_view_key_hash;
+
+    keys.address.spendPublicKey = public_spend_key;
+    keys.address.viewPublicKey = public_view_key;
+    keys.spendSecretKey = private_spend_key;
+    keys.viewSecretKey = private_view_key;
+
+    if (WalletAdapter::instance().isOpen())
+    {
+        WalletAdapter::instance().close();
+    }
+    Settings::instance().setTrackingMode(true);
+    WalletAdapter::instance().setWalletFile(filePath);
+    WalletAdapter::instance().createWithKeys(keys);
+}
+
+void WalletAdapter::importMnemonicSeed(QString seed, QString filePath)
+{
+    if (seed.isEmpty() || filePath.isEmpty())
+    {
+        return;
+    }
+
+    static std::string languages[] = { "English" };
+    static const int num_of_languages = 1;
+    static const int mnemonic_phrase_length = 25;
+
+    std::string mnemonic_phrase = seed.toStdString();
+
+    std::vector<std::string> words;
+
+    words = boost::split(words, mnemonic_phrase, ::isspace);
+
+    Crypto::SecretKey private_spend_key;
+    Crypto::SecretKey private_view_key;
+
+    crypto::ElectrumWords::words_to_bytes(mnemonic_phrase,
+        private_spend_key,
+        languages[0]);
+
+    Crypto::PublicKey unused_dummy_variable;
+
+    CryptoNote::AccountBase::generateViewFromSpend(private_spend_key,
+        private_view_key,
+        unused_dummy_variable);
+
+    Crypto::PublicKey spendPublicKey;
+    Crypto::PublicKey viewPublicKey;
+    Crypto::secret_key_to_public_key(private_spend_key, spendPublicKey);
+    Crypto::secret_key_to_public_key(private_view_key, viewPublicKey);
+
+    CryptoNote::AccountPublicAddress publicKeys;
+    publicKeys.spendPublicKey = spendPublicKey;
+    publicKeys.viewPublicKey = viewPublicKey;
+
+    CryptoNote::AccountKeys keys;
+    keys.address = publicKeys;
+    keys.spendSecretKey = private_spend_key;
+    keys.viewSecretKey = private_view_key;
+
+    if (WalletAdapter::instance().isOpen())
+    {
+
+        WalletAdapter::instance().close();
+    }
+
+    WalletAdapter::instance().setWalletFile(filePath);
     WalletAdapter::instance().createWithKeys(keys);
 }
 

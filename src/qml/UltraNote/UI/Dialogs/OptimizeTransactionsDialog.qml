@@ -98,7 +98,7 @@ UNDialogInfinity {
 
             UNButton {
                 Layout.fillWidth: true
-                text: qsTr("CLOSE")
+                text: qsTr("CANCEL")
                 activeBorderColor: "#444444"
                 onClicked: _dialog.close()
             }

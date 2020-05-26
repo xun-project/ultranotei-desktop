@@ -38,10 +38,7 @@ UNDialogInfinity {
             UNButton {
                 Layout.fillWidth: true
                 text: qsTr("IMPORT PRIVATE KEYS")
-                onClicked: {
-                    _importPrivateKeysDialog.open()
-                    _dialog.close()
-                }
+                onClicked: _importPrivateKeysDialog.open()
             }
 
             UNLayoutSpacer {
@@ -51,10 +48,7 @@ UNDialogInfinity {
             UNButton {
                 Layout.fillWidth: true
                 text: qsTr("IMPORT TRACKING WALLET")
-                onClicked: {
-                    _ImportTrackingWalletDialog.open()
-                    _dialog.close()
-                }
+                onClicked: _ImportTrackingWalletDialog.open()
             }
 
             UNLayoutSpacer {
@@ -64,10 +58,7 @@ UNDialogInfinity {
             UNButton {
                 Layout.fillWidth: true
                 text: qsTr("IMPORT SEED")
-                onClicked: {
-                    _ImportSeedDialog.open()
-                    _dialog.close()
-                }
+                onClicked: _ImportSeedDialog.open()
             }
 
             UNLayoutSpacer {
@@ -76,7 +67,7 @@ UNDialogInfinity {
 
             UNButton {
                 Layout.fillWidth: true
-                text: qsTr("CLOSE")
+                text: qsTr("CANCEL")
                 activeBorderColor: "#444444"
                 onClicked: _dialog.close()
             }
