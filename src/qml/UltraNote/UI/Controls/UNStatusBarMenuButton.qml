@@ -9,8 +9,10 @@ Button {
 
     property color backgroundColor: "#ffffff"
     property color textColor: "#ffffff"
+    property bool isEnabled: true
 
     width: contentItem.implicitWidth + 2 * 16
+    enabled: _itm.isEnabled
 
     background: Rectangle {
         anchors.fill: parent

@@ -103,7 +103,7 @@ QtObject {
     //DialogInfinity
     readonly property color dialogInfinityBackgroundColor: "#282D31"
     readonly property color dialogInfinityTextColor: "#C2DDDD"
-    readonly property color dialogInfinityTitleTextColor: "#C2DDDD"
+    readonly property color dialogInfinityTitleTextColor: "#FFFFFF"
 
     //TextArea
     readonly property color textAreaActiveColor: "#E0E0E0"

@@ -70,6 +70,12 @@ void SendMessageModel::recalculateFeeValue()
 
 void SendMessageModel::send()
 {
+    if (Settings::instance().isTrackingMode())
+    {
+        emit WalletAdapter::instance().showMessage(tr("Tracking Wallet"), tr("This is a tracking wallet. This action is not available."));
+        return;
+    }
+    else {
     if (!WalletAdapter::instance().isOpen()) {
         return;
     }
@@ -94,6 +100,7 @@ void SendMessageModel::send()
 
     packAttachments(tempFile);
     uploadAttachments(tempFile);
+    }
 }
 
 void SendMessageModel::sendMessage(const QString& ipfsHash, const QString& encrpyptionKey) {

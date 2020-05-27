@@ -3,8 +3,10 @@ import QtQuick.Controls 2.13
 
 import UltraNote.UI.Controls 1.0
 
+
 TextEdit {
     id: _itm
+    property bool isReachText: true
 
     enum Type {
         TypeNormal,
@@ -148,12 +150,13 @@ TextEdit {
 
     readOnly: true
     selectByMouse: true
+    mouseSelectionMode:TextEdit.SelectCharacters
     font.family: _privateProperties.familyByType(_itm.type);
     font.pixelSize: _itm.size === 0 ? _privateProperties.sizeByType(_itm.type) : _itm.size;
     font.capitalization: _privateProperties.capsByType(type);
     color: _privateProperties.defaultColor
     //lineHeightMode: Label.FixedHeight
     //lineHeight: font.pixelSize
-    textFormat: TextEdit.RichText
+    textFormat: isReachText ? TextEdit.RichText : TextEdit.PlainText
     verticalAlignment: Label.AlignVCenter
 }

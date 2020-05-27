@@ -157,7 +157,8 @@ set BOOST_LIBRARYDIR=C:\local\boost_1_72_0\lib64-msvc-14.1
 
 # fetch sources
 git clone https://bitbucket.org/xunteam/ultranotewallet-infinity.git
-cd UltraNoteWallet
+cd UltraNoteWallet-infinity
+git clone https://bitbucket.org/xunteam/ultranotei-core.git cryptonote
 git submodule init
 git submodule update
 

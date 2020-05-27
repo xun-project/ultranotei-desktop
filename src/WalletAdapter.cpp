@@ -16,6 +16,7 @@
 #include <Common/Base58.h>
 #include <Common/Util.h>
 #include <Common/int-util.h>
+#include <Common/StringTools.h>
 #include <QQmlEngine>
 #include <Wallet/LegacyKeysImporter.h>
 #include <Wallet/WalletErrors.h>
@@ -25,6 +26,10 @@
 #include "NodeAdapter.h"
 #include "Settings.h"
 #include "WalletAdapter.h"
+
+#include "CryptoNoteCore/Account.h"
+#include "Mnemonics/electrum-words.h"
+
 
 namespace WalletGui {
 
@@ -163,16 +168,14 @@ WalletAdapter::WalletAdapter()
 
     //set connections for receive tab
     connect(this, &WalletAdapter::walletInitCompletedSignal, [&]() {
-        CryptoNote::AccountKeys keys;
-        getAccountKeys(keys);
-        const QString privateKeys = QString::fromStdString(Tools::Base58::encode_addr(
-            CurrencyAdapter::instance().getAddressPrefix(),
-            std::string(reinterpret_cast<char*>(&keys), sizeof(keys))));
-        setPrivateKey(privateKeys);
+        setPrivateKeys();
     });
     connect(this, &WalletAdapter::walletCloseCompletedSignal, [&]() {
         setPublicAddress("");
-        setPrivateKey("");
+        setprivateSpendKey("");
+        setPrivateViewKey("");
+        setguiKey("");
+        setMnemonicSeed("");
     });
     connect(this, &WalletAdapter::updateWalletAddressSignal, [&](const QString& address) {
         setPublicAddress(address);
@@ -201,6 +204,7 @@ WalletAdapter::WalletAdapter()
     QObject::connect(this, &WalletAdapter::walletSynchronizationCompletedSignal, optimizationService, &OptimizationService::synchronizationCompleted, Qt::QueuedConnection);
     QObject::connect(this, &WalletAdapter::walletSynchronizationCompletedSignal, this, &WalletAdapter::updateOptimizationLabel, Qt::QueuedConnection);
     
+    setWalletTrackingLabel();
     m_newTransactionsNotificationTimer.setInterval(500);
 	//QTimer::singleShot(1500, this, SLOT(updateWalletTransactions()));
 }
@@ -505,6 +509,12 @@ void WalletAdapter::importKey(const QString& key, const QString& filePath)
 
 void WalletAdapter::backupWallet(const QUrl& fileUrl)
 {
+    if (Settings::instance().isTrackingMode())
+    {
+        emit showMessage(tr("Tracking Wallet"), tr("This is a tracking wallet. This action is not available."));
+        return;
+    }
+    else {
     QString filePath = fileUrl.toLocalFile();
     qDebug() << "backupWallet" << filePath;
     if (!filePath.isEmpty() && !filePath.endsWith(".wallet")) {
@@ -515,6 +525,7 @@ void WalletAdapter::backupWallet(const QUrl& fileUrl)
         backup(filePath);
     } else {
         emit showMessage(tr("Error"), tr("Cannot backup wallet: file exists"));
+    }
     }
 }
 
@@ -562,8 +573,7 @@ bool WalletAdapter::optimizeClicked()
 {
     if (Settings::instance().isTrackingMode())
     {
-        //show message here
-        //QMessageBox::information(this, tr("Tracking Wallet"), "This is a tracking wallet. This action is not available.");
+        emit showMessage(tr("Tracking Wallet"), tr("This is a tracking wallet. This action is not available."));
         return false;
     }
     else
@@ -585,9 +595,16 @@ bool WalletAdapter::optimizeClicked()
 
 void WalletAdapter::autoOptimizeClicked()
 {
+    if (Settings::instance().isTrackingMode())
+    {
+        emit showMessage(tr("Tracking Wallet"), tr("This is a tracking wallet. This action is not available."));
+        return;
+    }
+    else {
     if (Settings::instance().getAutoOptimizationStatus() == "enabled")
          Settings::instance().setAutoOptimizationStatus("disabled");
     else Settings::instance().setAutoOptimizationStatus("enabled");
+    }
 }
 
 bool WalletAdapter::isAutoOpimizationEnabled() const
@@ -595,8 +612,204 @@ bool WalletAdapter::isAutoOpimizationEnabled() const
     return Settings::instance().getAutoOptimizationStatus() == "enabled";
 }
 
+void WalletAdapter::importSecretkeys(QString spendKey, QString viewKey, QString walletFilePath)
+{
+    if (spendKey.isEmpty() || walletFilePath.isEmpty())
+    {
+
+        return;
+    }
+
+    if (!walletFilePath.endsWith(".wallet"))
+    {
+
+        walletFilePath.append(".wallet");
+    }
+
+    std::string private_spend_key_string = spendKey.toStdString();
+    std::string private_view_key_string = viewKey.toStdString();
+
+    Crypto::SecretKey private_spend_key;
+    Crypto::SecretKey private_view_key;
+
+    Crypto::Hash private_spend_key_hash;
+    Crypto::Hash private_view_key_hash;
+
+    size_t size;
+    if (!Common::fromHex(private_spend_key_string,
+        &private_spend_key_hash,
+        sizeof(private_spend_key_hash),
+        size) ||
+        size != sizeof(private_spend_key_hash))
+    {
+
+        return;
+    }
+
+    if (!Common::fromHex(private_view_key_string, &private_view_key_hash, sizeof(private_view_key_hash), size) || size != sizeof(private_spend_key_hash))
+    {
+        return;
+    }
+
+    private_spend_key = *(struct Crypto::SecretKey*) & private_spend_key_hash;
+    private_view_key = *(struct Crypto::SecretKey*) & private_view_key_hash;
+
+    Crypto::PublicKey spendPublicKey;
+    Crypto::PublicKey viewPublicKey;
+    Crypto::secret_key_to_public_key(private_spend_key, spendPublicKey);
+    Crypto::secret_key_to_public_key(private_view_key, viewPublicKey);
+
+    CryptoNote::AccountPublicAddress publicKeys;
+    publicKeys.spendPublicKey = spendPublicKey;
+    publicKeys.viewPublicKey = viewPublicKey;
+
+    CryptoNote::AccountKeys keys;
+    keys.address = publicKeys;
+    keys.spendSecretKey = private_spend_key;
+    keys.viewSecretKey = private_view_key;
+
+    if (WalletAdapter::instance().isOpen())
+    {
+
+        WalletAdapter::instance().close();
+    }
+
+    WalletAdapter::instance().setWalletFile(walletFilePath);
+    WalletAdapter::instance().createWithKeys(keys);
+}
+
+void WalletAdapter::importTrackingkey(QString keyString, QString filePath)
+{
+    if (keyString.isEmpty() || filePath.isEmpty())
+    {
+        return;
+    }
+    if (keyString.size() != 256)
+    {
+        emit showMessage(tr("Tracking key is not valid"), tr("The tracking key you entered is not valid."));
+        return;
+    }
+
+    if (!filePath.endsWith(".wallet"))
+    {
+        filePath.append(".wallet");
+    }
+
+    CryptoNote::AccountKeys keys;
+
+    std::string public_spend_key_string = keyString.mid(0, 64).toStdString();
+    std::string public_view_key_string = keyString.mid(64, 64).toStdString();
+    std::string private_spend_key_string = keyString.mid(128, 64).toStdString();
+    std::string private_view_key_string = keyString.mid(192, 64).toStdString();
+
+    Crypto::Hash public_spend_key_hash;
+    Crypto::Hash public_view_key_hash;
+    Crypto::Hash private_spend_key_hash;
+    Crypto::Hash private_view_key_hash;
+
+    size_t size;
+    if (!Common::fromHex(public_spend_key_string, &public_spend_key_hash, sizeof(public_spend_key_hash), size) || size != sizeof(public_spend_key_hash))
+    {
+        emit showMessage(tr("Key is not valid"), tr("The public spend key you entered is not valid."));
+        return;
+    }
+    if (!Common::fromHex(public_view_key_string, &public_view_key_hash, sizeof(public_view_key_hash), size) || size != sizeof(public_view_key_hash))
+    {
+        emit showMessage(tr("Key is not valid"), tr("The public view key you entered is not valid."));
+        return;
+    }
+    if (!Common::fromHex(private_spend_key_string, &private_spend_key_hash, sizeof(private_spend_key_hash), size) || size != sizeof(private_spend_key_hash))
+    {
+        emit showMessage(tr("Key is not valid"), tr("The private spend key you entered is not valid."));
+        return;
+    }
+    if (!Common::fromHex(private_view_key_string, &private_view_key_hash, sizeof(private_view_key_hash), size) || size != sizeof(private_view_key_hash))
+    {
+        emit showMessage(tr("Key is not valid"), tr("The private view key you entered is not valid."));
+        return;
+    }
+
+    Crypto::PublicKey public_spend_key = *(struct Crypto::PublicKey*) & public_spend_key_hash;
+    Crypto::PublicKey public_view_key = *(struct Crypto::PublicKey*) & public_view_key_hash;
+    Crypto::SecretKey private_spend_key = *(struct Crypto::SecretKey*) & private_spend_key_hash;
+    Crypto::SecretKey private_view_key = *(struct Crypto::SecretKey*) & private_view_key_hash;
+
+    keys.address.spendPublicKey = public_spend_key;
+    keys.address.viewPublicKey = public_view_key;
+    keys.spendSecretKey = private_spend_key;
+    keys.viewSecretKey = private_view_key;
+
+    if (WalletAdapter::instance().isOpen())
+    {
+        WalletAdapter::instance().close();
+    }
+    Settings::instance().setTrackingMode(true);
+    WalletAdapter::instance().setWalletFile(filePath);
+    WalletAdapter::instance().createWithKeys(keys);
+}
+
+void WalletAdapter::importMnemonicSeed(QString seed, QString filePath)
+{
+    if (seed.isEmpty() || filePath.isEmpty())
+    {
+        return;
+    }
+
+    static std::string languages[] = { "English" };
+    static const int num_of_languages = 1;
+    static const int mnemonic_phrase_length = 25;
+
+    std::string mnemonic_phrase = seed.toStdString();
+
+    std::vector<std::string> words;
+
+    words = boost::split(words, mnemonic_phrase, ::isspace);
+
+    Crypto::SecretKey private_spend_key;
+    Crypto::SecretKey private_view_key;
+
+    crypto::ElectrumWords::words_to_bytes(mnemonic_phrase,
+        private_spend_key,
+        languages[0]);
+
+    Crypto::PublicKey unused_dummy_variable;
+
+    CryptoNote::AccountBase::generateViewFromSpend(private_spend_key,
+        private_view_key,
+        unused_dummy_variable);
+
+    Crypto::PublicKey spendPublicKey;
+    Crypto::PublicKey viewPublicKey;
+    Crypto::secret_key_to_public_key(private_spend_key, spendPublicKey);
+    Crypto::secret_key_to_public_key(private_view_key, viewPublicKey);
+
+    CryptoNote::AccountPublicAddress publicKeys;
+    publicKeys.spendPublicKey = spendPublicKey;
+    publicKeys.viewPublicKey = viewPublicKey;
+
+    CryptoNote::AccountKeys keys;
+    keys.address = publicKeys;
+    keys.spendSecretKey = private_spend_key;
+    keys.viewSecretKey = private_view_key;
+
+    if (WalletAdapter::instance().isOpen())
+    {
+
+        WalletAdapter::instance().close();
+    }
+
+    WalletAdapter::instance().setWalletFile(filePath);
+    WalletAdapter::instance().createWithKeys(keys);
+}
+
 void WalletAdapter::optimizeWallet()
 {
+    if (Settings::instance().isTrackingMode())
+    {
+        emit showMessage(tr("Tracking Wallet"), tr("This is a tracking wallet. This action is not available."));
+        return;
+    }
+    else {
     Q_CHECK_PTR(m_wallet);
     std::vector<CryptoNote::WalletLegacyTransfer> transfers;
     std::vector<CryptoNote::TransactionMessage> messages;
@@ -613,6 +826,7 @@ void WalletAdapter::optimizeWallet()
     }
     catch (std::system_error&) {
         unlock();
+    }
     }
 }
 
@@ -759,6 +973,12 @@ void WalletAdapter::sendMessage(const QVector<CryptoNote::WalletLegacyTransfer>&
 
 void WalletAdapter::deposit(int _term, qreal _amount, int _fee, int _mixIn)
 {
+    if (Settings::instance().isTrackingMode())
+    {
+        emit showMessage(tr("Tracking Wallet"), tr("This is a tracking wallet. This action is not available."));
+        return;
+    }
+    else {
     Q_CHECK_PTR(m_wallet);
     try {
         lock();
@@ -767,15 +987,23 @@ void WalletAdapter::deposit(int _term, qreal _amount, int _fee, int _mixIn)
     } catch (std::system_error&) {
         unlock();
     }
+    }
 }
 
 void WalletAdapter::withdraw()
 {
+    if (Settings::instance().isTrackingMode())
+    {
+        emit showMessage(tr("Tracking Wallet"), tr("This is a tracking wallet. This action is not available."));
+        return;
+    }
+    else {
     const auto& depositIds = m_depositTableModel->unlockedDepositIds();
     qDebug() << "Unlocked deposit ids" << depositIds;
     if (!depositIds.isEmpty()) {
         withdrawUnlockedDeposits(depositIds,
             static_cast<quint64>(CurrencyAdapter::instance().getMinimumFee()));
+    }
     }
 }
 
@@ -838,6 +1066,7 @@ void WalletAdapter::onWalletInitCompleted(int _error, const QString& _errorText)
             save(true, true);
         }
         checkTrackingMode();//check traking mode when wallet open
+        setWalletTrackingLabel();
         break;
     }
     case CryptoNote::error::WRONG_PASSWORD:
@@ -972,6 +1201,50 @@ void WalletAdapter::updateOptimizationLabel()
         setOptimizationState("Recommended [" + QString::number(numUnlockedOutputs) + "]");
     else
         setOptimizationState("Not required [" + QString::number(numUnlockedOutputs) + "]");
+}
+
+void WalletAdapter::setPrivateKeys()
+{
+    CryptoNote::AccountKeys keys;
+    WalletAdapter::instance().getAccountKeys(keys);
+    std::string secretKeysData = std::string(reinterpret_cast<char*>(&keys.spendSecretKey), sizeof(keys.spendSecretKey)) + std::string(reinterpret_cast<char*>(&keys.viewSecretKey), sizeof(keys.viewSecretKey));
+    QString privateKeys = QString::fromStdString(Tools::Base58::encode_addr(CurrencyAdapter::instance().getAddressPrefix(), std::string(reinterpret_cast<char*>(&keys), sizeof(keys))));
+    //QString privateKeys = QString::fromStdString(Tools::Base58::encode_addr(CurrencyAdapter::instance().getAddressPrefix(), secretKeysData));
+
+    /* check if the wallet is deterministic
+       generate a view key from the spend key and them compare it to the existing view key */
+    Crypto::PublicKey unused_dummy_variable;
+    Crypto::SecretKey deterministic_private_view_key;
+    std::string mnemonic_seed = "";
+    CryptoNote::AccountBase::generateViewFromSpend(keys.spendSecretKey, deterministic_private_view_key, unused_dummy_variable);
+    bool deterministic_private_keys = deterministic_private_view_key == keys.viewSecretKey;
+
+    if (deterministic_private_keys) {
+        crypto::ElectrumWords::bytes_to_words(keys.spendSecretKey, mnemonic_seed, "English");
+    }
+    else {
+        mnemonic_seed = "Your wallet does not support the use of a mnemonic seed. Please create a new wallet.";
+    }
+
+    CryptoNote::AccountKeys trkeys;
+    WalletAdapter::instance().getAccountKeys(trkeys);
+    trkeys.spendSecretKey = boost::value_initialized<Crypto::SecretKey>();
+    QString trackingWalletKeys = QString::fromStdString(Common::podToHex(trkeys));
+
+    setprivateSpendKey(QString::fromStdString(Common::podToHex(keys.spendSecretKey)));
+    setPrivateViewKey(QString::fromStdString(Common::podToHex(keys.viewSecretKey)));
+    setguiKey(trackingWalletKeys);
+    setMnemonicSeed(QString::fromStdString(mnemonic_seed));
+
+
+}
+
+void WalletAdapter::setWalletTrackingLabel()
+{
+    if (Settings::instance().isTrackingMode())
+        setTrackingEnabledLablel("[Tracking Wallet]");
+    else
+        setTrackingEnabledLablel("");
 }
 
 void WalletAdapter::transactionUpdated(CryptoNote::TransactionId _transactionId)
@@ -1190,6 +1463,12 @@ void WalletAdapter::send(const QString& payTo, const QString& paymentId,
     const QString& label, const QString& comment,
 	qreal amount, int fee, int anonLevel)
 {
+    if (Settings::instance().isTrackingMode())
+    {
+        emit showMessage(tr("Tracking Wallet"), tr("This is a tracking wallet. This action is not available."));
+        return;
+    }
+    else {
     QVector<CryptoNote::WalletLegacyTransfer> walletTransfers;
     CryptoNote::WalletLegacyTransfer walletTransfer;
     walletTransfer.address = payTo.toStdString();
@@ -1209,6 +1488,7 @@ void WalletAdapter::send(const QString& payTo, const QString& paymentId,
 
     sendTransaction(walletTransfers, static_cast<quint64>(fee), paymentId,
         static_cast<quint64>(anonLevel), walletMessages);
+    }
 }
 quint16 WalletAdapter::getCommentCharPrice()
 {

@@ -67,7 +67,12 @@ class WalletAdapter : public QObject, public CryptoNote::IWalletLegacyObserver {
     QML_CONSTANT_PROPERTY_PTR(MiningService, miningService)
 
     QML_READABLE_PROPERTY(QString, publicAddress, setPublicAddress, "")
-    QML_READABLE_PROPERTY(QString, privateKey, setPrivateKey, "")
+    QML_READABLE_PROPERTY(QString, privateSpendKey, setprivateSpendKey, "")
+    QML_READABLE_PROPERTY(QString, privateViewKey, setPrivateViewKey, "")
+    QML_READABLE_PROPERTY(QString, guiKey, setguiKey, "")
+    QML_READABLE_PROPERTY(QString, mnemonicSeed, setMnemonicSeed, "")
+    QML_READABLE_PROPERTY(QString, trackingEnabledLablel, setTrackingEnabledLablel, "")
+
 public:
     enum ConnectionMode {
         CONNECTION_MODE_UNKNOWN = -1,
@@ -103,6 +108,9 @@ public:
     Q_INVOKABLE bool optimizeClicked();
     Q_INVOKABLE void autoOptimizeClicked();
     Q_INVOKABLE bool isAutoOpimizationEnabled() const;
+    Q_INVOKABLE void importSecretkeys(QString spendKey, QString viewKey, QString walletFilePath);
+    Q_INVOKABLE void importTrackingkey(QString keyString, QString filePath);
+    Q_INVOKABLE void importMnemonicSeed(QString seed, QString filePath);
 
 	QString getAddress() const;
     quint64 getActualBalance() const;
@@ -199,7 +207,8 @@ private:
     void encryptedFlagChanged(bool encrypted);
     void checkTrackingMode();
     Q_SLOT void updateOptimizationLabel();
-
+    void setPrivateKeys();
+    void setWalletTrackingLabel();
 Q_SIGNALS:
     void walletInitCompletedSignal(int _error, const QString& _errorText);
     void walletCloseCompletedSignal();

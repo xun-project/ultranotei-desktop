@@ -54,6 +54,15 @@ UNFramelessApplicationWindow {
             _appPagesStackView.pop(null, StackView.PopTransition)
             _appPagesStackView.push(_sendPageComponent)
         }
+        function checkIfItemDisabled(index) {
+            //index === 0 (deposits),4(transactions),7(in case of tracking)
+            if((walletAdapter.trackingEnabledLablel === "[Tracking Wallet]"))
+            {
+                if((index === 0) || (index === 7) || (index === 4)){
+                    return false
+                }else return true
+            }else return false
+        }
     }
 
     Connections {
@@ -373,17 +382,22 @@ UNFramelessApplicationWindow {
 
                                         checked: index === _menuActionsList.currentIndex
 
+                                        itemInTrackingMode: _globalProperties.checkIfItemDisabled(index)
+
                                         iconSource: model.iconSource
                                         text: model.text
                                         defaultColor: Theme.drawerTextColor
                                         activeColor: Theme.drawerActiveTextColor
 
                                         onClicked: {
-                                            _menuActionsList.currentIndex = index
-                                            if(_appPagesStackView.currentItem.objectName !== model.pageObjectName) {
-                                                _appPagesStackView.pop(null, StackView.PopTransition)
-                                                _appPagesStackView.push(model.page)
+                                            if(!_globalProperties.checkIfItemDisabled(index)){
+                                                _menuActionsList.currentIndex = index
+                                                if(_appPagesStackView.currentItem.objectName !== model.pageObjectName) {
+                                                    _appPagesStackView.pop(null, StackView.PopTransition)
+                                                    _appPagesStackView.push(model.page)
+                                                }
                                             }
+                                            else _messageDialogProperties.showMessage("Tracking Wallet", "This is a tracking wallet. This tab is not available.")
                                         }
                                     }
                                 }
@@ -518,12 +532,12 @@ UNFramelessApplicationWindow {
                                         checkable: false
                                         checked: false
                                         iconSource: "qrc:/icons/resources/icons/drawer_wallet_actions_list_item_icon.svg"
-                                        text: qsTr("Import Private Key")
+                                        text: qsTr("Import Private Keys")
                                         defaultColor: Theme.drawerTextColor
                                         activeColor: Theme.drawerActiveTextColor
 
                                         onClicked: {
-                                            _importPrivateKeyDialog.open()
+                                            _importPrivateKeysDialog.open()
                                         }
                                     }
 
@@ -1071,12 +1085,26 @@ UNFramelessApplicationWindow {
             id: _connectionSettingsDialog
         }
 
-        ImportPrivateKeyDialog {
-            id: _importPrivateKeyDialog
+        ImportPrivateKeysDialog {
+            id: _importPrivateKeysDialog
         }
 
         OptimizeTransactionsDialog {
             id: _OptimizeTransactionsDialog
+        }
+
+        ImportWalletDialog {
+            id: _ImportWalletDialog
+        }
+
+        ImportTrackingWalletDialog {
+            id: _ImportTrackingWalletDialog
+        }
+        ImportSeedDialog {
+            id: _ImportSeedDialog
+        }
+        SeedTrackingKeyDialog {
+            id: _SeedTrackingKeyDialog
         }
 
         FiatSymbolDialog {
@@ -1205,10 +1233,10 @@ UNFramelessApplicationWindow {
                 }
 
                 UNMenuItem {
-                    text: qsTr("Import Private Key")
+                    text: qsTr("Import Wallet")
 
                     onClicked: {
-                        _importPrivateKeyDialog.open()
+                        _ImportWalletDialog.open()
                     }
                 }
 
@@ -1216,13 +1244,15 @@ UNFramelessApplicationWindow {
                     text: qsTr("Backup Wallet")
 
                     onClicked: {
-                        _walletDialog.selectFolder = false
-                        _walletDialog.selectExisting = false
-                        _walletDialog.title = qsTr("Backup wallet to...")
-                        _walletDialog.defaultSuffix = "wallet"
-                        _walletDialog.nameFilters = ["Wallet Files (*.wallet)"]
-                        _walletDialog.acceptedCallback = walletAdapter.backupWallet
-                        _walletDialog.open()
+                        if(walletAdapter.trackingEnabledLablel !== "[Tracking Wallet]"){
+                            _walletDialog.selectFolder = false
+                            _walletDialog.selectExisting = false
+                            _walletDialog.title = qsTr("Backup wallet to...")
+                            _walletDialog.defaultSuffix = "wallet"
+                            _walletDialog.nameFilters = ["Wallet Files (*.wallet)"]
+                            _walletDialog.acceptedCallback = walletAdapter.backupWallet
+                            _walletDialog.open()
+                        }else _messageDialogProperties.showMessage("Tracking Wallet", "This is a tracking wallet. This option is not available.")
                     }
                 }
 
@@ -1233,13 +1263,26 @@ UNFramelessApplicationWindow {
                         _messageDialogProperties.title = qsTr("Warning")
                         _messageDialogProperties.okCancel = true
                         _messageDialogProperties.acceptCallback = walletAdapter.resetWallet
-                        _messageDialogProperties.text = qsTr("Your wallet will be reset and restored from blockchain.\nAre you sure?")
+                        _messageDialogProperties.text = qsTr("Your wallet will be reset and restored from blockchain.\n\nAre you sure?")
                     }
                 }
 
                 UNMenuItem {
+                    text: qsTr("View Seed")
+
+                    onClicked:
+                        if(walletAdapter.trackingEnabledLablel !== "[Tracking Wallet]")
+                            _SeedTrackingKeyDialog.open()
+                        else _messageDialogProperties.showMessage("Tracking Wallet", "This is a tracking wallet. This option is not available.")
+
+                }
+
+                UNMenuItem {
                     text: qsTr("Optimize Wallet")
-                    onClicked: _OptimizeTransactionsDialog.open()
+                    onClicked:
+                        if(walletAdapter.trackingEnabledLablel !== "[Tracking Wallet]")
+                            _OptimizeTransactionsDialog.open()
+                        else _messageDialogProperties.showMessage("Tracking Wallet", "This is a tracking wallet. This option is not available.")
                 }
 
                 UNMenuItem {
@@ -1336,6 +1379,12 @@ UNFramelessApplicationWindow {
                     }
                 }
             }
+        }
+        UNStatusBarMenuButton{
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            isEnabled: false
+            text: walletAdapter.trackingEnabledLablel
         }
     }
 

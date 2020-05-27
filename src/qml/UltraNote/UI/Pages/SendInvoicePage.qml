@@ -691,7 +691,10 @@ UNPage {
 
                     UNAmountBox{
                         id:_feeEditBox
-                        resetDecimals: "0.101000"
+                        //resetDecimals: "0.101000"
+                        resetDecimals: "0.001000"
+                        minLimitString: "0.001000"
+                        minLimitNumber: currencyAdapter.getMinimumFee()
                         value : currencyAdapter.getMinimumFee()
                     }
 

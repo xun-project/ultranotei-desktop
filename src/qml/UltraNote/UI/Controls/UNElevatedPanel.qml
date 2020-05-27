@@ -23,6 +23,7 @@ Item {
         id: _content
 
         anchors.fill: parent
+        anchors.margins: 1
 
         color: _itm.color
         border.color : _itm.borderColor

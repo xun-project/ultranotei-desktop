@@ -23,7 +23,7 @@ public:
   Q_INVOKABLE QString getCurrencyDisplayName() const;
   QString getCurrencyName() const;
   Q_INVOKABLE QString getCurrencyTicker() const;
-  Q_INVOKABLE int calculateInterest(int amount, int term);
+  Q_INVOKABLE quint64 calculateInterest(quint64 amount, quint32 term);
   quint64 calculateInterest(quint64 _amount, quint32 _term, uint32_t height) const;
   Q_INVOKABLE int getMinimumFee() const;
   quint64 getAddressPrefix() const;

@@ -21,7 +21,7 @@ Dialog {
     height: implicitHeight
     width: implicitWidth
 
-    spacing: 20
+    spacing: 10
 
     modal: true
 
@@ -58,7 +58,7 @@ Dialog {
 
         leftPadding: 30
         rightPadding: 30
-        topPadding: 30
+        topPadding: 20
 
         type: UNLabel.Type.TypeDialogTitle
         color: _itm.dialogTitleTextColor

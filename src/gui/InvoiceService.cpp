@@ -307,6 +307,12 @@ void InvoiceService::sendClicked()
         return;
     }
 
+    if (Settings::instance().isTrackingMode())
+    {
+        emit WalletAdapter::instance().showMessage(tr("Tracking Wallet"), tr("This is a tracking wallet. This action is not available."));
+        return;
+    }
+    else {
     if (m_attachmentsModel->rowCount() == 0) {
         sendMessage(QString(), QString());
         return;
@@ -329,6 +335,7 @@ void InvoiceService::sendClicked()
 
     packAttachments(tempFile);
     uploadAttachments(tempFile);
+    }
 }
 
 qint64 InvoiceService::totalAttachmentsSize()

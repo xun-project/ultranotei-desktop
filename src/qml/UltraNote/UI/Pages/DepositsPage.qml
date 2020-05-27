@@ -68,7 +68,11 @@ UNPage {
                         id:_amountEditBox
                         value : currencyAdapter.getDepositMinAmount()
                         resetDecimals: "1.000000"
+                        minLimitString: "1.000000"
+                        minLimitNumber: 1000000
+                        onTextChanged:  _percentLabel.calculateInterest(_amountEditBox.value, _timeSpinBox.value)
                     }
+
                     Text {
                         id: suffix
                         verticalAlignment: Text.AlignVCenter
