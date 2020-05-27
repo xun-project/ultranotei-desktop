@@ -63,6 +63,7 @@ public:
           QCoreApplication::processEvents();
         });
     } catch (std::exception& err) {
+      Q_UNUSED(err);
       Q_EMIT nodeInitFailedSignal(CryptoNote::error::INTERNAL_WALLET_ERROR);
       QCoreApplication::processEvents();
       return;
@@ -108,6 +109,7 @@ std::string NodeAdapter::convertPaymentId(const QString& _paymentIdString) const
   try {
     return m_node->convertPaymentId(_paymentIdString.toStdString());
   } catch (std::runtime_error& err) {
+      Q_UNUSED(err);
   }
   return std::string();
 }
@@ -333,7 +335,7 @@ CryptoNote::NetNodeConfig NodeAdapter::makeNetNodeConfig() const {
 
   options.insert(std::make_pair("hide-my-port", boost::program_options::variable_value(hideMyPort, false)));
   options.insert(std::make_pair("data-dir", boost::program_options::variable_value(dataDir, false)));
-  int size = options.size();
+  int size = static_cast<int>(options.size());
   config.init(options);
   config.setTestnet(Settings::instance().isTestnet());
   return config;

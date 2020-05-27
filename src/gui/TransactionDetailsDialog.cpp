@@ -49,7 +49,7 @@ TransactionDetailsDialog::TransactionDetailsDialog(const QModelIndex& _index, QW
 
   QString depositInfo;
   if (depositId != CryptoNote::WALLET_LEGACY_INVALID_DEPOSIT_ID) {
-    QModelIndex depositIndex = DepositModel::instance().index(depositId, 0);
+    QModelIndex depositIndex = DepositModel::instance().index(static_cast<int>(depositId), 0);
     QString depositAmount = depositIndex.sibling(depositIndex.row(), DepositModel::COLUMN_AMOUNT).data().toString() + " " +
       CurrencyAdapter::instance().getCurrencyTicker().toUpper();
     QString depositInterest = depositIndex.sibling(depositIndex.row(), DepositModel::COLUMN_INTEREST).data().toString() + " " +

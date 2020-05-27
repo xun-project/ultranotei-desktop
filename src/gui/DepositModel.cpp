@@ -214,7 +214,7 @@ QVariant DepositModel::getDisplayRole(const QModelIndex& _index) const {
 
   case COLUMN_CREATRING_TRANSACTION_HASH: {
     CryptoNote::TransactionId creatingTransactionId = _index.data(ROLE_CREATING_TRANSACTION_ID).value<CryptoNote::TransactionId>();
-    return TransactionsModel::instance().index(creatingTransactionId, TransactionsModel::COLUMN_HASH).data();
+    return TransactionsModel::instance().index(static_cast<int>(creatingTransactionId), static_cast<int>(TransactionsModel::COLUMN_HASH)).data();
   }
 
   case COLUMN_CREATING_HEIGHT: {
@@ -223,7 +223,7 @@ QVariant DepositModel::getDisplayRole(const QModelIndex& _index) const {
       return "-";
     }
 
-    return TransactionsModel::instance().index(creatingTransactionId, TransactionsModel::COLUMN_HEIGHT).data();
+    return TransactionsModel::instance().index(static_cast<int>(creatingTransactionId), static_cast<int>(TransactionsModel::COLUMN_HEIGHT)).data();
   }
 
   case COLUMN_CREATING_TIME: {
@@ -232,7 +232,7 @@ QVariant DepositModel::getDisplayRole(const QModelIndex& _index) const {
       return "-";
     }
 
-    return TransactionsModel::instance().index(creatingTransactionId, TransactionsModel::COLUMN_DATE).data();
+    return TransactionsModel::instance().index(static_cast<int>(creatingTransactionId), static_cast<int>(TransactionsModel::COLUMN_DATE)).data();
   }
 
   case COLUMN_SPENDING_TRANSACTION_HASH: {
@@ -241,7 +241,7 @@ QVariant DepositModel::getDisplayRole(const QModelIndex& _index) const {
       return "-";
     }
 
-    return TransactionsModel::instance().index(spendingTransactionId, TransactionsModel::COLUMN_HASH).data();
+    return TransactionsModel::instance().index(static_cast<int>(spendingTransactionId), static_cast<int>(TransactionsModel::COLUMN_HASH)).data();
   }
 
   case COLUMN_SPENDING_HEIGHT: {
@@ -250,7 +250,7 @@ QVariant DepositModel::getDisplayRole(const QModelIndex& _index) const {
       return "-";
     }
 
-    return TransactionsModel::instance().index(spendingTransactionId, TransactionsModel::COLUMN_HEIGHT).data();
+    return TransactionsModel::instance().index(static_cast<int>(spendingTransactionId), static_cast<int>(TransactionsModel::COLUMN_HEIGHT)).data();
   }
 
   case COLUMN_SPENDING_TIME: {
@@ -259,7 +259,7 @@ QVariant DepositModel::getDisplayRole(const QModelIndex& _index) const {
       return "-";
     }
 
-    return TransactionsModel::instance().index(spendingTransactionId, TransactionsModel::COLUMN_DATE).data();
+    return TransactionsModel::instance().index(static_cast<int>(spendingTransactionId), static_cast<int>(TransactionsModel::COLUMN_DATE)).data();
   }
 
   default:
@@ -313,7 +313,7 @@ QVariant DepositModel::getUserRole(const QModelIndex& _index, int _role) const {
 
   case ROLE_UNLOCK_HEIGHT: {
     CryptoNote::TransactionId creatingTransactionId = _index.data(ROLE_CREATING_TRANSACTION_ID).value<CryptoNote::TransactionId>();
-    quint64 creatingHeight = TransactionsModel::instance().index(creatingTransactionId, 0).
+    quint64 creatingHeight = TransactionsModel::instance().index(static_cast<int>(creatingTransactionId), 0).
       data(TransactionsModel::ROLE_HEIGHT).value<quint64>();
     if (creatingHeight == CryptoNote::WALLET_LEGACY_UNCONFIRMED_TRANSACTION_HEIGHT) {
       return static_cast<const quint64>(CryptoNote::WALLET_LEGACY_UNCONFIRMED_TRANSACTION_HEIGHT);
@@ -350,8 +350,8 @@ void DepositModel::appendDeposit(CryptoNote::DepositId _depositId) {
     return;
   }
 
-  beginInsertRows(QModelIndex(), m_depositCount, _depositId);
-  m_depositCount = _depositId + 1;
+  beginInsertRows(QModelIndex(), m_depositCount, static_cast<int>(_depositId));
+  m_depositCount = static_cast<quint32>(_depositId + 1);
   endInsertRows();
 }
 
@@ -369,12 +369,12 @@ void DepositModel::reset() {
 
 void DepositModel::depositsUpdated(const QVector<CryptoNote::DepositId>& _depositIds) {
   Q_FOREACH (const auto& depositId, _depositIds) {
-    Q_EMIT dataChanged(index(depositId, 0), index(depositId, columnCount() - 1));
+    Q_EMIT dataChanged(index(static_cast<int>(depositId), 0), index(static_cast<int>(depositId), columnCount() - 1));
   }
 }
 
 void DepositModel::transactionUpdated(CryptoNote::TransactionId _transactionId) {
-  QModelIndex transactionIndex = TransactionsModel::instance().index(_transactionId, 0);
+  QModelIndex transactionIndex = TransactionsModel::instance().index(static_cast<int>(_transactionId), 0);
   if (!transactionIndex.isValid()) {
     return;
   }

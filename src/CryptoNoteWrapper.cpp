@@ -5,6 +5,7 @@
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
+#include <QCoreApplication>
 #include "CryptoNoteWrapper.h"
 #include "CryptoNoteCore/CryptoNoteBasicImpl.h"
 #include "CryptoNoteCore/CryptoNoteFormatUtils.h"
@@ -189,6 +190,7 @@ public:
         return;
       }
     } catch (std::runtime_error& _err) {
+      Q_UNUSED(_err);
       callback(make_error_code(CryptoNote::error::NOT_INITIALIZED));
       return;
     }

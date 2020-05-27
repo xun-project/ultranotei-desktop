@@ -120,7 +120,7 @@ QVariant DepositTableModel::data(const QModelIndex &index, int role) const
             if (spendingTransactionId == CryptoNote::WALLET_LEGACY_INVALID_TRANSACTION_ID) {
                 out = "-";
             } else {
-                out = WalletGui::TransactionsModel::instance().index(spendingTransactionId, WalletGui::TransactionsModel::COLUMN_DATE).data();
+                out = WalletGui::TransactionsModel::instance().index(static_cast<int>(spendingTransactionId), WalletGui::TransactionsModel::COLUMN_DATE).data();
             }
         }
             break;
@@ -167,7 +167,7 @@ QVariant DepositTableModel::getUserRole(int row, int role) const
 
     case ROLE_UNLOCK_HEIGHT: {
         CryptoNote::TransactionId creatingTransactionId = getUserRole(row, ROLE_CREATING_TRANSACTION_ID).value<CryptoNote::TransactionId>();
-        quint64 creatingHeight = WalletGui::TransactionsModel::instance().index(creatingTransactionId, 0).
+        quint64 creatingHeight = WalletGui::TransactionsModel::instance().index(static_cast<int>(creatingTransactionId), 0).
                 data(WalletGui::TransactionsModel::ROLE_HEIGHT).value<quint64>();
         if (creatingHeight == CryptoNote::WALLET_LEGACY_UNCONFIRMED_TRANSACTION_HEIGHT) {
             return static_cast<const quint64>(CryptoNote::WALLET_LEGACY_UNCONFIRMED_TRANSACTION_HEIGHT);
@@ -261,13 +261,13 @@ void DepositTableModel::appendDeposit(CryptoNote::DepositId _depositId)
     }
 
     emit layoutAboutToBeChanged();
-    setDepositCount(_depositId + 1);
+    setDepositCount(static_cast<const int>(_depositId + 1));
     emit layoutChanged();
 }
 
 void DepositTableModel::transactionUpdated(CryptoNote::TransactionId _transactionId)
 {
-    QModelIndex transactionIndex = WalletGui::TransactionsModel::instance().index(_transactionId, 0);
+    QModelIndex transactionIndex = WalletGui::TransactionsModel::instance().index(static_cast<int>(_transactionId), 0);
     if (!transactionIndex.isValid()) {
         return;
     }
@@ -280,7 +280,7 @@ void DepositTableModel::transactionUpdated(CryptoNote::TransactionId _transactio
 void DepositTableModel::depositsUpdated(const QVector<CryptoNote::DepositId>& _depositIds)
 {
     for (const auto& depositId: _depositIds) {
-        emit dataChanged(index(depositId, 0), index(depositId, columnCount() - 1));
+        emit dataChanged(index(static_cast<int>(depositId), 0), index(static_cast<int>(depositId), columnCount() - 1));
     }
 }
 

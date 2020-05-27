@@ -243,7 +243,7 @@ void TransactionsTableModel::setupTransactionDetails(int row)
         CurrencyAdapter::instance().getCurrencyTicker().toUpper();
 
     QStringList messageList;
-    messageList.reserve(transaction.messages.size());
+    messageList.reserve(static_cast<int>(transaction.messages.size()));
     for (const auto& message: transaction.messages) {
 		messageList << QTextDocumentFragment::fromHtml(QString::fromStdString(message)).toPlainText();
     }
@@ -253,7 +253,7 @@ void TransactionsTableModel::setupTransactionDetails(int row)
 
     QString depositInfo;
     if (depositId != CryptoNote::WALLET_LEGACY_INVALID_DEPOSIT_ID) {
-        QModelIndex depositIndex = DepositModel::instance().index(depositId, 0);
+        QModelIndex depositIndex = DepositModel::instance().index(static_cast<int>(depositId), 0);
         QString depositAmount = depositIndex.sibling(depositIndex.row(), DepositModel::COLUMN_AMOUNT).data().toString() + " " +
                 CurrencyAdapter::instance().getCurrencyTicker().toUpper();
         QString depositInterest = depositIndex.sibling(depositIndex.row(), DepositModel::COLUMN_INTEREST).data().toString() + " " +
