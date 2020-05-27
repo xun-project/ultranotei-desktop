@@ -1247,7 +1247,7 @@ UNFramelessApplicationWindow {
                         _messageDialogProperties.title = qsTr("Warning")
                         _messageDialogProperties.okCancel = true
                         _messageDialogProperties.acceptCallback = walletAdapter.resetWallet
-                        _messageDialogProperties.text = qsTr("Your wallet will be reset and restored from blockchain.\nAre you sure?")
+                        _messageDialogProperties.text = qsTr("Your wallet will be reset and restored from blockchain.\n\nAre you sure?")
                     }
                 }
 

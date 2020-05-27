@@ -16,6 +16,15 @@ UNDialogInfinity {
     title: qsTr("YOUR 25 MNEMONIC SEED")
     modal: true
 
+    Action {
+        id: focus
+        shortcut: StandardKey.Copy
+        onTriggered: {
+            if(_mnemonicSeedText.focus) clipboard.setText(_mnemonicSeedText.selectedText)
+            if(_guiKeyText.focus) clipboard.setText(_guiKeyText.selectedText)
+        }
+    }
+
     Item {
         id: _contentItem
 
@@ -71,6 +80,8 @@ UNDialogInfinity {
                     Layout.minimumHeight: implicitHeight
                     Layout.rightMargin: 8
 
+                    isReachText:false
+
                     type: UNLabel.Type.TypeNormal
 
                     color: Theme.dialogInfinityTextColor
@@ -78,6 +89,8 @@ UNDialogInfinity {
                     wrapMode: Label.WrapAnywhere
                     horizontalAlignment: Label.AlignLeft
                     verticalAlignment: Label.AlignVCenter
+
+                    focus: _dialog.visible
 
                     text: walletAdapter.mnemonicSeed
                 }
@@ -94,9 +107,7 @@ UNDialogInfinity {
                     color: Theme.barcodeIconColor
                     clickable: true
 
-                    onClicked: {
-                        clipboard.setText(walletAdapter.mnemonicSeed)
-                    }
+                    onClicked: clipboard.setText(walletAdapter.mnemonicSeed)
                 }
             }
 
@@ -141,11 +152,15 @@ UNDialogInfinity {
 
                     type: UNLabel.Type.TypeNormal
 
+                    isReachText:false
+
                     color: Theme.dialogInfinityTextColor
 
                     wrapMode: Label.WrapAnywhere
                     horizontalAlignment: Label.AlignLeft
                     verticalAlignment: Label.AlignVCenter
+
+                    focus: _dialog.visible
 
                     text: walletAdapter.guiKey
                 }
@@ -162,9 +177,7 @@ UNDialogInfinity {
                     color: Theme.barcodeIconColor
                     clickable: true
 
-                    onClicked: {
-                        clipboard.setText(walletAdapter.guiKey)
-                    }
+                    onClicked: clipboard.setText(walletAdapter.guiKey)
                 }
             }
             UNLayoutSpacer {

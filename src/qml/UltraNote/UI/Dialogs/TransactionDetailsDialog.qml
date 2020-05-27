@@ -19,6 +19,12 @@ UNDialog {
     closePolicy: Popup.CloseOnEscape
     modal: true
 
+    Action {
+        id: focus
+        shortcut: StandardKey.Copy
+        onTriggered: if(_transactionDetailsText.focus) clipboard.setText(_transactionDetailsText.selectedText)
+    }
+
     Flickable {
         id: _contentItem
 
@@ -60,6 +66,7 @@ UNDialog {
             spacing: 0
 
             UNLabelSelectable {
+                id: _transactionDetailsText
                 Layout.fillWidth: true
                 Layout.preferredHeight: implicitHeight
                 Layout.maximumHeight: implicitHeight
@@ -69,11 +76,11 @@ UNDialog {
                 type: UNLabel.Type.TypeNormal
 
                 color: Theme.dialogTextColor
-                //elide: Label.ElideNone
                 wrapMode: Label.WrapAnywhere
                 horizontalAlignment: Label.AlignLeft
                 verticalAlignment: Label.AlignVCenter
 
+                focus: _dialog.visible
                 text: walletAdapter.transactionsTableModel.transactionDetails
             }
         }
