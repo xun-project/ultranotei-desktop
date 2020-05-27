@@ -12,6 +12,7 @@ AbstractButton {
     property string iconSource: ""
     property color defaultColor: "white"
     property color activeColor: "grey"
+    property bool itemInTrackingMode: false
 
     checkable: true
     checked: false
@@ -45,7 +46,7 @@ AbstractButton {
             layer.effect: ColorOverlay {
                 //anchors.fill: _icon
                 source: _icon
-                color: _itm.checked ? _itm.activeColor : _itm.defaultColor
+                color: (_itm.checked && !itemInTrackingMode) ? _itm.activeColor : _itm.defaultColor
             }
         }
 
@@ -61,7 +62,7 @@ AbstractButton {
             type: UNLabel.Type.TypeDrawerListItem
             horizontalAlignment: Label.AlignLeft
             verticalAlignment: Label.AlignVCenter
-            color: _itm.checked ? _itm.activeColor : _itm.defaultColor
+            color: (_itm.checked && !itemInTrackingMode) ? _itm.activeColor : _itm.defaultColor
 
             text: _itm.text
 

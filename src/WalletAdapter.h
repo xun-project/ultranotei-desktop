@@ -71,6 +71,7 @@ class WalletAdapter : public QObject, public CryptoNote::IWalletLegacyObserver {
     QML_READABLE_PROPERTY(QString, privateViewKey, setPrivateViewKey, "")
     QML_READABLE_PROPERTY(QString, guiKey, setguiKey, "")
     QML_READABLE_PROPERTY(QString, mnemonicSeed, setMnemonicSeed, "")
+    QML_READABLE_PROPERTY(QString, trackingEnabledLablel, setTrackingEnabledLablel, "")
 
 public:
     enum ConnectionMode {
@@ -207,6 +208,7 @@ private:
     void checkTrackingMode();
     Q_SLOT void updateOptimizationLabel();
     void setPrivateKeys();
+    void setWalletTrackingLabel();
 Q_SIGNALS:
     void walletInitCompletedSignal(int _error, const QString& _errorText);
     void walletCloseCompletedSignal();

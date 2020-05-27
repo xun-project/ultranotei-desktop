@@ -102,6 +102,12 @@ void MiningService::walletClosed()
 
 void MiningService::addPoolClicked()
 {
+    if (Settings::instance().isTrackingMode())
+    {
+        emit WalletAdapter::instance().showMessage(tr("Tracking Wallet"), tr("This is a tracking wallet. This action is not available."));
+        return;
+    }
+    else {
     NewPoolDialog dlg(&MainWindow::instance());
     if (dlg.exec() == QDialog::Accepted) {
         QString host = dlg.getHost();
@@ -112,6 +118,7 @@ void MiningService::addPoolClicked()
 
         m_poolModel->addPool(host, port);
     }
+    }
 }
 
 void MiningService::clearPoolsClicked()
@@ -121,12 +128,19 @@ void MiningService::clearPoolsClicked()
 
 void MiningService::startClicked()
 {
+    if (Settings::instance().isTrackingMode())
+    {
+        emit WalletAdapter::instance().showMessage(tr("Tracking Wallet"), tr("This is a tracking wallet. This action is not available."));
+        return;
+    }
+    else {
     setIsActive(true);
     if(m_cronEnabled) {
         _cronTimer->start();
         checkStatus();
     } else {
         startMining();
+    }
     }
 }
 

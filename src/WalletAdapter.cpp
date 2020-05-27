@@ -204,6 +204,7 @@ WalletAdapter::WalletAdapter()
     QObject::connect(this, &WalletAdapter::walletSynchronizationCompletedSignal, optimizationService, &OptimizationService::synchronizationCompleted, Qt::QueuedConnection);
     QObject::connect(this, &WalletAdapter::walletSynchronizationCompletedSignal, this, &WalletAdapter::updateOptimizationLabel, Qt::QueuedConnection);
     
+    setWalletTrackingLabel();
     m_newTransactionsNotificationTimer.setInterval(500);
 	//QTimer::singleShot(1500, this, SLOT(updateWalletTransactions()));
 }
@@ -508,6 +509,12 @@ void WalletAdapter::importKey(const QString& key, const QString& filePath)
 
 void WalletAdapter::backupWallet(const QUrl& fileUrl)
 {
+    if (Settings::instance().isTrackingMode())
+    {
+        emit showMessage(tr("Tracking Wallet"), tr("This is a tracking wallet. This action is not available."));
+        return;
+    }
+    else {
     QString filePath = fileUrl.toLocalFile();
     qDebug() << "backupWallet" << filePath;
     if (!filePath.isEmpty() && !filePath.endsWith(".wallet")) {
@@ -518,6 +525,7 @@ void WalletAdapter::backupWallet(const QUrl& fileUrl)
         backup(filePath);
     } else {
         emit showMessage(tr("Error"), tr("Cannot backup wallet: file exists"));
+    }
     }
 }
 
@@ -565,8 +573,7 @@ bool WalletAdapter::optimizeClicked()
 {
     if (Settings::instance().isTrackingMode())
     {
-        //show message here
-        //QMessageBox::information(this, tr("Tracking Wallet"), "This is a tracking wallet. This action is not available.");
+        emit showMessage(tr("Tracking Wallet"), tr("This is a tracking wallet. This action is not available."));
         return false;
     }
     else
@@ -588,9 +595,16 @@ bool WalletAdapter::optimizeClicked()
 
 void WalletAdapter::autoOptimizeClicked()
 {
+    if (Settings::instance().isTrackingMode())
+    {
+        emit showMessage(tr("Tracking Wallet"), tr("This is a tracking wallet. This action is not available."));
+        return;
+    }
+    else {
     if (Settings::instance().getAutoOptimizationStatus() == "enabled")
          Settings::instance().setAutoOptimizationStatus("disabled");
     else Settings::instance().setAutoOptimizationStatus("enabled");
+    }
 }
 
 bool WalletAdapter::isAutoOpimizationEnabled() const
@@ -790,6 +804,12 @@ void WalletAdapter::importMnemonicSeed(QString seed, QString filePath)
 
 void WalletAdapter::optimizeWallet()
 {
+    if (Settings::instance().isTrackingMode())
+    {
+        emit showMessage(tr("Tracking Wallet"), tr("This is a tracking wallet. This action is not available."));
+        return;
+    }
+    else {
     Q_CHECK_PTR(m_wallet);
     std::vector<CryptoNote::WalletLegacyTransfer> transfers;
     std::vector<CryptoNote::TransactionMessage> messages;
@@ -806,6 +826,7 @@ void WalletAdapter::optimizeWallet()
     }
     catch (std::system_error&) {
         unlock();
+    }
     }
 }
 
@@ -952,6 +973,12 @@ void WalletAdapter::sendMessage(const QVector<CryptoNote::WalletLegacyTransfer>&
 
 void WalletAdapter::deposit(int _term, qreal _amount, int _fee, int _mixIn)
 {
+    if (Settings::instance().isTrackingMode())
+    {
+        emit showMessage(tr("Tracking Wallet"), tr("This is a tracking wallet. This action is not available."));
+        return;
+    }
+    else {
     Q_CHECK_PTR(m_wallet);
     try {
         lock();
@@ -960,15 +987,23 @@ void WalletAdapter::deposit(int _term, qreal _amount, int _fee, int _mixIn)
     } catch (std::system_error&) {
         unlock();
     }
+    }
 }
 
 void WalletAdapter::withdraw()
 {
+    if (Settings::instance().isTrackingMode())
+    {
+        emit showMessage(tr("Tracking Wallet"), tr("This is a tracking wallet. This action is not available."));
+        return;
+    }
+    else {
     const auto& depositIds = m_depositTableModel->unlockedDepositIds();
     qDebug() << "Unlocked deposit ids" << depositIds;
     if (!depositIds.isEmpty()) {
         withdrawUnlockedDeposits(depositIds,
             static_cast<quint64>(CurrencyAdapter::instance().getMinimumFee()));
+    }
     }
 }
 
@@ -1031,6 +1066,7 @@ void WalletAdapter::onWalletInitCompleted(int _error, const QString& _errorText)
             save(true, true);
         }
         checkTrackingMode();//check traking mode when wallet open
+        setWalletTrackingLabel();
         break;
     }
     case CryptoNote::error::WRONG_PASSWORD:
@@ -1201,6 +1237,14 @@ void WalletAdapter::setPrivateKeys()
     setMnemonicSeed(QString::fromStdString(mnemonic_seed));
 
 
+}
+
+void WalletAdapter::setWalletTrackingLabel()
+{
+    if (Settings::instance().isTrackingMode())
+        setTrackingEnabledLablel("[Tracking Wallet]");
+    else
+        setTrackingEnabledLablel("");
 }
 
 void WalletAdapter::transactionUpdated(CryptoNote::TransactionId _transactionId)
@@ -1419,6 +1463,12 @@ void WalletAdapter::send(const QString& payTo, const QString& paymentId,
     const QString& label, const QString& comment,
 	qreal amount, int fee, int anonLevel)
 {
+    if (Settings::instance().isTrackingMode())
+    {
+        emit showMessage(tr("Tracking Wallet"), tr("This is a tracking wallet. This action is not available."));
+        return;
+    }
+    else {
     QVector<CryptoNote::WalletLegacyTransfer> walletTransfers;
     CryptoNote::WalletLegacyTransfer walletTransfer;
     walletTransfer.address = payTo.toStdString();
@@ -1438,6 +1488,7 @@ void WalletAdapter::send(const QString& payTo, const QString& paymentId,
 
     sendTransaction(walletTransfers, static_cast<quint64>(fee), paymentId,
         static_cast<quint64>(anonLevel), walletMessages);
+    }
 }
 quint16 WalletAdapter::getCommentCharPrice()
 {
