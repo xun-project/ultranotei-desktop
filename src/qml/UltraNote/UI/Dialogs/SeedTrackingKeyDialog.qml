@@ -21,7 +21,7 @@ UNDialogInfinity {
         shortcut: StandardKey.Copy
         onTriggered: {
             if(_mnemonicSeedText.focus) clipboard.setText(_mnemonicSeedText.selectedText)
-            if(_guiKeyText.focus) clipboard.setText(_guiKeyText.selectedText)
+            //if(_guiKeyText.focus) clipboard.setText(_guiKeyText.selectedText)
         }
     }
 
@@ -115,6 +115,7 @@ UNDialogInfinity {
                 fixedHeight: 40
             }
             UNLabel {
+                visible:false
                 id: _guiKeyLabel
 
                 Layout.fillWidth: true
@@ -138,10 +139,12 @@ UNDialogInfinity {
             }
 
             UNLayoutSpacer {
+                visible:false
                 fixedHeight: 10
             }
 
             RowLayout {
+                visible:false
                 UNLabelSelectable {
                     id: _guiKeyText
                     Layout.fillWidth: true
@@ -181,6 +184,7 @@ UNDialogInfinity {
                 }
             }
             UNLayoutSpacer {
+                visible:false
                 fixedHeight: 30
             }
 
