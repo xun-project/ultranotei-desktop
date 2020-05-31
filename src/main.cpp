@@ -36,6 +36,9 @@
 #include "gui/MainWindow.h"
 #include <QtWebEngine>
 
+#include <QSystemTrayIcon>
+#include "systemtray.h"
+
 #define DEBUG 1
 
 using namespace WalletGui;
@@ -124,6 +127,9 @@ int main(int argc, char* argv[]) {
   QQmlApplicationEngine engine;
   BrowserUtils browserUtils;
   engine.rootContext()->setContextProperty("browserUtils", &browserUtils);
+
+  SystemTray systemTray;
+  engine.rootContext()->setContextProperty("systemTray", &systemTray);
 
   engine.addImportPath("qrc:/qml/qml/");
   QQmlContext *context = engine.rootContext();
