@@ -46,12 +46,14 @@ UNDialogInfinity {
             }
 
             UNButton {
+                visible:false
                 Layout.fillWidth: true
                 text: qsTr("IMPORT TRACKING WALLET")
                 onClicked: _ImportTrackingWalletDialog.open()
             }
 
             UNLayoutSpacer {
+                visible:false
                 fixedHeight: 20
             }
 

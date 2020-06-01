@@ -373,7 +373,7 @@ QVariant TransactionsModel::getUserRole(const QModelIndex& _index, int _role, Cr
 
   case ROLE_MESSAGES: {
     QStringList messageList;
-    messageList.reserve(_transaction.messages.size());
+    messageList.reserve(static_cast<int>(_transaction.messages.size()));
     Q_FOREACH (const auto& message, _transaction.messages) {
       messageList << QString::fromStdString(message);
     }

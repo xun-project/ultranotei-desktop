@@ -29,13 +29,13 @@ UNFramelessApplicationWindow {
         property string sendToAddress: ""
         property bool addressIsExposed: false
         property bool payToAddress: false
+        property bool minTrayEnabled: false
 
         readonly property color startColor: "#2258d8"
         readonly property color stopColor: Qt.darker(_globalProperties.startColor)
         readonly property string currency: currencyAdapter.getCurrencyTicker()
         readonly property int decimals: currencyAdapter.getNumberOfDecimalPlaces()
         readonly property int actStepSize: Math.pow(10, _globalProperties.decimals)
-
 
         function convertToAmount(value, locale) {
             return Number(value / _globalProperties.actStepSize).toLocaleString(locale, 'f', _globalProperties.decimals)
@@ -101,9 +101,42 @@ UNFramelessApplicationWindow {
             _messageDialogProperties.showMessage(title, msg)
         }
     }
+    Connections {
+        target: systemTray
+        onSignalShow: {
+            _appWindow.show();
+        }
+
+        onSignalQuit: {
+            _globalProperties.minTrayEnabled = false
+            close();
+        }
+
+        onSignalIconActivated: {
+            if(_appWindow.visibility === Window.Hidden) {
+                _appWindow.show()
+                systemTray.hideIconTray()
+            } else {
+                _appWindow.hide()
+                systemTray.showIconTray()
+            }
+        }
+    }
+
+    // Handler window closing event
+    onClosing: {
+        if(_globalProperties.minTrayEnabled === true && _appWindow.isMinimize === true){
+            close.accepted = true
+            systemTray.showIconTray()
+            _appWindow.hide()
+            _appWindow.isMinimize = false
+        } else {
+            systemTray.hideIconTray()
+            Qt.quit()
+        }
+    }
 
     //TODO splash screen
-
     //        Splash {
     //            id: splash
     //            x: win.x + (win.width - width) / 2
@@ -123,6 +156,24 @@ UNFramelessApplicationWindow {
             if (null !== _walletDialog.acceptedCallback) {
                 _walletDialog.acceptedCallback(_walletDialog.fileUrl)
                 _walletDialog.acceptedCallback = null
+            }
+        }
+    }
+
+    // Menu system tray
+    Menu {
+        id: trayMenu
+
+        MenuItem {
+            text: qsTr("Maximize window")
+            onTriggered: _appWindow.show()
+        }
+
+        MenuItem {
+            text: qsTr("Exit")
+            onTriggered: {
+                systemTray.hideIconTray()
+                Qt.quit()
             }
         }
     }
@@ -1301,9 +1352,9 @@ UNFramelessApplicationWindow {
 
                 UNMenuItem {
                     text: qsTr("Exit")
-
                     onClicked: {
-                        _appWindow.close();
+                        _globalProperties.minTrayEnabled = false
+                        _appWindow.close()
                     }
                 }
             }
@@ -1357,6 +1408,15 @@ UNFramelessApplicationWindow {
                     onClicked: {
                         _fiatSymbolDialog.open()
                     }
+                }
+
+                UNMenuItem {
+                    id: _minimizeTrayItem
+                    checkable: true
+                    checked: _globalProperties.minTrayEnabled
+                    text: qsTr("Minimize to tray")
+
+                    onClicked: _globalProperties.minTrayEnabled = checked
                 }
 
                 UNMenuItem {

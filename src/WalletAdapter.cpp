@@ -343,6 +343,7 @@ bool WalletAdapter::importLegacyWallet(const QString& _password)
             Q_EMIT openWalletWithPasswordSignal(!_password.isEmpty());
         }
     } catch (std::runtime_error& _err) {
+        Q_UNUSED(_err);
         closeFile();
     }
 
@@ -1059,7 +1060,7 @@ void WalletAdapter::onWalletInitCompleted(int _error, const QString& _errorText)
         Q_EMIT walletPendingDepositBalanceUpdatedSignal(m_wallet->pendingDepositBalance());
         Q_EMIT updateWalletAddressSignal(QString::fromStdString(m_wallet->getAddress()));
         Q_EMIT reloadWalletTransactionsSignal();
-		QTimer::singleShot(300, this, SLOT(updateWalletTransactions()));
+		QTimer::singleShot(5000, this, SLOT(updateWalletTransactions()));//300
         setStatusBarText(tr("Ready"));
         QTimer::singleShot(5000, this, &WalletAdapter::updateBlockStatusText);
         if (!QFile::exists(Settings::instance().getWalletFile())) {

@@ -32,6 +32,7 @@ export LD_LIBRARY_PATH="/home/neo/Qt/5.13.2/gcc_64/lib/"
 echo $LD_LIBRARY_PATH
 
 mkdir -p build/release
+chmod a+x tor_build.sh
 ./tor_build.sh
 
 cd build/release
