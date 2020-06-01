@@ -117,46 +117,26 @@ UNFramelessApplicationWindow {
                 _appWindow.show()
                 systemTray.hideIconTray()
             } else {
-                systemTray.showIconTray()
                 _appWindow.hide()
+                systemTray.showIconTray()
             }
         }
     }
 
     // Handler window closing event
     onClosing: {
-        if(_globalProperties.minTrayEnabled === true){
-            close.accepted = false
+        if(_globalProperties.minTrayEnabled === true && _appWindow.isMinimize === true){
+            close.accepted = true
             systemTray.showIconTray()
             _appWindow.hide()
+            _appWindow.isMinimize = false
         } else {
             systemTray.hideIconTray()
             Qt.quit()
         }
     }
 
-    /*onWindowStateChanged: {
-        switch(windowState) {
-        case 0:
-            console.log("Main Window State: NORMALIZED")
-            break;
-        case 1:
-            console.log("Main Window State: MINIMIZED")
-            if(_appWindow.visibility !== Window.Hidden) {
-                console.log("Main Window enter close")
-                _appWindow.close();
-            }
-            break;
-        case 2:
-            console.log("Main Window State: MAXIMIZED")
-            break;
-        default:
-            break;
-        }
-    }*/
-
     //TODO splash screen
-
     //        Splash {
     //            id: splash
     //            x: win.x + (win.width - width) / 2
@@ -194,7 +174,6 @@ UNFramelessApplicationWindow {
             onTriggered: {
                 systemTray.hideIconTray()
                 Qt.quit()
-
             }
         }
     }
@@ -1373,10 +1352,9 @@ UNFramelessApplicationWindow {
 
                 UNMenuItem {
                     text: qsTr("Exit")
-
                     onClicked: {
                         _globalProperties.minTrayEnabled = false
-                        _appWindow.close();
+                        _appWindow.close()
                     }
                 }
             }
@@ -1436,7 +1414,7 @@ UNFramelessApplicationWindow {
                     id: _minimizeTrayItem
                     checkable: true
                     checked: _globalProperties.minTrayEnabled
-                    text: qsTr("Close to tray")
+                    text: qsTr("Minimize to tray")
 
                     onClicked: _globalProperties.minTrayEnabled = checked
                 }

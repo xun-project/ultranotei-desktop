@@ -23,7 +23,6 @@ private slots:
     void iconActivated(QSystemTrayIcon::ActivationReason reason);
 
 public:
-    Q_INVOKABLE void qmlIconActivated();
     Q_INVOKABLE void hideIconTray();
     Q_INVOKABLE void showIconTray();
 

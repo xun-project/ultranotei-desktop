@@ -15,6 +15,7 @@ ApplicationWindow {
     property int shadowLayerWidth: 10
     property color backgroundColor: "white"
     property alias statusBarColor: statusBar.color
+    property bool isMinimize: false
 
     width: 1024 + 2 * shadowLayerWidth
     height: 768 + 2 * shadowLayerWidth
@@ -22,7 +23,7 @@ ApplicationWindow {
     color: "transparent"
     visible: true
 
-    flags: Qt.Window | Qt.FramelessWindowHint
+    flags: Qt.Window | Qt.FramelessWindowHint | Qt.WindowMinimizeButtonHint
 
     onWindowStateChanged: {
         switch(windowState) {
@@ -31,6 +32,10 @@ ApplicationWindow {
             break;
         case 1:
             console.log("Main Window State: MINIMIZED")
+            if(_globalProperties.minTrayEnabled === true){
+                _window.isMinimize = true
+                _window.close()
+            }
             break;
         case 2:
             console.log("Main Window State: MAXIMIZED")

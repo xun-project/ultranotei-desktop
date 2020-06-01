@@ -65,8 +65,3 @@ void SystemTray::showIconTray()
 {
     trayIcon->show();
 }
-
-void SystemTray::qmlIconActivated()
-{
-    iconActivated(QSystemTrayIcon::Trigger);
-}
