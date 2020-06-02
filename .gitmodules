@@ -11,3 +11,4 @@
 [submodule "cryptonote"]
 	path = cryptonote
 	url = https://bitbucket.org/xunteam/ultranotei-core.git
+	branch = master
