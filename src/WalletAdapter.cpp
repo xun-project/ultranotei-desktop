@@ -1343,7 +1343,7 @@ void WalletAdapter::setTorSettings()
         if (QFile::exists("/Applications/tor")) {
             program = "/Applications/tor";
         } else {
-            program = "tor";
+            program = QCoreApplication::applicationDirPath() + "/../Resources/tor";
         }
 
 #endif
