@@ -340,6 +340,7 @@ elseif (UNIX)
     file(GLOB_RECURSE OBJC_SOURCES src/*.mm)
     set(SOURCES ${SOURCES} ${OBJC_SOURCES})
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -maes -D_DARWIN_C_SOURCE")
+    set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -maes")
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -framework Cocoa -framework OpenGL -framework CoreFoundation -framework Carbon -framework IOKit -L/usr/lib")
 
     set(MACOSX_BUNDLE_ICON_FILE UltraNoteLogo.icns)
@@ -373,6 +374,7 @@ target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES} ${QTMAIN} zlibstatic ${
 # Platform-dependent properties
 if (APPLE)
   set_target_properties(${PROJECT_NAME} PROPERTIES MACOSX_BUNDLE_INFO_PLIST "${CMAKE_SOURCE_DIR}/contrib/macos/MacOSXBundleInfo.plist.in")
+  target_link_libraries(${PROJECT_NAME} -lresolv)
 elseif (UNIX)
   target_link_libraries(${PROJECT_NAME} -lpthread -lresolv)
 elseif (WIN32)
@@ -395,9 +397,9 @@ if (APPLE)
   find_program(MACDEPLOYQT macdeployqt PATHS ${QT5_ROOT_PATH}/bin/)
 
   # Run Qt5 Packager for MacOS Bundles
-  install(CODE "execute_process( COMMAND \"${MACDEPLOYQT}\" \"${PROJECT_NAME}.app\")" COMPONENT Runtime)
+  install(CODE "execute_process( COMMAND \"${MACDEPLOYQT}\" \"${PROJECT_NAME}.app\" \"-qmldir=${QML_DIRS}\")" COMPONENT Runtime)
   install(TARGETS ${PROJECT_NAME} BUNDLE DESTINATION . COMPONENT Runtime)
-  install(PROGRAMS build/release/tor/bin/tor DESTINATION . COMPONENT Runtime)
+  install(PROGRAMS build/release/tor/bin/tor DESTINATION ./${PROJECT_NAME}.app/Contents/Resources COMPONENT Runtime)
 
 elseif (UNIX)
   install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
