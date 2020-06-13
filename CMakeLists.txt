@@ -397,9 +397,9 @@ if (APPLE)
   find_program(MACDEPLOYQT macdeployqt PATHS ${QT5_ROOT_PATH}/bin/)
 
   # Run Qt5 Packager for MacOS Bundles
-  install(CODE "execute_process( COMMAND \"${MACDEPLOYQT}\" \"${PROJECT_NAME}.app\")" COMPONENT Runtime)
+  install(CODE "execute_process( COMMAND \"${MACDEPLOYQT}\" \"${PROJECT_NAME}.app\" \"-qmldir=${QML_DIRS}\")" COMPONENT Runtime)
   install(TARGETS ${PROJECT_NAME} BUNDLE DESTINATION . COMPONENT Runtime)
-  install(PROGRAMS build/release/tor/bin/tor DESTINATION . COMPONENT Runtime)
+  install(PROGRAMS build/release/tor/bin/tor DESTINATION ./${PROJECT_NAME}.app/Contents/Resources COMPONENT Runtime)
 
 elseif (UNIX)
   install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
