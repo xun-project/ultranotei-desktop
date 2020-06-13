@@ -84,10 +84,20 @@ Note that the distributed app will not be signed and users who install it will h
 [NOTE] By 31.12.2019 there is a bug with CPack distrib generation. So the current solution is to build the release version from Qt Creator or command line and then make the DMG file manually with commands:
 
 export QTDIR=/Users/{USERNAME}/Qt/5.14.0/clang_64
-
 export PATH=$QTDIR/bin:$PATH
 
-macdeployqt UltraNoteWallet.app -dmg -qmldir=${FULL_PROJECT_PATH}/src/qml -always-overwrite
+mkdir -p build/release
+chmod a+x tor_build.sh
+./tor_build.sh
+
+cd build/release
+cmake -DCMAKE_PREFIX_PATH=$HOME/Qt/5.13.2/gcc_64 -DCMAKE_BUILD_TYPE=Release ../..
+
+cd ../..
+make -j4
+make package-deb
+
+macdeployqt UltraNoteInfinity.app -dmg -qmldir=${FULL_PROJECT_PATH}/src/qml -always-overwrite
 
 [NOTE] Until this [bug](https://gitlab.kitware.com/cmake/cmake/issues/19973) is not resolved by CMake contributor you should manually rename the result *.dmg file to name pattern which contains app version UltraNoteWallet-{VERSION}.dmg where VERSION defined as UN_VERSION inside the UltraNoteWallet.cmake file
 
