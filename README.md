@@ -101,7 +101,7 @@ cd ../..
 
 make -j4
 
-make package-deb
+make package
 
 macdeployqt UltraNoteInfinity.app -dmg -qmldir=${FULL_PROJECT_PATH}/src/qml -always-overwrite
 
