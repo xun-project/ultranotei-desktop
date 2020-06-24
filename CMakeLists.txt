@@ -398,6 +398,8 @@ if (APPLE)
 
   # Run Qt5 Packager for MacOS Bundles
   install(CODE "execute_process( COMMAND \"${MACDEPLOYQT}\" \"${PROJECT_NAME}.app\" \"-qmldir=${QML_DIRS}\")" COMPONENT Runtime)
+  # Run again to fix libqsvg.dylib deployment (QTBUG-55199)
+  install(CODE "execute_process( COMMAND \"${MACDEPLOYQT}\" \"${PROJECT_NAME}.app\" \"-qmldir=${QML_DIRS}\")" COMPONENT Runtime)
   install(TARGETS ${PROJECT_NAME} BUNDLE DESTINATION . COMPONENT Runtime)
   install(PROGRAMS build/release/tor/bin/tor DESTINATION ./${PROJECT_NAME}.app/Contents/Resources COMPONENT Runtime)
 
