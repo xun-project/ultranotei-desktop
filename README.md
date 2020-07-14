@@ -4,7 +4,7 @@
 
 Dependencies: GCC 4.7.3 or later, CMake 3.9 or later, Boost 1.55 or later, and Qt 5.13 or later.
 
-You may download them from here:
+You may download them from here: 
 
 - https://gcc.gnu.org/
 - https://www.cmake.org/
