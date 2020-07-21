@@ -38,6 +38,9 @@ public:
     void updateWalletTransaction(CryptoNote::TransactionId _id);
     void lastKnownHeightUpdated(quint64 _height);
     void reset();
+Q_SIGNALS:
+    void alertWithNewTransaction();
+
 private:
     QVector<TransactionTransferId> m_transfers;
     QHash<CryptoNote::TransactionId, QPair<quint32, quint32> > m_transactionRow;

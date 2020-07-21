@@ -36,7 +36,7 @@ namespace WalletGui {
 class WalletAdapter : public QObject, public CryptoNote::IWalletLegacyObserver {
     Q_OBJECT
     Q_DISABLE_COPY(WalletAdapter)
-    QML_READABLE_PROPERTY(bool, isWalletOpen, setIsWalletOpen, false)
+    Q_PROPERTY(bool isWalletOpen READ isWalletOpen WRITE setIsWalletOpen NOTIFY isWalletOpenChanged)
     QML_CONSTANT_PROPERTY(int, defaultDaemonPort, CryptoNote::RPC_DEFAULT_PORT)
     Q_PROPERTY(bool isWalletEncrypted READ isWalletEncrypted NOTIFY isWalletEncryptedChanged)
     Q_PROPERTY(bool isStartOnLoginEnabled READ isStartOnLoginEnabled WRITE startOnLogin NOTIFY isStartOnLoginEnabledChanged)
@@ -87,6 +87,7 @@ public:
 
     Q_SLOT void setTorSettings();
     Q_INVOKABLE void open(const QString& _password);
+    Q_INVOKABLE void removeLock(const QString& _password);
     void createWithKeys(const CryptoNote::AccountKeys& _keys);
     void close();
     bool save(bool _details, bool _cache);
@@ -111,6 +112,7 @@ public:
     Q_INVOKABLE void importSecretkeys(QString spendKey, QString viewKey, QString walletFilePath);
     Q_INVOKABLE void importTrackingkey(QString keyString, QString filePath);
     Q_INVOKABLE void importMnemonicSeed(QString seed, QString filePath);
+    Q_INVOKABLE void setIsWalletOpen(bool on);
 
 	QString getAddress() const;
     quint64 getActualBalance() const;
@@ -168,6 +170,8 @@ public:
     void optimizationDelay();
     void optimizeWallet();
 
+    bool isWalletOpen() const;
+
     WalletAdapter();
         ~WalletAdapter() = default;
 
@@ -186,6 +190,7 @@ private:
     std::atomic<CryptoNote::TransactionId> m_sentMessageId;
     std::atomic<CryptoNote::TransactionId> m_depositId;
     std::atomic<CryptoNote::TransactionId> m_depositWithdrawalId;
+    bool m_isWalletOpen = false;
 
     void onWalletInitCompleted(int _error, const QString& _error_text);
     void onWalletSendTransactionCompleted(CryptoNote::TransactionId _transaction_id, int _error, const QString& _error_text);
@@ -203,10 +208,10 @@ private:
     Q_SLOT void updateBlockStatusText();
 	Q_SLOT void updateWalletTransactions();
 	Q_SLOT void newTransactionSoundEffect(CryptoNote::TransactionId _transactionId);
+    Q_SLOT void updateOptimizationLabel();
     void updateBlockStatusTextWithDelay();
     void encryptedFlagChanged(bool encrypted);
     void checkTrackingMode();
-    Q_SLOT void updateOptimizationLabel();
     void setPrivateKeys();
     void setWalletTrackingLabel();
 Q_SIGNALS:
@@ -242,6 +247,8 @@ Q_SIGNALS:
     void showMessage(const QString& title, const QString& text);
 
     void requestTransactionScreen();
+    void alertOnApplication();
+    void isWalletOpenChanged();
 };
 
 }

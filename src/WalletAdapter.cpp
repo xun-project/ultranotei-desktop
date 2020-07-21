@@ -306,6 +306,11 @@ void WalletAdapter::open(const QString& _password)
     }
 }
 
+void WalletAdapter::removeLock(const QString& _password)
+{
+    encryptWallet(_password, "");
+}
+
 void WalletAdapter::createWithKeys(const CryptoNote::AccountKeys& _keys)
 {
     m_wallet = NodeAdapter::instance().createWallet();
@@ -532,10 +537,10 @@ void WalletAdapter::backupWallet(const QUrl& fileUrl)
 
 bool WalletAdapter::encryptWallet(const QString& oldPwd, const QString& newPwd)
 {
-    if (newPwd.isEmpty()) {
+    /*if (newPwd.isEmpty()) {
         qCritical() << "Password cannot be empty";
         return false;
-    }
+    }*/
     const bool rc = changePassword(oldPwd, newPwd);
     emit isWalletEncryptedChanged();
     encryptedFlagChanged(rc);
@@ -803,6 +808,11 @@ void WalletAdapter::importMnemonicSeed(QString seed, QString filePath)
     WalletAdapter::instance().createWithKeys(keys);
 }
 
+void WalletAdapter::setIsWalletOpen(bool on)
+{
+    m_isWalletOpen = on;
+}
+
 void WalletAdapter::optimizeWallet()
 {
     if (Settings::instance().isTrackingMode())
@@ -829,6 +839,11 @@ void WalletAdapter::optimizeWallet()
         unlock();
     }
     }
+}
+
+bool WalletAdapter::isWalletOpen() const
+{
+    return m_isWalletOpen;
 }
 
 quint64 WalletAdapter::getNumUnlockedOutputs() const
@@ -1323,6 +1338,8 @@ void WalletAdapter::updateWalletTransactions()
 
 void WalletAdapter::newTransactionSoundEffect(CryptoNote::TransactionId _transactionId)
 {
+    Q_EMIT alertOnApplication();
+    qInfo() << "newTransactionSoundEffect ()\n";
 	CryptoNote::WalletLegacyTransaction transaction;
 	if (!this->getTransaction(_transactionId, transaction)) {
 		return;

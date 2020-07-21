@@ -93,6 +93,7 @@ UNFramelessApplicationWindow {
             _requestPasswordDialog.error = _error
             _requestPasswordDialog.open()
         }
+        onAlertOnApplication: _appWindow.alert(0)
     }
     Connections {
         target: walletAdapter.messagesTableModel
@@ -1257,6 +1258,7 @@ UNFramelessApplicationWindow {
                 color: Theme.statusBarMenuColor
 
                 UNMenuItem {
+                    id: _createWalletButton
                     text: qsTr("Create Wallet")
 
                     onClicked: {
@@ -1383,6 +1385,21 @@ UNFramelessApplicationWindow {
 
                 color: Theme.statusBarMenuColor
 
+                UNMenuItem {
+                    text: qsTr("Unlock wallet")
+                    disabled: !walletAdapter.isWalletEncrypted
+                    onClicked: {
+                        if(walletAdapter.isWalletEncrypted){
+                            if(walletAdapter.isWalletOpen){
+                                _requestPasswordDialog.unlocking = true
+                            }else{
+                                _requestPasswordDialog.unlocking = false
+                            }
+                            _requestPasswordDialog.clear()
+                            _requestPasswordDialog.open()
+                        }
+                    }
+                }
 
                 UNMenuItem {
                     text: walletAdapter.isWalletEncrypted ? qsTr("Change Password") : qsTr("Encrypt Wallet")
