@@ -345,7 +345,7 @@ UNPage {
                                 }
                                 ToolButton {
                                     id: fontFamilyToolButton
-                                    text: qsTr("<font color=\"#2A2931\">\uE808</font>") // icon-font
+                                    text: "<font color=\"#2A2931\">\uE808</font>" // icon-font
                                     font.family: "fontello"
                                     font.bold: document.bold
                                     font.italic: document.italic

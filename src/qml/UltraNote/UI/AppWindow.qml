@@ -13,7 +13,7 @@ import UltraNote.UI.Dialogs 1.0
 UNFramelessApplicationWindow {
     id: _appWindow
 
-    width: 1052   //1024
+    width: 1135 //1052,1024
     height: 840
 
     visible: true
@@ -372,7 +372,7 @@ UNFramelessApplicationWindow {
 
                                 width: Math.min(implicitWidth, 100)
 
-                                text: qsTr("balance")
+                                text: qsTr("Balance")
                                 textColor: Theme.drawerMainActionButtonTextColor
                                 iconSource: "qrc:/icons/resources/icons/drawer_main_action_icon.svg"
                                 backgroundColor: Theme.drawerMainActionButtonColor
@@ -449,7 +449,7 @@ UNFramelessApplicationWindow {
                                                     _appPagesStackView.push(model.page)
                                                 }
                                             }
-                                            else _messageDialogProperties.showMessage("Tracking Wallet", "This is a tracking wallet. This tab is not available.")
+                                            else _messageDialogProperties.showMessage(qsTr("Tracking Wallet"), qsTr("This is a tracking wallet. This tab is not available."))
                                         }
                                     }
                                 }
@@ -1171,6 +1171,10 @@ UNFramelessApplicationWindow {
             }
         }
 
+        LanguageSettingDialog {
+            id: _LanguageSettingDialog
+        }
+
         MessageDialog {
             id: _messageDialog
 
@@ -1425,6 +1429,11 @@ UNFramelessApplicationWindow {
                     onClicked: {
                         _fiatSymbolDialog.open()
                     }
+                }
+
+                UNMenuItem {
+                    text: qsTr("Language Setting")
+                    onClicked: _LanguageSettingDialog.open()
                 }
 
                 UNMenuItem {

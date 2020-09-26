@@ -19,7 +19,7 @@ Row {
     Label {
         id: _name
 
-        width: 0.3*parent.width
+        width: 0.45*parent.width
 
         color: Theme.balanceReportTextColor
         font.pointSize: Theme.textPointSize

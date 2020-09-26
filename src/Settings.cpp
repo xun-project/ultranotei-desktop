@@ -23,6 +23,7 @@ namespace WalletGui {
 
 Q_DECL_CONSTEXPR char OPTION_WALLET_FILE[] = "walletFile";
 Q_DECL_CONSTEXPR char OPTION_ENCRYPTED[] = "encrypted";
+Q_DECL_CONSTEXPR char OPTION_LANGUAGE[] = "language";
 Q_DECL_CONSTEXPR char OPTION_MINING_POOLS[] = "miningPools";
 Q_DECL_CONSTEXPR char OPTION_CONNECTION[] = "connectionMode";
 Q_DECL_CONSTEXPR char OPTION_RPCNODES[] = "remoteNodes";
@@ -229,6 +230,22 @@ QString WalletGui::Settings::getUnreadMessagesFile() const
 
 QString Settings::getVersion() const {
   return VERSION;
+}
+
+QString Settings::getLanguage() const
+{
+    QString currentLang;
+    if (m_settings.contains(OPTION_LANGUAGE))
+    {
+        currentLang = m_settings.value(OPTION_LANGUAGE).toString();
+    }
+    return currentLang;
+}
+
+void Settings::setLanguage(const QString& _language)
+{
+    m_settings.insert(OPTION_LANGUAGE, _language);
+    saveSettings();
 }
 
 bool Settings::isEncrypted() const {

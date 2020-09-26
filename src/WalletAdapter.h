@@ -40,6 +40,7 @@ class WalletAdapter : public QObject, public CryptoNote::IWalletLegacyObserver {
     QML_CONSTANT_PROPERTY(int, defaultDaemonPort, CryptoNote::RPC_DEFAULT_PORT)
     Q_PROPERTY(bool isWalletEncrypted READ isWalletEncrypted NOTIFY isWalletEncryptedChanged)
     Q_PROPERTY(bool isStartOnLoginEnabled READ isStartOnLoginEnabled WRITE startOnLogin NOTIFY isStartOnLoginEnabledChanged)
+    Q_PROPERTY(QString selectedLangauge READ currentLanguage WRITE newSelectedLangauge NOTIFY selectedLangaugeChanged)
     QML_WRITABLE_PROPERTY(int, localDaemonPort, setLocalDaemonPort, 0)
     QML_WRITABLE_PROPERTY(int, connectionMode, setConnectionMode, CONNECTION_MODE_UNKNOWN)
     QML_CONSTANT_PROPERTY_PTR(NodeModel, nodeModel)
@@ -103,7 +104,7 @@ public:
     Q_INVOKABLE bool encryptWallet(const QString& oldPwd, const QString& newPwd);
     Q_INVOKABLE void startOnLogin(bool on);
     Q_INVOKABLE void enableTor();
-    bool getTorEnabled();
+    Q_INVOKABLE void loadLanguage();
 
     Q_INVOKABLE QString toLocalFile(const QUrl& fileUrl) const;
     Q_INVOKABLE bool optimizeClicked();
@@ -113,6 +114,10 @@ public:
     Q_INVOKABLE void importTrackingkey(QString keyString, QString filePath);
     Q_INVOKABLE void importMnemonicSeed(QString seed, QString filePath);
     Q_INVOKABLE void setIsWalletOpen(bool on);
+    
+    bool getTorEnabled();
+    void newSelectedLangauge(QString lang);
+    QString currentLanguage() const;
 
 	QString getAddress() const;
     quint64 getActualBalance() const;
@@ -192,6 +197,12 @@ private:
     std::atomic<CryptoNote::TransactionId> m_depositWithdrawalId;
     bool m_isWalletOpen = false;
 
+    QTranslator m_translator;   // contains the translations for this application
+    QTranslator m_translatorQt; // contains the translations for qt
+    QString m_currLang;         // contains the currently loaded language
+    QString m_langPath;         // Path of language files. This is always fixed to /languages
+    QString m_newLang;          // contains the new language to be loaded
+
     void onWalletInitCompleted(int _error, const QString& _error_text);
     void onWalletSendTransactionCompleted(CryptoNote::TransactionId _transaction_id, int _error, const QString& _error_text);
 
@@ -249,6 +260,7 @@ Q_SIGNALS:
     void requestTransactionScreen();
     void alertOnApplication();
     void isWalletOpenChanged();
+    void selectedLangaugeChanged();
 };
 
 }

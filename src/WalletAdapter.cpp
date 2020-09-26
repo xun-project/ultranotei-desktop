@@ -26,9 +26,9 @@
 #include "NodeAdapter.h"
 #include "Settings.h"
 #include "WalletAdapter.h"
-
 #include "CryptoNoteCore/Account.h"
 #include "Mnemonics/electrum-words.h"
+#include "TranslatorManager.h"
 
 
 namespace WalletGui {
@@ -565,6 +565,18 @@ bool WalletAdapter::getTorEnabled()
     return m_isTorEnabled;
 }
 
+void WalletAdapter::newSelectedLangauge(QString lang)
+{
+    m_newLang = lang;
+}
+
+QString WalletAdapter::currentLanguage() const
+{
+    /* Get current language */
+    QString language = Settings::instance().getLanguage();
+    return !language.isEmpty() ? language : "_en.qm";
+}
+
 bool WalletAdapter::isStartOnLoginEnabled() const
 {
     return Settings::instance().isStartOnLoginEnabled();
@@ -811,6 +823,24 @@ void WalletAdapter::importMnemonicSeed(QString seed, QString filePath)
 void WalletAdapter::setIsWalletOpen(bool on)
 {
     m_isWalletOpen = on;
+}
+
+void WalletAdapter::loadLanguage()
+{
+    if (m_currLang != m_newLang)
+    {
+        m_currLang = m_newLang;
+        QLocale locale = QLocale(m_currLang);
+        QLocale::setDefault(locale);
+        //QString languageName = QLocale::languageToString(locale.language());
+        //TranslatorManager::instance()->switchTranslator(m_translator, QString("%1.qm").arg(m_newLang));
+        //TranslatorManager::instance()->switchTranslator(m_translatorQt, QString("qt%1.qm").arg(m_newLang));
+
+        // save is in settings
+        Settings::instance().setLanguage(m_currLang);
+
+        qInfo() << QString("new language is set: %1").arg(m_currLang);
+    }
 }
 
 void WalletAdapter::optimizeWallet()

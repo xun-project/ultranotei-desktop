@@ -366,6 +366,12 @@ target_link_libraries(${CRYPTONOTE_LIB} ${Boost_LIBRARIES})
 # zlib
 add_subdirectory(zlib EXCLUDE_FROM_ALL)
 
+# translations
+set(MainTranslationSourceDir "${CMAKE_CURRENT_SOURCE_DIR}/src/qml")
+set(TranslationsOutputDir "${CMAKE_CURRENT_SOURCE_DIR}/build/release/Release")
+include_directories (${MainTranslationSourceDir})
+add_subdirectory(languages)
+
 # Build UltraNote app
 add_executable(${PROJECT_NAME} ${BUILD_PLATFORM} ${BUILD_RESOURCES} ${SOURCES} ${HEADERS} ${QRC} ${UIS} ${RCC})
 set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_DEFINITIONS _GNU_SOURCE)
@@ -402,6 +408,7 @@ if (APPLE)
   install(CODE "execute_process( COMMAND \"${MACDEPLOYQT}\" \"${PROJECT_NAME}.app\" \"-qmldir=${QML_DIRS}\")" COMPONENT Runtime)
   install(TARGETS ${PROJECT_NAME} BUNDLE DESTINATION . COMPONENT Runtime)
   install(PROGRAMS build/release/tor/bin/tor DESTINATION ./${PROJECT_NAME}.app/Contents/Resources COMPONENT Runtime)
+  install(DIRECTORY build/release/Release/languages DESTINATION ./${PROJECT_NAME}.app/Contents/Resources COMPONENT Runtime)
 
 elseif (UNIX)
   install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
@@ -409,6 +416,7 @@ elseif (UNIX)
   install(FILES src/images/UltraNoteLogo.png DESTINATION share/pixmaps RENAME ultranote.png)
   install(FILES COPYING DESTINATION share/doc/ultranoteinfinity)
   install(PROGRAMS build/release/tor/bin/tor DESTINATION bin)
+  install(DIRECTORY build/release/Release/languages DESTINATION bin)
 
 	SET(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
 	SET(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
@@ -438,6 +446,7 @@ elseif (WIN32)
   find_program(WINDEPLOYQT windeployqt PATHS ${QT5_ROOT_PATH}/bin/)
   install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION .)
   install(PROGRAMS build/release/tor/bin/tor.exe DESTINATION .)
+  install(DIRECTORY build/release/Release/languages DESTINATION .)
 
   if (PACKMSI)
     set(CPACK_GENERATOR NSIS)

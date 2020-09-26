@@ -19,6 +19,8 @@
 #include <QFontDatabase>
 #include <QDirIterator>
 #include <QFontDatabase>
+#include <QtWebEngine>
+#include <QSystemTrayIcon>
 
 #include "CommandLineParser.h"
 #include "CurrencyAdapter.h"
@@ -32,12 +34,9 @@
 #include "gui/documenthandler.h"
 #include "gui/BrowserUtils.h"
 #include "update.h"
-
 #include "gui/MainWindow.h"
-#include <QtWebEngine>
-
-#include <QSystemTrayIcon>
 #include "systemtray.h"
+#include "TranslatorManager.h"
 
 #define DEBUG 1
 
@@ -95,6 +94,10 @@ int main(int argc, char* argv[]) {
     SignalHandler::instance().init();
     QObject::connect(&SignalHandler::instance(), &SignalHandler::quitSignal, &app, &QApplication::quit);
 
+    //Translator must be created before the application's widgets.
+    TranslatorManager* tmanager = TranslatorManager::instance();
+    Q_UNUSED(tmanager)
+
     QPixmap splashImg(":/images/images/UltraNoteSplash.png");
     QSplashScreen splash(splashImg.scaled(800, 600), Qt::WindowStaysOnTopHint | Qt::X11BypassWindowManagerHint);
     splash.show();
@@ -108,6 +111,7 @@ int main(int argc, char* argv[]) {
         qCritical() << "Failed to init node";
         return 0;
     }
+
     WalletAdapter::instance().open("");
     QQuickStyle::setStyle("Material");
 

@@ -14,7 +14,7 @@ Dialog {
     property int pointerSize: 18
     property int pointerOffset: 25
 
-    implicitWidth: 400
+    implicitWidth: 420
 
     height: implicitHeight
     width: implicitWidth

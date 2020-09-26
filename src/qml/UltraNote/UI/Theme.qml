@@ -93,6 +93,9 @@ QtObject {
     readonly property color radioButtonTextColor: "#aeaeb1"
     readonly property color radioButtonFrameColor: "#4a6572"
     readonly property color radioButtonActiveColor: "#E0E0E0"
+    readonly property color radioButtonInfinityActiveColor: "#FFA500"
+    readonly property color radioButtonInfinityFrameColor: "#FFFFFF"
+    readonly property color radioButtonInfinityTextColor: "#FFFFFF"
 
     //Dialog
     readonly property color dialogBackgroundColor: "#ffffff"
