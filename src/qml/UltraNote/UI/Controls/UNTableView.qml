@@ -102,7 +102,7 @@ Item {
 
                                     type: UNLabel.Type.TypeTableViewHeader
                                     font.letterSpacing: 20 / 1000
-                                    text: columns[index].text !== undefined ? columns[index].text : qsTr("")
+                                    text: columns[index].text !== undefined ? columns[index].text : ""
                                 }
 
                                 Image {
@@ -132,7 +132,7 @@ Item {
                                         id: _headerColumnTitleTooltip
 
                                         timeout: 10000
-                                        text: columns[index].tooltip !== undefined ? columns[index].tooltip : qsTr("")
+                                        text: columns[index].tooltip !== undefined ? columns[index].tooltip : ""
                                     }
                                 }
                             }

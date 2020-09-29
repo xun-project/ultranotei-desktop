@@ -81,7 +81,7 @@ UNDialog {
         }
 
         Component.onCompleted: {
-            console.log("component completed")
+            console.log("Request password component completed")
             if(!_passwordField.activeFocus)
                 _passwordField.forceActiveFocus()
         }

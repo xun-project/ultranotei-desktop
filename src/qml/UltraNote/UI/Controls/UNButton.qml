@@ -33,7 +33,7 @@ Button {
     }
 
     autoExclusive: false
-    text: qsTr("")
+    text: ""
 
 
     background: UNElevatedPanel {

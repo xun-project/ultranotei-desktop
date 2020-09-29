@@ -11,13 +11,21 @@
 #define SERVER_URL "https://localcryptos.club/api/coin/xuni"
 #define COIN_NAME "XUNI"
 #define PRICE_CHECK_PERIOD_SEC 300
+#define DEFAULT_FIAT_SYMBOL "USD"
 
 namespace WalletGui {
 
 FiatConverter::FiatConverter(QObject *parent) : QObject(parent),
     m_http(new QNetworkAccessManager())
 {
-    setFiatId(Settings::instance().getFiatSymbol());
+    QString fiatSymbol = Settings::instance().getFiatSymbol();
+    if (fiatSymbol == "")
+    {
+        fiatSymbol = DEFAULT_FIAT_SYMBOL;
+        Settings::instance().setFiatSymbol(fiatSymbol);
+        qInfo() << QString("FiatConverter: set the fiat symbol to default (%1)").arg(fiatSymbol);
+    }
+    setFiatId(fiatSymbol);
 
     connect(m_http, &QNetworkAccessManager::sslErrors,
             this, [&](QNetworkReply *reply, const QList<QSslError> &errors) {

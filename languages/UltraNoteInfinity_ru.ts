@@ -1604,27 +1604,11 @@ the wallet might need optimization more than once.</source>
     </message>
 </context>
 <context>
-    <name>UNButton</name>
-    <message>
-        <location filename="UltraNote/UI/Controls/UNButton.qml" line="36"/>
-        <source></source>
-        <translation></translation>
-    </message>
-</context>
-<context>
     <name>UNFramelessApplicationWindow</name>
     <message>
         <location filename="../src/qml/UltraNote/UI/Controls/UNFramelessApplicationWindow.qml" line="336"/>
         <source> Infinity </source>
         <translation> Infinity </translation>
-    </message>
-</context>
-<context>
-    <name>UNTableView</name>
-    <message>
-        <location filename="UltraNote/UI/Controls/UNTableView.qml" line="105"/>
-        <source></source>
-        <translation></translation>
     </message>
 </context>
 <context>

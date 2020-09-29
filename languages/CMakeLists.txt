@@ -38,12 +38,12 @@ if (Qt5LinguistTools_FOUND)
     # Definition of QM files output directory
         #   Compute the relative path from a directory to a file or directory and store it in the variable.
         file(RELATIVE_PATH sRelativeLocation "${CMAKE_SOURCE_DIR}" "${CMAKE_CURRENT_SOURCE_DIR}")
-        set_source_files_properties(${sTranslationTsFiles} PROPERTIES OUTPUT_LOCATION ${TranslationsOutputDir}/${sRelativeLocation})#${sDeployDir}/${sRelativeLocation} 
+        set_source_files_properties(${sTranslationTsFiles} PROPERTIES OUTPUT_LOCATION ${TranslationsOutputDir}/${sRelativeLocation}) 
 
     # macro creation :
-    QT5_CREATE_TRANSLATION(sTranslationQmFiles ${MainTranslationSourceDir} ${sTranslationTsFiles} OPTIONS -source-language en)
+    #QT5_CREATE_TRANSLATION(sTranslationQmFiles ${MainTranslationSourceDir} ${sTranslationTsFiles} OPTIONS -source-language en)
     # In case of issues, the next command can help:
-    #QT5_CREATE_TRANSLATION(sTranslationQmFiles ${MainTranslationSourceDir} ${sTranslationTsFiles} OPTIONS -I ${MainTranslationSourceDir})
+    QT5_CREATE_TRANSLATION(sTranslationQmFiles ${MainTranslationSourceDir} ${sTranslationTsFiles} OPTIONS -I ${MainTranslationSourceDir})
 
     ADD_CUSTOM_TARGET ( t_translations_update ALL
                         DEPENDS ${sTranslationQmFiles}
