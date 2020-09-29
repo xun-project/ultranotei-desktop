@@ -14,10 +14,11 @@ UNPage {
     title: qsTr("Receive")
 
     function getQrBorderWidth() {
-        //fixed(english only): 250
-        return Math.max(_publicAddressHeaderText.width,
-                        _privateSpendKeyHeaderText.width,
-                        _privateViewKeyHeaderText.width) + 90;
+       var availableBorderWidth = Math.max(_publicAddressHeaderText.width,
+                                           _privateSpendKeyHeaderText.width,
+                                           _privateViewKeyHeaderText.width) + 90;
+
+        return Math.max(availableBorderWidth, 250);
     }
 
     contentItem: Item {
