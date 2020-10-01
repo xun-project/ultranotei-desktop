@@ -30,6 +30,7 @@
 #include "qmlhelpers.h"
 #include <IWalletLegacy.h>
 #include "gui/OptimizationService.h"
+#include "TranslatorManager.h"
 
 namespace WalletGui {
 
@@ -182,6 +183,7 @@ public:
 
 private:
     QProcess* torProcess = nullptr;
+    TranslatorManager* m_translatorManager = nullptr;
 	QSoundEffect incomingTransactionEffect;
 	QSoundEffect outgoingTransactionEffect;
     std::fstream m_file;

@@ -16,7 +16,7 @@ UNDialog {
         ListElement { type: UNDialog.ButtonType.TypeNormal; role: DialogButtonBox.RejectRole; text: qsTr("Close")}
     }
 
-    implicitWidth: 600
+    implicitWidth: Theme.messageDetailsDialogWindowWidth
     closePolicy: Popup.CloseOnEscape
     title: qsTr("Message details")
     modal: true

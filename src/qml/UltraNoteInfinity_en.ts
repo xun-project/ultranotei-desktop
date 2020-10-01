@@ -1138,36 +1138,36 @@ the wallet might need optimization more than once.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Pages/ReceivePage.qml" line="111"/>
+        <location filename="UltraNote/UI/Pages/ReceivePage.qml" line="112"/>
         <source>Public Address key</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Pages/ReceivePage.qml" line="120"/>
-        <location filename="UltraNote/UI/Pages/ReceivePage.qml" line="206"/>
-        <location filename="UltraNote/UI/Pages/ReceivePage.qml" line="358"/>
+        <location filename="UltraNote/UI/Pages/ReceivePage.qml" line="121"/>
+        <location filename="UltraNote/UI/Pages/ReceivePage.qml" line="207"/>
+        <location filename="UltraNote/UI/Pages/ReceivePage.qml" line="359"/>
         <source>Copy to Clipboard</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Pages/ReceivePage.qml" line="197"/>
+        <location filename="UltraNote/UI/Pages/ReceivePage.qml" line="198"/>
         <source>Private Spend key</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Pages/ReceivePage.qml" line="265"/>
-        <location filename="UltraNote/UI/Pages/ReceivePage.qml" line="417"/>
+        <location filename="UltraNote/UI/Pages/ReceivePage.qml" line="266"/>
+        <location filename="UltraNote/UI/Pages/ReceivePage.qml" line="418"/>
         <source>Click to Hide</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Pages/ReceivePage.qml" line="265"/>
-        <location filename="UltraNote/UI/Pages/ReceivePage.qml" line="417"/>
+        <location filename="UltraNote/UI/Pages/ReceivePage.qml" line="266"/>
+        <location filename="UltraNote/UI/Pages/ReceivePage.qml" line="418"/>
         <source>Click to Show</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Pages/ReceivePage.qml" line="349"/>
+        <location filename="UltraNote/UI/Pages/ReceivePage.qml" line="350"/>
         <source>Private View key</source>
         <translation></translation>
     </message>

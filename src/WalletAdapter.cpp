@@ -28,7 +28,6 @@
 #include "WalletAdapter.h"
 #include "CryptoNoteCore/Account.h"
 #include "Mnemonics/electrum-words.h"
-#include "TranslatorManager.h"
 
 
 namespace WalletGui {
@@ -56,6 +55,7 @@ WalletAdapter::WalletAdapter()
     , m_sentMessageId(CryptoNote::WALLET_LEGACY_INVALID_TRANSACTION_ID)
     , m_depositId(CryptoNote::WALLET_LEGACY_INVALID_TRANSACTION_ID)
     , m_depositWithdrawalId(CryptoNote::WALLET_LEGACY_INVALID_TRANSACTION_ID)
+    , m_translatorManager(TranslatorManager::instance())
 {
     setObjectName("walletAdapter");
     qmlRegisterType<WalletAdapter>("WalletAdapter", 1, 0, "WalletAdapter");
@@ -375,6 +375,12 @@ void WalletAdapter::close()
     setIsWalletOpen(false);
     setSynchronizationStateIcon(""); //hide
     setEncryptionStateIcon("");
+
+    if (m_translatorManager != nullptr)
+    {
+        delete m_translatorManager;
+        m_translatorManager = nullptr;
+    }
 }
 
 bool WalletAdapter::save(bool _details, bool _cache)

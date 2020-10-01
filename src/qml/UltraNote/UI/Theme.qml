@@ -21,8 +21,9 @@ QtObject {
     readonly property color messageDetailsDialogTextAreaColor: Qt.lighter("gray")
     readonly property color messageDetailsDialogButtonActiveColor: "gray"
     readonly property int messageDetailsDialogButtonheight: 30
-    readonly property int messageDetailsDialogButtonwidth: 50
+    readonly property int messageDetailsDialogButtonwidth: 75
     readonly property int messageDetailsDialogButtonFontSize: 12
+    readonly property int messageDetailsDialogWindowWidth: 660
 
     //[V2 Common Colors]
 

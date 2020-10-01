@@ -36,7 +36,6 @@
 #include "update.h"
 #include "gui/MainWindow.h"
 #include "systemtray.h"
-#include "TranslatorManager.h"
 
 #define DEBUG 1
 
@@ -93,10 +92,6 @@ int main(int argc, char* argv[]) {
 
     SignalHandler::instance().init();
     QObject::connect(&SignalHandler::instance(), &SignalHandler::quitSignal, &app, &QApplication::quit);
-
-    //Translator must be created before the application's widgets.
-    TranslatorManager* tmanager = TranslatorManager::instance();
-    Q_UNUSED(tmanager)
 
     QPixmap splashImg(":/images/images/UltraNoteSplash.png");
     QSplashScreen splash(splashImg.scaled(800, 600), Qt::WindowStaysOnTopHint | Qt::X11BypassWindowManagerHint);

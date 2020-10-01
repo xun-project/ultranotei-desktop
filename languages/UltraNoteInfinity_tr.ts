@@ -6,7 +6,7 @@
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/AddressBookDialog.qml" line="23"/>
         <source>Accept</source>
-        <translation type="unfinished"></translation>
+        <translation>Kabul etmek</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/AddressBookDialog.qml" line="24"/>
@@ -34,7 +34,7 @@
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/AddressBookPage.qml" line="174"/>
         <source>Delete Address</source>
-        <translation type="unfinished"></translation>
+        <translation>Adresi Sil</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/AddressBookPage.qml" line="187"/>
@@ -47,275 +47,275 @@
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="21"/>
         <source> Infinity </source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="169"/>
         <source>Maximize window</source>
-        <translation type="unfinished"></translation>
+        <translation>Pencereyi büyüt</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="174"/>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1360"/>
         <source>Exit</source>
-        <translation type="unfinished"></translation>
+        <translation>Çikiş</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="232"/>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1245"/>
         <source>Wallet</source>
-        <translation type="unfinished"></translation>
+        <translation>Cüzdan</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="233"/>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="375"/>
         <source>Balance</source>
-        <translation type="unfinished"></translation>
+        <translation>Denge</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="233"/>
         <source>Unconfirmed</source>
-        <translation type="unfinished"></translation>
+        <translation>Onaylanmamış</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="233"/>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="246"/>
         <source>Total</source>
-        <translation type="unfinished"></translation>
+        <translation>Toplam</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="245"/>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="412"/>
         <source>Deposits</source>
-        <translation type="unfinished"></translation>
+        <translation>MEVDUATLAR</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="246"/>
         <source>Locked</source>
-        <translation type="unfinished"></translation>
+        <translation>Kilitli</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="246"/>
         <source>Unlocked</source>
-        <translation type="unfinished"></translation>
+        <translation>Kilidi Açıldı</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="413"/>
         <source>Send</source>
-        <translation type="unfinished"></translation>
+        <translation>GÖNDER</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="414"/>
         <source>Receive</source>
-        <translation type="unfinished"></translation>
+        <translation>Teslim almak</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="415"/>
         <source>Send Invoice</source>
-        <translation type="unfinished"></translation>
+        <translation>Fatura Gönder</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="416"/>
         <source>Transactions</source>
-        <translation type="unfinished"></translation>
+        <translation>İşlemler</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="417"/>
         <source>Messages</source>
-        <translation type="unfinished"></translation>
+        <translation>Mesajlar</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="418"/>
         <source>Send Message</source>
-        <translation type="unfinished"></translation>
+        <translation>MESAJ GÖNDER</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="419"/>
         <source>Address Book</source>
-        <translation type="unfinished">ADRES DEFTERİ</translation>
+        <translation>Adres Defteri</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="420"/>
         <source>Mining</source>
-        <translation type="unfinished"></translation>
+        <translation>Madencilik</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="423"/>
         <source>Browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Tarayıcı</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="452"/>
         <source>Tracking Wallet</source>
-        <translation type="unfinished"></translation>
+        <translation>Takip Cüzdanı</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="452"/>
         <source>This is a tracking wallet. This tab is not available.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bu bir takip cüzdanıdır. Bu sekme mevcut değil.</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="516"/>
         <source>Wallet Actions</source>
-        <translation type="unfinished"></translation>
+        <translation>Cüzdan İşlemleri</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="536"/>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1266"/>
         <source>Create Wallet</source>
-        <translation type="unfinished"></translation>
+        <translation>Cüzdan Oluştur</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="543"/>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1271"/>
         <source>New wallet file</source>
-        <translation type="unfinished"></translation>
+        <translation>Cüzdan dosyası</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="562"/>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1280"/>
         <source>Open wallet</source>
-        <translation type="unfinished"></translation>
+        <translation>Cüzdani Aç</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="569"/>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1285"/>
         <source>Open .wallet/.keys file</source>
-        <translation type="unfinished"></translation>
+        <translation>.Wallet / .keys dosyasını açın</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="587"/>
         <source>Import Private Keys</source>
-        <translation type="unfinished"></translation>
+        <translation>PRIVATE KEY&apos;LERİ İÇE AKTAR</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="609"/>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1301"/>
         <source>Backup Wallet</source>
-        <translation type="unfinished"></translation>
+        <translation>Cüzdanı yedekle</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="616"/>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1307"/>
         <source>Backup wallet to...</source>
-        <translation type="unfinished"></translation>
+        <translation>Cüzdanı yedekle…</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="637"/>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1317"/>
         <source>Reset Wallet</source>
-        <translation type="unfinished"></translation>
+        <translation>Cüzdanı sıfırla</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="642"/>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1320"/>
         <source>Warning</source>
-        <translation type="unfinished"></translation>
+        <translation>Uyarı</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="645"/>
         <source>Your wallet will be reset and restored from blockchain.
 Are you sure?</source>
-        <translation type="unfinished"></translation>
+        <translation>Cüzdanınız blok zincirinden sıfırlanacak ve geri yüklenecektir.\n\nEmin misiniz?</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="690"/>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1373"/>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ayarlar</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="712"/>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1409"/>
         <source>Encrypt Wallet</source>
-        <translation type="unfinished"></translation>
+        <translation>Cüzdanı Şifrele</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="736"/>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1409"/>
         <source>Change Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Parolayı değiştir</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="758"/>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1419"/>
         <source>Connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Bağ</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="778"/>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1427"/>
         <source>Change Fiat Symbol</source>
-        <translation type="unfinished"></translation>
+        <translation>Fiat Sembolünü Değiştir</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="799"/>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1451"/>
         <source>Start on system login</source>
-        <translation type="unfinished"></translation>
+        <translation>Sistem açıldığında başlat</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="820"/>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1460"/>
         <source>Enable TOR</source>
-        <translation type="unfinished"></translation>
+        <translation>TOR&apos;u etkinleştir</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1004"/>
         <source>Status</source>
-        <translation type="unfinished"></translation>
+        <translation>Durum</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1204"/>
         <source>OK</source>
-        <translation type="unfinished"></translation>
+        <translation>TAMAM</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1206"/>
         <source>Cancel</source>
-        <translation type="unfinished">İPTAL</translation>
+        <translation>İPTAL</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1293"/>
         <source>Import Wallet</source>
-        <translation type="unfinished"></translation>
+        <translation>Cüzdanı İçe Aktar</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1323"/>
         <source>Your wallet will be reset and restored from blockchain.
 
 Are you sure?</source>
-        <translation type="unfinished"></translation>
+        <translation>Cüzdanınız blok zincirinden sıfırlanacak ve geri yüklenecektir.\n\nEmin misiniz?</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1328"/>
         <source>View Seed</source>
-        <translation type="unfinished"></translation>
+        <translation>Tohumu Görüntüle</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1338"/>
         <source>Optimize Wallet</source>
-        <translation type="unfinished"></translation>
+        <translation>Cüzdanı optimize et</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1348"/>
         <source>Auto Optimization</source>
-        <translation type="unfinished"></translation>
+        <translation>Otomatik Optimizasyon</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1393"/>
         <source>Unlock wallet</source>
-        <translation type="unfinished"></translation>
+        <translation>Cüzdanın kilidini aç</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1435"/>
         <source>Language Setting</source>
-        <translation type="unfinished"></translation>
+        <translation>Dil ayarı</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1443"/>
         <source>Minimize to tray</source>
-        <translation type="unfinished"></translation>
+        <translation>Simge durumuna küçült</translation>
     </message>
 </context>
 <context>
@@ -323,7 +323,7 @@ Are you sure?</source>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/BrowserPage.qml" line="10"/>
         <source>Tor Browser</source>
-        <translation type="unfinished"></translation>
+        <translation>Tor tarayıcısı</translation>
     </message>
 </context>
 <context>
@@ -331,87 +331,87 @@ Are you sure?</source>
     <message>
         <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="204"/>
         <source>Browsing history</source>
-        <translation type="unfinished"></translation>
+        <translation>Arama geçmişi</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="235"/>
         <source>Navigate backward</source>
-        <translation type="unfinished"></translation>
+        <translation>Geri git</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="247"/>
         <source>Navigate forward</source>
-        <translation type="unfinished"></translation>
+        <translation>İleri git</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="259"/>
         <source>Navigate Home</source>
-        <translation type="unfinished"></translation>
+        <translation>Ana Sayfaya Git</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="302"/>
         <source>Reload</source>
-        <translation type="unfinished"></translation>
+        <translation>Tekrar yükle</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="326"/>
         <source>Setting</source>
-        <translation type="unfinished"></translation>
+        <translation>Ayar</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="336"/>
         <source>Autoload images</source>
-        <translation type="unfinished"></translation>
+        <translation>Resimleri otomatik yükle</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="342"/>
         <source>ErrorPage On</source>
-        <translation type="unfinished"></translation>
+        <translation>ErrorPage Açık</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="348"/>
         <source>Plugins On</source>
-        <translation type="unfinished"></translation>
+        <translation>Eklentiler Açık</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="354"/>
         <source>FullScreen On</source>
-        <translation type="unfinished"></translation>
+        <translation>Tam Ekran Açık</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="360"/>
         <source>Off The Record</source>
-        <translation type="unfinished"></translation>
+        <translation>Kayıt dışı</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="371"/>
         <source>HTTP Disk Cache</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP Disk Önbelleği</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="382"/>
         <source>Icons On</source>
-        <translation type="unfinished"></translation>
+        <translation>Simgeler Açık</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="388"/>
         <source>Touch Icons On</source>
-        <translation type="unfinished"></translation>
+        <translation>Simgelere dokunun Açık</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="395"/>
         <source>Open DevTools</source>
-        <translation type="unfinished"></translation>
+        <translation>Geliştirme Araçlarını Aç</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="401"/>
         <source>PDF viewer enabled</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF görüntüleyici etkinleştirildi</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="412"/>
         <source>Bookmarks</source>
-        <translation type="unfinished"></translation>
+        <translation>Yer imleri</translation>
     </message>
 </context>
 <context>
@@ -419,47 +419,47 @@ Are you sure?</source>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ChangePasswordDialog.qml" line="35"/>
         <source>Accept</source>
-        <translation type="unfinished"></translation>
+        <translation>Kabul etmek</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ChangePasswordDialog.qml" line="36"/>
         <source>Cancel</source>
-        <translation type="unfinished">İPTAL</translation>
+        <translation>İPTAL</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ChangePasswordDialog.qml" line="39"/>
         <source>Change password</source>
-        <translation type="unfinished"></translation>
+        <translation>Parolayı değiştir</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ChangePasswordDialog.qml" line="39"/>
         <source>Set password</source>
-        <translation type="unfinished"></translation>
+        <translation>Şifreyi belirle</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ChangePasswordDialog.qml" line="120"/>
         <source>Old password:</source>
-        <translation type="unfinished"></translation>
+        <translation>Eski şifre:</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ChangePasswordDialog.qml" line="165"/>
         <source>New password:</source>
-        <translation type="unfinished"></translation>
+        <translation>Yeni Parola:</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ChangePasswordDialog.qml" line="165"/>
         <source>Password:</source>
-        <translation type="unfinished"></translation>
+        <translation>Parola:</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ChangePasswordDialog.qml" line="210"/>
         <source>Confirm:</source>
-        <translation type="unfinished"></translation>
+        <translation>Onaylamak:</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ChangePasswordDialog.qml" line="250"/>
         <source>Password not confirmed</source>
-        <translation type="unfinished"></translation>
+        <translation>Parola onaylanmadı</translation>
     </message>
 </context>
 <context>
@@ -467,82 +467,82 @@ Are you sure?</source>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="14"/>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>KAYDET</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="15"/>
         <source>Cancel</source>
-        <translation type="unfinished">İPTAL</translation>
+        <translation>İPTAL</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="23"/>
         <source>Connection settings changed</source>
-        <translation type="unfinished"></translation>
+        <translation>Bağlantı ayarları değiştirildi</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="23"/>
         <source>Connection mode will be changed after restarting the wallet</source>
-        <translation type="unfinished"></translation>
+        <translation>Cüzdan yeniden başlatıldıktan sonra bağlantı modu değişecek</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="26"/>
         <source>Connection settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Bağlantı ayarları</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="62"/>
         <source>Auto selection</source>
-        <translation type="unfinished"></translation>
+        <translation>Otomatik seçim</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="93"/>
         <source>Wallet will connect to local daemon on default port. In case of no local daemon running it will launch build-in node.</source>
-        <translation type="unfinished"></translation>
+        <translation>Cüzdan, varsayılan bağlantı noktasındaki yerel daemon&apos;a bağlanacaktır. Çalışan yerel arka plan programı olmaması durumunda, yerleşik düğümü başlatır.</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="114"/>
         <source>Embedded</source>
-        <translation type="unfinished"></translation>
+        <translation>Gömülü</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="145"/>
         <source>Build-in embedded node will be used.</source>
-        <translation type="unfinished"></translation>
+        <translation>Yerleşik gömülü düğüm kullanılacaktır.</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="172"/>
         <source>Local daemon</source>
-        <translation type="unfinished"></translation>
+        <translation>Yerel arka plan programı</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="199"/>
         <source>Port:</source>
-        <translation type="unfinished"></translation>
+        <translation>Liman:</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="247"/>
         <source>Wallet will connect to local daemon on specified port.</source>
-        <translation type="unfinished"></translation>
+        <translation>Cüzdan, belirli bir bağlantı noktasındaki yerel daemon&apos;a bağlanacaktır.</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="274"/>
         <source>Remote daemon</source>
-        <translation type="unfinished"></translation>
+        <translation>Uzak arka plan programı</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="301"/>
         <source>Address:</source>
-        <translation type="unfinished"></translation>
+        <translation>Adres:</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="332"/>
         <source>Add node</source>
-        <translation type="unfinished"></translation>
+        <translation>Düğüm ekleyin</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="361"/>
         <source>Wallet will connect to remote node running in local or global network. Please select node or specify IP address or domain name and port.</source>
-        <translation type="unfinished"></translation>
+        <translation>Cüzdan, yerel veya küresel ağda çalışan uzak düğüme bağlanacaktır. Lütfen düğüm seçin veya IP adresini veya alan adını ve bağlantı noktasını belirtin.</translation>
     </message>
 </context>
 <context>
@@ -550,12 +550,12 @@ Are you sure?</source>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/DepositDetailsDialog.qml" line="14"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>KAPAT</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/DepositDetailsDialog.qml" line="17"/>
         <source>Deposit details</source>
-        <translation type="unfinished"></translation>
+        <translation>Mevduat Detayları</translation>
     </message>
 </context>
 <context>
@@ -563,42 +563,42 @@ Are you sure?</source>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/DepositsPage.qml" line="16"/>
         <source>Deposits</source>
-        <translation type="unfinished"></translation>
+        <translation>MEVDUATLAR</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/DepositsPage.qml" line="62"/>
         <source>Amount</source>
-        <translation type="unfinished"></translation>
+        <translation>Miktar</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/DepositsPage.qml" line="141"/>
         <source>Time</source>
-        <translation type="unfinished"></translation>
+        <translation>Zaman</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/DepositsPage.qml" line="219"/>
         <source>Deposit Fee</source>
-        <translation type="unfinished"></translation>
+        <translation>Depozito Ücreti</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/DepositsPage.qml" line="259"/>
         <source>Deposit</source>
-        <translation type="unfinished"></translation>
+        <translation>Depozito</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/DepositsPage.qml" line="263"/>
         <source>Critical</source>
-        <translation type="unfinished"></translation>
+        <translation>Kritik</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/DepositsPage.qml" line="264"/>
         <source>You don&apos;t have enough balance in your account!</source>
-        <translation type="unfinished"></translation>
+        <translation>Hesabınızda yeterli bakiye yok!</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/DepositsPage.qml" line="274"/>
         <source>Withdraw</source>
-        <translation type="unfinished"></translation>
+        <translation>Para Çek</translation>
     </message>
 </context>
 <context>
@@ -606,12 +606,12 @@ Are you sure?</source>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/DownloadProgressDialog.qml" line="18"/>
         <source>Cancel</source>
-        <translation type="unfinished">İPTAL</translation>
+        <translation>İPTAL</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/DownloadProgressDialog.qml" line="21"/>
         <source>Download attachment</source>
-        <translation type="unfinished"></translation>
+        <translation>Eki indir</translation>
     </message>
 </context>
 <context>
@@ -619,12 +619,12 @@ Are you sure?</source>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/FiatSymbolDialog.qml" line="18"/>
         <source>Cancel</source>
-        <translation type="unfinished">İPTAL</translation>
+        <translation>İPTAL</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/FiatSymbolDialog.qml" line="21"/>
         <source>Select Fiat Symbol</source>
-        <translation type="unfinished"></translation>
+        <translation>Fiat Sembolünü Seçin</translation>
     </message>
 </context>
 <context>
@@ -634,47 +634,47 @@ Are you sure?</source>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ImportPrivateKeysDialog.qml" line="25"/>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ImportPrivateKeysDialog.qml" line="30"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Hata</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ImportPrivateKeysDialog.qml" line="20"/>
         <source>Spend Key cannot be empty</source>
-        <translation type="unfinished"></translation>
+        <translation>Harcama Anahtarı boş olamaz</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ImportPrivateKeysDialog.qml" line="25"/>
         <source>View Key cannot be empty</source>
-        <translation type="unfinished"></translation>
+        <translation>Görünüm Anahtarı boş olamaz</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ImportPrivateKeysDialog.qml" line="30"/>
         <source>Wallet path cannot be empty</source>
-        <translation type="unfinished"></translation>
+        <translation>Cüzdan yolu boş olamaz</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ImportPrivateKeysDialog.qml" line="50"/>
         <source>Import private keys</source>
-        <translation type="unfinished"></translation>
+        <translation>PRIVATE KEY&apos;LERİ İÇE AKTAR</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ImportPrivateKeysDialog.qml" line="90"/>
         <source>Create your wallet with the secret spend and view key</source>
-        <translation type="unfinished"></translation>
+        <translation>Gizli harcama ve görüntüleme anahtarıyla cüzdanınızı oluşturun</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ImportPrivateKeysDialog.qml" line="217"/>
         <source>IMPORT</source>
-        <translation type="unfinished"></translation>
+        <translation>İÇE AKTAR</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ImportPrivateKeysDialog.qml" line="227"/>
         <source>CANCEL</source>
-        <translation type="unfinished"></translation>
+        <translation>İPTAL</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ImportPrivateKeysDialog.qml" line="245"/>
         <source>Wallet file</source>
-        <translation type="unfinished"></translation>
+        <translation>Cüzdan dosyası</translation>
     </message>
 </context>
 <context>
@@ -683,42 +683,42 @@ Are you sure?</source>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ImportSeedDialog.qml" line="20"/>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ImportSeedDialog.qml" line="25"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Hata</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ImportSeedDialog.qml" line="20"/>
         <source>Mnemonic Seed cannot be empty</source>
-        <translation type="unfinished"></translation>
+        <translation>Anımsatıcı Tohum boş olamaz</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ImportSeedDialog.qml" line="25"/>
         <source>Wallet path cannot be empty</source>
-        <translation type="unfinished"></translation>
+        <translation>Cüzdan yolu boş olamaz</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ImportSeedDialog.qml" line="43"/>
         <source>IMPORT SEED</source>
-        <translation type="unfinished"></translation>
+        <translation>SEED İÇE AKTAR</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ImportSeedDialog.qml" line="84"/>
         <source>Recreate your wallet with the 25 word mnemonic seed</source>
-        <translation type="unfinished"></translation>
+        <translation>25 kelimelik mnemonic seed ile cüzdanınızı yeniden oluşturun</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ImportSeedDialog.qml" line="177"/>
         <source>IMPORT</source>
-        <translation type="unfinished"></translation>
+        <translation>İÇE AKTAR</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ImportSeedDialog.qml" line="187"/>
         <source>CANCEL</source>
-        <translation type="unfinished"></translation>
+        <translation>İPTAL</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ImportSeedDialog.qml" line="203"/>
         <source>Wallet file</source>
-        <translation type="unfinished"></translation>
+        <translation>Cüzdan dosyası</translation>
     </message>
 </context>
 <context>
@@ -727,42 +727,42 @@ Are you sure?</source>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ImportTrackingWalletDialog.qml" line="20"/>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ImportTrackingWalletDialog.qml" line="25"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Hata</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ImportTrackingWalletDialog.qml" line="20"/>
         <source>Tracking Key cannot be empty</source>
-        <translation type="unfinished"></translation>
+        <translation>İzleme Anahtarı boş olamaz</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ImportTrackingWalletDialog.qml" line="25"/>
         <source>Wallet path cannot be empty</source>
-        <translation type="unfinished"></translation>
+        <translation>Cüzdan yolu boş olamaz</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ImportTrackingWalletDialog.qml" line="43"/>
         <source>IMPORT TRACKING WALLET</source>
-        <translation type="unfinished"></translation>
+        <translation>İTHALAT TAKİP CÜZDANI</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ImportTrackingWalletDialog.qml" line="83"/>
         <source>Import a tracking wallet (view-only)</source>
-        <translation type="unfinished"></translation>
+        <translation>Bir takip cüzdanını içe aktarın (yalnızca görüntüleme)</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ImportTrackingWalletDialog.qml" line="176"/>
         <source>IMPORT</source>
-        <translation type="unfinished"></translation>
+        <translation>İÇE AKTAR</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ImportTrackingWalletDialog.qml" line="186"/>
         <source>CANCEL</source>
-        <translation type="unfinished"></translation>
+        <translation>İPTAL</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ImportTrackingWalletDialog.qml" line="202"/>
         <source>Wallet file</source>
-        <translation type="unfinished"></translation>
+        <translation>Cüzdan dosyası</translation>
     </message>
 </context>
 <context>
@@ -770,27 +770,27 @@ Are you sure?</source>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ImportWalletDialog.qml" line="16"/>
         <source>IMPORT WALLET</source>
-        <translation type="unfinished"></translation>
+        <translation>Cüzdanı İçe Aktar</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ImportWalletDialog.qml" line="40"/>
         <source>IMPORT PRIVATE KEYS</source>
-        <translation type="unfinished"></translation>
+        <translation>PRIVATE KEY&apos;LERİ İÇE AKTAR</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ImportWalletDialog.qml" line="51"/>
         <source>IMPORT TRACKING WALLET</source>
-        <translation type="unfinished"></translation>
+        <translation>İTHALAT TAKİP CÜZDANI</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ImportWalletDialog.qml" line="62"/>
         <source>IMPORT SEED</source>
-        <translation type="unfinished"></translation>
+        <translation>SEED İÇE AKTAR</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/ImportWalletDialog.qml" line="72"/>
         <source>CANCEL</source>
-        <translation type="unfinished"></translation>
+        <translation>İPTAL</translation>
     </message>
 </context>
 <context>
@@ -798,56 +798,56 @@ Are you sure?</source>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="16"/>
         <source>CHANGE LANGUAGE</source>
-        <translation type="unfinished"></translation>
+        <translation>DİLİ DEĞİŞTİR</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="64"/>
         <source>Select your prefered language</source>
-        <translation type="unfinished"></translation>
+        <translation>Tercih ettiğiniz dili seçin</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="80"/>
         <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="114"/>
         <source>English</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingilizce</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="87"/>
         <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="128"/>
         <source>Russian</source>
-        <translation type="unfinished"></translation>
+        <translation>Rusça</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="94"/>
         <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="142"/>
         <source>Turkish</source>
-        <translation type="unfinished"></translation>
+        <translation>Türk</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="101"/>
         <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="156"/>
         <source>Chinese</source>
-        <translation type="unfinished"></translation>
+        <translation>Çince</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="169"/>
         <source>SAVE</source>
-        <translation type="unfinished"></translation>
+        <translation>KAYDET</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="171"/>
         <source>Language was changed</source>
-        <translation type="unfinished"></translation>
+        <translation>Dil değiştirildi</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="172"/>
         <source>Please restart the wallet for the new language to take effect.</source>
-        <translation type="unfinished"></translation>
+        <translation>Yeni dilin etkili olması için lütfen cüzdanı yeniden başlatın.</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="184"/>
         <source>CANCEL</source>
-        <translation type="unfinished"></translation>
+        <translation>İPTAL</translation>
     </message>
 </context>
 <context>
@@ -855,67 +855,67 @@ Are you sure?</source>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="16"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>KAPAT</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="21"/>
         <source>Message details</source>
-        <translation type="unfinished"></translation>
+        <translation>Mesaj Detayları</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="103"/>
         <source>Block height:</source>
-        <translation type="unfinished"></translation>
+        <translation>Blok yüksekliği:</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="158"/>
         <source>Transaction hash:</source>
-        <translation type="unfinished"></translation>
+        <translation>İşlem hash&apos;i:</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="213"/>
         <source>Amount:</source>
-        <translation type="unfinished"></translation>
+        <translation>Miktar:</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="268"/>
         <source>Message size (bytes):</source>
-        <translation type="unfinished"></translation>
+        <translation>Mesaj boyutu:</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="308"/>
         <source>Message data</source>
-        <translation type="unfinished"></translation>
+        <translation>Mesaj verileri</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="383"/>
         <source>Select All</source>
-        <translation type="unfinished"></translation>
+        <translation>Hepsini seç</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="391"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>KOPYALA</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="426"/>
         <source>Reply</source>
-        <translation type="unfinished"></translation>
+        <translation>Yanıtla</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="446"/>
         <source>Pay</source>
-        <translation type="unfinished"></translation>
+        <translation>Ödemek</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="467"/>
         <source>Save to file</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosyaya kaydet</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="489"/>
         <source>Download attachment</source>
-        <translation type="unfinished"></translation>
+        <translation>Eki indir</translation>
     </message>
 </context>
 <context>
@@ -923,12 +923,12 @@ Are you sure?</source>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/MessagesPage.qml" line="16"/>
         <source>Messages</source>
-        <translation type="unfinished"></translation>
+        <translation>Mesajlar</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/MessagesPage.qml" line="168"/>
         <source>Reply</source>
-        <translation type="unfinished"></translation>
+        <translation>Yanıtla</translation>
     </message>
 </context>
 <context>
@@ -936,115 +936,115 @@ Are you sure?</source>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="14"/>
         <source>Mining</source>
-        <translation type="unfinished"></translation>
+        <translation>Madencilik</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="52"/>
         <source>Select Pool:</source>
-        <translation type="unfinished"></translation>
+        <translation>Havuz Seçiniz:</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="82"/>
         <source>Add Pool</source>
-        <translation type="unfinished"></translation>
+        <translation>Havuz Ekle</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="96"/>
         <source>DefaultPools</source>
-        <translation type="unfinished"></translation>
+        <translation>Varsayılan Havuzlar</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="131"/>
         <source>Cpu Cores:</source>
-        <translation type="unfinished"></translation>
+        <translation>Cpu Çekirdekleri:</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="187"/>
         <source>Enable Mining Schedule</source>
-        <translation type="unfinished"></translation>
+        <translation>Madencilik Programını Etkinleştir</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="295"/>
         <source>Monday</source>
-        <translation type="unfinished"></translation>
+        <translation>Pazartesi</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="295"/>
         <source>Tuesday</source>
-        <translation type="unfinished"></translation>
+        <translation>Salı</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="295"/>
         <source>Wednesday</source>
-        <translation type="unfinished"></translation>
+        <translation>Çarşamba</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="295"/>
         <source>Thursday</source>
-        <translation type="unfinished"></translation>
+        <translation>Perşembe</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="295"/>
         <source>Friday</source>
-        <translation type="unfinished"></translation>
+        <translation>Cuma</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="295"/>
         <source>Saturday</source>
-        <translation type="unfinished"></translation>
+        <translation>Cumartesi</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="295"/>
         <source>Sunday</source>
-        <translation type="unfinished"></translation>
+        <translation>Pazar</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="330"/>
         <source>Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>Kaldırmak</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="420"/>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>EKLE</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="426"/>
         <source>Please, fill the required data: 
 </source>
-        <translation type="unfinished"></translation>
+        <translation>Lütfen gerekli bilgileri doldurun: \n</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="429"/>
         <source> - Schedule label is empty
 </source>
-        <translation type="unfinished"></translation>
+        <translation> - Program etiketi boş\n</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="434"/>
         <source> - Schedule stop time should be greater than start time
 </source>
-        <translation type="unfinished"></translation>
+        <translation> - Program durdurma zamanı, başlangıç zamanından büyük olmalıdır\n</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="440"/>
         <source>Input data error</source>
-        <translation type="unfinished"></translation>
+        <translation>Giriş veri hatası</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="472"/>
         <source>Mining Status:</source>
-        <translation type="unfinished"></translation>
+        <translation>Maden Durumu:</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="505"/>
         <source>Start Mining</source>
-        <translation type="unfinished"></translation>
+        <translation>Madenciliğe Başlayın</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="515"/>
         <source>Stop Mining</source>
-        <translation type="unfinished"></translation>
+        <translation>Madenciliği Durdurun</translation>
     </message>
 </context>
 <context>
@@ -1052,27 +1052,27 @@ Are you sure?</source>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/NewAddressDialog.qml" line="32"/>
         <source>Accept</source>
-        <translation type="unfinished"></translation>
+        <translation>Kabul etmek</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/NewAddressDialog.qml" line="33"/>
         <source>Cancel</source>
-        <translation type="unfinished">İPTAL</translation>
+        <translation>İPTAL</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/NewAddressDialog.qml" line="40"/>
         <source>Set address</source>
-        <translation type="unfinished"></translation>
+        <translation>Adres ayarla</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/NewAddressDialog.qml" line="95"/>
         <source>Label:</source>
-        <translation type="unfinished"></translation>
+        <translation>Etiket:</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/NewAddressDialog.qml" line="135"/>
         <source>Address:</source>
-        <translation type="unfinished"></translation>
+        <translation>Adres:</translation>
     </message>
 </context>
 <context>
@@ -1080,27 +1080,27 @@ Are you sure?</source>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/NewRemoteNodeDialog.qml" line="22"/>
         <source>Accept</source>
-        <translation type="unfinished"></translation>
+        <translation>Kabul etmek</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/NewRemoteNodeDialog.qml" line="23"/>
         <source>Cancel</source>
-        <translation type="unfinished">İPTAL</translation>
+        <translation>İPTAL</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/NewRemoteNodeDialog.qml" line="30"/>
         <source>Set node</source>
-        <translation type="unfinished"></translation>
+        <translation>Düğümü ayarla</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/NewRemoteNodeDialog.qml" line="85"/>
         <source>Host:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ev sahibi:</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/NewRemoteNodeDialog.qml" line="129"/>
         <source>Port:</source>
-        <translation type="unfinished"></translation>
+        <translation>Liman:</translation>
     </message>
 </context>
 <context>
@@ -1108,7 +1108,7 @@ Are you sure?</source>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/OptimizeTransactionsDialog.qml" line="16"/>
         <source>OPTIMIZE WALLET</source>
-        <translation type="unfinished"></translation>
+        <translation>Cüzdanı optimize et</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/OptimizeTransactionsDialog.qml" line="56"/>
@@ -1117,17 +1117,17 @@ The optimization will take approximately 22 minutes. Please
 note that you will not be able to spend any of your funds
 until the optimization process is complete. In some cases,
 the wallet might need optimization more than once.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bu işlem, cüzdanınızı büyük işlemler için optimize edecektir.\nOptimizasyon yaklaşık 22 dakika sürecektir. Lütfen\nparanızın hiçbirini harcayamayacağınızı unutmayın\noptimizasyon süreci tamamlanana kadar. Bazı durumlarda,\ncüzdanın birden fazla optimizasyona ihtiyacı olabilir.</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/OptimizeTransactionsDialog.qml" line="91"/>
         <source>OPTIMIZE</source>
-        <translation type="unfinished"></translation>
+        <translation>OPTİMİZE ET</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/OptimizeTransactionsDialog.qml" line="101"/>
         <source>CANCEL</source>
-        <translation type="unfinished"></translation>
+        <translation>İPTAL</translation>
     </message>
 </context>
 <context>
@@ -1135,41 +1135,41 @@ the wallet might need optimization more than once.</source>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/ReceivePage.qml" line="14"/>
         <source>Receive</source>
-        <translation type="unfinished"></translation>
+        <translation>Teslim almak</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/ReceivePage.qml" line="111"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/ReceivePage.qml" line="112"/>
         <source>Public Address key</source>
-        <translation type="unfinished"></translation>
+        <translation>Genel Adres anahtarı</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/ReceivePage.qml" line="120"/>
-        <location filename="../src/qml/UltraNote/UI/Pages/ReceivePage.qml" line="206"/>
-        <location filename="../src/qml/UltraNote/UI/Pages/ReceivePage.qml" line="358"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/ReceivePage.qml" line="121"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/ReceivePage.qml" line="207"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/ReceivePage.qml" line="359"/>
         <source>Copy to Clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Panoya kopyala</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/ReceivePage.qml" line="197"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/ReceivePage.qml" line="198"/>
         <source>Private Spend key</source>
-        <translation type="unfinished"></translation>
+        <translation>Özel Harcama Anahtarı</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/ReceivePage.qml" line="265"/>
-        <location filename="../src/qml/UltraNote/UI/Pages/ReceivePage.qml" line="417"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/ReceivePage.qml" line="266"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/ReceivePage.qml" line="418"/>
         <source>Click to Hide</source>
-        <translation type="unfinished"></translation>
+        <translation>Gizlemek için tıklayın</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/ReceivePage.qml" line="265"/>
-        <location filename="../src/qml/UltraNote/UI/Pages/ReceivePage.qml" line="417"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/ReceivePage.qml" line="266"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/ReceivePage.qml" line="418"/>
         <source>Click to Show</source>
-        <translation type="unfinished"></translation>
+        <translation>Göstermek için tıklayın</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/ReceivePage.qml" line="349"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/ReceivePage.qml" line="350"/>
         <source>Private View key</source>
-        <translation type="unfinished"></translation>
+        <translation>Özel Görünüm anahtarı</translation>
     </message>
 </context>
 <context>
@@ -1177,32 +1177,32 @@ the wallet might need optimization more than once.</source>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/RequestPasswordDialog.qml" line="46"/>
         <source>New wallet file</source>
-        <translation type="unfinished"></translation>
+        <translation>Cüzdan dosyası</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/RequestPasswordDialog.qml" line="55"/>
         <source>Accept</source>
-        <translation type="unfinished"></translation>
+        <translation>Kabul etmek</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/RequestPasswordDialog.qml" line="56"/>
         <source>Cancel</source>
-        <translation type="unfinished">İPTAL</translation>
+        <translation>İPTAL</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/RequestPasswordDialog.qml" line="63"/>
         <source>Enter password</source>
-        <translation type="unfinished"></translation>
+        <translation>Parolayı gir</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/RequestPasswordDialog.qml" line="124"/>
         <source>Password:</source>
-        <translation type="unfinished"></translation>
+        <translation>Parola:</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/RequestPasswordDialog.qml" line="166"/>
         <source>Wrong password</source>
-        <translation type="unfinished"></translation>
+        <translation>Yanlış şifre</translation>
     </message>
 </context>
 <context>
@@ -1211,47 +1211,47 @@ the wallet might need optimization more than once.</source>
         <location filename="../src/qml/UltraNote/UI/Pages/SearchPage.qml" line="15"/>
         <location filename="../src/qml/UltraNote/UI/Pages/SearchPage.qml" line="81"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Arama</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SearchPage.qml" line="42"/>
         <source>UltraSearch Anonymous Search</source>
-        <translation type="unfinished"></translation>
+        <translation>UltraSearch Anonim Arama</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SearchPage.qml" line="105"/>
         <source>All</source>
-        <translation type="unfinished"></translation>
+        <translation>Herşey</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SearchPage.qml" line="106"/>
         <source>Images</source>
-        <translation type="unfinished"></translation>
+        <translation>Görüntüler</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SearchPage.qml" line="107"/>
         <source>News</source>
-        <translation type="unfinished"></translation>
+        <translation>Haberler</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SearchPage.qml" line="285"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Hata</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SearchPage.qml" line="285"/>
         <source>No results found.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sonuç bulunamadı.</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SearchPage.qml" line="288"/>
         <source>Success</source>
-        <translation type="unfinished"></translation>
+        <translation>Başarı</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SearchPage.qml" line="288"/>
         <source>Your search is completed, Thank you for using UltraSearch!</source>
-        <translation type="unfinished"></translation>
+        <translation>Aramanız tamamlandı, UltraSearch&apos;ü kullandığınız için teşekkür ederiz!</translation>
     </message>
 </context>
 <context>
@@ -1259,22 +1259,22 @@ the wallet might need optimization more than once.</source>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/SeedTrackingKeyDialog.qml" line="16"/>
         <source>YOUR 25 MNEMONIC SEED</source>
-        <translation type="unfinished"></translation>
+        <translation>25 MNEMONİK TOHUMUNUZ</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/SeedTrackingKeyDialog.qml" line="67"/>
         <source>YOUR 25 WORD MNEMONIC SEED</source>
-        <translation type="unfinished"></translation>
+        <translation>25 KELIMELIK MNEMONIC SEED</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/SeedTrackingKeyDialog.qml" line="107"/>
         <source>Copy to Clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Panoya kopyala</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/SeedTrackingKeyDialog.qml" line="121"/>
         <source>CANCEL</source>
-        <translation type="unfinished"></translation>
+        <translation>İPTAL</translation>
     </message>
 </context>
 <context>
@@ -1282,97 +1282,97 @@ the wallet might need optimization more than once.</source>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="15"/>
         <source>Send Invoice</source>
-        <translation type="unfinished"></translation>
+        <translation>Fatura Gönder</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="73"/>
         <source>Address</source>
-        <translation type="unfinished"></translation>
+        <translation>Adres</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="102"/>
         <source>Address Book</source>
-        <translation type="unfinished">ADRES DEFTERİ</translation>
+        <translation>Adres Defteri</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="118"/>
         <source>Paste from Clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Panodan Yapıştır</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="152"/>
         <source>Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Etiket</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="197"/>
         <source>Payment ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Ödeme Kimliği</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="240"/>
         <source>Amount</source>
-        <translation type="unfinished"></translation>
+        <translation>Miktar</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="312"/>
         <source>Invoice ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Fatura Kimliği</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="379"/>
         <source>Payload</source>
-        <translation type="unfinished"></translation>
+        <translation>Yük</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="422"/>
         <source>Encrypted Message</source>
-        <translation type="unfinished"></translation>
+        <translation>Şifrelenmiş Mesaj</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="469"/>
         <source>Attachments</source>
-        <translation type="unfinished"></translation>
+        <translation>Ekler</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="550"/>
         <source>Remove Attachment</source>
-        <translation type="unfinished"></translation>
+        <translation>Eki Kaldır</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="581"/>
         <source>Add &quot;Reply to&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;Cevap&quot; ekle</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="615"/>
         <source>Set self destruct time</source>
-        <translation type="unfinished"></translation>
+        <translation>Kendini yok etme zamanı ayarla</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="687"/>
         <source>Fee</source>
-        <translation type="unfinished"></translation>
+        <translation>Ücret</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="744"/>
         <source>Anonymity level</source>
-        <translation type="unfinished"></translation>
+        <translation>Anonimlik seviyesi</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="798"/>
         <source>Add attachment</source>
-        <translation type="unfinished"></translation>
+        <translation>Ek Ekle</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="802"/>
         <source>Select attachment...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ek seçin...</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="810"/>
         <source>Send</source>
-        <translation type="unfinished"></translation>
+        <translation>GÖNDER</translation>
     </message>
 </context>
 <context>
@@ -1380,87 +1380,87 @@ the wallet might need optimization more than once.</source>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendMessagePage.qml" line="20"/>
         <source>Send Message</source>
-        <translation type="unfinished"></translation>
+        <translation>MESAJ GÖNDER</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendMessagePage.qml" line="127"/>
         <source>Send To</source>
-        <translation type="unfinished"></translation>
+        <translation>Gönder</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendMessagePage.qml" line="177"/>
         <source>Address Book</source>
-        <translation type="unfinished">ADRES DEFTERİ</translation>
+        <translation>Adres Defteri</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendMessagePage.qml" line="194"/>
         <source>Paste from Clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Panodan Yapıştır</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendMessagePage.qml" line="210"/>
         <source>Remove Recipient</source>
-        <translation type="unfinished"></translation>
+        <translation>Alıcıyı Kaldır</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendMessagePage.qml" line="246"/>
         <source>Encrypted Message</source>
-        <translation type="unfinished"></translation>
+        <translation>Şifrelenmiş Mesaj</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendMessagePage.qml" line="451"/>
         <source>Attachments</source>
-        <translation type="unfinished"></translation>
+        <translation>Ekler</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendMessagePage.qml" line="520"/>
         <source>Remove Attachment</source>
-        <translation type="unfinished"></translation>
+        <translation>Eki Kaldır</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendMessagePage.qml" line="548"/>
         <source>Add &quot;Reply to&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;Cevap&quot; ekle</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendMessagePage.qml" line="579"/>
         <source>Set self destruct time</source>
-        <translation type="unfinished"></translation>
+        <translation>Kendini yok etme zamanı ayarla</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendMessagePage.qml" line="648"/>
         <source>Fee</source>
-        <translation type="unfinished"></translation>
+        <translation>Ücret</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendMessagePage.qml" line="713"/>
         <source>Anonymity level</source>
-        <translation type="unfinished"></translation>
+        <translation>Anonimlik seviyesi</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendMessagePage.qml" line="769"/>
         <source>Add Recipient</source>
-        <translation type="unfinished"></translation>
+        <translation>Alıcı ekle</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendMessagePage.qml" line="776"/>
         <source>Add Attachment</source>
-        <translation type="unfinished"></translation>
+        <translation>Ek Ekle</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendMessagePage.qml" line="780"/>
         <source>Select attachment...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ek seçin...</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendMessagePage.qml" line="791"/>
         <source>Send</source>
-        <translation type="unfinished"></translation>
+        <translation>GÖNDER</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendMessagePage.qml" line="818"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Hata</translation>
     </message>
 </context>
 <context>
@@ -1469,62 +1469,62 @@ the wallet might need optimization more than once.</source>
         <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="14"/>
         <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="459"/>
         <source>Send</source>
-        <translation type="unfinished"></translation>
+        <translation>GÖNDER</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="94"/>
         <source>Pay to</source>
-        <translation type="unfinished"></translation>
+        <translation>Ödemek</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="116"/>
         <source>Address Book</source>
-        <translation type="unfinished">ADRES DEFTERİ</translation>
+        <translation>Adres Defteri</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="132"/>
         <source>Paste from Clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Panodan Yapıştır</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="166"/>
         <source>Payment ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Payment ID</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="203"/>
         <source>Label</source>
-        <translation type="unfinished"></translation>
+        <translation>Etiket</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="213"/>
         <source>Enter a label for this address to add it to your address book</source>
-        <translation type="unfinished"></translation>
+        <translation>Bu adres için adres defterinize eklemek üzere bir etiket girin</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="243"/>
         <source>Crypto comment</source>
-        <translation type="unfinished"></translation>
+        <translation>Şifreli mesaj</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="283"/>
         <source>Amount</source>
-        <translation type="unfinished"></translation>
+        <translation>Miktar</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="335"/>
         <source>Fee</source>
-        <translation type="unfinished"></translation>
+        <translation>Ücret</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="389"/>
         <source>Anonymity level</source>
-        <translation type="unfinished"></translation>
+        <translation>Anonimlik seviyesi</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="444"/>
         <source>Clear All</source>
-        <translation type="unfinished"></translation>
+        <translation>HEPSİNİ TEMİZLE</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="462"/>
@@ -1532,27 +1532,27 @@ the wallet might need optimization more than once.</source>
         <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="470"/>
         <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="474"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Hata</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="462"/>
         <source>Invalid recipient address</source>
-        <translation type="unfinished"></translation>
+        <translation>Geçersiz alıcı adresi</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="466"/>
         <source>Incorrect amount value</source>
-        <translation type="unfinished"></translation>
+        <translation>Yanlış miktar değeri</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="470"/>
         <source>Invalid payment ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Geçersiz ödeme kimliği</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="474"/>
         <source>Wallet is closed</source>
-        <translation type="unfinished"></translation>
+        <translation>Cüzdan kapatıldı</translation>
     </message>
 </context>
 <context>
@@ -1560,12 +1560,12 @@ the wallet might need optimization more than once.</source>
     <message>
         <location filename="../src/qml/UltraNote/UI/Splash.qml" line="16"/>
         <source> Infinity </source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Splash.qml" line="33"/>
         <source>Loading blockchain...</source>
-        <translation type="unfinished"></translation>
+        <translation>Blockchain yükleniyor...</translation>
     </message>
 </context>
 <context>
@@ -1573,12 +1573,12 @@ the wallet might need optimization more than once.</source>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/TransactionDetailsDialog.qml" line="15"/>
         <source>Close</source>
-        <translation type="unfinished"></translation>
+        <translation>KAPAT</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/TransactionDetailsDialog.qml" line="18"/>
         <source>Transaction details</source>
-        <translation type="unfinished"></translation>
+        <translation>İşlem detayları</translation>
     </message>
 </context>
 <context>
@@ -1586,17 +1586,17 @@ the wallet might need optimization more than once.</source>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/TransactionsPage.qml" line="16"/>
         <source>Transactions</source>
-        <translation type="unfinished"></translation>
+        <translation>Işlemler</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/TransactionsPage.qml" line="184"/>
         <source>Export</source>
-        <translation type="unfinished"></translation>
+        <translation>İhracat</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/TransactionsPage.qml" line="189"/>
         <source>Save Transactions to File</source>
-        <translation type="unfinished"></translation>
+        <translation>İşlemleri Dosyaya Kaydet</translation>
     </message>
 </context>
 <context>
@@ -1604,7 +1604,7 @@ the wallet might need optimization more than once.</source>
     <message>
         <location filename="../src/qml/UltraNote/UI/Controls/UNFramelessApplicationWindow.qml" line="336"/>
         <source> Infinity </source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -1612,12 +1612,12 @@ the wallet might need optimization more than once.</source>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/UploadProgressDialog.qml" line="17"/>
         <source>Cancel</source>
-        <translation type="unfinished">İPTAL</translation>
+        <translation>İPTAL</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/UploadProgressDialog.qml" line="20"/>
         <source>Uploading attachments</source>
-        <translation type="unfinished"></translation>
+        <translation>Ekler yükleniyor</translation>
     </message>
 </context>
 </TS>
