@@ -183,6 +183,66 @@ QVariant DepositTableModel::getUserRole(int row, int role) const
     return QVariant();
 }
 
+QString DepositTableModel::getColumnName(ColumnName columnName)
+{
+    //get translations once from QML to C++, in case of DepositeTable it can not be done in qml
+    static bool translationsInit= false;
+    if (!translationsInit)
+    {
+        QQmlEngine engine;
+
+        QQmlComponent component(&engine, "qrc:/qml/qml/UltraNote/UI/LegacyTranslations.qml");
+        QObject* object = component.create();
+
+        m_columnNameList = QQmlProperty::read(object, "depositTableHeaders").toStringList();
+
+        delete object;
+
+        translationsInit = true;
+    }
+
+    QString headerName;
+
+    if (!m_columnNameList.isEmpty())
+    {
+        headerName = m_columnNameList.at(columnName);
+    }
+    else
+    {
+        switch (columnName)
+        {
+        case Status:
+            headerName = "Status";
+            break;
+        case Amount:
+            headerName = "Amount";
+            break;
+        case Interest:
+            headerName = "Interest";
+            break;
+        case Sum:
+            headerName = "Sum";
+            break;
+        case Rate:
+            headerName = "Rate";
+            break;
+        case UnlockHeight:
+            headerName = "UnlockHeight";
+            break;
+        case UnlockTime:
+            headerName = "UnlockTime";
+            break;
+        case SpendingTime:
+            headerName = "SpendingTime";
+            break;
+        default:
+            break;
+        }
+    }
+
+    return headerName;
+}
+
 QHash<int, QByteArray> DepositTableModel::roleNames() const
 {
     static const auto roles = QHash<int, QByteArray>{
@@ -191,33 +251,33 @@ QHash<int, QByteArray> DepositTableModel::roleNames() const
     return roles;
 }
 
-QString DepositTableModel::columnName(int index) const
+QString DepositTableModel::columnName(int index)
 {
     QString name;
     switch (index) {
     case ColumnName::Status:
-        name = tr("Status");
+        name = getColumnName(Status);
         break;
     case ColumnName::Amount:
-        name = tr("Amount");
+        name = getColumnName(Amount);
         break;
     case ColumnName::Interest:
-        name = tr("Interest");
+        name = getColumnName(Interest);
         break;
     case ColumnName::Sum:
-        name = tr("Sum");
+        name = getColumnName(Sum);
         break;
     case ColumnName::Rate:
-        name = tr("Rate");
+        name = getColumnName(Rate);
         break;
     case ColumnName::UnlockHeight:
-        name = tr("Unlock height");
+        name = getColumnName(UnlockHeight);
         break;
     case ColumnName::UnlockTime:
-        name = tr("Unlock time");
+        name = getColumnName(UnlockTime);
         break;
     case ColumnName::SpendingTime:
-        name = tr("Spending time");
+        name = getColumnName(SpendingTime);
         break;
     }
     return name;

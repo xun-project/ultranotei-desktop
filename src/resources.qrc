@@ -96,6 +96,7 @@
         <file>qml/UltraNote/UI/qtquickcontrols2.conf</file>
         <file>qml/UltraNote/UI/Splash.qml</file>
         <file>qml/UltraNote/UI/Theme.qml</file>
+        <file>qml/UltraNote/UI/LegacyTranslations.qml</file>
         <file>qml/UltraNote/UI/Controls/UNButton.qml</file>
         <file>qml/UltraNote/UI/Controls/UNImage.qml</file>
         <file>qml/UltraNote/UI/Controls/UNMouseArea.qml</file>

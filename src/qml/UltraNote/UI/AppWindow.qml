@@ -146,6 +146,14 @@ UNFramelessApplicationWindow {
     //        }
     //        Component.onCompleted: win.visible = true
 
+    Component.onCompleted:{
+        //set translations once from QML to C++
+        walletAdapter.miningService.statusList = LegacyTranslations.minningStatus
+        walletAdapter.addressBookTableModel.columnNameList = LegacyTranslations.addressBookTableHeaders
+        walletAdapter.messagesTableModel.columnNameList = LegacyTranslations.messagesTableHeaders
+        walletAdapter.transactionsTableModel.columnNameList = LegacyTranslations.transactionsTableHeaders
+    }
+
     Old.FileDialog {
         id: _walletDialog
         property var acceptedCallback: null

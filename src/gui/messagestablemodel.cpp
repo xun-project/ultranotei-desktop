@@ -101,21 +101,21 @@ QHash<int, QByteArray> MessagesTableModel::roleNames() const
     return roles;
 }
 
-QString MessagesTableModel::columnName(int index) const
+QString MessagesTableModel::columnName(int index)
 {
     QString name;
     switch (index) {
     case ColumnName::Date:
-        name = tr("Date");
+        name = getColumnName(Date);
         break;
     case ColumnName::Type:
-        name = tr("Type");
+        name = getColumnName(Type);
         break;
     case ColumnName::Height:
-        name = tr("Height");
+        name = getColumnName(Height);
         break;
     case ColumnName::Message:
-        name = tr("Message");
+        name = getColumnName(Message);
         break;
     }
     return name;
@@ -488,6 +488,38 @@ void MessagesTableModel::initUnseenCacheFile()
 	}
 	UnreadFile.flush();
 	UnreadFile.close();
+}
+
+QString MessagesTableModel::getColumnName(ColumnName columnName)
+{
+    QString headerName;
+
+    if (!m_columnNameList.isEmpty())
+    {
+        headerName = m_columnNameList.at(columnName);
+    }
+    else
+    {
+        switch (columnName)
+        {
+        case Date:
+            headerName = "Date";
+            break;
+        case Type:
+            headerName = "Type";
+            break;
+        case Height:
+            headerName = "Height";
+            break;
+        case Message:
+            headerName = "Message";
+            break;
+        default:
+            break;
+        }
+    }
+
+    return headerName;
 }
 
 } //WalletGui

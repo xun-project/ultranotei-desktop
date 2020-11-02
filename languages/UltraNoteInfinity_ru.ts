@@ -50,52 +50,52 @@
         <translation> Infinity </translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="169"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="177"/>
         <source>Maximize window</source>
         <translation>Развернуть окно</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="174"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1360"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="182"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1368"/>
         <source>Exit</source>
         <translation>Выйти</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="232"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1245"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="240"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1253"/>
         <source>Wallet</source>
         <translation>Кошелек</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="233"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="375"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="241"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="383"/>
         <source>Balance</source>
         <translation>баланс</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="233"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="241"/>
         <source>Unconfirmed</source>
         <translation>Неподтвержденный</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="233"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="246"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="241"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="254"/>
         <source>Total</source>
         <translation>Общее количество</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="245"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="412"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="253"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="420"/>
         <source>Deposits</source>
         <translation>Депозиты</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="246"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="254"/>
         <source>Locked</source>
         <translation>Заблокировано</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="246"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="254"/>
         <source>Unlocked</source>
         <translation>Разблокирован</translation>
     </message>
@@ -104,220 +104,220 @@
         <translation type="vanished">баланс</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="413"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="421"/>
         <source>Send</source>
         <translation>Отправить</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="414"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="422"/>
         <source>Receive</source>
         <translation>Получить</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="415"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="423"/>
         <source>Send Invoice</source>
         <translation>Счет-фактура</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="416"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="424"/>
         <source>Transactions</source>
         <translation>Транзакции</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="417"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="425"/>
         <source>Messages</source>
         <translation>Сообщение</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="418"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="426"/>
         <source>Send Message</source>
         <translation>Отправить сообщение</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="419"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="427"/>
         <source>Address Book</source>
         <translation>Адресная книга</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="420"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="428"/>
         <source>Mining</source>
         <translation>Минирование</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="423"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="431"/>
         <source>Browser</source>
         <translation>Браузер</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="452"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="460"/>
         <source>Tracking Wallet</source>
         <translation>Кошелек для отслеживания</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="452"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="460"/>
         <source>This is a tracking wallet. This tab is not available.</source>
         <translation>Это кошелек для отслеживания. Эта вкладка недоступна.</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="516"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="524"/>
         <source>Wallet Actions</source>
         <translation>Действия с кошельком</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="536"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1266"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="544"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1274"/>
         <source>Create Wallet</source>
         <translation>Создать кошелек</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="543"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1271"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="551"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1279"/>
         <source>New wallet file</source>
         <translation>Новый файл кошелька</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="562"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1280"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="570"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1288"/>
         <source>Open wallet</source>
         <translation>Открыть кошелек</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="569"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1285"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="577"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1293"/>
         <source>Open .wallet/.keys file</source>
         <translation>Открыть файлы .wallet/.keys</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="587"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="595"/>
         <source>Import Private Keys</source>
         <translation>Импортировать секретные ключи</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="609"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1301"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="617"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1309"/>
         <source>Backup Wallet</source>
         <translation>Резервный кошелек</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="616"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1307"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="624"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1315"/>
         <source>Backup wallet to...</source>
         <translation>Сделать запасную копию кошелька в...</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="637"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1317"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="645"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1325"/>
         <source>Reset Wallet</source>
         <translation>Сбросить кошелек</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="642"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1320"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="650"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1328"/>
         <source>Warning</source>
         <translation>Внимание</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="645"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="653"/>
         <source>Your wallet will be reset and restored from blockchain.
 Are you sure?</source>
         <translation>Ваш кошелек будет сброшен и восстановлен из блокчейна. Вы уверены?</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="690"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1373"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="698"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1381"/>
         <source>Settings</source>
         <translation>Настройки</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="712"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1409"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="720"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1417"/>
         <source>Encrypt Wallet</source>
         <translation>Зашифровать кошелек</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="736"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1409"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="744"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1417"/>
         <source>Change Password</source>
         <translation>Сменить пароль</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="758"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1419"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="766"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1427"/>
         <source>Connection</source>
         <translation>Подключение</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="778"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1427"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="786"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1435"/>
         <source>Change Fiat Symbol</source>
         <translation>Изменить символ Fiat</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="799"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1451"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="807"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1459"/>
         <source>Start on system login</source>
         <translation>Запускать программу с включением компьютера</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="820"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1460"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="828"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1468"/>
         <source>Enable TOR</source>
         <translation>Включить TOR</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1004"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1012"/>
         <source>Status</source>
         <translation>Статус</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1204"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1212"/>
         <source>OK</source>
         <translation>Хорошо</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1206"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1214"/>
         <source>Cancel</source>
         <translation>Отмена</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1293"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1301"/>
         <source>Import Wallet</source>
         <translation>Импортировать кошелек</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1323"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1331"/>
         <source>Your wallet will be reset and restored from blockchain.
 
 Are you sure?</source>
         <translation>Ваш кошелек будет сброшен и восстановлен из блокчейна. Вы уверены?</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1328"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1336"/>
         <source>View Seed</source>
         <translation>Просмотр семян</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1338"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1346"/>
         <source>Optimize Wallet</source>
         <translation>Оптимизировать кошелек</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1348"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1356"/>
         <source>Auto Optimization</source>
         <translation>Авто Оптимизация</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1393"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1401"/>
         <source>Unlock wallet</source>
         <translation>Разблокировать кошелек</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1435"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1443"/>
         <source>Language Setting</source>
         <translation>Настройка языка</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1443"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1451"/>
         <source>Minimize to tray</source>
         <translation>Свернуть в трей</translation>
     </message>
@@ -855,6 +855,113 @@ Are you sure?</source>
     </message>
 </context>
 <context>
+    <name>LegacyTranslations</name>
+    <message>
+        <location filename="../src/qml/UltraNote/UI/LegacyTranslations.qml" line="10"/>
+        <source>Started</source>
+        <translation>Начал</translation>
+    </message>
+    <message>
+        <location filename="../src/qml/UltraNote/UI/LegacyTranslations.qml" line="11"/>
+        <source>Stopped</source>
+        <translation>Остановлен</translation>
+    </message>
+    <message>
+        <location filename="../src/qml/UltraNote/UI/LegacyTranslations.qml" line="12"/>
+        <source>Hashrate: %1 H/s</source>
+        <translation>Счастье: %1 H/s</translation>
+    </message>
+    <message>
+        <location filename="../src/qml/UltraNote/UI/LegacyTranslations.qml" line="13"/>
+        <source>Waiting for the schedule...</source>
+        <translation>Жду расписания...</translation>
+    </message>
+    <message>
+        <location filename="../src/qml/UltraNote/UI/LegacyTranslations.qml" line="14"/>
+        <source>Error: %1</source>
+        <translation>Ошибка: %1</translation>
+    </message>
+    <message>
+        <location filename="../src/qml/UltraNote/UI/LegacyTranslations.qml" line="17"/>
+        <source>Label</source>
+        <translation>Ярлык</translation>
+    </message>
+    <message>
+        <location filename="../src/qml/UltraNote/UI/LegacyTranslations.qml" line="18"/>
+        <location filename="../src/qml/UltraNote/UI/LegacyTranslations.qml" line="29"/>
+        <source>Address</source>
+        <translation>Адрес</translation>
+    </message>
+    <message>
+        <location filename="../src/qml/UltraNote/UI/LegacyTranslations.qml" line="21"/>
+        <location filename="../src/qml/UltraNote/UI/LegacyTranslations.qml" line="27"/>
+        <source>Date</source>
+        <translation>Дата</translation>
+    </message>
+    <message>
+        <location filename="../src/qml/UltraNote/UI/LegacyTranslations.qml" line="22"/>
+        <source>Type</source>
+        <translation>Тип</translation>
+    </message>
+    <message>
+        <location filename="../src/qml/UltraNote/UI/LegacyTranslations.qml" line="23"/>
+        <source>Height</source>
+        <translation>Высота</translation>
+    </message>
+    <message>
+        <location filename="../src/qml/UltraNote/UI/LegacyTranslations.qml" line="24"/>
+        <location filename="../src/qml/UltraNote/UI/LegacyTranslations.qml" line="30"/>
+        <source>Message</source>
+        <translation>Сообщение</translation>
+    </message>
+    <message>
+        <location filename="../src/qml/UltraNote/UI/LegacyTranslations.qml" line="28"/>
+        <location filename="../src/qml/UltraNote/UI/LegacyTranslations.qml" line="35"/>
+        <source>Amount</source>
+        <translation>Сумма</translation>
+    </message>
+    <message>
+        <location filename="../src/qml/UltraNote/UI/LegacyTranslations.qml" line="31"/>
+        <source>PaymentId</source>
+        <translation>Идентификатор транзакции</translation>
+    </message>
+    <message>
+        <location filename="../src/qml/UltraNote/UI/LegacyTranslations.qml" line="34"/>
+        <source>Status</source>
+        <translation>Статус</translation>
+    </message>
+    <message>
+        <location filename="../src/qml/UltraNote/UI/LegacyTranslations.qml" line="36"/>
+        <source>Interest</source>
+        <translation>Проценты</translation>
+    </message>
+    <message>
+        <location filename="../src/qml/UltraNote/UI/LegacyTranslations.qml" line="37"/>
+        <source>Sum</source>
+        <translation>Сумма</translation>
+    </message>
+    <message>
+        <location filename="../src/qml/UltraNote/UI/LegacyTranslations.qml" line="38"/>
+        <source>Rate</source>
+        <translation>Процент</translation>
+    </message>
+    <message>
+        <location filename="../src/qml/UltraNote/UI/LegacyTranslations.qml" line="39"/>
+        <source>UnlockHeight</source>
+        <translation>Разблокировать высоту</translation>
+    </message>
+    <message>
+        <location filename="../src/qml/UltraNote/UI/LegacyTranslations.qml" line="40"/>
+        <source>UnlockTime</source>
+        <translation>Время разблокировки</translation>
+    </message>
+    <message>
+        <location filename="../src/qml/UltraNote/UI/LegacyTranslations.qml" line="41"/>
+        <source>SpendingTime</source>
+        <translation>Проводить время</translation>
+    </message>
+</context>
+<context>
     <name>MessageDetailsDialog</name>
     <message>
         <location filename="../src/qml/UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="16"/>
@@ -943,110 +1050,115 @@ Are you sure?</source>
         <translation>Минирование</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="52"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="18"/>
+        <source>Stopped</source>
+        <translation>Остановлен</translation>
+    </message>
+    <message>
+        <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="57"/>
         <source>Select Pool:</source>
         <translation>Выберите пул:</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="82"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="87"/>
         <source>Add Pool</source>
         <translation>Добавить пул</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="96"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="101"/>
         <source>DefaultPools</source>
         <translation>Пулы по умолчанию</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="131"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="136"/>
         <source>Cpu Cores:</source>
         <translation>Ядра процессора:</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="187"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="192"/>
         <source>Enable Mining Schedule</source>
         <translation>Включить расписание майнинга</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="295"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="300"/>
         <source>Monday</source>
         <translation>понедельник</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="295"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="300"/>
         <source>Tuesday</source>
         <translation>вторник</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="295"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="300"/>
         <source>Wednesday</source>
         <translation>Среда</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="295"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="300"/>
         <source>Thursday</source>
         <translation>Четверг</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="295"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="300"/>
         <source>Friday</source>
         <translation>Пятница</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="295"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="300"/>
         <source>Saturday</source>
         <translation>суббота</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="295"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="300"/>
         <source>Sunday</source>
         <translation>Воскресенье</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="330"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="335"/>
         <source>Remove</source>
         <translation>удалять</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="420"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="425"/>
         <source>Add</source>
         <translation>Добавить</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="426"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="431"/>
         <source>Please, fill the required data: 
 </source>
         <translation>Пожалуйста, заполните необходимые данные: \n</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="429"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="434"/>
         <source> - Schedule label is empty
 </source>
         <translation>- Ярлык расписания пуст \n</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="434"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="439"/>
         <source> - Schedule stop time should be greater than start time
 </source>
         <translation>- Время остановки расписания должно быть больше времени начала \n</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="440"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="445"/>
         <source>Input data error</source>
         <translation>Ошибка входных данных</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="472"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="477"/>
         <source>Mining Status:</source>
         <translation>Статус майнинга :</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="505"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="510"/>
         <source>Start Mining</source>
         <translation>Начать майнинг</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="515"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="520"/>
         <source>Stop Mining</source>
         <translation>Остановить майнинг</translation>
     </message>

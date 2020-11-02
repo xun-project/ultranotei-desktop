@@ -97,6 +97,7 @@ class MiningService : public QObject {
     QML_WRITABLE_PROPERTY(bool, isActive, setIsActive, false)
     QML_WRITABLE_PROPERTY(bool, isMiningActive, setIsMiningActive, false)
     QML_WRITABLE_PROPERTY(QString, status, setStatus, tr("Stopped"))
+    QML_WRITABLE_PROPERTY(QStringList, statusList, setStatusList, QStringList())
     QML_CONSTANT_PROPERTY_PTR(PoolModel, poolModel)
     QML_WRITABLE_PROPERTY(int, poolIndex, setPoolIndex, 0)
     QML_WRITABLE_PROPERTY(int, maxCoreCount, setMaxCoreCount, 0)
@@ -104,6 +105,15 @@ class MiningService : public QObject {
     QML_WRITABLE_PROPERTY(bool, cronEnabled, setCronEnabled, false)
     QML_CONSTANT_PROPERTY_PTR(CronDataModel, cronDataModel)
 public:
+    enum MiningStatus
+    {
+        MINING_STARTED,
+        MINING_STOPPED,
+        MINING_HASHRATE,
+        MINING_WAITING_SCHEDULE,
+        MINING_ERROR
+    };
+
     MiningService(QObject* _parent);
     ~MiningService() override;
 
@@ -122,6 +132,7 @@ private:
     void startMining();
     void stopMining();
     void walletClosed();
+    QString getMiningStatus(MiningStatus statusIndex);
     QTimer* _cronTimer;
 };
 

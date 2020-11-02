@@ -63,15 +63,15 @@ QHash<int, QByteArray> AddressBookTableModel::roleNames() const
     return roles;
 }
 
-QString AddressBookTableModel::columnName(int index) const
+QString AddressBookTableModel::columnName(int index)
 {
     QString name;
     switch (index) {
     case ColumnName::Label:
-        name = tr("Label");
+        name = getColumnName(Label);
         break;
     case ColumnName::Address:
-        name = tr("Address");
+        name = getColumnName(Address);
         break;
     }
     return name;
@@ -174,6 +174,32 @@ QString AddressBookTableModel::selectedAddress()
         address = obj["address"].toString();
     }
     return address;
+}
+
+QString AddressBookTableModel::getColumnName(ColumnName columnName)
+{
+    QString headerName;
+
+    if (!m_columnNameList.isEmpty())
+    {
+        headerName = m_columnNameList.at(columnName);
+    }
+    else
+    {
+        switch (columnName)
+        {
+        case Label:
+            headerName = "Label";
+            break;
+        case Address:
+            headerName = "Address";
+            break;
+        default:
+            break;
+        }
+    }
+
+    return headerName;
 }
 
 } // WalletGui

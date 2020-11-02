@@ -133,7 +133,7 @@ QHash<int, QByteArray> TransactionsTableModel::roleNames() const
     return roles;
 }
 
-QString TransactionsTableModel::columnName(int index) const
+QString TransactionsTableModel::columnName(int index)
 {
     QString name;
     switch (index) {
@@ -141,19 +141,19 @@ QString TransactionsTableModel::columnName(int index) const
         name.clear();
         break;
     case ColumnName::Date:
-        name = tr("Date");
+        name = getColumnName(Date);
         break;
     case ColumnName::Amount:
-        name = tr("Amount");
+        name = getColumnName(Amount);
         break;
     case ColumnName::Address:
-        name = tr("Address");
+        name = getColumnName(Address);
         break;
     case ColumnName::Message:
-        name = tr("Message");
+        name = getColumnName(Message);
         break;
     case ColumnName::PaymentId:
-        name = tr("Payment ID");
+        name = getColumnName(PaymentId);
         break;
     }
     return name;
@@ -571,6 +571,41 @@ QByteArray TransactionsTableModel::toCsv() const
     }
 
     return res;
+}
+
+QString TransactionsTableModel::getColumnName(ColumnName columnName)
+{
+    QString headerName;
+
+    if (!m_columnNameList.isEmpty())
+    {
+        headerName = m_columnNameList.at(columnName - 1);
+    }
+    else
+    {
+        switch (columnName)
+        {
+        case Date:
+            headerName = "Date";
+            break;
+        case Amount:
+            headerName = "Amount";
+            break;
+        case Address:
+            headerName = "Address";
+            break;
+        case Message:
+            headerName = "Message";
+            break;
+        case PaymentId:
+            headerName = "PaymentId";
+            break;
+        default:
+            break;
+        }
+    }
+
+    return headerName;
 }
 
 } // WalletGui

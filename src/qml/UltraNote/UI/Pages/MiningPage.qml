@@ -13,6 +13,11 @@ UNPage {
     objectName: "mining_page"
     title: qsTr("Mining")
 
+    Component.onCompleted:{
+        //initially set mining status
+        walletAdapter.miningService.status = qsTr("Stopped")
+    }
+
     contentItem: Item {
         anchors.fill: parent
         anchors.margins: 16

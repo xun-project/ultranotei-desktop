@@ -8,6 +8,7 @@ namespace WalletGui {
 
 class AddressBookTableModel : public QAbstractTableModel {
     Q_OBJECT
+    QML_WRITABLE_PROPERTY(QStringList, columnNameList, setColumnNameList, QStringList())
 
 public:
     enum ColumnName {
@@ -20,7 +21,7 @@ public:
     int columnCount(const QModelIndex& index = QModelIndex()) const override;
     QVariant data(const QModelIndex& index, int role) const override;
     QHash<int, QByteArray> roleNames() const override;
-    Q_INVOKABLE QString columnName(int index) const;
+    Q_INVOKABLE QString columnName(int index);
     Q_INVOKABLE void addAddress(const QString& _label, const QString& _address);
     Q_INVOKABLE void removeAddress(int _row);
     void walletInitCompleted(int _error, const QString& _error_text);
@@ -37,6 +38,7 @@ private:
 
 private:
     void saveAddressBook();
+    QString getColumnName(ColumnName columnName);
     QJsonArray m_addressBook;
 };
 
