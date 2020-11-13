@@ -20,7 +20,8 @@ UNDialog {
     closePolicy: Popup.CloseOnEscape
     onAccepted: {
         walletAdapter.saveConnectionSettings()
-        _messageDialogProperties.showMessage(qsTr("Connection settings changed"), qsTr("Connection mode will be changed after restarting the wallet"))
+        _dialog.close()
+        _RestartWalletDialog.open()
     }
     onRejected: _connectionSettingsDialog.close()
     title: qsTr("Connection settings")

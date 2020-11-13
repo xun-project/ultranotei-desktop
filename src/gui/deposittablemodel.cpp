@@ -21,6 +21,8 @@ namespace WalletGui {
 
 DepositTableModel::DepositTableModel(QObject *parent) : QAbstractTableModel(parent)
 {
+    qInfo() << "DepositTableModel::DepositTableModel";
+
     qmlRegisterType<DepositTableModel>("DepositTableModel", 1, 0, "DepositTableModel");
     connect(this, &DepositTableModel::depositCountChanged, [&]() {
         m_unlockedDepositIds.clear();
@@ -186,7 +188,6 @@ QVariant DepositTableModel::getUserRole(int row, int role) const
 QString DepositTableModel::getColumnName(ColumnName columnName)
 {
     //get translations once from QML to C++, in case of DepositeTable it can not be done in qml
-    static bool translationsInit= false;
     if (!translationsInit)
     {
         QQmlEngine engine;
@@ -241,6 +242,11 @@ QString DepositTableModel::getColumnName(ColumnName columnName)
     }
 
     return headerName;
+}
+
+void DepositTableModel::reinitHeaderNames()
+{
+    translationsInit = false;
 }
 
 QHash<int, QByteArray> DepositTableModel::roleNames() const

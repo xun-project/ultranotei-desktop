@@ -128,6 +128,7 @@
         <file>qml/UltraNote/UI/Dialogs/ImportSeedDialog.qml</file>
         <file>qml/UltraNote/UI/Dialogs/SeedTrackingKeyDialog.qml</file>
         <file>qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml</file>
+        <file>qml/UltraNote/UI/Dialogs/RestartWalletDialog.qml</file>
         <file>qml/UltraNote/UI/Pages/AddressBookPage.qml</file>
         <file>qml/UltraNote/UI/Pages/DepositsPage.qml</file>
         <file>qml/UltraNote/UI/Pages/MessagesPage.qml</file>

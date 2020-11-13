@@ -1183,6 +1183,10 @@ UNFramelessApplicationWindow {
             id: _LanguageSettingDialog
         }
 
+        RestartWalletDialog {
+            id: _RestartWalletDialog
+        }
+
         MessageDialog {
             id: _messageDialog
 
@@ -1389,6 +1393,8 @@ UNFramelessApplicationWindow {
 
                 y: parent.height
                 x: 0
+
+                menuWidth: 250
 
                 margins: 20
                 topPadding: 24

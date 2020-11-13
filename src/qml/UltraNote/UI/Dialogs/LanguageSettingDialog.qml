@@ -168,10 +168,9 @@ UNDialogInfinity {
                 Layout.fillWidth: true
                 text: qsTr("SAVE")
                 onClicked: {
-                    _messageDialogProperties.showMessage(qsTr("Language was changed"),
-                                                         qsTr("Please restart the wallet for the new language to take effect."))
                     walletAdapter.loadLanguage()
                     _dialog.close()
+                    _RestartWalletDialog.open()
                 }
             }
 

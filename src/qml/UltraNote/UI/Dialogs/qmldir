@@ -20,3 +20,4 @@ ImportTrackingWalletDialog 1.0 ImportTrackingWalletDialog.qml
 ImportSeedDialog 1.0 ImportSeedDialog.qml
 SeedTrackingKeyDialog 1.0 SeedTrackingKeyDialog.qml
 LanguageSettingDialog 1.0 LanguageSettingDialog.qml
+RestartWalletDialog 1.0 RestartWalletDialog.qml

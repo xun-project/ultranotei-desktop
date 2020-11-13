@@ -43,6 +43,8 @@ public:
     void depositsUpdated(const QVector<CryptoNote::DepositId>& _depositIds);
     const QVector<CryptoNote::DepositId>& unlockedDepositIds() const {return m_unlockedDepositIds;}
     int unlockedDepositCount() const { return m_unlockedDepositIds.size();}
+    void reinitHeaderNames();
+
 signals:
     void unlockedDepositCountChanged();
 private:
@@ -60,6 +62,7 @@ private:
     QString getColumnName(ColumnName columnName);
     QVector<CryptoNote::DepositId> m_unlockedDepositIds;
     QVector<int> m_orderedRows;
+    bool translationsInit = false;
 };
 
 } // WalletGui

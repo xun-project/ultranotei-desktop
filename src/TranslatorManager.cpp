@@ -8,25 +8,56 @@
 
 using namespace WalletGui;
 
-TranslatorManager* TranslatorManager::m_Instance = 0;
+TranslatorManager::TranslatorManager() {}
 
-TranslatorManager::TranslatorManager()
+TranslatorManager::~TranslatorManager()
+{
+    TranslatorMap::const_iterator i = m_translators.begin();
+    while (i != m_translators.end())
+    {
+        QTranslator* pTranslator = i.value();
+        delete pTranslator;
+        ++i;
+    }
+
+    m_translators.clear();
+}
+
+TranslatorManager& TranslatorManager::instance()
+{
+    static TranslatorManager manager;
+    return manager;
+}
+
+void TranslatorManager::switchTranslator(QTranslator& translator, const QString& filename)
+{
+  // remove the old translator
+  qApp->removeTranslator(&translator) ? qInfo() << "remove translator success" : qInfo() << "remove translator failed";
+
+  // load the new translator
+  if(translator.load(filename))
+   qApp->installTranslator(&translator) ? qInfo() << "switch translator success" : qInfo() << "switch translator failed";
+}
+
+void TranslatorManager::initialize()
 {
     QString lang = Settings::instance().getLanguage();
-    if(lang.isEmpty()) {
+    if (lang.isEmpty()) {
         lang = QLocale::system().name();
-        qInfo() << "lang : "<< lang;
+        qInfo() << "default lang is set : " << lang;
         lang.truncate(lang.lastIndexOf('_'));
     }
 
+    qInfo() << "installing lang : " << lang;
+
 #if defined(_MSC_VER)
-  m_langPath = QApplication::applicationDirPath();
-  m_langPath.append("/languages");
+    m_langPath = QApplication::applicationDirPath();
+    m_langPath.append("/languages");
 #elif defined(Q_OS_MAC)
-  m_langPath = QApplication::applicationDirPath();
-  m_langPath = m_langPath + "/../Resources/languages/";
+    m_langPath = QApplication::applicationDirPath();
+    m_langPath = m_langPath + "/../Resources/languages/";
 #else
-  m_langPath = "languages";
+    m_langPath = "languages";
 #endif
 
     QDir dir(m_langPath);
@@ -40,12 +71,13 @@ TranslatorManager::TranslatorManager()
         locale.remove(0, locale.indexOf('_'));
 
         //Example : "_ru.qm"
+
         if (locale == lang)
         {
             QTranslator* pTranslator = new QTranslator;
             if (pTranslator->load(resources[j], m_langPath))
             {
-                qApp->installTranslator(pTranslator) ? qInfo() << "pTranslator install success" : qInfo()<<"pTranslator install failed";
+                qApp->installTranslator(pTranslator) ? qInfo() << "pTranslator install success" : qInfo() << "pTranslator install failed";
                 m_keyLang = locale;
                 m_translators.insert(locale, pTranslator);
                 break;
@@ -78,44 +110,4 @@ TranslatorManager::TranslatorManager()
             }
         }
     }
-}
-
-TranslatorManager::~TranslatorManager()
-{
-    TranslatorMap::const_iterator i = m_translators.begin();
-    while (i != m_translators.end())
-    {
-        QTranslator* pTranslator = i.value();
-        delete pTranslator;
-        ++i;
-    }
-
-    m_translators.clear();
-}
-
-TranslatorManager* TranslatorManager::instance()
-{
-    static QMutex mutex;
-    if (!m_Instance)
-    {
-        mutex.lock();
-
-        if (!m_Instance)
-            m_Instance = new TranslatorManager;
-
-        mutex.unlock();
-    }
-
-    return m_Instance;
-}
-
-void TranslatorManager::switchTranslator(QTranslator& translator, const QString& filename)
-{
-
-  // remove the old translator
-  qApp->removeTranslator(&translator) ? qInfo() << "remove translator success" : qInfo() << "remove translator failed";
-
-  // load the new translator
-  if(translator.load(filename))
-   qApp->installTranslator(&translator) ? qInfo() << "switch translator success" : qInfo() << "switch translator failed";
 }

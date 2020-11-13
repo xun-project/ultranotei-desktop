@@ -56,13 +56,13 @@
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="182"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1368"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1372"/>
         <source>Exit</source>
         <translation>Çikiş</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="240"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1253"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1257"/>
         <source>Wallet</source>
         <translation>Cüzdan</translation>
     </message>
@@ -161,25 +161,25 @@
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="544"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1274"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1278"/>
         <source>Create Wallet</source>
         <translation>Cüzdan Oluştur</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="551"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1279"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1283"/>
         <source>New wallet file</source>
         <translation>Cüzdan dosyası</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="570"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1288"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1292"/>
         <source>Open wallet</source>
         <translation>Cüzdani Aç</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="577"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1293"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1297"/>
         <source>Open .wallet/.keys file</source>
         <translation>.Wallet / .keys dosyasını açın</translation>
     </message>
@@ -190,25 +190,25 @@
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="617"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1309"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1313"/>
         <source>Backup Wallet</source>
         <translation>Cüzdanı yedekle</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="624"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1315"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1319"/>
         <source>Backup wallet to...</source>
         <translation>Cüzdanı yedekle…</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="645"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1325"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1329"/>
         <source>Reset Wallet</source>
         <translation>Cüzdanı sıfırla</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="650"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1328"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1332"/>
         <source>Warning</source>
         <translation>Uyarı</translation>
     </message>
@@ -220,43 +220,43 @@ Are you sure?</source>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="698"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1381"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1385"/>
         <source>Settings</source>
         <translation>Ayarlar</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="720"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1417"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1421"/>
         <source>Encrypt Wallet</source>
         <translation>Cüzdanı Şifrele</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="744"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1417"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1421"/>
         <source>Change Password</source>
         <translation>Parolayı değiştir</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="766"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1427"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1431"/>
         <source>Connection</source>
         <translation>Bağ</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="786"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1435"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1439"/>
         <source>Change Fiat Symbol</source>
         <translation>Fiat Sembolünü Değiştir</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="807"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1459"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1463"/>
         <source>Start on system login</source>
         <translation>Sistem açıldığında başlat</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="828"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1468"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1472"/>
         <source>Enable TOR</source>
         <translation>TOR&apos;u etkinleştir</translation>
     </message>
@@ -266,54 +266,54 @@ Are you sure?</source>
         <translation>Durum</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1212"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1216"/>
         <source>OK</source>
         <translation>TAMAM</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1214"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1218"/>
         <source>Cancel</source>
         <translation>İPTAL</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1301"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1305"/>
         <source>Import Wallet</source>
         <translation>Cüzdanı İçe Aktar</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1331"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1335"/>
         <source>Your wallet will be reset and restored from blockchain.
 
 Are you sure?</source>
         <translation>Cüzdanınız blok zincirinden sıfırlanacak ve geri yüklenecektir.\n\nEmin misiniz?</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1336"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1340"/>
         <source>View Seed</source>
         <translation>Tohumu Görüntüle</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1346"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1350"/>
         <source>Optimize Wallet</source>
         <translation>Cüzdanı optimize et</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1356"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1360"/>
         <source>Auto Optimization</source>
         <translation>Otomatik Optimizasyon</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1401"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1405"/>
         <source>Unlock wallet</source>
         <translation>Cüzdanın kilidini aç</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1443"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1447"/>
         <source>Language Setting</source>
         <translation>Dil ayarı</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1451"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1455"/>
         <source>Minimize to tray</source>
         <translation>Simge durumuna küçült</translation>
     </message>
@@ -835,17 +835,15 @@ Are you sure?</source>
         <translation>KAYDET</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="171"/>
         <source>Language was changed</source>
-        <translation>Dil değiştirildi</translation>
+        <translation type="vanished">Dil değiştirildi</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="172"/>
         <source>Please restart the wallet for the new language to take effect.</source>
-        <translation>Yeni dilin etkili olması için lütfen cüzdanı yeniden başlatın.</translation>
+        <translation type="vanished">Yeni dilin etkili olması için lütfen cüzdanı yeniden başlatın.</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="184"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="183"/>
         <source>CANCEL</source>
         <translation>İPTAL</translation>
     </message>
@@ -860,7 +858,7 @@ Are you sure?</source>
     <message>
         <location filename="../src/qml/UltraNote/UI/LegacyTranslations.qml" line="11"/>
         <source>Stopped</source>
-        <translation>Остановлен</translation>
+        <translation>Durduruldu</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/LegacyTranslations.qml" line="12"/>
@@ -1048,7 +1046,7 @@ Are you sure?</source>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="18"/>
         <source>Stopped</source>
-        <translation>Остановлен</translation>
+        <translation>Durduruldu</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/MiningPage.qml" line="57"/>
@@ -1315,6 +1313,41 @@ the wallet might need optimization more than once.</source>
         <location filename="../src/qml/UltraNote/UI/Dialogs/RequestPasswordDialog.qml" line="166"/>
         <source>Wrong password</source>
         <translation>Yanlış şifre</translation>
+    </message>
+</context>
+<context>
+    <name>RestartWalletDialog</name>
+    <message>
+        <source>OPTIMIZE WALLET</source>
+        <translation type="obsolete">Cüzdanı optimize et</translation>
+    </message>
+    <message>
+        <source>This process will optimize your wallet for large transactions.
+The optimization will take approximately 22 minutes. Please
+note that you will not be able to spend any of your funds
+until the optimization process is complete. In some cases,
+the wallet might need optimization more than once.</source>
+        <translation type="obsolete">Bu işlem, cüzdanınızı büyük işlemler için optimize edecektir.\nOptimizasyon yaklaşık 22 dakika sürecektir. Lütfen\nparanızın hiçbirini harcayamayacağınızı unutmayın\noptimizasyon süreci tamamlanana kadar. Bazı durumlarda,\ncüzdanın birden fazla optimizasyona ihtiyacı olabilir.</translation>
+    </message>
+    <message>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/RestartWalletDialog.qml" line="16"/>
+        <source>Settings was changed</source>
+        <translation>Ayarlar değiştirildi</translation>
+    </message>
+    <message>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/RestartWalletDialog.qml" line="56"/>
+        <source>Please restart the wallet for the new settings to take effect.</source>
+        <translation>Yeni ayarların geçerli olması için lütfen cüzdanı yeniden başlatın.</translation>
+    </message>
+    <message>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/RestartWalletDialog.qml" line="65"/>
+        <source>Restart now</source>
+        <translation>Şimdi yeniden başlat</translation>
+    </message>
+    <message>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/RestartWalletDialog.qml" line="79"/>
+        <source>Restart later</source>
+        <translation>Sonra yeniden başlat</translation>
     </message>
 </context>
 <context>

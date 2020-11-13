@@ -85,6 +85,10 @@ public:
     };
     Q_ENUM(ConnectionMode)
 
+    enum ExitCodes {
+        EXIT_CODE_REBOOT = -2
+    };
+
     static WalletAdapter& instance();
 
     Q_SLOT void setTorSettings();
@@ -115,7 +119,8 @@ public:
     Q_INVOKABLE void importTrackingkey(QString keyString, QString filePath);
     Q_INVOKABLE void importMnemonicSeed(QString seed, QString filePath);
     Q_INVOKABLE void setIsWalletOpen(bool on);
-    
+    Q_INVOKABLE void restartWallet();
+
     bool getTorEnabled();
     void newSelectedLangauge(QString lang);
     QString currentLanguage() const;
@@ -183,7 +188,7 @@ public:
 
 private:
     QProcess* torProcess = nullptr;
-    TranslatorManager* m_translatorManager = nullptr;
+    TranslatorManager& m_translatorManager;
 	QSoundEffect incomingTransactionEffect;
 	QSoundEffect outgoingTransactionEffect;
     std::fstream m_file;
