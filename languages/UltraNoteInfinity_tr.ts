@@ -226,37 +226,37 @@ Are you sure?</source>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="720"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1421"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1423"/>
         <source>Encrypt Wallet</source>
         <translation>Cüzdanı Şifrele</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="744"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1421"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1423"/>
         <source>Change Password</source>
         <translation>Parolayı değiştir</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="766"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1431"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1433"/>
         <source>Connection</source>
         <translation>Bağ</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="786"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1439"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1441"/>
         <source>Change Fiat Symbol</source>
         <translation>Fiat Sembolünü Değiştir</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="807"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1463"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1465"/>
         <source>Start on system login</source>
         <translation>Sistem açıldığında başlat</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="828"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1472"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1474"/>
         <source>Enable TOR</source>
         <translation>TOR&apos;u etkinleştir</translation>
     </message>
@@ -303,17 +303,17 @@ Are you sure?</source>
         <translation>Otomatik Optimizasyon</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1405"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1407"/>
         <source>Unlock wallet</source>
         <translation>Cüzdanın kilidini aç</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1447"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1449"/>
         <source>Language Setting</source>
         <translation>Dil ayarı</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1455"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1457"/>
         <source>Minimize to tray</source>
         <translation>Simge durumuna küçült</translation>
     </message>
@@ -475,72 +475,70 @@ Are you sure?</source>
         <translation>İPTAL</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="23"/>
         <source>Connection settings changed</source>
-        <translation>Bağlantı ayarları değiştirildi</translation>
+        <translation type="vanished">Bağlantı ayarları değiştirildi</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="23"/>
         <source>Connection mode will be changed after restarting the wallet</source>
-        <translation>Cüzdan yeniden başlatıldıktan sonra bağlantı modu değişecek</translation>
+        <translation type="vanished">Cüzdan yeniden başlatıldıktan sonra bağlantı modu değişecek</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="26"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="27"/>
         <source>Connection settings</source>
         <translation>Bağlantı ayarları</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="62"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="63"/>
         <source>Auto selection</source>
         <translation>Otomatik seçim</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="93"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="94"/>
         <source>Wallet will connect to local daemon on default port. In case of no local daemon running it will launch build-in node.</source>
         <translation>Cüzdan, varsayılan bağlantı noktasındaki yerel daemon&apos;a bağlanacaktır. Çalışan yerel arka plan programı olmaması durumunda, yerleşik düğümü başlatır.</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="114"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="115"/>
         <source>Embedded</source>
         <translation>Gömülü</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="145"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="146"/>
         <source>Build-in embedded node will be used.</source>
         <translation>Yerleşik gömülü düğüm kullanılacaktır.</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="172"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="173"/>
         <source>Local daemon</source>
         <translation>Yerel arka plan programı</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="199"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="200"/>
         <source>Port:</source>
         <translation>Liman:</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="247"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="248"/>
         <source>Wallet will connect to local daemon on specified port.</source>
         <translation>Cüzdan, belirli bir bağlantı noktasındaki yerel daemon&apos;a bağlanacaktır.</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="274"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="275"/>
         <source>Remote daemon</source>
         <translation>Uzak arka plan programı</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="301"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="302"/>
         <source>Address:</source>
         <translation>Adres:</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="332"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="333"/>
         <source>Add node</source>
         <translation>Düğüm ekleyin</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="361"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="362"/>
         <source>Wallet will connect to remote node running in local or global network. Please select node or specify IP address or domain name and port.</source>
         <translation>Cüzdan, yerel veya küresel ağda çalışan uzak düğüme bağlanacaktır. Lütfen düğüm seçin veya IP adresini veya alan adını ve bağlantı noktasını belirtin.</translation>
     </message>

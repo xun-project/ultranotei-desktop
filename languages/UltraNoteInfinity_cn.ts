@@ -226,37 +226,37 @@ Are you sure?</source>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="720"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1421"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1423"/>
         <source>Encrypt Wallet</source>
         <translation>加密钱包</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="744"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1421"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1423"/>
         <source>Change Password</source>
         <translation>修改密码</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="766"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1431"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1433"/>
         <source>Connection</source>
         <translation>连接</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="786"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1439"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1441"/>
         <source>Change Fiat Symbol</source>
         <translation>更改菲亚特符号</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="807"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1463"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1465"/>
         <source>Start on system login</source>
         <translation>系统登录时启动</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="828"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1472"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1474"/>
         <source>Enable TOR</source>
         <translation>启用TOR</translation>
     </message>
@@ -303,17 +303,17 @@ Are you sure?</source>
         <translation>自动优化</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1405"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1407"/>
         <source>Unlock wallet</source>
         <translation>解锁钱包</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1447"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1449"/>
         <source>Language Setting</source>
         <translation>语言设定</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1455"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1457"/>
         <source>Minimize to tray</source>
         <translation>减少到最小</translation>
     </message>
@@ -475,72 +475,70 @@ Are you sure?</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="23"/>
         <source>Connection settings changed</source>
-        <translation>连接设置已更改</translation>
+        <translation type="vanished">连接设置已更改</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="23"/>
         <source>Connection mode will be changed after restarting the wallet</source>
-        <translation>重新启动钱包后，连接模式将更改</translation>
+        <translation type="vanished">重新启动钱包后，连接模式将更改</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="26"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="27"/>
         <source>Connection settings</source>
         <translation>连接设置</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="62"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="63"/>
         <source>Auto selection</source>
         <translation>自动选择</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="93"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="94"/>
         <source>Wallet will connect to local daemon on default port. In case of no local daemon running it will launch build-in node.</source>
         <translation>电子钱包将在默认端口上连接到本地守护程序. 如果没有本地守护程序在运行，它将启动内置节点.</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="114"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="115"/>
         <source>Embedded</source>
         <translation>嵌入式的</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="145"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="146"/>
         <source>Build-in embedded node will be used.</source>
         <translation>将使用内置嵌入式节点.</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="172"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="173"/>
         <source>Local daemon</source>
         <translation>本地守护程序</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="199"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="200"/>
         <source>Port:</source>
         <translation>端口:</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="247"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="248"/>
         <source>Wallet will connect to local daemon on specified port.</source>
         <translation>电子钱包将在特定端口上连接到本地守护程序.</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="274"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="275"/>
         <source>Remote daemon</source>
         <translation>远程守护程序</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="301"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="302"/>
         <source>Address:</source>
         <translation>地址:</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="332"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="333"/>
         <source>Add node</source>
         <translation>添加节点</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="361"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="362"/>
         <source>Wallet will connect to remote node running in local or global network. Please select node or specify IP address or domain name and port.</source>
         <translation>电子钱包将连接到在本地或全局网络中运行的远程节点. 请选择节点或指定IP地址或域名和端口.</translation>
     </message>

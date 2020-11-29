@@ -57,8 +57,6 @@ WalletAdapter::WalletAdapter()
     , m_depositWithdrawalId(CryptoNote::WALLET_LEGACY_INVALID_TRANSACTION_ID)
     , m_translatorManager(TranslatorManager::instance())
 {
-    m_translatorManager.initialize();
-
     setObjectName("walletAdapter");
     qmlRegisterType<WalletAdapter>("WalletAdapter", 1, 0, "WalletAdapter");
 
@@ -66,14 +64,10 @@ WalletAdapter::WalletAdapter()
 	incomingTransactionEffect.setSource(QUrl::fromLocalFile(":/sounds/resources/sounds/poker-chip.wav"));
 	outgoingTransactionEffect.setSource(QUrl::fromLocalFile(":/sounds/resources/sounds/Swoosh-1.wav"));
 
-    // init connection settings dialog
-    initConnectionMode();
-    initLocalDaemonPort();
-
-    connect(this, &WalletAdapter::walletInitCompletedSignal, this, &WalletAdapter::onWalletInitCompleted, static_cast<Qt::ConnectionType>(static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection) | Qt::UniqueConnection));
-    connect(this, &WalletAdapter::walletSendTransactionCompletedSignal, this, &WalletAdapter::onWalletSendTransactionCompleted, static_cast<Qt::ConnectionType>(static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection) | Qt::UniqueConnection));
-    connect(this, &WalletAdapter::updateBlockStatusTextSignal, this, &WalletAdapter::updateBlockStatusText, static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
-    connect(this, &WalletAdapter::updateBlockStatusTextWithDelaySignal, this, &WalletAdapter::updateBlockStatusTextWithDelay, static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
+    connect(this, &WalletAdapter::walletInitCompletedSignal, this, &WalletAdapter::onWalletInitCompleted, Qt::QueuedConnection);
+    connect(this, &WalletAdapter::walletSendTransactionCompletedSignal, this, &WalletAdapter::onWalletSendTransactionCompleted, Qt::QueuedConnection);
+    connect(this, &WalletAdapter::updateBlockStatusTextSignal, this, &WalletAdapter::updateBlockStatusText, Qt::QueuedConnection);
+    connect(this, &WalletAdapter::updateBlockStatusTextWithDelaySignal, this, &WalletAdapter::updateBlockStatusTextWithDelay, Qt::QueuedConnection);
     connect(&m_newTransactionsNotificationTimer, &QTimer::timeout, this, &WalletAdapter::notifyAboutLastTransaction, Qt::UniqueConnection);
     connect(
         this, &WalletAdapter::walletSynchronizationProgressUpdatedSignal, this, [&]() {
@@ -85,7 +79,7 @@ WalletAdapter::WalletAdapter()
             setSynchronizationStateIcon("qrc:/icons/icons/sync_sprite.gif");
             setSynchronizationStateToolTip(tr("Synchronization in progress"));
         },
-        static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
+        Qt::QueuedConnection);
 
     connect(
         this, &WalletAdapter::walletSynchronizationCompletedSignal, this,
@@ -99,74 +93,74 @@ WalletAdapter::WalletAdapter()
             const QString syncLabelTooltip = _error > 0 ? tr("Not synchronized") : tr("Synchronized");
             setSynchronizationStateToolTip(syncLabelTooltip);
         },
-        static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
+        Qt::QueuedConnection);
 
     connect(&NodeAdapter::instance(), &NodeAdapter::peerCountUpdatedSignal, this,
         [&](int _peerCount) {
             const QString connectionIconPath = _peerCount > 0 ? "qrc:/icons/icons/connected.png" : "qrc:/icons/icons/disconnected.png";
             setConnectionStateIcon(connectionIconPath);
             setConnectionStateToolTip(QString(tr("%1 peers").arg(_peerCount)));
-        }, Qt::UniqueConnection);
+        });
 
 	connect(this, &WalletAdapter::walletTransactionCreatedSignal, this,
-		&WalletAdapter::newTransactionSoundEffect, static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
+		&WalletAdapter::newTransactionSoundEffect, Qt::QueuedConnection);
 
     //setup connections for DepositTableModel
     connect(this,
         &WalletGui::WalletAdapter::reloadWalletTransactionsSignal, m_depositTableModel,
         &DepositTableModel::reloadWalletDeposits,
-        static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
+        Qt::QueuedConnection);
     connect(this, &WalletGui::WalletAdapter::walletTransactionCreatedSignal, m_depositTableModel,
         static_cast<void (DepositTableModel::*)(CryptoNote::TransactionId)>(&DepositTableModel::transactionCreated),
-        static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
+        Qt::QueuedConnection);
     connect(this, &WalletGui::WalletAdapter::walletTransactionUpdatedSignal, m_depositTableModel,
-        &DepositTableModel::transactionUpdated, static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
+        &DepositTableModel::transactionUpdated, Qt::QueuedConnection);
     connect(this,
         &WalletGui::WalletAdapter::walletCloseCompletedSignal, m_depositTableModel,
         &DepositTableModel::reset,
-        static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
+        Qt::QueuedConnection);
     connect(this,
         &WalletGui::WalletAdapter::walletDepositsUpdatedSignal, m_depositTableModel,
         &DepositTableModel::depositsUpdated,
-        static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
+        Qt::QueuedConnection);
 
     //setup connections for AddressBookTableModel
     connect(this, &WalletAdapter::walletInitCompletedSignal, m_addressBookTableModel,
-        &AddressBookTableModel::walletInitCompleted, static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
+        &AddressBookTableModel::walletInitCompleted, Qt::QueuedConnection);
     connect(this, &WalletAdapter::walletCloseCompletedSignal, m_addressBookTableModel,
-        &AddressBookTableModel::reset, static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
+        &AddressBookTableModel::reset, Qt::QueuedConnection);
 
     //setup connections for TransactionsTableModel
     connect(this, &WalletAdapter::reloadWalletTransactionsSignal, m_transactionsTableModel,
-        &TransactionsTableModel::reloadWalletTransactions, static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
+        &TransactionsTableModel::reloadWalletTransactions, Qt::QueuedConnection);
     connect(this, &WalletAdapter::walletTransactionCreatedSignal, m_transactionsTableModel,
-        static_cast<void (TransactionsTableModel::*)(CryptoNote::TransactionId)>(&TransactionsTableModel::appendTransaction), static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
+        static_cast<void (TransactionsTableModel::*)(CryptoNote::TransactionId)>(&TransactionsTableModel::appendTransaction), Qt::QueuedConnection);
     connect(this, &WalletAdapter::walletTransactionUpdatedSignal, m_transactionsTableModel,
-        &TransactionsTableModel::updateWalletTransaction, static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
+        &TransactionsTableModel::updateWalletTransaction, Qt::QueuedConnection);
     connect(&NodeAdapter::instance(), &NodeAdapter::lastKnownBlockHeightUpdatedSignal,
         m_transactionsTableModel, &TransactionsTableModel::lastKnownHeightUpdated,
-        static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
+        Qt::QueuedConnection);
     connect(this, &WalletAdapter::walletCloseCompletedSignal, m_transactionsTableModel,
-        &TransactionsTableModel::reset, static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
+        &TransactionsTableModel::reset, Qt::QueuedConnection);
 
     //setup connections for MessagesTableModel
     connect(this, &WalletAdapter::reloadWalletTransactionsSignal, m_messagesTableModel,
-        &MessagesTableModel::reloadWalletTransactions, static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
+        &MessagesTableModel::reloadWalletTransactions, Qt::QueuedConnection);
     connect(this, &WalletAdapter::walletTransactionCreatedSignal, m_messagesTableModel,
         static_cast<void (MessagesTableModel::*)(CryptoNote::TransactionId)>(&MessagesTableModel::appendTransaction),
-        static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
+        Qt::QueuedConnection);
     connect(this, &WalletAdapter::walletTransactionUpdatedSignal, m_messagesTableModel,
         &MessagesTableModel::updateWalletTransaction,
-        static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
+        Qt::QueuedConnection);
     connect(&NodeAdapter::instance(), &NodeAdapter::lastKnownBlockHeightUpdatedSignal,
         m_messagesTableModel,
-        &MessagesTableModel::lastKnownHeightUpdated, static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
+        &MessagesTableModel::lastKnownHeightUpdated, Qt::QueuedConnection);
     connect(this, &WalletAdapter::walletCloseCompletedSignal, m_messagesTableModel,
-        &MessagesTableModel::reset, static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
+        &MessagesTableModel::reset, Qt::QueuedConnection);
 
     //set connections for SendMessageModel
     connect(this, &WalletAdapter::walletSendMessageCompletedSignal, m_sendMessageModel,
-        &SendMessageModel::sendMessageCompleted, static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
+        &SendMessageModel::sendMessageCompleted, Qt::QueuedConnection);
 
     //set connections for receive tab
     connect(this, &WalletAdapter::walletInitCompletedSignal, [&]() {
@@ -185,30 +179,11 @@ WalletAdapter::WalletAdapter()
 
     //set connections for send invoice tab
     connect(this, &WalletAdapter::walletSendMessageCompletedSignal, m_invoiceService, &InvoiceService::sendMessageCompleted,
-        static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
-
-    encryptedFlagChanged(false);
-    setSynchronizationStateIcon("qrc:/icons/icons/sync_sprite.gif");
-    setConnectionStateIcon("qrc:/icons/icons/disconnected.png");
-    const QString connection = Settings::instance().getConnection();
-    if (connection.compare("remote") == 0) {
-        setRemoteModeToolTip(tr("Connected through remote node"));
-        setRemoteModeIcon("qrc:/icons/icons/remote_node.svg");
-    }
+        Qt::QueuedConnection);
 
     connect(this, &WalletAdapter::updateTORSetting, this, &WalletAdapter::setTorSettings);
 
-    //initialize the optimization service
-    OptimizationService* optimizationService = new OptimizationService(this);
-    QObject::connect(this, &WalletAdapter::walletInitCompletedSignal, optimizationService, &OptimizationService::walletOpened, Qt::UniqueConnection);
-    QObject::connect(this, &WalletAdapter::walletCloseCompletedSignal, optimizationService, &OptimizationService::walletClosed, Qt::UniqueConnection);
-    QObject::connect(this, &WalletAdapter::walletSynchronizationProgressUpdatedSignal, optimizationService, &OptimizationService::synchronizationProgressUpdated, static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
-    QObject::connect(this, &WalletAdapter::walletSynchronizationCompletedSignal, optimizationService, &OptimizationService::synchronizationCompleted, static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
-    QObject::connect(this, &WalletAdapter::walletSynchronizationCompletedSignal, this, &WalletAdapter::updateOptimizationLabel, static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
-    
-    setWalletTrackingLabel();
-    m_newTransactionsNotificationTimer.setInterval(500);
-	//QTimer::singleShot(1500, this, SLOT(updateWalletTransactions()));
+    initializeAdapter();
 }
 
 void WalletAdapter::stopTorProcess()
@@ -377,6 +352,12 @@ void WalletAdapter::close()
     setIsWalletOpen(false);
     setSynchronizationStateIcon(""); //hide
     setEncryptionStateIcon("");
+
+    if (optimizationService != nullptr)
+    {
+        delete optimizationService;
+        optimizationService = nullptr;
+    }
 
     m_depositTableModel->reinitHeaderNames();
 }
@@ -878,6 +859,46 @@ void WalletAdapter::optimizeWallet()
         unlock();
     }
     }
+}
+
+void WalletAdapter::initializeAdapter()
+{
+    m_translatorManager.initialize();
+
+    // init connection settings dialog
+    initConnectionMode();
+    initLocalDaemonPort();
+
+    encryptedFlagChanged(false);
+    setSynchronizationStateIcon("qrc:/icons/icons/sync_sprite.gif");
+    setConnectionStateIcon("qrc:/icons/icons/disconnected.png");
+    const QString connection = Settings::instance().getConnection();
+    if (connection.compare("remote") == 0) {
+        setRemoteModeToolTip(tr("Connected through remote node"));
+        setRemoteModeIcon("qrc:/icons/icons/remote_node.svg");
+    }
+    else
+    {
+        setRemoteModeToolTip("");
+        setRemoteModeIcon("");
+    }
+
+    //initialize optimization service
+    if(optimizationService == nullptr)
+        optimizationService = new OptimizationService(this);
+
+    QObject::connect(this, &WalletAdapter::walletInitCompletedSignal, optimizationService, &OptimizationService::walletOpened, Qt::UniqueConnection);
+    QObject::connect(this, &WalletAdapter::walletCloseCompletedSignal, optimizationService, &OptimizationService::walletClosed, Qt::UniqueConnection);
+    QObject::connect(this, &WalletAdapter::walletSynchronizationProgressUpdatedSignal, optimizationService,
+        &OptimizationService::synchronizationProgressUpdated, static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
+    QObject::connect(this, &WalletAdapter::walletSynchronizationCompletedSignal, optimizationService,
+        &OptimizationService::synchronizationCompleted, static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
+    QObject::connect(this, &WalletAdapter::walletSynchronizationCompletedSignal, this,
+        &WalletAdapter::updateOptimizationLabel, static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
+
+    setWalletTrackingLabel();
+    m_newTransactionsNotificationTimer.setInterval(500);
+    //QTimer::singleShot(1500, this, SLOT(updateWalletTransactions()));
 }
 
 bool WalletAdapter::isWalletOpen() const

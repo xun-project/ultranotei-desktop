@@ -112,8 +112,8 @@ int main(int argc, char* argv[]) {
             return 0;
         }
 
-        if(currentExitCode == WalletAdapter::EXIT_CODE_REBOOT)
-            WalletAdapter::WalletAdapter();
+        if (currentExitCode == WalletAdapter::EXIT_CODE_REBOOT)
+            WalletAdapter::instance().initializeAdapter();
 
         WalletAdapter::instance().open("");
         QQuickStyle::setStyle("Material");

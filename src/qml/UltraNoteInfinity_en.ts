@@ -226,37 +226,37 @@ Are you sure?</source>
     </message>
     <message>
         <location filename="UltraNote/UI/AppWindow.qml" line="720"/>
-        <location filename="UltraNote/UI/AppWindow.qml" line="1421"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="1423"/>
         <source>Encrypt Wallet</source>
         <translation></translation>
     </message>
     <message>
         <location filename="UltraNote/UI/AppWindow.qml" line="744"/>
-        <location filename="UltraNote/UI/AppWindow.qml" line="1421"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="1423"/>
         <source>Change Password</source>
         <translation></translation>
     </message>
     <message>
         <location filename="UltraNote/UI/AppWindow.qml" line="766"/>
-        <location filename="UltraNote/UI/AppWindow.qml" line="1431"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="1433"/>
         <source>Connection</source>
         <translation></translation>
     </message>
     <message>
         <location filename="UltraNote/UI/AppWindow.qml" line="786"/>
-        <location filename="UltraNote/UI/AppWindow.qml" line="1439"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="1441"/>
         <source>Change Fiat Symbol</source>
         <translation></translation>
     </message>
     <message>
         <location filename="UltraNote/UI/AppWindow.qml" line="807"/>
-        <location filename="UltraNote/UI/AppWindow.qml" line="1463"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="1465"/>
         <source>Start on system login</source>
         <translation></translation>
     </message>
     <message>
         <location filename="UltraNote/UI/AppWindow.qml" line="828"/>
-        <location filename="UltraNote/UI/AppWindow.qml" line="1472"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="1474"/>
         <source>Enable TOR</source>
         <translation></translation>
     </message>
@@ -303,17 +303,17 @@ Are you sure?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="1405"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="1407"/>
         <source>Unlock wallet</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="1447"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="1449"/>
         <source>Language Setting</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="1455"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="1457"/>
         <source>Minimize to tray</source>
         <translation></translation>
     </message>
@@ -475,72 +475,62 @@ Are you sure?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="23"/>
-        <source>Connection settings changed</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="23"/>
-        <source>Connection mode will be changed after restarting the wallet</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="26"/>
+        <location filename="UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="27"/>
         <source>Connection settings</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="62"/>
+        <location filename="UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="63"/>
         <source>Auto selection</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="93"/>
+        <location filename="UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="94"/>
         <source>Wallet will connect to local daemon on default port. In case of no local daemon running it will launch build-in node.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="114"/>
+        <location filename="UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="115"/>
         <source>Embedded</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="145"/>
+        <location filename="UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="146"/>
         <source>Build-in embedded node will be used.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="172"/>
+        <location filename="UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="173"/>
         <source>Local daemon</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="199"/>
+        <location filename="UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="200"/>
         <source>Port:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="247"/>
+        <location filename="UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="248"/>
         <source>Wallet will connect to local daemon on specified port.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="274"/>
+        <location filename="UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="275"/>
         <source>Remote daemon</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="301"/>
+        <location filename="UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="302"/>
         <source>Address:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="332"/>
+        <location filename="UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="333"/>
         <source>Add node</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="361"/>
+        <location filename="UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml" line="362"/>
         <source>Wallet will connect to remote node running in local or global network. Please select node or specify IP address or domain name and port.</source>
         <translation></translation>
     </message>

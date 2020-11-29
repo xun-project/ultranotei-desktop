@@ -86,7 +86,7 @@ public:
     Q_ENUM(ConnectionMode)
 
     enum ExitCodes {
-        EXIT_CODE_REBOOT = -2
+        EXIT_CODE_REBOOT = 2
     };
 
     static WalletAdapter& instance();
@@ -180,6 +180,7 @@ public:
     quint64 getNumUnlockedOutputs() const;
     void optimizationDelay();
     void optimizeWallet();
+    void initializeAdapter();
 
     bool isWalletOpen() const;
 
@@ -188,6 +189,7 @@ public:
 
 private:
     QProcess* torProcess = nullptr;
+    OptimizationService* optimizationService = nullptr;
     TranslatorManager& m_translatorManager;
 	QSoundEffect incomingTransactionEffect;
 	QSoundEffect outgoingTransactionEffect;
