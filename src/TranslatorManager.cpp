@@ -59,6 +59,7 @@ void TranslatorManager::initialize()
     qInfo() << "Q_OS_UNIX";
 #elif defined(Q_OS_MAC)
     qInfo() << "Q_OS_MAC";
+    m_langPath = m_langPath + "/../Resources";
 #else
     m_langPath.append("/languages");
 #endif

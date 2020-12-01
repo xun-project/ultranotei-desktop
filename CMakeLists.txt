@@ -403,7 +403,6 @@ set(CPACK_PACKAGE_VENDOR ${UN_VENDOR})
 set(CPACK_PACKAGE_CONTACT ${UN_CONTACT})
 set(CPACK_PACKAGE_DESCRIPTION ${UN_DESCRIPTION})
 set(CPACK_STRIP_FILES ON)
-file(GLOB TRANSLATIONS "build/release/languages/*.qm")
 if (APPLE)
   set(CPACK_GENERATOR DragNDrop)
   set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}")
@@ -415,7 +414,14 @@ if (APPLE)
   install(CODE "execute_process( COMMAND \"${MACDEPLOYQT}\" \"${PROJECT_NAME}.app\" \"-qmldir=${QML_DIRS}\")" COMPONENT Runtime)
   install(TARGETS ${PROJECT_NAME} BUNDLE DESTINATION . COMPONENT Runtime)
   install(PROGRAMS build/release/tor/bin/tor DESTINATION ./${PROJECT_NAME}.app/Contents/Resources COMPONENT Runtime)
-  install(FILES ${TRANSLATIONS} DESTINATION ./${PROJECT_NAME}.app/Contents/Resources COMPONENT Runtime)
+
+  # Add translation files to package
+  install(FILES
+      build/release/languages/UltraNoteInfinity_cn.qm
+      build/release/languages/UltraNoteInfinity_en.qm
+      build/release/languages/UltraNoteInfinity_ru.qm
+      build/release/languages/UltraNoteInfinity_tr.qm
+      DESTINATION ./${PROJECT_NAME}.app/Contents/Resources COMPONENT Runtime)
 
 elseif (UNIX)
   install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
@@ -423,7 +429,14 @@ elseif (UNIX)
   install(FILES src/images/UltraNoteLogo.png DESTINATION share/pixmaps RENAME ultranote.png)
   install(FILES COPYING DESTINATION share/doc/ultranoteinfinity)
   install(PROGRAMS build/release/tor/bin/tor DESTINATION bin)
-  install(FILES ${TRANSLATIONS} DESTINATION bin)
+
+  # Add translation files to package
+  install(FILES
+      build/release/languages/UltraNoteInfinity_cn.qm
+      build/release/languages/UltraNoteInfinity_en.qm
+      build/release/languages/UltraNoteInfinity_ru.qm
+      build/release/languages/UltraNoteInfinity_tr.qm
+      DESTINATION bin)
 
   SET(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
   SET(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
