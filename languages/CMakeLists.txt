@@ -52,18 +52,9 @@ if (Qt5LinguistTools_FOUND)
                         SOURCES ${sTranslationTsFiles}
                       )
 
-
      if ("${sTranslationQmFiles}" STREQUAL "")  # If  sTranslationQmFiles is empty, there is an issue somewhere
         MESSAGE(WARNING "Therer is no qm file to generate")
     endif()
-
 else ()
-
        MESSAGE(WARNING "Qt5LinguistTools not found, the translation files will not be processed")
-
 endif()
-
-
-#	install(FILES ${sTranslationQmFiles} DESTINATION translations)
-
-MESSAGE(STATUS " ")

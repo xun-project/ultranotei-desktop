@@ -167,7 +167,7 @@ set(CRYPTONOTE_SOURCES
   cryptonote/external/miniupnpc/upnpcommands.c
   cryptonote/external/miniupnpc/upnpreplyparse.c
   cryptonote/src/Common/Base58.cpp
-  cryptonote/src/Common/Base64.cpp  
+  cryptonote/src/Common/Base64.cpp
   cryptonote/src/Common/CommandLine.cpp
   cryptonote/src/Common/Util.cpp
   cryptonote/src/Common/StringTools.cpp
@@ -200,7 +200,7 @@ set(CRYPTONOTE_SOURCES
   #cryptonote/src/crypto/skein.c
   cryptonote/src/crypto/tree-hash.c
   cryptonote/src/crypto/aux_hash.c
-  cryptonote/src/crypto/cryptonight.cpp 
+  cryptonote/src/crypto/cryptonight.cpp
   cryptonote/src/CryptoNoteCore/BlockchainIndices.cpp
   cryptonote/src/CryptoNoteCore/BlockchainMessages.cpp
   cryptonote/src/CryptoNoteCore/BlockIndex.cpp
@@ -368,7 +368,13 @@ add_subdirectory(zlib EXCLUDE_FROM_ALL)
 
 # translations
 set(MainTranslationSourceDir "${CMAKE_CURRENT_SOURCE_DIR}/src/qml")
-set(TranslationsOutputDir "${CMAKE_CURRENT_SOURCE_DIR}/build/release/Release")
+
+if (WIN32)
+  set(TranslationsOutputDir "${CMAKE_CURRENT_SOURCE_DIR}/build/release/Release")
+else ()
+  set(TranslationsOutputDir "${CMAKE_CURRENT_SOURCE_DIR}/build/release")
+endif ()
+
 include_directories (${MainTranslationSourceDir})
 add_subdirectory(languages)
 
@@ -397,6 +403,7 @@ set(CPACK_PACKAGE_VENDOR ${UN_VENDOR})
 set(CPACK_PACKAGE_CONTACT ${UN_CONTACT})
 set(CPACK_PACKAGE_DESCRIPTION ${UN_DESCRIPTION})
 set(CPACK_STRIP_FILES ON)
+file(GLOB TRANSLATIONS "build/release/languages/*.qm")
 if (APPLE)
   set(CPACK_GENERATOR DragNDrop)
   set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}")
@@ -408,7 +415,7 @@ if (APPLE)
   install(CODE "execute_process( COMMAND \"${MACDEPLOYQT}\" \"${PROJECT_NAME}.app\" \"-qmldir=${QML_DIRS}\")" COMPONENT Runtime)
   install(TARGETS ${PROJECT_NAME} BUNDLE DESTINATION . COMPONENT Runtime)
   install(PROGRAMS build/release/tor/bin/tor DESTINATION ./${PROJECT_NAME}.app/Contents/Resources COMPONENT Runtime)
-  install(DIRECTORY build/release/Release/languages DESTINATION ./${PROJECT_NAME}.app/Contents/Resources COMPONENT Runtime)
+  install(FILES ${TRANSLATIONS} DESTINATION ./${PROJECT_NAME}.app/Contents/Resources COMPONENT Runtime)
 
 elseif (UNIX)
   install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
@@ -416,11 +423,11 @@ elseif (UNIX)
   install(FILES src/images/UltraNoteLogo.png DESTINATION share/pixmaps RENAME ultranote.png)
   install(FILES COPYING DESTINATION share/doc/ultranoteinfinity)
   install(PROGRAMS build/release/tor/bin/tor DESTINATION bin)
-  install(DIRECTORY build/release/Release/languages DESTINATION bin)
+  install(FILES ${TRANSLATIONS} DESTINATION bin)
 
-	SET(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
-	SET(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
-	SET(CPACK_PACKAGE_ICON src/images/UltraNoteLogo.png)
+  SET(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
+  SET(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
+  SET(CPACK_PACKAGE_ICON src/images/UltraNoteLogo.png)
 
   if (NOT PACKRPM)
     set(CPACK_GENERATOR DEB)

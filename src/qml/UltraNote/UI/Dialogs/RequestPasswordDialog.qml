@@ -63,6 +63,8 @@ UNDialog {
     title: qsTr("Enter password")
     modal: true
 
+    focus: true
+
     Item {
         id: _contentItem
 
@@ -73,18 +75,20 @@ UNDialog {
         implicitHeight: height
 
         clip: true
-        focus: _dialog.visible
 
-        onFocusChanged: {
-            console.log("focus changed")
-            _passwordField.forceActiveFocus()
-        }
+        //focus: true
 
-        Component.onCompleted: {
-            console.log("Request password component completed")
-            if(!_passwordField.activeFocus)
-                _passwordField.forceActiveFocus()
-        }
+        //focus: _dialog.visible
+
+        //onFocusChanged: {
+        //    console.log("focus changed")
+        //    _passwordField.forceActiveFocus()
+        //}
+
+        //Component.onCompleted: {
+        //    console.log("Request password component completed")
+        //    _passwordField.forceActiveFocus()
+        //}
 
         ColumnLayout {
             id: _contentData
@@ -131,10 +135,15 @@ UNDialog {
                     Layout.alignment: Qt.AlignVCenter
 
                     echoMode: TextInput.Password
-                    focus: _dialog.visible
+
+                    focus: true
+
+                    //onVisibleChanged: if(visible) _passwordField.forceActiveFocus()
+
                     onTextChanged: _dialog.error = false
 
                     Keys.onReturnPressed: _dialog.acceptPassword()
+                    Keys.onEnterPressed: _dialog.acceptPassword()
                 }
             }
 

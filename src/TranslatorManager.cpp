@@ -50,14 +50,17 @@ void TranslatorManager::initialize()
 
     qInfo() << "installing lang : " << lang;
 
-#if defined(_MSC_VER)
     m_langPath = QApplication::applicationDirPath();
+
+#if defined(Q_OS_WIN) //_MSC_VER
     m_langPath.append("/languages");
+    qInfo() << "Q_OS_WIN";
+#elif defined(Q_OS_UNIX)
+    qInfo() << "Q_OS_UNIX";
 #elif defined(Q_OS_MAC)
-    m_langPath = QApplication::applicationDirPath();
-    m_langPath = m_langPath + "/../Resources/languages/";
+    qInfo() << "Q_OS_MAC";
 #else
-    m_langPath = "languages";
+    m_langPath.append("/languages");
 #endif
 
     QDir dir(m_langPath);

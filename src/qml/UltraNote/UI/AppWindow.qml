@@ -13,7 +13,7 @@ import UltraNote.UI.Dialogs 1.0
 UNFramelessApplicationWindow {
     id: _appWindow
 
-    width: 1135 //1052,1024
+    width: 1175
     height: 840
 
     visible: true
@@ -92,6 +92,7 @@ UNFramelessApplicationWindow {
             _requestPasswordDialog.clear()
             _requestPasswordDialog.error = _error
             _requestPasswordDialog.open()
+            _requestPasswordDialog.setFocusOnPass()
         }
         onAlertOnApplication: _appWindow.alert(0)
     }
@@ -1394,12 +1395,12 @@ UNFramelessApplicationWindow {
                 y: parent.height
                 x: 0
 
-                menuWidth: 250
+                menuWidth: 220
 
                 margins: 20
                 topPadding: 24
-                bottomPadding: 27
-                rightPadding: 50
+                bottomPadding: 24
+                rightPadding: 24
 
                 color: Theme.statusBarMenuColor
 
