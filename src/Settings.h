@@ -53,6 +53,7 @@ public:
   quint16 getCurrentLocalDaemonPort() const;
   QString getCurrentRemoteNode() const;
   bool isStartOnLoginEnabled() const;
+  QString getLanguage() const;
 #ifdef Q_OS_WIN
   bool isMinimizeToTrayEnabled() const;
   bool isCloseToTrayEnabled() const;
@@ -70,6 +71,7 @@ public:
   void setCurrentRemoteNode(const QString& _remoteNode);
   void setRPCNodesList(const QStringList& _RPCNodesList);
   void setFiatSymbol(const QString &val);
+  void setLanguage(const QString& _language);
 #ifdef Q_OS_WIN
   void setMinimizeToTrayEnabled(bool _enable);
   void setCloseToTrayEnabled(bool _enable);

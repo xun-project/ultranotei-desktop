@@ -9,7 +9,15 @@ import UltraNote.UI.Controls 1.0
 UNDialog {
     id: _dialog
 
+    property bool  unlocking: false
     property alias error: _errorLabel.visible
+
+    function setFocusOnPass() {
+        if(!_passwordField.activeFocus){
+            console.log("setFocusOnPass")
+            _passwordField.forceActiveFocus()
+        }
+    }
 
     function clear() {
         _passwordField.text = ''
@@ -20,9 +28,27 @@ UNDialog {
             _requestPasswordDialog.open()
             return
         }
-        walletAdapter.open(_passwordField.text)
+        if(!_dialog.unlocking)
+        {walletAdapter.open(_passwordField.text)
+        }
+        else
+        {walletAdapter.removeLock(_passwordField.text)
+        }
         _requestPasswordDialog.close()
+    }
 
+    function cancelPassword(){
+        _requestPasswordDialog.close()
+        walletAdapter.isWalletOpen = false
+        if(!_dialog.unlocking){
+            _walletDialog.selectFolder = false
+            _walletDialog.selectExisting = false
+            _walletDialog.title = qsTr("New wallet file")
+            _walletDialog.defaultSuffix = "wallet"
+            _walletDialog.nameFilters = ["Wallet Files (*.wallet)"]
+            _walletDialog.acceptedCallback = walletAdapter.createWallet
+            _walletDialog.open()
+        }
     }
 
     buttons: ListModel {
@@ -33,9 +59,11 @@ UNDialog {
     implicitWidth: 400
     closePolicy: Popup.NoAutoClose
     onAccepted: _dialog.acceptPassword()
-    onRejected: _requestPasswordDialog.close()
+    onRejected: _dialog.cancelPassword()
     title: qsTr("Enter password")
     modal: true
+
+    focus: true
 
     Item {
         id: _contentItem
@@ -47,6 +75,20 @@ UNDialog {
         implicitHeight: height
 
         clip: true
+
+        //focus: true
+
+        //focus: _dialog.visible
+
+        //onFocusChanged: {
+        //    console.log("focus changed")
+        //    _passwordField.forceActiveFocus()
+        //}
+
+        //Component.onCompleted: {
+        //    console.log("Request password component completed")
+        //    _passwordField.forceActiveFocus()
+        //}
 
         ColumnLayout {
             id: _contentData
@@ -93,10 +135,15 @@ UNDialog {
                     Layout.alignment: Qt.AlignVCenter
 
                     echoMode: TextInput.Password
-                    focus: _dialog.visible
+
+                    focus: true
+
+                    //onVisibleChanged: if(visible) _passwordField.forceActiveFocus()
+
                     onTextChanged: _dialog.error = false
 
                     Keys.onReturnPressed: _dialog.acceptPassword()
+                    Keys.onEnterPressed: _dialog.acceptPassword()
                 }
             }
 

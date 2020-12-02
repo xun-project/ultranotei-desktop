@@ -64,7 +64,7 @@ UNDialogInfinity {
 
                 horizontalAlignment: Label.AlignLeft
                 verticalAlignment: Label.AlignVCenter
-                text: "YOUR 25 WORD MNEMONIC SEED"
+                text: qsTr("YOUR 25 WORD MNEMONIC SEED")
             }
 
             UNLayoutSpacer {
@@ -94,12 +94,13 @@ UNDialogInfinity {
 
                     text: walletAdapter.mnemonicSeed
                 }
+
                 UNLayoutSpacer {
                     fixedHeight: 20
                 }
+
                 UNIcon {
-                    anchors.right: parent.right
-                    anchors.verticalCenter: parent.verticalCenter
+                    Layout.alignment: Qt.AlignVCenter
 
                     size: 24
                     source: "qrc:/icons/resources/icons/clipboard_copy_icon.svg"
@@ -112,86 +113,13 @@ UNDialogInfinity {
             }
 
             UNLayoutSpacer {
-                fixedHeight: 40
-            }
-            UNLabel {
-                visible:false
-                id: _guiKeyLabel
-
-                Layout.fillWidth: true
-                Layout.preferredHeight: implicitHeight
-                Layout.maximumHeight: implicitHeight
-                Layout.minimumHeight: implicitHeight
-
-                type: UNLabel.Type.TypeBold
-                size:16
-
-                lineHeight: 17
-                lineHeightMode: Label.FixedHeight
-                color: Theme.dialogInfinityTitleTextColor
-
-                elide: Label.ElideNone
-                wrapMode: Label.WordWrap
-
-                horizontalAlignment: Label.AlignLeft
-                verticalAlignment: Label.AlignVCenter
-                text: "YOUR TRACKING KEY"
-            }
-
-            UNLayoutSpacer {
-                visible:false
-                fixedHeight: 10
-            }
-
-            RowLayout {
-                visible:false
-                UNLabelSelectable {
-                    id: _guiKeyText
-                    Layout.fillWidth: true
-                    Layout.preferredHeight: implicitHeight
-                    Layout.maximumHeight: implicitHeight
-                    Layout.minimumHeight: implicitHeight
-                    Layout.rightMargin: 8
-
-                    type: UNLabel.Type.TypeNormal
-
-                    isReachText:false
-
-                    color: Theme.dialogInfinityTextColor
-
-                    wrapMode: Label.WrapAnywhere
-                    horizontalAlignment: Label.AlignLeft
-                    verticalAlignment: Label.AlignVCenter
-
-                    focus: _dialog.visible
-
-                    text: walletAdapter.guiKey
-                }
-                UNLayoutSpacer {
-                    fixedHeight: 20
-                }
-                UNIcon {
-                    anchors.right: parent.right
-                    anchors.verticalCenter: parent.verticalCenter
-
-                    size: 24
-                    source: "qrc:/icons/resources/icons/clipboard_copy_icon.svg"
-                    toolTip: qsTr("Copy to Clipboard")
-                    color: Theme.barcodeIconColor
-                    clickable: true
-
-                    onClicked: clipboard.setText(walletAdapter.guiKey)
-                }
-            }
-            UNLayoutSpacer {
-                visible:false
                 fixedHeight: 30
             }
 
             UNButton {
                 Layout.fillWidth: true
                 text: qsTr("CANCEL")
-                activeBorderColor: "#444444"
+                activeBorderColor: Theme.buttonDisabledBorderColor
                 onClicked: _dialog.close()
             }
         }

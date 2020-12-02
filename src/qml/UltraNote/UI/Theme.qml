@@ -21,8 +21,9 @@ QtObject {
     readonly property color messageDetailsDialogTextAreaColor: Qt.lighter("gray")
     readonly property color messageDetailsDialogButtonActiveColor: "gray"
     readonly property int messageDetailsDialogButtonheight: 30
-    readonly property int messageDetailsDialogButtonwidth: 50
+    readonly property int messageDetailsDialogButtonwidth: 75
     readonly property int messageDetailsDialogButtonFontSize: 12
+    readonly property int messageDetailsDialogWindowWidth: 660
 
     //[V2 Common Colors]
 
@@ -93,6 +94,9 @@ QtObject {
     readonly property color radioButtonTextColor: "#aeaeb1"
     readonly property color radioButtonFrameColor: "#4a6572"
     readonly property color radioButtonActiveColor: "#E0E0E0"
+    readonly property color radioButtonInfinityActiveColor: "#FFA500"
+    readonly property color radioButtonInfinityFrameColor: "#FFFFFF"
+    readonly property color radioButtonInfinityTextColor: "#FFFFFF"
 
     //Dialog
     readonly property color dialogBackgroundColor: "#ffffff"

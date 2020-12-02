@@ -8,16 +8,24 @@
 #include <QJsonArray>
 #include <QDebug>
 
-#define SERVER_URL "https://api.coingecko.com/api/v3/"
-#define COIN_NAME "xuni"
+#define SERVER_URL "https://localcryptos.club/api/coin/xuni"
+#define COIN_NAME "XUNI"
 #define PRICE_CHECK_PERIOD_SEC 300
+#define DEFAULT_FIAT_SYMBOL "USD"
 
 namespace WalletGui {
 
 FiatConverter::FiatConverter(QObject *parent) : QObject(parent),
     m_http(new QNetworkAccessManager())
 {
-    setFiatId(Settings::instance().getFiatSymbol());
+    QString fiatSymbol = Settings::instance().getFiatSymbol();
+    if (fiatSymbol == "")
+    {
+        fiatSymbol = DEFAULT_FIAT_SYMBOL;
+        Settings::instance().setFiatSymbol(fiatSymbol);
+        qInfo() << QString("FiatConverter: set the fiat symbol to default (%1)").arg(fiatSymbol);
+    }
+    setFiatId(fiatSymbol);
 
     connect(m_http, &QNetworkAccessManager::sslErrors,
             this, [&](QNetworkReply *reply, const QList<QSslError> &errors) {
@@ -26,12 +34,13 @@ FiatConverter::FiatConverter(QObject *parent) : QObject(parent),
     });
     connect(m_http, &QNetworkAccessManager::finished, this,
             &FiatConverter::requestFinished);
-    m_priceCheckTimer.setInterval(PRICE_CHECK_PERIOD_SEC * 1000);
+    m_priceCheckTimer.setInterval(PRICE_CHECK_PERIOD_SEC* 1000);
     m_priceCheckTimer.setSingleShot(true);
     m_priceCheckTimer.stop();
     connect(&m_priceCheckTimer, &QTimer::timeout, [&]() {
         sendRequest(RequestType::CoinPrice);
     });
+
     sendRequest(RequestType::CoinList);
 }
 
@@ -64,13 +73,8 @@ QString FiatConverter::fullUrl(RequestType type) const
     QString out(SERVER_URL);
     switch (type) {
     case RequestType::CoinList:
-        out += "coins/list";
-        break;
     case RequestType::SupportedCurrencies:
-        out += "simple/supported_vs_currencies";
-        break;
     case RequestType::CoinPrice:
-        out += "simple/price";
         break;
     default:
         out.clear();
@@ -80,16 +84,11 @@ QString FiatConverter::fullUrl(RequestType type) const
 
 QNetworkReply* FiatConverter::networkReply(RequestType type, QUrl url)
 {
-    if (RequestType::CoinPrice == type) {
-        if (m_coinId.isEmpty() || m_fiatList.isEmpty()) {
-            qCritical() << "Coin ID or fiat list is empty";
-            return nullptr;
-        }
-        QUrlQuery query;
-        query.addQueryItem("ids", m_coinId);
-        query.addQueryItem("vs_currencies", m_fiatList);
-        url.setQuery(query.query());
+    if (RequestType::CoinPrice == type && m_availableFiatList.isEmpty()) {
+        qCritical() << "Fiat list is empty";
+        return nullptr;
     }
+
     QNetworkRequest request(url);
     QSslConfiguration config = request.sslConfiguration();
     config.setProtocol(QSsl::SecureProtocols);
@@ -117,7 +116,7 @@ void FiatConverter::requestFinished(QNetworkReply* reply)
         const QString msg = "Error code " + QString::number(rc) + ": " + reply->errorString();
         qCritical() << msg;
         //in case of error, restart price polling if possible
-        if (!m_coinId.isEmpty() && !m_fiatList.isEmpty()) {
+        if (!m_availableFiatList.isEmpty()) {
             qDebug() << "Restart price check timer";
             m_priceCheckTimer.start();
         }
@@ -127,54 +126,52 @@ void FiatConverter::requestFinished(QNetworkReply* reply)
 void FiatConverter::processReply(RequestType type, const QByteArray &data)
 {
     QJsonParseError error{};
+
     QJsonDocument doc = QJsonDocument::fromJson(data, &error);
     switch (type) {
     case RequestType::CoinList:
-        qDebug() << "Processing coin list";
-        if (doc.isArray()) {
-            const QJsonArray arr = doc.array();
-            for (const auto &val: arr) {
-                const auto obj = val.toObject();
-                const auto symbol = obj["symbol"].toString();
-                if (0 == symbol.compare(COIN_NAME, Qt::CaseInsensitive)) {
-                    m_coinId = obj["id"].toString();
-                    sendRequest(RequestType::SupportedCurrencies);
-                    break;
+    case RequestType::SupportedCurrencies:
+        if (doc.isObject()) {
+
+            foreach(const QJsonValue & v, doc.object()["data"].toArray())
+            {
+                qDebug() << "Processing coin list";
+
+                m_coinPriceDict = v.toObject().value(COIN_NAME).toObject()["price"].toObject();
+
+                m_availableFiatList.clear();
+                QList<QString> keyList = m_coinPriceDict.keys();
+
+                for (int i = 0; i < keyList.size(); ++i) {
+                    m_availableFiatList << keyList.at(i);
+                    if (0 == m_fiatId.compare(keyList.at(i), Qt::CaseInsensitive)) {
+                        setCurrentIndex(i);
+                    }
                 }
+                emit availableFiatListChanged();
             }
+
+            sendRequest(RequestType::CoinPrice);
         } else {
             qCritical() << "Reply is not a JSON array" << error.errorString();
             qDebug() << data;
         }
         break;
-    case RequestType::SupportedCurrencies:
-        qDebug() << "Processing supported currencies";
-        {
-            m_fiatList = QString(data);
-            m_fiatList.remove("[");
-            m_fiatList.remove("]");
-            m_fiatList.remove("\"");
-            const auto tok = m_fiatList.split(",");
-            m_availableFiatList.clear();
-            for (int i = 0; i < tok.size(); ++i) {
-                m_availableFiatList << tok.at(i);
-                if (0 == m_fiatId.compare(tok.at(i), Qt::CaseInsensitive)) {
-                    setCurrentIndex(i);
-                }
-            }
-            emit availableFiatListChanged();
-            sendRequest(RequestType::CoinPrice);
-        }
-        break;
     case RequestType::CoinPrice:
+        qDebug() << "Process coin price ";
+
         if (doc.isObject()) {
-            m_coinPriceDict = doc.object()[m_coinId].toObject();
+            
+            foreach(const QJsonValue & v, doc.object()["data"].toArray())
+                m_coinPriceDict = v.toObject().value("XUNI").toObject()["price"].toObject();
+
             if (!m_coinPriceDict.isEmpty()) {
                 setCoinPrice();
                 m_priceCheckTimer.start();
             } else {
-                qCritical() << "Cannot find" << m_coinId;
+                qCritical() << "Cannot find" << m_fiatId;
             }
+
         } else {
             qCritical() << "Reply is not a JSON object" << error.errorString();
             qDebug() << data;

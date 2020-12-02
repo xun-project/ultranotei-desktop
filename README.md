@@ -4,7 +4,7 @@
 
 Dependencies: GCC 4.7.3 or later, CMake 3.9 or later, Boost 1.55 or later, and Qt 5.13 or later.
 
-You may download them from here:
+You may download them from here: 
 
 - https://gcc.gnu.org/
 - https://www.cmake.org/
@@ -201,7 +201,9 @@ cpack -C Release
 
 This will generate the UltraNoteWallet installation package inside the build directory. [Example: ```UltraNoteInfinity-1.0.2-beta-win64.exe```]
 
-NOTE: the Windows packages are not signed by certificate.
+NOTE:
+1-The Windows packages are not signed by certificate.
+2-When clean step is done all the translation files are removed so far, please be careful.
 
 Alternatively you can use the Visual Studio GUI for building. To do so, run just the first cmake command from the command list above ["%CMAKE_PATH%"\cmake.exe] with option ```-G "Visual Studio 15 2017 Win64"``` instead of ```-G "NMake Makefiles```", then open the generated file `build/release/UltraNoteInfinity.sln` in Visual Studio. Select build type 'Release' and build the target 'UltraNoteWallet' or for a distribution package build target 'PACKAGE'.
 

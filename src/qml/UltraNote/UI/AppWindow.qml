@@ -13,7 +13,7 @@ import UltraNote.UI.Dialogs 1.0
 UNFramelessApplicationWindow {
     id: _appWindow
 
-    width: 1052   //1024
+    width: 1175
     height: 840
 
     visible: true
@@ -92,7 +92,9 @@ UNFramelessApplicationWindow {
             _requestPasswordDialog.clear()
             _requestPasswordDialog.error = _error
             _requestPasswordDialog.open()
+            _requestPasswordDialog.setFocusOnPass()
         }
+        onAlertOnApplication: _appWindow.alert(0)
     }
     Connections {
         target: walletAdapter.messagesTableModel
@@ -144,6 +146,14 @@ UNFramelessApplicationWindow {
     //            visible: true
     //        }
     //        Component.onCompleted: win.visible = true
+
+    Component.onCompleted:{
+        //set translations once from QML to C++
+        walletAdapter.miningService.statusList = LegacyTranslations.minningStatus
+        walletAdapter.addressBookTableModel.columnNameList = LegacyTranslations.addressBookTableHeaders
+        walletAdapter.messagesTableModel.columnNameList = LegacyTranslations.messagesTableHeaders
+        walletAdapter.transactionsTableModel.columnNameList = LegacyTranslations.transactionsTableHeaders
+    }
 
     Old.FileDialog {
         id: _walletDialog
@@ -371,7 +381,7 @@ UNFramelessApplicationWindow {
 
                                 width: Math.min(implicitWidth, 100)
 
-                                text: qsTr("balance")
+                                text: qsTr("Balance")
                                 textColor: Theme.drawerMainActionButtonTextColor
                                 iconSource: "qrc:/icons/resources/icons/drawer_main_action_icon.svg"
                                 backgroundColor: Theme.drawerMainActionButtonColor
@@ -448,7 +458,7 @@ UNFramelessApplicationWindow {
                                                     _appPagesStackView.push(model.page)
                                                 }
                                             }
-                                            else _messageDialogProperties.showMessage("Tracking Wallet", "This is a tracking wallet. This tab is not available.")
+                                            else _messageDialogProperties.showMessage(qsTr("Tracking Wallet"), qsTr("This is a tracking wallet. This tab is not available."))
                                         }
                                     }
                                 }
@@ -1170,6 +1180,14 @@ UNFramelessApplicationWindow {
             }
         }
 
+        LanguageSettingDialog {
+            id: _LanguageSettingDialog
+        }
+
+        RestartWalletDialog {
+            id: _RestartWalletDialog
+        }
+
         MessageDialog {
             id: _messageDialog
 
@@ -1257,6 +1275,7 @@ UNFramelessApplicationWindow {
                 color: Theme.statusBarMenuColor
 
                 UNMenuItem {
+                    id: _createWalletButton
                     text: qsTr("Create Wallet")
 
                     onClicked: {
@@ -1376,13 +1395,30 @@ UNFramelessApplicationWindow {
                 y: parent.height
                 x: 0
 
+                menuWidth: 220
+
                 margins: 20
                 topPadding: 24
-                bottomPadding: 27
-                rightPadding: 50
+                bottomPadding: 24
+                rightPadding: 24
 
                 color: Theme.statusBarMenuColor
 
+                UNMenuItem {
+                    text: qsTr("Unlock wallet")
+                    disabled: !walletAdapter.isWalletEncrypted
+                    onClicked: {
+                        if(walletAdapter.isWalletEncrypted){
+                            if(walletAdapter.isWalletOpen){
+                                _requestPasswordDialog.unlocking = true
+                            }else{
+                                _requestPasswordDialog.unlocking = false
+                            }
+                            _requestPasswordDialog.clear()
+                            _requestPasswordDialog.open()
+                        }
+                    }
+                }
 
                 UNMenuItem {
                     text: walletAdapter.isWalletEncrypted ? qsTr("Change Password") : qsTr("Encrypt Wallet")
@@ -1408,6 +1444,11 @@ UNFramelessApplicationWindow {
                     onClicked: {
                         _fiatSymbolDialog.open()
                     }
+                }
+
+                UNMenuItem {
+                    text: qsTr("Language Setting")
+                    onClicked: _LanguageSettingDialog.open()
                 }
 
                 UNMenuItem {

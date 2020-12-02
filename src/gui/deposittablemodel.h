@@ -13,6 +13,7 @@ class DepositTableModel : public QAbstractTableModel
     QML_READABLE_PROPERTY(int, depositCount, setDepositCount, 0)
     Q_PROPERTY(int unlockedDepositCount READ unlockedDepositCount NOTIFY unlockedDepositCountChanged)
 	QML_READABLE_PROPERTY(QString, depositDetails, setDepositDetails, "")
+    QML_WRITABLE_PROPERTY(QStringList, columnNameList, setColumnNameList, QStringList())
 
 public:
     enum ColumnName { Status = 0,
@@ -31,7 +32,7 @@ public:
     int columnCount(const QModelIndex &index = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role) const override;
     QHash<int, QByteArray> roleNames() const override;
-    Q_INVOKABLE QString columnName(int index) const;
+    Q_INVOKABLE QString columnName(int index);
     Q_INVOKABLE void sortAfterColumn(int col, bool ascending);
 	Q_INVOKABLE void setupDepositDetails(int row);
 
@@ -42,6 +43,8 @@ public:
     void depositsUpdated(const QVector<CryptoNote::DepositId>& _depositIds);
     const QVector<CryptoNote::DepositId>& unlockedDepositIds() const {return m_unlockedDepositIds;}
     int unlockedDepositCount() const { return m_unlockedDepositIds.size();}
+    void reinitHeaderNames();
+
 signals:
     void unlockedDepositCountChanged();
 private:
@@ -56,8 +59,10 @@ private:
                                quint64 _interest); //interest earned (in coin minimum increments)
     void appendDeposit(CryptoNote::DepositId _depositId);
     QVariant getUserRole(int row, int role) const;
+    QString getColumnName(ColumnName columnName);
     QVector<CryptoNote::DepositId> m_unlockedDepositIds;
     QVector<int> m_orderedRows;
+    bool translationsInit = false;
 };
 
 } // WalletGui

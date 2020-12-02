@@ -18,6 +18,7 @@ typedef QPair<CryptoNote::TransactionId, Message> TransactionMessageId;
 class MessagesTableModel : public QAbstractTableModel
 {
     Q_OBJECT
+    QML_WRITABLE_PROPERTY(QStringList, columnNameList, setColumnNameList, QStringList())
 
 public:
     enum ColumnName {
@@ -33,7 +34,7 @@ public:
     int columnCount(const QModelIndex &index = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role) const override;
     QHash<int, QByteArray> roleNames() const override;
-    Q_INVOKABLE QString columnName(int index) const;
+    Q_INVOKABLE QString columnName(int index);
     Q_INVOKABLE void setupMessageDetails(int row);
     Q_INVOKABLE void save(const QUrl &fileName);
     Q_INVOKABLE void download(const QUrl &folderName);
@@ -70,6 +71,7 @@ private:
 
 	int msgLastCount;
 	void initUnseenCacheFile();
+    QString getColumnName(ColumnName columnName);
 	QString applicationCurrentPath;
 	QVector<CryptoNote::TransactionId> unseenList;
 

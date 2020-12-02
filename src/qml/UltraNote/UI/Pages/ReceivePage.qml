@@ -13,6 +13,14 @@ UNPage {
 
     title: qsTr("Receive")
 
+    function getQrBorderWidth() {
+       var availableBorderWidth = Math.max(_publicAddressHeaderText.width,
+                                           _privateSpendKeyHeaderText.width,
+                                           _privateViewKeyHeaderText.width) + 90;
+
+        return Math.max(availableBorderWidth, 250);
+    }
+
     contentItem: Item {
         anchors.fill: parent
 
@@ -60,7 +68,7 @@ UNPage {
 
                     anchors.horizontalCenter: parent.horizontalCenter
 
-                    width: 250
+                    width: getQrBorderWidth()
                     height: 307
 
                     onAddressTextChanged: _publicAddressQrImage.sourceText = addressText
@@ -78,12 +86,15 @@ UNPage {
                         spacing: 24
 
                         Item {
+                            id:_publicAddressHeaderItem
+
                             anchors.left: parent.left
                             anchors.right: parent.right
 
                             height: 24
 
                             UNLabel {
+                                id:_publicAddressHeaderText
                                 anchors.left: parent.left
                                 anchors.verticalCenter: parent.verticalCenter
 
@@ -145,7 +156,7 @@ UNPage {
 
                     anchors.horizontalCenter: parent.horizontalCenter
 
-                    width: 250
+                    width:  getQrBorderWidth()
                     height: 307
 
                     onAddressTextChanged: _privateSpendKeyQrImage.sourceText = _privateSpendKeyItem.addressText
@@ -169,6 +180,7 @@ UNPage {
                             height: 24
 
                             UNLabel {
+                                id:_privateSpendKeyHeaderText
                                 anchors.left: parent.left
                                 anchors.verticalCenter: parent.verticalCenter
 
@@ -296,7 +308,7 @@ UNPage {
 
                     anchors.horizontalCenter: parent.horizontalCenter
 
-                    width: 250
+                    width: getQrBorderWidth()
                     height: 307
 
                     onAddressTextChanged: _privateViewKeyQrImage.sourceText = _privateViewKeyItem.addressText
@@ -320,6 +332,7 @@ UNPage {
                             height: 24
 
                             UNLabel {
+                                id:_privateViewKeyHeaderText
                                 anchors.left: parent.left
                                 anchors.verticalCenter: parent.verticalCenter
 

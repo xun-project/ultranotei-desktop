@@ -10,10 +10,13 @@ import UltraNote.UI.Controls 1.0
 
 UNPage {
     id: _page
-
     objectName: "mining_page"
-
     title: qsTr("Mining")
+
+    Component.onCompleted:{
+        //initially set mining status
+        walletAdapter.miningService.status = qsTr("Stopped")
+    }
 
     contentItem: Item {
         anchors.fill: parent
@@ -25,14 +28,13 @@ UNPage {
             anchors.fill: parent
             anchors.rightMargin: 16
 
-
             spacing: 0
 
             property int labelTextWidth: Math.max(
                                              _selectPoolLabel.implicitWidth,
                                              _cpuCoresLabel.implicitWidth,
-                                             _miningStatusLabel.implicitWidth
-                                             )
+                                             _miningStatusLabel.implicitWidth)
+
             RowLayout {
                 Layout.fillWidth: true
                 Layout.preferredHeight: 40

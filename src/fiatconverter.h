@@ -34,7 +34,6 @@ private:
     void processReply(RequestType type, const QByteArray &data);
     void setCoinPrice();
     QNetworkAccessManager* m_http = nullptr;
-    QString m_coinId;
     QJsonObject m_coinPriceDict;
     QString m_fiatList;
     QMap<QNetworkReply*, RequestType> m_loadingMap;

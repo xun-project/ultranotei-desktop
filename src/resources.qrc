@@ -85,6 +85,10 @@
         <file>resources/images/logo_white.png</file>
         <file>images/UltraNoteSplash.png</file>
         <file>images/UltraNoteLogo.png</file>
+        <file>images/en.png</file>
+        <file>images/ru.png</file>
+        <file>images/tr.png</file>
+        <file>images/cn.png</file>
     </qresource>
     <qresource prefix="/qml">
         <file>qml/UltraNote/UI/AppWindow.qml</file>
@@ -92,6 +96,7 @@
         <file>qml/UltraNote/UI/qtquickcontrols2.conf</file>
         <file>qml/UltraNote/UI/Splash.qml</file>
         <file>qml/UltraNote/UI/Theme.qml</file>
+        <file>qml/UltraNote/UI/LegacyTranslations.qml</file>
         <file>qml/UltraNote/UI/Controls/UNButton.qml</file>
         <file>qml/UltraNote/UI/Controls/UNImage.qml</file>
         <file>qml/UltraNote/UI/Controls/UNMouseArea.qml</file>
@@ -122,6 +127,8 @@
         <file>qml/UltraNote/UI/Dialogs/ImportTrackingWalletDialog.qml</file>
         <file>qml/UltraNote/UI/Dialogs/ImportSeedDialog.qml</file>
         <file>qml/UltraNote/UI/Dialogs/SeedTrackingKeyDialog.qml</file>
+        <file>qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml</file>
+        <file>qml/UltraNote/UI/Dialogs/RestartWalletDialog.qml</file>
         <file>qml/UltraNote/UI/Pages/AddressBookPage.qml</file>
         <file>qml/UltraNote/UI/Pages/DepositsPage.qml</file>
         <file>qml/UltraNote/UI/Pages/MessagesPage.qml</file>

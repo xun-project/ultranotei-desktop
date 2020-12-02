@@ -23,13 +23,14 @@ namespace WalletGui {
 
 Q_DECL_CONSTEXPR char OPTION_WALLET_FILE[] = "walletFile";
 Q_DECL_CONSTEXPR char OPTION_ENCRYPTED[] = "encrypted";
+Q_DECL_CONSTEXPR char OPTION_LANGUAGE[] = "language";
 Q_DECL_CONSTEXPR char OPTION_MINING_POOLS[] = "miningPools";
 Q_DECL_CONSTEXPR char OPTION_CONNECTION[] = "connectionMode";
 Q_DECL_CONSTEXPR char OPTION_RPCNODES[] = "remoteNodes";
 Q_DECL_CONSTEXPR char OPTION_DAEMON_PORT[] = "daemonPort";
 Q_DECL_CONSTEXPR char OPTION_REMOTE_NODE[] = "remoteNode";
 Q_DECL_CONSTEXPR char OPTION_FIAT_SYMBOL[] = "fiatSymbol";
-Q_DECL_CONSTEXPR char OPTION_DEFAULT_FIAT_SYMBOL[] = "usd";
+Q_DECL_CONSTEXPR char OPTION_DEFAULT_FIAT_SYMBOL[] = "USD";
 Q_DECL_CONSTEXPR char OPTION_AUTOOPTIMIZATION[] = "autoOptimization";
 
 Settings& Settings::instance() {
@@ -231,6 +232,22 @@ QString Settings::getVersion() const {
   return VERSION;
 }
 
+QString Settings::getLanguage() const
+{
+    QString currentLang;
+    if (m_settings.contains(OPTION_LANGUAGE))
+    {
+        currentLang = m_settings.value(OPTION_LANGUAGE).toString();
+    }
+    return currentLang;
+}
+
+void Settings::setLanguage(const QString& _language)
+{
+    m_settings.insert(OPTION_LANGUAGE, _language);
+    saveSettings();
+}
+
 bool Settings::isEncrypted() const {
   return m_settings.contains(OPTION_ENCRYPTED) ? m_settings.value(OPTION_ENCRYPTED).toBool() : false;
 }
@@ -327,7 +344,7 @@ bool Settings::isCloseToTrayEnabled() const {
 
 QString Settings::getFiatSymbol() const
 {
-    return m_settings.contains(OPTION_ENCRYPTED) ?
+    return m_settings.contains(OPTION_FIAT_SYMBOL) ?
                 m_settings.value(OPTION_FIAT_SYMBOL).toString() :
                 OPTION_DEFAULT_FIAT_SYMBOL;
 }

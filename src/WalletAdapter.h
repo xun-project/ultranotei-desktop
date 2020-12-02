@@ -30,16 +30,18 @@
 #include "qmlhelpers.h"
 #include <IWalletLegacy.h>
 #include "gui/OptimizationService.h"
+#include "TranslatorManager.h"
 
 namespace WalletGui {
 
 class WalletAdapter : public QObject, public CryptoNote::IWalletLegacyObserver {
     Q_OBJECT
     Q_DISABLE_COPY(WalletAdapter)
-    QML_READABLE_PROPERTY(bool, isWalletOpen, setIsWalletOpen, false)
+    Q_PROPERTY(bool isWalletOpen READ isWalletOpen WRITE setIsWalletOpen NOTIFY isWalletOpenChanged)
     QML_CONSTANT_PROPERTY(int, defaultDaemonPort, CryptoNote::RPC_DEFAULT_PORT)
     Q_PROPERTY(bool isWalletEncrypted READ isWalletEncrypted NOTIFY isWalletEncryptedChanged)
     Q_PROPERTY(bool isStartOnLoginEnabled READ isStartOnLoginEnabled WRITE startOnLogin NOTIFY isStartOnLoginEnabledChanged)
+    Q_PROPERTY(QString selectedLangauge READ currentLanguage WRITE newSelectedLangauge NOTIFY selectedLangaugeChanged)
     QML_WRITABLE_PROPERTY(int, localDaemonPort, setLocalDaemonPort, 0)
     QML_WRITABLE_PROPERTY(int, connectionMode, setConnectionMode, CONNECTION_MODE_UNKNOWN)
     QML_CONSTANT_PROPERTY_PTR(NodeModel, nodeModel)
@@ -83,10 +85,15 @@ public:
     };
     Q_ENUM(ConnectionMode)
 
+    enum ExitCodes {
+        EXIT_CODE_REBOOT = 2
+    };
+
     static WalletAdapter& instance();
 
     Q_SLOT void setTorSettings();
     Q_INVOKABLE void open(const QString& _password);
+    Q_INVOKABLE void removeLock(const QString& _password);
     void createWithKeys(const CryptoNote::AccountKeys& _keys);
     void close();
     bool save(bool _details, bool _cache);
@@ -102,7 +109,7 @@ public:
     Q_INVOKABLE bool encryptWallet(const QString& oldPwd, const QString& newPwd);
     Q_INVOKABLE void startOnLogin(bool on);
     Q_INVOKABLE void enableTor();
-    bool getTorEnabled();
+    Q_INVOKABLE void loadLanguage();
 
     Q_INVOKABLE QString toLocalFile(const QUrl& fileUrl) const;
     Q_INVOKABLE bool optimizeClicked();
@@ -111,6 +118,12 @@ public:
     Q_INVOKABLE void importSecretkeys(QString spendKey, QString viewKey, QString walletFilePath);
     Q_INVOKABLE void importTrackingkey(QString keyString, QString filePath);
     Q_INVOKABLE void importMnemonicSeed(QString seed, QString filePath);
+    Q_INVOKABLE void setIsWalletOpen(bool on);
+    Q_INVOKABLE void restartWallet();
+
+    bool getTorEnabled();
+    void newSelectedLangauge(QString lang);
+    QString currentLanguage() const;
 
 	QString getAddress() const;
     quint64 getActualBalance() const;
@@ -167,12 +180,17 @@ public:
     quint64 getNumUnlockedOutputs() const;
     void optimizationDelay();
     void optimizeWallet();
+    void initializeAdapter();
+
+    bool isWalletOpen() const;
 
     WalletAdapter();
         ~WalletAdapter() = default;
 
 private:
     QProcess* torProcess = nullptr;
+    OptimizationService* optimizationService = nullptr;
+    TranslatorManager& m_translatorManager;
 	QSoundEffect incomingTransactionEffect;
 	QSoundEffect outgoingTransactionEffect;
     std::fstream m_file;
@@ -186,6 +204,13 @@ private:
     std::atomic<CryptoNote::TransactionId> m_sentMessageId;
     std::atomic<CryptoNote::TransactionId> m_depositId;
     std::atomic<CryptoNote::TransactionId> m_depositWithdrawalId;
+    bool m_isWalletOpen = false;
+
+    QTranslator m_translator;   // contains the translations for this application
+    QTranslator m_translatorQt; // contains the translations for qt
+    QString m_currLang;         // contains the currently loaded language
+    QString m_langPath;         // Path of language files. This is always fixed to /languages
+    QString m_newLang;          // contains the new language to be loaded
 
     void onWalletInitCompleted(int _error, const QString& _error_text);
     void onWalletSendTransactionCompleted(CryptoNote::TransactionId _transaction_id, int _error, const QString& _error_text);
@@ -203,10 +228,10 @@ private:
     Q_SLOT void updateBlockStatusText();
 	Q_SLOT void updateWalletTransactions();
 	Q_SLOT void newTransactionSoundEffect(CryptoNote::TransactionId _transactionId);
+    Q_SLOT void updateOptimizationLabel();
     void updateBlockStatusTextWithDelay();
     void encryptedFlagChanged(bool encrypted);
     void checkTrackingMode();
-    Q_SLOT void updateOptimizationLabel();
     void setPrivateKeys();
     void setWalletTrackingLabel();
 Q_SIGNALS:
@@ -242,6 +267,9 @@ Q_SIGNALS:
     void showMessage(const QString& title, const QString& text);
 
     void requestTransactionScreen();
+    void alertOnApplication();
+    void isWalletOpenChanged();
+    void selectedLangaugeChanged();
 };
 
 }

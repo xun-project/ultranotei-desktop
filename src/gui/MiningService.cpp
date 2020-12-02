@@ -48,7 +48,7 @@ void MiningService::processHashRate()
         return;
     }
 
-    setStatus(tr("Hashrate: %1 H/s").arg(hashRate));
+    setStatus(getMiningStatus(MINING_HASHRATE).arg(hashRate));
 }
 
 void MiningService::initCpuCoreList()
@@ -72,12 +72,12 @@ void MiningService::startMining()
 
     m_miner = new Miner(this, poolUrl.host(), poolUrl.port(), WalletAdapter::instance().getAddress());
     connect(m_miner, &Miner::socketErrorSignal, this, [this](const QString& _errorString) {
-        setStatus(tr("Error: %1").arg(_errorString));
+        setStatus(getMiningStatus(MINING_ERROR).arg(_errorString));
     });
 
     m_miner->start(m_coreCount);
     _hashRateTimer.start();
-    setStatus(tr("Started"));
+    setStatus(getMiningStatus(MINING_STARTED));
     setIsMiningActive(true);
 }
 
@@ -91,13 +91,47 @@ void MiningService::stopMining()
     m_miner->stop();
     m_miner->deleteLater();
     m_miner = nullptr;
-    setStatus(tr("Stopped"));
+    setStatus(getMiningStatus(MINING_STOPPED));
     setIsMiningActive(false);
 }
 
 void MiningService::walletClosed()
 {
     stopMining();
+}
+
+QString MiningService::getMiningStatus(MiningStatus statusIndex)
+{
+    QString status;
+    if (!m_statusList.isEmpty())
+    {
+        status = m_statusList.at(statusIndex);
+    }
+    else
+    {
+        switch (statusIndex)
+        {
+        case MINING_STARTED:
+            status = "Started";
+            break;
+        case MINING_STOPPED:
+            status = "Stopped";
+            break;
+        case MINING_HASHRATE:
+            status = "Hashrate: %1 H/s";
+            break;
+        case MINING_WAITING_SCHEDULE:
+            status = "Waiting for the schedule...";
+            break;
+        case MINING_ERROR:
+            status = "Error: %1";
+            break;
+        default:
+            status = "Mining status error";
+            break;
+        }
+    }
+    return status;
 }
 
 void MiningService::addPoolClicked()
@@ -179,7 +213,7 @@ void MiningService::checkStatus()
             startMining();
         }
     } else {
-        setStatus(m_isActive ? tr("Waiting for the schedule...") : tr("Stopped"));
+        setStatus(m_isActive ? getMiningStatus(MINING_WAITING_SCHEDULE) : getMiningStatus(MINING_STOPPED));
         if (m_isMiningActive) {
             stopMining();
         }

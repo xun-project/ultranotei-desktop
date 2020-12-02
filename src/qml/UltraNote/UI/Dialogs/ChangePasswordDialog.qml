@@ -60,10 +60,10 @@ UNDialog {
             if(!_dialog.changePwd){
                 if(!_newPasswordField.activeFocus){
                     _newPasswordField.forceActiveFocus()
-                }else{
-                    if(!_oldPasswordLabel.activeFocus){
-                        _oldPasswordLabel.forceActiveFocus()
-                    }
+                }
+            }else {
+                if(!_oldPasswordField.activeFocus){
+                    _oldPasswordField.forceActiveFocus()
                 }
             }
         }

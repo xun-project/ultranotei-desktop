@@ -12,6 +12,8 @@ typedef QPair<CryptoNote::TransactionId, CryptoNote::TransferId> TransactionTran
 class TransactionsTableModel : public QAbstractTableModel
 {
     Q_OBJECT
+    QML_WRITABLE_PROPERTY(QStringList, columnNameList, setColumnNameList, QStringList())
+
 public:
     enum ColumnName {
         State,
@@ -28,7 +30,7 @@ public:
     int columnCount(const QModelIndex &index = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role) const override;
     QHash<int, QByteArray> roleNames() const override;
-    Q_INVOKABLE QString columnName(int index) const;
+    Q_INVOKABLE QString columnName(int index);
     Q_INVOKABLE QString transactionIcon(int row) const;
     Q_INVOKABLE void setupTransactionDetails(int row);
     Q_INVOKABLE void exportToCsv(const QUrl &fileUrl);
@@ -38,6 +40,9 @@ public:
     void updateWalletTransaction(CryptoNote::TransactionId _id);
     void lastKnownHeightUpdated(quint64 _height);
     void reset();
+Q_SIGNALS:
+    void alertWithNewTransaction();
+
 private:
     QVector<TransactionTransferId> m_transfers;
     QHash<CryptoNote::TransactionId, QPair<quint32, quint32> > m_transactionRow;
@@ -52,6 +57,7 @@ private:
                     const CryptoNote::WalletLegacyTransfer &transfer);
     void sortTransfers();
     QByteArray toCsv() const;
+    QString getColumnName(ColumnName columnName);
     const QString m_transactionDetailsTemplate;
 
 private:

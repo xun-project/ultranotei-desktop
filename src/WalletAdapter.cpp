@@ -26,7 +26,6 @@
 #include "NodeAdapter.h"
 #include "Settings.h"
 #include "WalletAdapter.h"
-
 #include "CryptoNoteCore/Account.h"
 #include "Mnemonics/electrum-words.h"
 
@@ -56,6 +55,7 @@ WalletAdapter::WalletAdapter()
     , m_sentMessageId(CryptoNote::WALLET_LEGACY_INVALID_TRANSACTION_ID)
     , m_depositId(CryptoNote::WALLET_LEGACY_INVALID_TRANSACTION_ID)
     , m_depositWithdrawalId(CryptoNote::WALLET_LEGACY_INVALID_TRANSACTION_ID)
+    , m_translatorManager(TranslatorManager::instance())
 {
     setObjectName("walletAdapter");
     qmlRegisterType<WalletAdapter>("WalletAdapter", 1, 0, "WalletAdapter");
@@ -64,15 +64,11 @@ WalletAdapter::WalletAdapter()
 	incomingTransactionEffect.setSource(QUrl::fromLocalFile(":/sounds/resources/sounds/poker-chip.wav"));
 	outgoingTransactionEffect.setSource(QUrl::fromLocalFile(":/sounds/resources/sounds/Swoosh-1.wav"));
 
-    // init connection settings dialog
-    initConnectionMode();
-    initLocalDaemonPort();
-
     connect(this, &WalletAdapter::walletInitCompletedSignal, this, &WalletAdapter::onWalletInitCompleted, Qt::QueuedConnection);
     connect(this, &WalletAdapter::walletSendTransactionCompletedSignal, this, &WalletAdapter::onWalletSendTransactionCompleted, Qt::QueuedConnection);
     connect(this, &WalletAdapter::updateBlockStatusTextSignal, this, &WalletAdapter::updateBlockStatusText, Qt::QueuedConnection);
     connect(this, &WalletAdapter::updateBlockStatusTextWithDelaySignal, this, &WalletAdapter::updateBlockStatusTextWithDelay, Qt::QueuedConnection);
-    connect(&m_newTransactionsNotificationTimer, &QTimer::timeout, this, &WalletAdapter::notifyAboutLastTransaction);
+    connect(&m_newTransactionsNotificationTimer, &QTimer::timeout, this, &WalletAdapter::notifyAboutLastTransaction, Qt::UniqueConnection);
     connect(
         this, &WalletAdapter::walletSynchronizationProgressUpdatedSignal, this, [&]() {
             if (!m_newTransactionsNotificationTimer.isActive()) {
@@ -185,28 +181,9 @@ WalletAdapter::WalletAdapter()
     connect(this, &WalletAdapter::walletSendMessageCompletedSignal, m_invoiceService, &InvoiceService::sendMessageCompleted,
         Qt::QueuedConnection);
 
-    encryptedFlagChanged(false);
-    setSynchronizationStateIcon("qrc:/icons/icons/sync_sprite.gif");
-    setConnectionStateIcon("qrc:/icons/icons/disconnected.png");
-    const QString connection = Settings::instance().getConnection();
-    if (connection.compare("remote") == 0) {
-        setRemoteModeToolTip(tr("Connected through remote node"));
-        setRemoteModeIcon("qrc:/icons/icons/remote_node.svg");
-    }
-
     connect(this, &WalletAdapter::updateTORSetting, this, &WalletAdapter::setTorSettings);
 
-    //initialize the optimization service
-    OptimizationService* optimizationService = new OptimizationService(this);
-    QObject::connect(this, &WalletAdapter::walletInitCompletedSignal, optimizationService, &OptimizationService::walletOpened);
-    QObject::connect(this, &WalletAdapter::walletCloseCompletedSignal, optimizationService, &OptimizationService::walletClosed);
-    QObject::connect(this, &WalletAdapter::walletSynchronizationProgressUpdatedSignal, optimizationService, &OptimizationService::synchronizationProgressUpdated, Qt::QueuedConnection);
-    QObject::connect(this, &WalletAdapter::walletSynchronizationCompletedSignal, optimizationService, &OptimizationService::synchronizationCompleted, Qt::QueuedConnection);
-    QObject::connect(this, &WalletAdapter::walletSynchronizationCompletedSignal, this, &WalletAdapter::updateOptimizationLabel, Qt::QueuedConnection);
-    
-    setWalletTrackingLabel();
-    m_newTransactionsNotificationTimer.setInterval(500);
-	//QTimer::singleShot(1500, this, SLOT(updateWalletTransactions()));
+    initializeAdapter();
 }
 
 void WalletAdapter::stopTorProcess()
@@ -306,6 +283,11 @@ void WalletAdapter::open(const QString& _password)
     }
 }
 
+void WalletAdapter::removeLock(const QString& _password)
+{
+    encryptWallet(_password, "");
+}
+
 void WalletAdapter::createWithKeys(const CryptoNote::AccountKeys& _keys)
 {
     m_wallet = NodeAdapter::instance().createWallet();
@@ -370,6 +352,14 @@ void WalletAdapter::close()
     setIsWalletOpen(false);
     setSynchronizationStateIcon(""); //hide
     setEncryptionStateIcon("");
+
+    if (optimizationService != nullptr)
+    {
+        delete optimizationService;
+        optimizationService = nullptr;
+    }
+
+    m_depositTableModel->reinitHeaderNames();
 }
 
 bool WalletAdapter::save(bool _details, bool _cache)
@@ -532,10 +522,10 @@ void WalletAdapter::backupWallet(const QUrl& fileUrl)
 
 bool WalletAdapter::encryptWallet(const QString& oldPwd, const QString& newPwd)
 {
-    if (newPwd.isEmpty()) {
+    /*if (newPwd.isEmpty()) {
         qCritical() << "Password cannot be empty";
         return false;
-    }
+    }*/
     const bool rc = changePassword(oldPwd, newPwd);
     emit isWalletEncryptedChanged();
     encryptedFlagChanged(rc);
@@ -558,6 +548,18 @@ void WalletAdapter::enableTor()
 bool WalletAdapter::getTorEnabled()
 {
     return m_isTorEnabled;
+}
+
+void WalletAdapter::newSelectedLangauge(QString lang)
+{
+    m_newLang = lang;
+}
+
+QString WalletAdapter::currentLanguage() const
+{
+    /* Get current language */
+    QString language = Settings::instance().getLanguage();
+    return !language.isEmpty() ? language : "_en.qm";
 }
 
 bool WalletAdapter::isStartOnLoginEnabled() const
@@ -803,6 +805,34 @@ void WalletAdapter::importMnemonicSeed(QString seed, QString filePath)
     WalletAdapter::instance().createWithKeys(keys);
 }
 
+void WalletAdapter::setIsWalletOpen(bool on)
+{
+    m_isWalletOpen = on;
+}
+
+void WalletAdapter::restartWallet()
+{
+    qApp->exit(WalletAdapter::EXIT_CODE_REBOOT);
+}
+
+void WalletAdapter::loadLanguage()
+{
+    if (m_currLang != m_newLang)
+    {
+        m_currLang = m_newLang;
+        QLocale locale = QLocale(m_currLang);
+        QLocale::setDefault(locale);
+        //QString languageName = QLocale::languageToString(locale.language());
+        //TranslatorManager::instance()->switchTranslator(m_translator, QString("%1.qm").arg(m_newLang));
+        //TranslatorManager::instance()->switchTranslator(m_translatorQt, QString("qt%1.qm").arg(m_newLang));
+
+        // save is in settings
+        Settings::instance().setLanguage(m_currLang);
+
+        qInfo() << QString("new language is set: %1").arg(m_currLang);
+    }
+}
+
 void WalletAdapter::optimizeWallet()
 {
     if (Settings::instance().isTrackingMode())
@@ -829,6 +859,51 @@ void WalletAdapter::optimizeWallet()
         unlock();
     }
     }
+}
+
+void WalletAdapter::initializeAdapter()
+{
+    m_translatorManager.initialize();
+
+    // init connection settings dialog
+    initConnectionMode();
+    initLocalDaemonPort();
+
+    encryptedFlagChanged(false);
+    setSynchronizationStateIcon("qrc:/icons/icons/sync_sprite.gif");
+    setConnectionStateIcon("qrc:/icons/icons/disconnected.png");
+    const QString connection = Settings::instance().getConnection();
+    if (connection.compare("remote") == 0) {
+        setRemoteModeToolTip(tr("Connected through remote node"));
+        setRemoteModeIcon("qrc:/icons/icons/remote_node.svg");
+    }
+    else
+    {
+        setRemoteModeToolTip("");
+        setRemoteModeIcon("");
+    }
+
+    //initialize optimization service
+    if(optimizationService == nullptr)
+        optimizationService = new OptimizationService(this);
+
+    QObject::connect(this, &WalletAdapter::walletInitCompletedSignal, optimizationService, &OptimizationService::walletOpened, Qt::UniqueConnection);
+    QObject::connect(this, &WalletAdapter::walletCloseCompletedSignal, optimizationService, &OptimizationService::walletClosed, Qt::UniqueConnection);
+    QObject::connect(this, &WalletAdapter::walletSynchronizationProgressUpdatedSignal, optimizationService,
+        &OptimizationService::synchronizationProgressUpdated, static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
+    QObject::connect(this, &WalletAdapter::walletSynchronizationCompletedSignal, optimizationService,
+        &OptimizationService::synchronizationCompleted, static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
+    QObject::connect(this, &WalletAdapter::walletSynchronizationCompletedSignal, this,
+        &WalletAdapter::updateOptimizationLabel, static_cast<Qt::ConnectionType>(Qt::QueuedConnection | Qt::UniqueConnection));
+
+    setWalletTrackingLabel();
+    m_newTransactionsNotificationTimer.setInterval(500);
+    //QTimer::singleShot(1500, this, SLOT(updateWalletTransactions()));
+}
+
+bool WalletAdapter::isWalletOpen() const
+{
+    return m_isWalletOpen;
 }
 
 quint64 WalletAdapter::getNumUnlockedOutputs() const
@@ -1323,6 +1398,8 @@ void WalletAdapter::updateWalletTransactions()
 
 void WalletAdapter::newTransactionSoundEffect(CryptoNote::TransactionId _transactionId)
 {
+    Q_EMIT alertOnApplication();
+    qInfo() << "newTransactionSoundEffect ()\n";
 	CryptoNote::WalletLegacyTransaction transaction;
 	if (!this->getTransaction(_transactionId, transaction)) {
 		return;

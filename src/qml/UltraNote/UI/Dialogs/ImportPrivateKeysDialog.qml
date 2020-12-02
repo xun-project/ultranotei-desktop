@@ -202,7 +202,7 @@ UNDialogInfinity {
 
                     height:35
                     width:50
-                    text: qsTr("...")
+                    text: "..."
                     activeBorderColor: "#444444"
                     onClicked: _walletPathFileDialog.open()
                 }

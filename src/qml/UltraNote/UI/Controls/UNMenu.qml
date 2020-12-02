@@ -8,6 +8,7 @@ Menu {
     id: _itm
 
     property color color: Theme.statusBarMenuColor
+    property int menuWidth: 220
 
     enter: Transition {
         NumberAnimation { property: "scale"; from: 0.9; to: 1.0; easing.type: Easing.OutQuint; duration: 220 }
@@ -21,7 +22,7 @@ Menu {
 
     background: UNElevatedPanel {
         color: _itm.color
-        implicitWidth: 220
+        implicitWidth: menuWidth
         radius: 0
     }
 

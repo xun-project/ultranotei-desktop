@@ -16,7 +16,7 @@ UNDialog {
         ListElement { type: UNDialog.ButtonType.TypeNormal; role: DialogButtonBox.RejectRole; text: qsTr("Close")}
     }
 
-    implicitWidth: 600
+    implicitWidth: Theme.messageDetailsDialogWindowWidth
     closePolicy: Popup.CloseOnEscape
     title: qsTr("Message details")
     modal: true
@@ -511,7 +511,7 @@ UNDialog {
                     lableTextSize: Theme.messageDetailsDialogButtonFontSize
                     enabled: 0 < _dialog.currentRow
 
-                    text: qsTr("<<")
+                    text: "<<"
 
                     onClicked: {
                         _dialog.currentRow -= 1
@@ -532,7 +532,7 @@ UNDialog {
                     lableTextSize: Theme.messageDetailsDialogButtonFontSize
                     enabled: _dialog.model.rowCount > (_dialog.currentRow + 1)
 
-                    text: qsTr(">>")
+                    text: ">>"
 
                     onClicked: {
                         _dialog.currentRow += 1

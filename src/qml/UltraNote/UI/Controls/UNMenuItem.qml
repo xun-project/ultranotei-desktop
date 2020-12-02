@@ -7,7 +7,8 @@ import UltraNote.UI.Controls 1.0
 MenuItem {
     id: _itm
 
-    property color textColor: Theme.statusBarMenuTextColor
+    property bool  disabled: false
+    property color textColor: disabled ? Theme.statusBarMenuActiveTextColor : Theme.statusBarMenuTextColor
     property color activeTextColor: Theme.statusBarMenuActiveTextColor
     property color checkableFrameColor: Theme.statusBarMenuCheckableFrameColor
     property color checkableActiveColor: Theme.statusBarMenuCheckableActiveColor

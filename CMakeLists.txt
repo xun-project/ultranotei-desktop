@@ -167,7 +167,7 @@ set(CRYPTONOTE_SOURCES
   cryptonote/external/miniupnpc/upnpcommands.c
   cryptonote/external/miniupnpc/upnpreplyparse.c
   cryptonote/src/Common/Base58.cpp
-  cryptonote/src/Common/Base64.cpp  
+  cryptonote/src/Common/Base64.cpp
   cryptonote/src/Common/CommandLine.cpp
   cryptonote/src/Common/Util.cpp
   cryptonote/src/Common/StringTools.cpp
@@ -200,7 +200,7 @@ set(CRYPTONOTE_SOURCES
   #cryptonote/src/crypto/skein.c
   cryptonote/src/crypto/tree-hash.c
   cryptonote/src/crypto/aux_hash.c
-  cryptonote/src/crypto/cryptonight.cpp 
+  cryptonote/src/crypto/cryptonight.cpp
   cryptonote/src/CryptoNoteCore/BlockchainIndices.cpp
   cryptonote/src/CryptoNoteCore/BlockchainMessages.cpp
   cryptonote/src/CryptoNoteCore/BlockIndex.cpp
@@ -366,6 +366,18 @@ target_link_libraries(${CRYPTONOTE_LIB} ${Boost_LIBRARIES})
 # zlib
 add_subdirectory(zlib EXCLUDE_FROM_ALL)
 
+# translations
+set(MainTranslationSourceDir "${CMAKE_CURRENT_SOURCE_DIR}/src/qml")
+
+if (WIN32)
+  set(TranslationsOutputDir "${CMAKE_CURRENT_SOURCE_DIR}/build/release/Release")
+else ()
+  set(TranslationsOutputDir "${CMAKE_CURRENT_SOURCE_DIR}/build/release")
+endif ()
+
+include_directories (${MainTranslationSourceDir})
+add_subdirectory(languages)
+
 # Build UltraNote app
 add_executable(${PROJECT_NAME} ${BUILD_PLATFORM} ${BUILD_RESOURCES} ${SOURCES} ${HEADERS} ${QRC} ${UIS} ${RCC})
 set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_DEFINITIONS _GNU_SOURCE)
@@ -403,6 +415,14 @@ if (APPLE)
   install(TARGETS ${PROJECT_NAME} BUNDLE DESTINATION . COMPONENT Runtime)
   install(PROGRAMS build/release/tor/bin/tor DESTINATION ./${PROJECT_NAME}.app/Contents/Resources COMPONENT Runtime)
 
+  # Add translation files to package
+  install(FILES
+      build/release/languages/UltraNoteInfinity_cn.qm
+      build/release/languages/UltraNoteInfinity_en.qm
+      build/release/languages/UltraNoteInfinity_ru.qm
+      build/release/languages/UltraNoteInfinity_tr.qm
+      DESTINATION ./${PROJECT_NAME}.app/Contents/Resources COMPONENT Runtime)
+
 elseif (UNIX)
   install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)
   install(FILES src/ultranoteinfinity.desktop DESTINATION share/applications)
@@ -410,9 +430,17 @@ elseif (UNIX)
   install(FILES COPYING DESTINATION share/doc/ultranoteinfinity)
   install(PROGRAMS build/release/tor/bin/tor DESTINATION bin)
 
-	SET(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
-	SET(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
-	SET(CPACK_PACKAGE_ICON src/images/UltraNoteLogo.png)
+  # Add translation files to package
+  install(FILES
+      build/release/languages/UltraNoteInfinity_cn.qm
+      build/release/languages/UltraNoteInfinity_en.qm
+      build/release/languages/UltraNoteInfinity_ru.qm
+      build/release/languages/UltraNoteInfinity_tr.qm
+      DESTINATION bin)
+
+  SET(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
+  SET(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
+  SET(CPACK_PACKAGE_ICON src/images/UltraNoteLogo.png)
 
   if (NOT PACKRPM)
     set(CPACK_GENERATOR DEB)
@@ -438,6 +466,7 @@ elseif (WIN32)
   find_program(WINDEPLOYQT windeployqt PATHS ${QT5_ROOT_PATH}/bin/)
   install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION .)
   install(PROGRAMS build/release/tor/bin/tor.exe DESTINATION .)
+  install(DIRECTORY build/release/Release/languages DESTINATION .)
 
   if (PACKMSI)
     set(CPACK_GENERATOR NSIS)
