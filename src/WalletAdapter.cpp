@@ -815,6 +815,11 @@ void WalletAdapter::restartWallet()
     qApp->exit(WalletAdapter::EXIT_CODE_REBOOT);
 }
 
+void WalletAdapter::exitWallet()
+{
+    qApp->exit(EXIT_SUCCESS);
+}
+
 void WalletAdapter::loadLanguage()
 {
     if (m_currLang != m_newLang)
