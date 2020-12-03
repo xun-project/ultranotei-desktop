@@ -52,16 +52,19 @@ void TranslatorManager::initialize()
 
     m_langPath = QApplication::applicationDirPath();
 
-#if defined(Q_OS_WIN) //_MSC_VER
+#ifdef Q_OS_WIN //_MSC_VER
     m_langPath.append("/languages");
     qInfo() << "Q_OS_WIN";
-#elif defined(Q_OS_UNIX)
+#endif
+
+#ifdef Q_OS_UNIX
     qInfo() << "Q_OS_UNIX";
-#elif defined(Q_OS_MAC)
-    qInfo() << "Q_OS_MAC";
-    m_langPath = m_langPath + "/../Resources";
-#else
-    m_langPath.append("/languages");
+#endif
+
+#ifdef Q_OS_OSX
+    qInfo() << "Q_OS_OSX";
+    m_langPath = QCoreApplication::applicationDirPath() + "/../Resources";
+    //m_langPath = "/Applications/UltraNoteInfinity.app/Contents/Resources";
 #endif
 
     QDir dir(m_langPath);
@@ -92,15 +95,15 @@ void TranslatorManager::initialize()
     QStringList resourcesQt = QDir(QApplication::applicationDirPath().append("/translations")).entryList(QStringList() << "qt_*.qm", QDir::Files);
     qInfo() << "Qt translations dir :" << QApplication::applicationDirPath().append("/translations");
     qInfo() << "Qt translations :" << resourcesQt;
-
+    
     m_langPath.truncate(m_langPath.lastIndexOf('/'));
     m_langPath.append("/translations");
-
+    
     for (int j = 0; j < resourcesQt.size(); j++)
     {
         QString locale = resourcesQt[j];
         locale.remove(0, locale.indexOf('_'));
-
+    
         //Example : "_ru.qm"
         if (locale == lang)
         {

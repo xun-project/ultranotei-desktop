@@ -111,7 +111,8 @@ UNFramelessApplicationWindow {
 
         onSignalQuit: {
             _globalProperties.minTrayEnabled = false
-            close();
+            _appWindow.close()
+            walletAdapter.exitWallet()
         }
 
         onSignalIconActivated: {
@@ -1374,6 +1375,7 @@ UNFramelessApplicationWindow {
                     onClicked: {
                         _globalProperties.minTrayEnabled = false
                         _appWindow.close()
+                        walletAdapter.exitWallet()
                     }
                 }
             }

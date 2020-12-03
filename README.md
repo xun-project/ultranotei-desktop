@@ -210,3 +210,4 @@ Alternatively you can use the Visual Studio GUI for building. To do so, run just
 When compiling from Visual Studio you need to add /bigobj switch flag in UltraNoteWallet project, C/C++->Command Line
 
 Good luck!
+

@@ -50,270 +50,270 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="178"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="179"/>
         <source>Maximize window</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="183"/>
-        <location filename="UltraNote/UI/AppWindow.qml" line="1373"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="184"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="1374"/>
         <source>Exit</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="241"/>
-        <location filename="UltraNote/UI/AppWindow.qml" line="1258"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="242"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="1259"/>
         <source>Wallet</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="242"/>
-        <location filename="UltraNote/UI/AppWindow.qml" line="384"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="243"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="385"/>
         <source>Balance</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="242"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="243"/>
         <source>Unconfirmed</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="242"/>
-        <location filename="UltraNote/UI/AppWindow.qml" line="255"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="243"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="256"/>
         <source>Total</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="254"/>
-        <location filename="UltraNote/UI/AppWindow.qml" line="421"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="255"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="422"/>
         <source>Deposits</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="255"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="256"/>
         <source>Locked</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="255"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="256"/>
         <source>Unlocked</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="422"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="423"/>
         <source>Send</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="423"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="424"/>
         <source>Receive</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="424"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="425"/>
         <source>Send Invoice</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="425"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="426"/>
         <source>Transactions</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="426"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="427"/>
         <source>Messages</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="427"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="428"/>
         <source>Send Message</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="428"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="429"/>
         <source>Address Book</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="429"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="430"/>
         <source>Mining</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="432"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="433"/>
         <source>Browser</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="461"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="462"/>
         <source>Tracking Wallet</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="461"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="462"/>
         <source>This is a tracking wallet. This tab is not available.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="525"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="526"/>
         <source>Wallet Actions</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="545"/>
-        <location filename="UltraNote/UI/AppWindow.qml" line="1279"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="546"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="1280"/>
         <source>Create Wallet</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="552"/>
-        <location filename="UltraNote/UI/AppWindow.qml" line="1284"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="553"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="1285"/>
         <source>New wallet file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="571"/>
-        <location filename="UltraNote/UI/AppWindow.qml" line="1293"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="572"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="1294"/>
         <source>Open wallet</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="578"/>
-        <location filename="UltraNote/UI/AppWindow.qml" line="1298"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="579"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="1299"/>
         <source>Open .wallet/.keys file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="596"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="597"/>
         <source>Import Private Keys</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="618"/>
-        <location filename="UltraNote/UI/AppWindow.qml" line="1314"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="619"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="1315"/>
         <source>Backup Wallet</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="625"/>
-        <location filename="UltraNote/UI/AppWindow.qml" line="1320"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="626"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="1321"/>
         <source>Backup wallet to...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="646"/>
-        <location filename="UltraNote/UI/AppWindow.qml" line="1330"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="647"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="1331"/>
         <source>Reset Wallet</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="651"/>
-        <location filename="UltraNote/UI/AppWindow.qml" line="1333"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="652"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="1334"/>
         <source>Warning</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="654"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="655"/>
         <source>Your wallet will be reset and restored from blockchain.
 Are you sure?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="699"/>
-        <location filename="UltraNote/UI/AppWindow.qml" line="1386"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="700"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="1388"/>
         <source>Settings</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="721"/>
-        <location filename="UltraNote/UI/AppWindow.qml" line="1424"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="722"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="1426"/>
         <source>Encrypt Wallet</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="745"/>
-        <location filename="UltraNote/UI/AppWindow.qml" line="1424"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="746"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="1426"/>
         <source>Change Password</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="767"/>
-        <location filename="UltraNote/UI/AppWindow.qml" line="1434"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="768"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="1436"/>
         <source>Connection</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="787"/>
-        <location filename="UltraNote/UI/AppWindow.qml" line="1442"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="788"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="1444"/>
         <source>Change Fiat Symbol</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="808"/>
-        <location filename="UltraNote/UI/AppWindow.qml" line="1466"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="809"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="1468"/>
         <source>Start on system login</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="829"/>
-        <location filename="UltraNote/UI/AppWindow.qml" line="1475"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="830"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="1477"/>
         <source>Enable TOR</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="1013"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="1014"/>
         <source>Status</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="1217"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="1218"/>
         <source>OK</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="1219"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="1220"/>
         <source>Cancel</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="1306"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="1307"/>
         <source>Import Wallet</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="1336"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="1337"/>
         <source>Your wallet will be reset and restored from blockchain.
 
 Are you sure?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="1341"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="1342"/>
         <source>View Seed</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="1351"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="1352"/>
         <source>Optimize Wallet</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="1361"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="1362"/>
         <source>Auto Optimization</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="1408"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="1410"/>
         <source>Unlock wallet</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="1450"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="1452"/>
         <source>Language Setting</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/AppWindow.qml" line="1458"/>
+        <location filename="UltraNote/UI/AppWindow.qml" line="1460"/>
         <source>Minimize to tray</source>
         <translation></translation>
     </message>

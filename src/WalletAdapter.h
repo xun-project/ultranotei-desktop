@@ -120,6 +120,7 @@ public:
     Q_INVOKABLE void importMnemonicSeed(QString seed, QString filePath);
     Q_INVOKABLE void setIsWalletOpen(bool on);
     Q_INVOKABLE void restartWallet();
+    Q_INVOKABLE void exitWallet();
 
     bool getTorEnabled();
     void newSelectedLangauge(QString lang);

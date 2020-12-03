@@ -50,52 +50,52 @@
         <translation> Infinity </translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="178"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="179"/>
         <source>Maximize window</source>
         <translation>Развернуть окно</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="183"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1373"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="184"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1374"/>
         <source>Exit</source>
         <translation>Выйти</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="241"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1258"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="242"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1259"/>
         <source>Wallet</source>
         <translation>Кошелек</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="242"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="384"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="243"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="385"/>
         <source>Balance</source>
         <translation>баланс</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="242"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="243"/>
         <source>Unconfirmed</source>
         <translation>Неподтвержденный</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="242"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="255"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="243"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="256"/>
         <source>Total</source>
         <translation>Общее количество</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="254"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="421"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="255"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="422"/>
         <source>Deposits</source>
         <translation>Депозиты</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="255"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="256"/>
         <source>Locked</source>
         <translation>Заблокировано</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="255"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="256"/>
         <source>Unlocked</source>
         <translation>Разблокирован</translation>
     </message>
@@ -104,220 +104,220 @@
         <translation type="vanished">баланс</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="422"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="423"/>
         <source>Send</source>
         <translation>Отправить</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="423"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="424"/>
         <source>Receive</source>
         <translation>Получить</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="424"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="425"/>
         <source>Send Invoice</source>
         <translation>Счет-фактура</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="425"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="426"/>
         <source>Transactions</source>
         <translation>Транзакции</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="426"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="427"/>
         <source>Messages</source>
         <translation>Сообщение</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="427"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="428"/>
         <source>Send Message</source>
         <translation>Отправить письмо</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="428"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="429"/>
         <source>Address Book</source>
         <translation>Адресная книга</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="429"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="430"/>
         <source>Mining</source>
         <translation>Минирование</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="432"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="433"/>
         <source>Browser</source>
         <translation>Браузер</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="461"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="462"/>
         <source>Tracking Wallet</source>
         <translation>Кошелек для отслеживания</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="461"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="462"/>
         <source>This is a tracking wallet. This tab is not available.</source>
         <translation>Это кошелек для отслеживания. Эта вкладка недоступна.</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="525"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="526"/>
         <source>Wallet Actions</source>
         <translation>Действия с кошельком</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="545"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1279"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="546"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1280"/>
         <source>Create Wallet</source>
         <translation>Создать кошелек</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="552"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1284"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="553"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1285"/>
         <source>New wallet file</source>
         <translation>Новый файл кошелька</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="571"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1293"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="572"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1294"/>
         <source>Open wallet</source>
         <translation>Открыть кошелек</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="578"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1298"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="579"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1299"/>
         <source>Open .wallet/.keys file</source>
         <translation>Открыть файлы .wallet/.keys</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="596"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="597"/>
         <source>Import Private Keys</source>
         <translation>Импортировать секретные ключи</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="618"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1314"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="619"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1315"/>
         <source>Backup Wallet</source>
         <translation>Резервный кошелек</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="625"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1320"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="626"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1321"/>
         <source>Backup wallet to...</source>
         <translation>Сделать запасную копию кошелька в...</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="646"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1330"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="647"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1331"/>
         <source>Reset Wallet</source>
         <translation>Сбросить кошелек</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="651"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1333"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="652"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1334"/>
         <source>Warning</source>
         <translation>Внимание</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="654"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="655"/>
         <source>Your wallet will be reset and restored from blockchain.
 Are you sure?</source>
         <translation>Ваш кошелек будет сброшен и восстановлен из блокчейна. Вы уверены?</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="699"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1386"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="700"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1388"/>
         <source>Settings</source>
         <translation>Настройки</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="721"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1424"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="722"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1426"/>
         <source>Encrypt Wallet</source>
         <translation>Зашифровать кошелек</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="745"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1424"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="746"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1426"/>
         <source>Change Password</source>
         <translation>Сменить пароль</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="767"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1434"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="768"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1436"/>
         <source>Connection</source>
         <translation>Подключение</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="787"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1442"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="788"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1444"/>
         <source>Change Fiat Symbol</source>
         <translation>Изменить символ Fiat</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="808"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1466"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="809"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1468"/>
         <source>Start on system login</source>
         <translation>Начать при входе</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="829"/>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1475"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="830"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1477"/>
         <source>Enable TOR</source>
         <translation>Включить TOR</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1013"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1014"/>
         <source>Status</source>
         <translation>Статус</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1217"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1218"/>
         <source>OK</source>
         <translation>Хорошо</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1219"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1220"/>
         <source>Cancel</source>
         <translation>Отмена</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1306"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1307"/>
         <source>Import Wallet</source>
         <translation>Импортировать кошелек</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1336"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1337"/>
         <source>Your wallet will be reset and restored from blockchain.
 
 Are you sure?</source>
         <translation>Ваш кошелек будет сброшен и восстановлен из блокчейна. Вы уверены?</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1341"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1342"/>
         <source>View Seed</source>
         <translation>Просмотр семян</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1351"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1352"/>
         <source>Optimize Wallet</source>
         <translation>Оптимизировать кошелек</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1361"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1362"/>
         <source>Auto Optimization</source>
         <translation>Авто Оптимизация</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1408"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1410"/>
         <source>Unlock wallet</source>
         <translation>Разблокировать кошелек</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1450"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1452"/>
         <source>Language Setting</source>
         <translation>Настройка языка</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1458"/>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1460"/>
         <source>Minimize to tray</source>
         <translation>Свернуть в трей</translation>
     </message>
