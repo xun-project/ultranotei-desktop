@@ -31,6 +31,9 @@ sudo nano .profile
 export LD_LIBRARY_PATH="/home/neo/Qt/5.13.2/gcc_64/lib/"
 echo $LD_LIBRARY_PATH
 
+git submodule init
+git submodule update
+
 mkdir -p build/release
 chmod a+x tor_build.sh
 ./tor_build.sh
@@ -76,7 +79,8 @@ brew install cmake boost git automake
 Clone the source repository with git and build the release version with the following commands:
 ```
 mkdir -p build/release
-
+git submodule init
+git submodule update
 chmod +x ./tor_build.sh
 ./tor_build.sh
 
