@@ -329,87 +329,87 @@ Are you sure?</source>
 <context>
     <name>BrowserWindow</name>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="204"/>
+        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="206"/>
         <source>Browsing history</source>
         <translation>Arama geçmişi</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="235"/>
+        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="237"/>
         <source>Navigate backward</source>
         <translation>Geri git</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="247"/>
+        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="249"/>
         <source>Navigate forward</source>
         <translation>İleri git</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="259"/>
+        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="261"/>
         <source>Navigate Home</source>
         <translation>Ana Sayfaya Git</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="302"/>
+        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="304"/>
         <source>Reload</source>
         <translation>Tekrar yükle</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="326"/>
+        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="328"/>
         <source>Setting</source>
         <translation>Ayar</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="336"/>
+        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="338"/>
         <source>Autoload images</source>
         <translation>Resimleri otomatik yükle</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="342"/>
+        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="344"/>
         <source>ErrorPage On</source>
         <translation>ErrorPage Açık</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="348"/>
+        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="350"/>
         <source>Plugins On</source>
         <translation>Eklentiler Açık</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="354"/>
+        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="356"/>
         <source>FullScreen On</source>
         <translation>Tam Ekran Açık</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="360"/>
+        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="362"/>
         <source>Off The Record</source>
         <translation>Kayıt dışı</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="371"/>
+        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="373"/>
         <source>HTTP Disk Cache</source>
         <translation>HTTP Disk Önbelleği</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="382"/>
+        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="384"/>
         <source>Icons On</source>
         <translation>Simgeler Açık</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="388"/>
+        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="390"/>
         <source>Touch Icons On</source>
         <translation>Simgelere dokunun Açık</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="395"/>
+        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="397"/>
         <source>Open DevTools</source>
         <translation>Geliştirme Araçlarını Aç</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="401"/>
+        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="403"/>
         <source>PDF viewer enabled</source>
         <translation>PDF görüntüleyici etkinleştirildi</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="412"/>
+        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="414"/>
         <source>Bookmarks</source>
         <translation>Yer imleri</translation>
     </message>
@@ -799,36 +799,36 @@ Are you sure?</source>
         <translation>DİLİ DEĞİŞTİR</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="64"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="58"/>
         <source>Select your prefered language</source>
         <translation>Tercih ettiğiniz dili seçin</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="80"/>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="114"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="74"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="108"/>
         <source>English</source>
         <translation>Ingilizce</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="87"/>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="128"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="81"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="122"/>
         <source>Russian</source>
         <translation>Rusça</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="94"/>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="142"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="88"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="136"/>
         <source>Turkish</source>
         <translation>Türk</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="101"/>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="156"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="95"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="150"/>
         <source>Chinese</source>
         <translation>Çince</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="169"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="163"/>
         <source>SAVE</source>
         <translation>KAYDET</translation>
     </message>
@@ -841,7 +841,7 @@ Are you sure?</source>
         <translation type="vanished">Yeni dilin etkili olması için lütfen cüzdanı yeniden başlatın.</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="183"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="177"/>
         <source>CANCEL</source>
         <translation>İPTAL</translation>
     </message>
@@ -991,32 +991,32 @@ Are you sure?</source>
         <translation>Mesaj verileri</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="383"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="384"/>
         <source>Select All</source>
         <translation>Hepsini seç</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="391"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="392"/>
         <source>Copy</source>
         <translation>KOPYALA</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="426"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="427"/>
         <source>Reply</source>
         <translation>Yanıtla</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="446"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="447"/>
         <source>Pay</source>
         <translation>Ödemek</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="467"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="468"/>
         <source>Save to file</source>
         <translation>Dosyaya kaydet</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="489"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="490"/>
         <source>Download attachment</source>
         <translation>Eki indir</translation>
     </message>
@@ -1405,17 +1405,17 @@ the wallet might need optimization more than once.</source>
         <translation>25 MNEMONİK TOHUMUNUZ</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/SeedTrackingKeyDialog.qml" line="67"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/SeedTrackingKeyDialog.qml" line="64"/>
         <source>YOUR 25 WORD MNEMONIC SEED</source>
         <translation>25 KELIMELIK MNEMONIC SEED</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/SeedTrackingKeyDialog.qml" line="107"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/SeedTrackingKeyDialog.qml" line="104"/>
         <source>Copy to Clipboard</source>
         <translation>Panoya kopyala</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/SeedTrackingKeyDialog.qml" line="121"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/SeedTrackingKeyDialog.qml" line="118"/>
         <source>CANCEL</source>
         <translation>İPTAL</translation>
     </message>

@@ -16,13 +16,10 @@ UNDialogInfinity {
     title: qsTr("YOUR 25 MNEMONIC SEED")
     modal: true
 
-    Action {
-        id: focus
-        shortcut: StandardKey.Copy
-        onTriggered: {
-            if(_mnemonicSeedText.focus) clipboard.setText(_mnemonicSeedText.selectedText)
-            //if(_guiKeyText.focus) clipboard.setText(_guiKeyText.selectedText)
-        }
+    Shortcut {
+        sequence: StandardKey.Copy
+        onActivated: clipboard.setText(_mnemonicSeedText.selectedText)
+        enabled: _dialog.visible
     }
 
     Item {

@@ -344,6 +344,7 @@ UNDialog {
                 Shortcut {
                     sequence: StandardKey.Copy
                     onActivated: _messageTextArea.copySelected()
+                    enabled: _dialog.visible
                 }
 
                 Shortcut {

@@ -16,12 +16,6 @@ UNDialogInfinity {
     title: qsTr("CHANGE LANGUAGE")
     modal: true
 
-    Action {
-        id: focus
-        shortcut: StandardKey.Copy
-        onTriggered: if(_mnemonicSeedText.focus) clipboard.setText(_mnemonicSeedText.selectedText)
-    }
-
     Item {
         id: _contentItem
 

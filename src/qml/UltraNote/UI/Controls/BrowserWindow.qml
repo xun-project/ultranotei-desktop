@@ -1,6 +1,7 @@
 import Qt.labs.settings 1.0
 import QtQml 2.2
 import QtQuick 2.2
+import QtQuick 2.13 as QQPrivate
 import QtQuick.Controls 1.4
 import QtQuick.Controls.Private 1.0 as QQCPrivate
 import QtQuick.Controls.Styles 1.4
@@ -129,9 +130,10 @@ FocusScope {
         onTriggered: currentWebView.zoomFactor += 0.1
     }
 
-    Action {
-        shortcut: StandardKey.Copy
-        onTriggered: currentWebView.triggerWebAction(WebEngineView.Copy)
+    QQPrivate.Shortcut {
+        sequence: StandardKey.Copy
+        onActivated: currentWebView.triggerWebAction(WebEngineView.Copy)
+        enabled: _dialog.visible
     }
     Action {
         shortcut: StandardKey.Cut
