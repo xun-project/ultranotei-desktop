@@ -329,87 +329,87 @@ Are you sure?</source>
 <context>
     <name>BrowserWindow</name>
     <message>
-        <location filename="UltraNote/UI/Controls/BrowserWindow.qml" line="204"/>
+        <location filename="UltraNote/UI/Controls/BrowserWindow.qml" line="206"/>
         <source>Browsing history</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Controls/BrowserWindow.qml" line="235"/>
+        <location filename="UltraNote/UI/Controls/BrowserWindow.qml" line="237"/>
         <source>Navigate backward</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Controls/BrowserWindow.qml" line="247"/>
+        <location filename="UltraNote/UI/Controls/BrowserWindow.qml" line="249"/>
         <source>Navigate forward</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Controls/BrowserWindow.qml" line="259"/>
+        <location filename="UltraNote/UI/Controls/BrowserWindow.qml" line="261"/>
         <source>Navigate Home</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Controls/BrowserWindow.qml" line="302"/>
+        <location filename="UltraNote/UI/Controls/BrowserWindow.qml" line="304"/>
         <source>Reload</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Controls/BrowserWindow.qml" line="326"/>
+        <location filename="UltraNote/UI/Controls/BrowserWindow.qml" line="328"/>
         <source>Setting</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Controls/BrowserWindow.qml" line="336"/>
+        <location filename="UltraNote/UI/Controls/BrowserWindow.qml" line="338"/>
         <source>Autoload images</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Controls/BrowserWindow.qml" line="342"/>
+        <location filename="UltraNote/UI/Controls/BrowserWindow.qml" line="344"/>
         <source>ErrorPage On</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Controls/BrowserWindow.qml" line="348"/>
+        <location filename="UltraNote/UI/Controls/BrowserWindow.qml" line="350"/>
         <source>Plugins On</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Controls/BrowserWindow.qml" line="354"/>
+        <location filename="UltraNote/UI/Controls/BrowserWindow.qml" line="356"/>
         <source>FullScreen On</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Controls/BrowserWindow.qml" line="360"/>
+        <location filename="UltraNote/UI/Controls/BrowserWindow.qml" line="362"/>
         <source>Off The Record</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Controls/BrowserWindow.qml" line="371"/>
+        <location filename="UltraNote/UI/Controls/BrowserWindow.qml" line="373"/>
         <source>HTTP Disk Cache</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Controls/BrowserWindow.qml" line="382"/>
+        <location filename="UltraNote/UI/Controls/BrowserWindow.qml" line="384"/>
         <source>Icons On</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Controls/BrowserWindow.qml" line="388"/>
+        <location filename="UltraNote/UI/Controls/BrowserWindow.qml" line="390"/>
         <source>Touch Icons On</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Controls/BrowserWindow.qml" line="395"/>
+        <location filename="UltraNote/UI/Controls/BrowserWindow.qml" line="397"/>
         <source>Open DevTools</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Controls/BrowserWindow.qml" line="401"/>
+        <location filename="UltraNote/UI/Controls/BrowserWindow.qml" line="403"/>
         <source>PDF viewer enabled</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Controls/BrowserWindow.qml" line="412"/>
+        <location filename="UltraNote/UI/Controls/BrowserWindow.qml" line="414"/>
         <source>Bookmarks</source>
         <translation></translation>
     </message>
@@ -791,41 +791,41 @@ Are you sure?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="64"/>
+        <location filename="UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="58"/>
         <source>Select your prefered language</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="80"/>
-        <location filename="UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="114"/>
+        <location filename="UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="74"/>
+        <location filename="UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="108"/>
         <source>English</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="87"/>
-        <location filename="UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="128"/>
+        <location filename="UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="81"/>
+        <location filename="UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="122"/>
         <source>Russian</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="94"/>
-        <location filename="UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="142"/>
+        <location filename="UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="88"/>
+        <location filename="UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="136"/>
         <source>Turkish</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="101"/>
-        <location filename="UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="156"/>
+        <location filename="UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="95"/>
+        <location filename="UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="150"/>
         <source>Chinese</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="169"/>
+        <location filename="UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="163"/>
         <source>SAVE</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="183"/>
+        <location filename="UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="177"/>
         <source>CANCEL</source>
         <translation></translation>
     </message>
@@ -975,32 +975,32 @@ Are you sure?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="383"/>
+        <location filename="UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="384"/>
         <source>Select All</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="391"/>
+        <location filename="UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="392"/>
         <source>Copy</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="426"/>
+        <location filename="UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="427"/>
         <source>Reply</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="446"/>
+        <location filename="UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="447"/>
         <source>Pay</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="467"/>
+        <location filename="UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="468"/>
         <source>Save to file</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="489"/>
+        <location filename="UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="490"/>
         <source>Download attachment</source>
         <translation></translation>
     </message>
@@ -1377,17 +1377,17 @@ the wallet might need optimization more than once.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Dialogs/SeedTrackingKeyDialog.qml" line="67"/>
+        <location filename="UltraNote/UI/Dialogs/SeedTrackingKeyDialog.qml" line="64"/>
         <source>YOUR 25 WORD MNEMONIC SEED</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Dialogs/SeedTrackingKeyDialog.qml" line="107"/>
+        <location filename="UltraNote/UI/Dialogs/SeedTrackingKeyDialog.qml" line="104"/>
         <source>Copy to Clipboard</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Dialogs/SeedTrackingKeyDialog.qml" line="121"/>
+        <location filename="UltraNote/UI/Dialogs/SeedTrackingKeyDialog.qml" line="118"/>
         <source>CANCEL</source>
         <translation></translation>
     </message>

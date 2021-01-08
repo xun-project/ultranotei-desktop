@@ -19,10 +19,10 @@ UNDialog {
     closePolicy: Popup.CloseOnEscape
     modal: true
 
-    Action {
-        id: focus
-        shortcut: StandardKey.Copy
-        onTriggered: if(_transactionDetailsText.focus) clipboard.setText(_transactionDetailsText.selectedText)
+    Shortcut {
+        sequence: StandardKey.Copy
+        onActivated: clipboard.setText(_transactionDetailsText.selectedText)
+        enabled: _dialog.visible
     }
 
     Flickable {

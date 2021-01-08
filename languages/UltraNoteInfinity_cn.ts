@@ -329,87 +329,87 @@ Are you sure?</source>
 <context>
     <name>BrowserWindow</name>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="204"/>
+        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="206"/>
         <source>Browsing history</source>
         <translation>浏览记录</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="235"/>
+        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="237"/>
         <source>Navigate backward</source>
         <translation>向后导航</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="247"/>
+        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="249"/>
         <source>Navigate forward</source>
         <translation>向前导航</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="259"/>
+        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="261"/>
         <source>Navigate Home</source>
         <translation>导航首页</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="302"/>
+        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="304"/>
         <source>Reload</source>
         <translation>重装</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="326"/>
+        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="328"/>
         <source>Setting</source>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="336"/>
+        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="338"/>
         <source>Autoload images</source>
         <translation>自动加载图片</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="342"/>
+        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="344"/>
         <source>ErrorPage On</source>
         <translation>错误页面开启</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="348"/>
+        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="350"/>
         <source>Plugins On</source>
         <translation>插件开启</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="354"/>
+        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="356"/>
         <source>FullScreen On</source>
         <translation>全屏开启</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="360"/>
+        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="362"/>
         <source>Off The Record</source>
         <translation>关闭记录</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="371"/>
+        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="373"/>
         <source>HTTP Disk Cache</source>
         <translation>HTTP磁盘缓存</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="382"/>
+        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="384"/>
         <source>Icons On</source>
         <translation>开启图标</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="388"/>
+        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="390"/>
         <source>Touch Icons On</source>
         <translation>触摸图标</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="395"/>
+        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="397"/>
         <source>Open DevTools</source>
         <translation>打开开发工具</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="401"/>
+        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="403"/>
         <source>PDF viewer enabled</source>
         <translation>启用PDF查看器</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="412"/>
+        <location filename="../src/qml/UltraNote/UI/Controls/BrowserWindow.qml" line="414"/>
         <source>Bookmarks</source>
         <translation>书签</translation>
     </message>
@@ -799,36 +799,36 @@ Are you sure?</source>
         <translation>改变语言</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="64"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="58"/>
         <source>Select your prefered language</source>
         <translation>选择您喜欢的语言</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="80"/>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="114"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="74"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="108"/>
         <source>English</source>
         <translation>英文</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="87"/>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="128"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="81"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="122"/>
         <source>Russian</source>
         <translation>俄语</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="94"/>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="142"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="88"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="136"/>
         <source>Turkish</source>
         <translation>土耳其</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="101"/>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="156"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="95"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="150"/>
         <source>Chinese</source>
         <translation>中文</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="169"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="163"/>
         <source>SAVE</source>
         <translation>保存</translation>
     </message>
@@ -841,7 +841,7 @@ Are you sure?</source>
         <translation type="vanished">请重新启动钱包，以使新语言生效.</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="183"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml" line="177"/>
         <source>CANCEL</source>
         <translation>取消</translation>
     </message>
@@ -991,32 +991,32 @@ Are you sure?</source>
         <translation>讯息数据</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="383"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="384"/>
         <source>Select All</source>
         <translation>全选</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="391"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="392"/>
         <source>Copy</source>
         <translation>复制</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="426"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="427"/>
         <source>Reply</source>
         <translation>回复</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="446"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="447"/>
         <source>Pay</source>
         <translation>工资</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="467"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="468"/>
         <source>Save to file</source>
         <translation>保存文件</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="489"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="490"/>
         <source>Download attachment</source>
         <translation>下载附件</translation>
     </message>
@@ -1405,17 +1405,17 @@ the wallet might need optimization more than once.</source>
         <translation>您的25种记忆种子</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/SeedTrackingKeyDialog.qml" line="67"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/SeedTrackingKeyDialog.qml" line="64"/>
         <source>YOUR 25 WORD MNEMONIC SEED</source>
         <translation>你25个助记词种子</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/SeedTrackingKeyDialog.qml" line="107"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/SeedTrackingKeyDialog.qml" line="104"/>
         <source>Copy to Clipboard</source>
         <translation>复制到剪贴板</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/SeedTrackingKeyDialog.qml" line="121"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/SeedTrackingKeyDialog.qml" line="118"/>
         <source>CANCEL</source>
         <translation>取消</translation>
     </message>
