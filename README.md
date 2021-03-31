@@ -17,13 +17,15 @@ Debian example:
 Installing dependencies:
 
 ```
-sudo apt-get install build-essential git cmake automake libboost-all-dev libqrencode-dev qt5-default qttools5-dev qttools5-dev-tools qtdeclarative5-dev qtquickcontrols2-5-dev qtmultimedia5-dev qtwebengine5-dev libqt5webenginewidgets5 libssl-dev libevent-dev qml-module-qtquick-controls qml-module-qtquick-controls2 qml-module-qtquick-dialogs qml-module-qtquick-shapes
+sudo apt-get install build-essential git cmake automake libboost-all-dev libqrencode-dev qt5-default qttools5-dev qttools5-dev-tools qtdeclarative5-dev qtquickcontrols2-5-dev qtmultimedia5-dev qtwebengine5-dev libqt5webenginewidgets5 libssl-dev libevent-dev qml-module-qtquick-controls qml-module-qtquick-controls2 qml-module-qtquick-dialogs qml-module-qtquick-shapes qml-module-qt-labs-qmlmodels
 
 
 ```
 
 Clone the source repository with git and build the release version with the following commands:
 ```
+Modify ultranotewallet-infinity/src/qml/UltraNote/UI/AppWindow.qml
+
 export QTDIR=/home/neo/Qt/5.13.2/gcc_64/
 export LD_LIBRARY_PATH=/home/neo/Qt/5.13.2/gcc_64/lib/
 
