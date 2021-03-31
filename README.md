@@ -2,7 +2,7 @@
 
 ### On Linux
 
-Dependencies: GCC 4.7.3 or later, CMake 3.9 or later, Boost 1.55 or later, and Qt 5.13 or later.
+Dependencies: GCC 4.7.3 or later, CMake 3.9 or later, Boost 1.55 or later, and Qt 5.14 or later.
 
 You may download them from here: 
 
@@ -17,7 +17,7 @@ Debian example:
 Installing dependencies:
 
 ```
-sudo apt-get install build-essential git cmake automake libboost-all-dev libqrencode-dev qt5-default qttools5-dev qttools5-dev-tools qtdeclarative5-dev qtquickcontrols2-5-dev qtmultimedia5-dev qtwebengine5-dev libqt5webenginewidgets5 libssl-dev libevent-dev qml-module-qtquick-controls qml-module-qtquick-controls2
+sudo apt-get install build-essential git cmake automake libboost-all-dev libqrencode-dev qt5-default qttools5-dev qttools5-dev-tools qtdeclarative5-dev qtquickcontrols2-5-dev qtmultimedia5-dev qtwebengine5-dev libqt5webenginewidgets5 libssl-dev libevent-dev qml-module-qtquick-controls qml-module-qtquick-controls2 qml-module-qtquick-dialogs
 
 
 ```
@@ -40,7 +40,7 @@ chmod a+x tor_build.sh
 ./tor_build.sh
 
 cd build/release
-cmake -DCMAKE_PREFIX_PATH=$HOME/Qt/5.13.2/gcc_64 -DCMAKE_BUILD_TYPE=Release ../..
+cmake -DCMAKE_BUILD_TYPE=Release ../..
 
 cd ../..
 make -j4
