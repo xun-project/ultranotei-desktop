@@ -8,10 +8,10 @@
 #include <QJsonArray>
 #include <QDebug>
 
-#define SERVER_URL "https://localcryptos.club/api/coin/xuni"
-#define COIN_NAME "XUNI"
+#define SERVER_URL "https://api.coingecko.com/api/v3/coins/ultranote-infinity"
+#define COIN_NAME "xuni"
 #define PRICE_CHECK_PERIOD_SEC 300
-#define DEFAULT_FIAT_SYMBOL "USD"
+#define DEFAULT_FIAT_SYMBOL "usd"
 
 namespace WalletGui {
 
@@ -133,23 +133,20 @@ void FiatConverter::processReply(RequestType type, const QByteArray &data)
     case RequestType::SupportedCurrencies:
         if (doc.isObject()) {
 
-            foreach(const QJsonValue & v, doc.object()["data"].toArray())
-            {
-                qDebug() << "Processing coin list";
+            qDebug() << "Processing coin list";
 
-                m_coinPriceDict = v.toObject().value(COIN_NAME).toObject()["price"].toObject();
+            m_coinPriceDict = doc.object()["market_data"].toObject().value("current_price").toObject();
+            m_availableFiatList.clear();
 
-                m_availableFiatList.clear();
-                QList<QString> keyList = m_coinPriceDict.keys();
+            QList<QString> keyList = m_coinPriceDict.keys();
 
-                for (int i = 0; i < keyList.size(); ++i) {
-                    m_availableFiatList << keyList.at(i);
-                    if (0 == m_fiatId.compare(keyList.at(i), Qt::CaseInsensitive)) {
-                        setCurrentIndex(i);
-                    }
+            for (int i = 0; i < keyList.size(); ++i) {
+                m_availableFiatList << keyList.at(i);
+                if (0 == m_fiatId.compare(keyList.at(i), Qt::CaseInsensitive)) {
+                    setCurrentIndex(i);
                 }
-                emit availableFiatListChanged();
             }
+            emit availableFiatListChanged();
 
             sendRequest(RequestType::CoinPrice);
         } else {
@@ -162,8 +159,7 @@ void FiatConverter::processReply(RequestType type, const QByteArray &data)
 
         if (doc.isObject()) {
             
-            foreach(const QJsonValue & v, doc.object()["data"].toArray())
-                m_coinPriceDict = v.toObject().value("XUNI").toObject()["price"].toObject();
+            m_coinPriceDict = doc.object()["market_data"].toObject().value("current_price").toObject();
 
             if (!m_coinPriceDict.isEmpty()) {
                 setCoinPrice();
@@ -177,7 +173,7 @@ void FiatConverter::processReply(RequestType type, const QByteArray &data)
             qDebug() << data;
         }
         break;
-     case RequestType::Unknown:
+    case RequestType::Unknown:
         break;//remove compiler warning
     }
 }
