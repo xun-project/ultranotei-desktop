@@ -146,14 +146,13 @@ void SendMessageModel::sendMessage(const QString& ipfsHash, const QString& encrp
 
     quint64 ttl = 0;
     if (m_isSelfDestruct) {
-        ttl = QDateTime::currentDateTimeUtc().toTime_t() +
-                static_cast<uint>(m_selfDestructTimeMin) * MIN_TTL;
+        ttl = (static_cast<quint64>(m_selfDestructTimeMin) * MIN_TTL) + QDateTime::currentDateTimeUtc().toTime_t();
         fee = 0;
     }
 
     if (WalletAdapter::instance().isOpen()) {
         WalletAdapter::instance().sendMessage(transfers, fee,
-                                              static_cast<uint>(m_anonimityLevel),
+                                              static_cast<quint64>(m_anonimityLevel),
                                               messages, ttl);
     }
 }
