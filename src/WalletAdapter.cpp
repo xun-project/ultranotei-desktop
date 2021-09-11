@@ -1404,7 +1404,7 @@ void WalletAdapter::updateWalletTransactions()
 void WalletAdapter::newTransactionSoundEffect(CryptoNote::TransactionId _transactionId)
 {
     Q_EMIT alertOnApplication();
-    qInfo() << "newTransactionSoundEffect ()\n";
+    qInfo() << QString("newTransactionSoundEffect _transactionId:%1\n").arg(_transactionId);
 	CryptoNote::WalletLegacyTransaction transaction;
 	if (!this->getTransaction(_transactionId, transaction)) {
 		return;
