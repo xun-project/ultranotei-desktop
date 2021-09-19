@@ -832,6 +832,11 @@ UNPage {
     }
 
     Connections {
+        target: walletAdapter.sendMessageModel.attachmentsModel
+        onLayoutChanged: walletAdapter.sendMessageModel.recalculateFeeValue()
+    }
+
+    Connections {
         target: walletAdapter.messagesTableModel
         onDownloadProgressChanged: {
             _progressDialog.visible = true
@@ -846,5 +851,4 @@ UNPage {
             _progressDialog.visible = true
         }
     }
-
 }

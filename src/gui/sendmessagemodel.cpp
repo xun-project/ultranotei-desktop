@@ -55,8 +55,11 @@ void SendMessageModel::recalculateFeeValue()
     }
     // fee for attachment
     if(m_attachmentsModel->rowCount() > 0) {
-        fee += MESSAGE_CHAR_PRICE * ATTACHMENT_HEADER_LENGTH;
-        fee += MESSAGE_CHAR_PRICE * ATTACHMENT_ENCRYPTION_KEY_HEADER_LENGTH;
+        quint64 atachmentFee = 0;
+        atachmentFee += MESSAGE_CHAR_PRICE * ATTACHMENT_HEADER_LENGTH;
+        atachmentFee += MESSAGE_CHAR_PRICE * ATTACHMENT_ENCRYPTION_KEY_HEADER_LENGTH;
+        atachmentFee *= m_attachmentsModel->rowCount();
+        fee += atachmentFee;
     }
 
     // fee for recepeints
