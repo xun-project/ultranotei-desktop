@@ -84,7 +84,6 @@ UNPage {
                         onTextChanged: {
                             walletAdapter.invoiceService.address = text
                             walletAdapter.invoiceService.recalculateFeeValue()
-                            _feeEditBox.updateFee(walletAdapter.invoiceService.feeValue)
                         }
                     }
 
@@ -163,7 +162,6 @@ UNPage {
                         onTextChanged: {
                             walletAdapter.invoiceService.label = text
                             walletAdapter.invoiceService.recalculateFeeValue()
-                            _feeEditBox.updateFee(walletAdapter.invoiceService.feeValue)
                         }
                     }
                 }
@@ -206,7 +204,6 @@ UNPage {
                         onTextChanged: {
                             walletAdapter.invoiceService.paymentID = text
                             walletAdapter.invoiceService.recalculateFeeValue()
-                            _feeEditBox.updateFee(walletAdapter.invoiceService.feeValue)
                         }
                     }
                 }
@@ -272,7 +269,6 @@ UNPage {
                         onValueChanged: {
                             walletAdapter.invoiceService.amount = value
                             walletAdapter.invoiceService.recalculateFeeValue()
-                            _feeEditBox.updateFee(walletAdapter.invoiceService.feeValue)
                         }
                     }
 
@@ -321,7 +317,6 @@ UNPage {
                         text: walletAdapter.invoiceService.invoiceID
                         onTextChanged: {
                             walletAdapter.invoiceService.invoiceIdEdited(text)
-                            _feeEditBox.updateFee(walletAdapter.invoiceService.feeValue)
                         }
                     }
                 }
@@ -434,7 +429,6 @@ UNPage {
                         textAppearance: TextEdit.PlainText
                         onTextChanged: {
                             walletAdapter.invoiceService.invoiceMessageText = text
-                            _feeEditBox.updateFee(walletAdapter.invoiceService.feeValue)
 
                         }
                     }
@@ -583,7 +577,6 @@ UNPage {
                     onCheckedChanged: {
                         walletAdapter.invoiceService.replyToChecked = checked
                         walletAdapter.invoiceService.recalculateFeeValue()
-                        _feeEditBox.updateFee(walletAdapter.invoiceService.feeValue)
                     }
                 }
 
@@ -617,7 +610,6 @@ UNPage {
                         onCheckedChanged: {
                             walletAdapter.invoiceService.ttlEnabled = checked
                             walletAdapter.invoiceService.recalculateFeeValue()
-                            _feeEditBox.updateFee(walletAdapter.invoiceService.feeValue)
                         }
                     }
 
@@ -758,7 +750,6 @@ UNPage {
                         onValueChanged: {
                             walletAdapter.invoiceService.mixinValue = value
                             walletAdapter.invoiceService.recalculateFeeValue()
-                            _feeEditBox.updateFee(walletAdapter.invoiceService.feeValue)
                         }
                     }
 
@@ -822,5 +813,11 @@ UNPage {
                 }
             }
         }
+    }
+	Connections {
+        target: walletAdapter.invoiceService
+		onFeeValueChanged:{
+			_feeEditBox.updateFee(walletAdapter.invoiceService.feeValue)
+		}
     }
 }

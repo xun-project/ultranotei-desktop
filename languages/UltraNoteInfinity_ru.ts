@@ -1437,87 +1437,87 @@ the wallet might need optimization more than once.</source>
         <translation>Адрес</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="102"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="101"/>
         <source>Address Book</source>
         <translation>Адресная книга</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="118"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="117"/>
         <source>Paste from Clipboard</source>
         <translation>Вставить из буфера обмена</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="152"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="151"/>
         <source>Label</source>
         <translation>Ярлык</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="197"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="195"/>
         <source>Payment ID</source>
         <translation>Идентификатор транзакции</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="240"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="237"/>
         <source>Amount</source>
         <translation>Сумма</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="312"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="308"/>
         <source>Invoice ID</source>
         <translation>Идентификатор счета</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="379"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="374"/>
         <source>Payload</source>
         <translation>Полезная нагрузка</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="422"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="417"/>
         <source>Encrypted Message</source>
         <translation>Зашифрованное сообщение</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="469"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="463"/>
         <source>Attachments</source>
         <translation>Вложения</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="550"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="544"/>
         <source>Remove Attachment</source>
         <translation>Удалить вложение</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="581"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="575"/>
         <source>Add &quot;Reply to&quot;</source>
         <translation>Добавить &quot;Ответить&quot;</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="615"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="608"/>
         <source>Set self destruct time</source>
         <translation>Установить время на автоуничтожение</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="687"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="679"/>
         <source>Fee</source>
         <translation>Комиссия</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="744"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="736"/>
         <source>Anonymity level</source>
         <translation>Уровень анонимности</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="798"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="789"/>
         <source>Add attachment</source>
         <translation>Добавить вложения</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="802"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="793"/>
         <source>Select attachment...</source>
         <translation>Выбрать вложение ...</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="810"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="801"/>
         <source>Send</source>
         <translation>Отправить</translation>
     </message>

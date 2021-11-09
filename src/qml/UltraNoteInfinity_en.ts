@@ -1405,87 +1405,87 @@ the wallet might need optimization more than once.</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Pages/SendInvoicePage.qml" line="102"/>
+        <location filename="UltraNote/UI/Pages/SendInvoicePage.qml" line="101"/>
         <source>Address Book</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Pages/SendInvoicePage.qml" line="118"/>
+        <location filename="UltraNote/UI/Pages/SendInvoicePage.qml" line="117"/>
         <source>Paste from Clipboard</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Pages/SendInvoicePage.qml" line="152"/>
+        <location filename="UltraNote/UI/Pages/SendInvoicePage.qml" line="151"/>
         <source>Label</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Pages/SendInvoicePage.qml" line="197"/>
+        <location filename="UltraNote/UI/Pages/SendInvoicePage.qml" line="195"/>
         <source>Payment ID</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Pages/SendInvoicePage.qml" line="240"/>
+        <location filename="UltraNote/UI/Pages/SendInvoicePage.qml" line="237"/>
         <source>Amount</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Pages/SendInvoicePage.qml" line="312"/>
+        <location filename="UltraNote/UI/Pages/SendInvoicePage.qml" line="308"/>
         <source>Invoice ID</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Pages/SendInvoicePage.qml" line="379"/>
+        <location filename="UltraNote/UI/Pages/SendInvoicePage.qml" line="374"/>
         <source>Payload</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Pages/SendInvoicePage.qml" line="422"/>
+        <location filename="UltraNote/UI/Pages/SendInvoicePage.qml" line="417"/>
         <source>Encrypted Message</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Pages/SendInvoicePage.qml" line="469"/>
+        <location filename="UltraNote/UI/Pages/SendInvoicePage.qml" line="463"/>
         <source>Attachments</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Pages/SendInvoicePage.qml" line="550"/>
+        <location filename="UltraNote/UI/Pages/SendInvoicePage.qml" line="544"/>
         <source>Remove Attachment</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Pages/SendInvoicePage.qml" line="581"/>
+        <location filename="UltraNote/UI/Pages/SendInvoicePage.qml" line="575"/>
         <source>Add &quot;Reply to&quot;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Pages/SendInvoicePage.qml" line="615"/>
+        <location filename="UltraNote/UI/Pages/SendInvoicePage.qml" line="608"/>
         <source>Set self destruct time</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Pages/SendInvoicePage.qml" line="687"/>
+        <location filename="UltraNote/UI/Pages/SendInvoicePage.qml" line="679"/>
         <source>Fee</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Pages/SendInvoicePage.qml" line="744"/>
+        <location filename="UltraNote/UI/Pages/SendInvoicePage.qml" line="736"/>
         <source>Anonymity level</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Pages/SendInvoicePage.qml" line="798"/>
+        <location filename="UltraNote/UI/Pages/SendInvoicePage.qml" line="789"/>
         <source>Add attachment</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Pages/SendInvoicePage.qml" line="802"/>
+        <location filename="UltraNote/UI/Pages/SendInvoicePage.qml" line="793"/>
         <source>Select attachment...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Pages/SendInvoicePage.qml" line="810"/>
+        <location filename="UltraNote/UI/Pages/SendInvoicePage.qml" line="801"/>
         <source>Send</source>
         <translation></translation>
     </message>
