@@ -146,22 +146,21 @@ Clone the source code to some path [EXAMPLE: C:\UltraNote\SOURCE\ultranotewallet
 ```
 cd C:\UltraNote\SOURCE\ultranotewallet
 
-set QT_PATH=C:\Qt\5.13.2\msvc2017_64
+set QT_PATH=C:\Qt\Qt5.13.2\5.13.2\msvc2017_64
 
 set CMAKE_PATH=C:\Program Files\CMake\bin
-set BOOST_ROOT=C:\local\boost_1_72_0
-set BOOSTROOT=C:\local\boost_1_72_0
-set BOOST_INCLUDEDIR=C:\local\boost_1_72_0
-set BOOST_LIBRARYDIR=C:\local\boost_1_72_0\lib64-msvc-14.1
+set BOOST_ROOT=C:\local\boost_1_65_1
+set BOOSTROOT=C:\local\boost_1_65_1
+set BOOST_INCLUDEDIR=C:\local\boost_1_65_1
+set BOOST_LIBRARYDIR=C:\local\boost_1_65_1\lib64-msvc-14.1
 
 # Add C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC to your system path.
 # Add C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build to your system path.
 # Add C:\Program Files\OpenSSL-Win64 to your system path.
 
 # fetch sources
-git clone https://bitbucket.org/xunteam/ultranotewallet-infinity.git
+git clone https://github.com/xun-project/UltraNotewallet-Infinity.git
 cd UltraNoteWallet-infinity
-git clone https://bitbucket.org/xunteam/ultranotei-core.git cryptonote
 git submodule init
 git submodule update
 
@@ -177,14 +176,14 @@ sh ./tor_build.sh
 set OPENSSL_PATH="C:\Qt\Tools\OpenSSL\Win_x64\bin"
 set VCINSTALLDIR="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\"
 set VC_VARSALL_PATH="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build"
-set MSVC_REDIST="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Redist\MSVC\14.25.28508\vcredist_x64.exe"
+set MSVC_REDIST="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Redist\MSVC\14.29.30133\vcredist_x64.exe"
 set MSVC_REDIST_DIR="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Redist"
 
 # build wallet using VS2019 developer command prompt
 
 cd build/release
 
-cmake ../.. -G "Visual Studio 16 2019" -D_boost_TEST_VERSIONS=1.72  -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH="%QT_PATH%" -DOPENSSL_PATH="%OPENSSL_PATH%" -DPACKMSI=on
+cmake ../.. -G "Visual Studio 16 2019" -D_boost_TEST_VERSIONS=1.65.1  -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH="%QT_PATH%" -DOPENSSL_PATH="%OPENSSL_PATH%" -DPACKMSI=on
 
 cmake --build . --config Release
 
