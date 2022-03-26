@@ -33,7 +33,7 @@ void QrImage::generate(const QString &msg)
     }
 
     QRcode *qrcode = QRcode_encodeString(msg.toStdString().c_str(), 1,
-                                         QR_ECLEVEL_L, QR_MODE_8, 1);
+                                         QR_ECLEVEL_L, QR_MODE_8, 0);
     if (nullptr == qrcode) {
         qCritical() << "Cannot encode message" << msg;
         return;
