@@ -68,7 +68,7 @@ void Settings::load() {
     }
 
     if (!m_settings.contains(OPTION_DAEMON_PORT)) {
-         m_daemonPort = QString::number(CryptoNote::RPC_DEFAULT_PORT);
+         m_daemonPort = QString::number(cn::RPC_DEFAULT_PORT);
     }
   } else {
     m_addressBookFile = getDataDir().absoluteFilePath(QCoreApplication::applicationName() + ".addressbook");
@@ -80,7 +80,7 @@ void Settings::load() {
   }
 
   if (!m_settings.contains(OPTION_DAEMON_PORT)) {
-        m_settings.insert(OPTION_DAEMON_PORT, CryptoNote::RPC_DEFAULT_PORT); // default daemon port
+        m_settings.insert(OPTION_DAEMON_PORT, cn::RPC_DEFAULT_PORT); // default daemon port
   }
 
   QStringList defaultPoolList;

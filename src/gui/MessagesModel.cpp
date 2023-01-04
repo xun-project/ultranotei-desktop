@@ -42,7 +42,7 @@ MessagesModel::MessagesModel()
     connect(&WalletAdapter::instance(), &WalletAdapter::reloadWalletTransactionsSignal, this, &MessagesModel::reloadWalletTransactions,
         Qt::QueuedConnection);
     connect(&WalletAdapter::instance(), &WalletAdapter::walletTransactionCreatedSignal, this,
-        static_cast<void (MessagesModel::*)(CryptoNote::TransactionId)>(&MessagesModel::appendTransaction), Qt::QueuedConnection);
+        static_cast<void (MessagesModel::*)(cn::TransactionId)>(&MessagesModel::appendTransaction), Qt::QueuedConnection);
     connect(&WalletAdapter::instance(), &WalletAdapter::walletTransactionUpdatedSignal, this, &MessagesModel::updateWalletTransaction,
         Qt::QueuedConnection);
     connect(&NodeAdapter::instance(), &NodeAdapter::lastKnownBlockHeightUpdatedSignal, this, &MessagesModel::lastKnownHeightUpdated,
@@ -112,8 +112,8 @@ QVariant MessagesModel::data(const QModelIndex& _index, int _role) const
         return QVariant();
     }
 
-    CryptoNote::WalletLegacyTransaction transaction;
-    CryptoNote::TransactionId transactionId = m_messages.value(_index.row()).first;
+    cn::WalletLegacyTransaction transaction;
+    cn::TransactionId transactionId = m_messages.value(_index.row()).first;
     Message message = m_messages.value(_index.row()).second;
 
     if (!WalletAdapter::instance().getTransaction(transactionId, transaction)) {
@@ -173,7 +173,7 @@ QVariant MessagesModel::getDisplayRole(const QModelIndex& _index) const
 
     case COLUMN_HEIGHT: {
         quint64 height = _index.data(ROLE_HEIGHT).value<quint64>();
-        return (height == CryptoNote::WALLET_LEGACY_UNCONFIRMED_TRANSACTION_HEIGHT ? "-" : QString::number(height));
+        return (height == cn::WALLET_LEGACY_UNCONFIRMED_TRANSACTION_HEIGHT ? "-" : QString::number(height));
     }
 
     case COLUMN_MESSAGE: {
@@ -219,8 +219,8 @@ QVariant MessagesModel::getAlignmentRole(const QModelIndex& _index) const
     return headerData(_index.column(), Qt::Horizontal, Qt::TextAlignmentRole);
 }
 
-QVariant MessagesModel::getUserRole(const QModelIndex& _index, int _role, CryptoNote::TransactionId _transactionId,
-    CryptoNote::WalletLegacyTransaction& _transaction, const Message& _message) const
+QVariant MessagesModel::getUserRole(const QModelIndex& _index, int _role, cn::TransactionId _transactionId,
+    cn::WalletLegacyTransaction& _transaction, const Message& _message) const
 {
     switch (_role) {
     case ROLE_DATE:
@@ -276,7 +276,7 @@ void MessagesModel::reloadWalletTransactions()
     endResetModel();
 
     quint32 rowCount = 0;
-    for (CryptoNote::TransactionId transactionId = 0; transactionId < WalletAdapter::instance().getTransactionCount(); ++transactionId) {
+    for (cn::TransactionId transactionId = 0; transactionId < WalletAdapter::instance().getTransactionCount(); ++transactionId) {
         appendTransaction(transactionId, rowCount);
     }
 
@@ -286,9 +286,9 @@ void MessagesModel::reloadWalletTransactions()
     }
 }
 
-void MessagesModel::appendTransaction(CryptoNote::TransactionId _transactionId, quint32& _insertedRowCount)
+void MessagesModel::appendTransaction(cn::TransactionId _transactionId, quint32& _insertedRowCount)
 {
-    CryptoNote::WalletLegacyTransaction transaction;
+    cn::WalletLegacyTransaction transaction;
     if (!WalletAdapter::instance().getTransaction(_transactionId, transaction)) {
         return;
     }
@@ -306,7 +306,7 @@ void MessagesModel::appendTransaction(CryptoNote::TransactionId _transactionId, 
     }
 }
 
-void MessagesModel::appendTransaction(CryptoNote::TransactionId _transactionId)
+void MessagesModel::appendTransaction(cn::TransactionId _transactionId)
 {
     if (m_transactionRow.contains(_transactionId)) {
         return;
@@ -324,7 +324,7 @@ void MessagesModel::appendTransaction(CryptoNote::TransactionId _transactionId)
     }
 }
 
-void MessagesModel::updateWalletTransaction(CryptoNote::TransactionId _id)
+void MessagesModel::updateWalletTransaction(cn::TransactionId _id)
 {
     quint32 firstRow = m_transactionRow.value(_id).first;
     quint32 lastRow = firstRow + m_transactionRow.value(_id).second - 1;

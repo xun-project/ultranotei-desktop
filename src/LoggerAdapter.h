@@ -16,10 +16,10 @@ class LoggerAdapter {
 public:
   static LoggerAdapter& instance();
   void init();
-  Logging::LoggerManager& getLoggerManager();
+  logging::LoggerManager& getLoggerManager();
 
 private:
-  Logging::LoggerManager m_logManager;
+  logging::LoggerManager m_logManager;
 
   LoggerAdapter() = default;
   ~LoggerAdapter() = default;

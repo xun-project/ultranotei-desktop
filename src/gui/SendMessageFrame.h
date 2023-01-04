@@ -47,7 +47,7 @@ private:
   QNetworkAccessManager networkAccessManager;
 
   void sendMessage(const QString& ipfsHash, const QString& encrpyptionKey);
-  void sendMessageCompleted(CryptoNote::TransactionId _transactionId, bool _error, const QString& _errorText);
+  void sendMessageCompleted(cn::TransactionId _transactionId, bool _error, const QString& _errorText);
   void reset();
   void addAttachments(const QStringList& filenames);
   qint64 totalAttachmentsSize();

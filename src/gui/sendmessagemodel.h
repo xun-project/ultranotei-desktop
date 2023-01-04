@@ -26,7 +26,7 @@ public:
     explicit SendMessageModel(QObject *parent = nullptr);
     Q_INVOKABLE void recalculateFeeValue();
     Q_INVOKABLE void send();
-    void sendMessageCompleted(CryptoNote::TransactionId _transactionId, bool _error,
+    void sendMessageCompleted(cn::TransactionId _transactionId, bool _error,
                               const QString& _errorText);
 signals:
     void downloadProgressChanged(double value);

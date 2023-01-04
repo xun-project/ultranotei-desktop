@@ -35,8 +35,8 @@ void Worker::stop() {
 void Worker::run() {
   Job localJob;
   quint32 localNonce;
-  Crypto::Hash hash;
-  Crypto::cn_context context;
+  crypto::Hash hash;
+  crypto::cn_context context;
   while (!m_isStopped) {
     {
       QReadLocker lock(&m_jobLock);
@@ -56,9 +56,9 @@ void Worker::run() {
     std::memset(&hash, 0, sizeof(hash));
       
     if (NodeAdapter::instance().getLastKnownBlockHeight() <= 200) {
-        Crypto::cn_slow_hash(context, localJob.blob.data(), localJob.blob.size(), hash);
+        crypto::cn_slow_hash(context, localJob.blob.data(), localJob.blob.size(), hash);
     } else {
-        Crypto::cn_conceal_slow_hash_v0(context, localJob.blob.data(), localJob.blob.size(), hash);
+        crypto::cn_conceal_slow_hash_v0(context, localJob.blob.data(), localJob.blob.size(), hash);
     }
       
     ++m_hashCounter;

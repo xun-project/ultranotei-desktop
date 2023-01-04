@@ -72,7 +72,7 @@ namespace WalletGui {
 		Q_INVOKABLE void removeAttachment(int index);
 	public slots:
 		void updateQRCode();
-		void sendMessageCompleted(CryptoNote::TransactionId _transactionId, bool _error, const QString& _errorText);
+		void sendMessageCompleted(cn::TransactionId _transactionId, bool _error, const QString& _errorText);
 
 	private slots:
 		void onAliasFound(const QString& _name, const QString& _address);

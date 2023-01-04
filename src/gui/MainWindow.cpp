@@ -85,7 +85,7 @@ void MainWindow::connectToSignals()
         QApplication::alert(this);
     });
 
-    connect(&WalletAdapter::instance(), &WalletAdapter::walletSendTransactionCompletedSignal, this, [this](CryptoNote::TransactionId _transactionId, int _error, const QString& _errorString) {
+    connect(&WalletAdapter::instance(), &WalletAdapter::walletSendTransactionCompletedSignal, this, [this](cn::TransactionId _transactionId, int _error, const QString& _errorString) {
         if (_error == 0) {
             m_ui->m_transactionsAction->setChecked(true);
         }
@@ -310,8 +310,8 @@ void MainWindow::importKey()
 
         uint64_t addressPrefix;
         std::string data;
-        CryptoNote::AccountKeys keys;
-        if (Tools::Base58::decode_addr(keyString.toStdString(), addressPrefix, data) && addressPrefix == CurrencyAdapter::instance().getAddressPrefix() && data.size() == sizeof(keys)) {
+        cn::AccountKeys keys;
+        if (tools::base_58::decode_addr(keyString.toStdString(), addressPrefix, data) && addressPrefix == CurrencyAdapter::instance().getAddressPrefix() && data.size() == sizeof(keys)) {
             std::memcpy(&keys, data.data(), sizeof(keys));
             if (WalletAdapter::instance().isOpen()) {
                 WalletAdapter::instance().close();

@@ -16,7 +16,7 @@
 
 namespace WalletGui {
 
-typedef QPair<CryptoNote::TransactionId, Message> TransactionMessageId;
+typedef QPair<cn::TransactionId, Message> TransactionMessageId;
 
 class MessagesModel : public QAbstractItemModel {
     Q_OBJECT
@@ -73,7 +73,7 @@ public:
 
 private:
     QVector<TransactionMessageId> m_messages;
-    QHash<CryptoNote::TransactionId, QPair<quint32, quint32>> m_transactionRow;
+    QHash<cn::TransactionId, QPair<quint32, quint32>> m_transactionRow;
 
     MessagesModel();
     ~MessagesModel();
@@ -81,12 +81,12 @@ private:
     QVariant getDisplayRole(const QModelIndex& _index) const;
     QVariant getDecorationRole(const QModelIndex& _index) const;
     QVariant getAlignmentRole(const QModelIndex& _index) const;
-    QVariant getUserRole(const QModelIndex& _index, int _role, CryptoNote::TransactionId _transactionId, CryptoNote::WalletLegacyTransaction& _transaction, const Message& _message) const;
+    QVariant getUserRole(const QModelIndex& _index, int _role, cn::TransactionId _transactionId, cn::WalletLegacyTransaction& _transaction, const Message& _message) const;
 
     void reloadWalletTransactions();
-    void appendTransaction(CryptoNote::TransactionId _id, quint32& _row_count);
-    void appendTransaction(CryptoNote::TransactionId _id);
-    void updateWalletTransaction(CryptoNote::TransactionId _id);
+    void appendTransaction(cn::TransactionId _id, quint32& _row_count);
+    void appendTransaction(cn::TransactionId _id);
+    void updateWalletTransaction(cn::TransactionId _id);
     void lastKnownHeightUpdated(quint64 _height);
     void reset();
 };

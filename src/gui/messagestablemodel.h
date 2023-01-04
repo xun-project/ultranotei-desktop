@@ -13,7 +13,7 @@ class QNetworkReply;
 
 namespace WalletGui {
 
-typedef QPair<CryptoNote::TransactionId, Message> TransactionMessageId;
+typedef QPair<cn::TransactionId, Message> TransactionMessageId;
 
 class MessagesTableModel : public QAbstractTableModel
 {
@@ -45,18 +45,18 @@ public:
     int getRowCount() const { return m_messages.size(); }
 
     void reloadWalletTransactions();
-    void appendTransaction(CryptoNote::TransactionId _id, quint32& _row_count);
-    void appendTransaction(CryptoNote::TransactionId _id);
-    void updateWalletTransaction(CryptoNote::TransactionId _id);
+    void appendTransaction(cn::TransactionId _id, quint32& _row_count);
+    void appendTransaction(cn::TransactionId _id);
+    void updateWalletTransaction(cn::TransactionId _id);
     void reset();
     void lastKnownHeightUpdated(quint64 _height);
 
 	int  getMsgLastCount() const;
-	int  indexAtUnseen(CryptoNote::TransactionId transactionId) const;
+	int  indexAtUnseen(cn::TransactionId transactionId) const;
 	void saveChangesToCache();
 	void setMsgLastCount(int newCount);
-	void appendToUnseen(CryptoNote::TransactionId transactionId);
-	void removeFromUnseen(CryptoNote::TransactionId transactionId);
+	void appendToUnseen(cn::TransactionId transactionId);
+	void removeFromUnseen(cn::TransactionId transactionId);
 signals:
     void rowCountChanged();
     void showErrorDialog(const QString &title, const QString &msg);
@@ -73,10 +73,10 @@ private:
 	void initUnseenCacheFile();
     QString getColumnName(ColumnName columnName);
 	QString applicationCurrentPath;
-	QVector<CryptoNote::TransactionId> unseenList;
+	QVector<cn::TransactionId> unseenList;
 
     QVector<TransactionMessageId> m_messages;
-    QHash<CryptoNote::TransactionId, QPair<quint32, quint32> > m_transactionRow;
+    QHash<cn::TransactionId, QPair<quint32, quint32> > m_transactionRow;
     QString m_fileNameToSave;
     QNetworkAccessManager m_networAccesskManager;
     QByteArray m_encryptionKey;

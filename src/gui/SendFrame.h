@@ -33,7 +33,7 @@ private:
   QScopedPointer<Ui::SendFrame> m_ui;
   QList<TransferFrame*> m_transfers;
 
-  void sendTransactionCompleted(CryptoNote::TransactionId _transactionId, bool _error, const QString& _errorText);
+  void sendTransactionCompleted(cn::TransactionId _transactionId, bool _error, const QString& _errorText);
   void walletActualBalanceUpdated(quint64 _balance);
   void updateFee();
   static bool isValidPaymentId(const QByteArray& _paymentIdString);

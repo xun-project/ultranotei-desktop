@@ -142,7 +142,7 @@ void DepositsFrame::withdrawClicked() {
     return;
   }
 
-  QVector<CryptoNote::DepositId> depositIds;
+  QVector<cn::DepositId> depositIds;
   Q_FOREACH (const QModelIndex& index, unlockedDepositIndexList) {
     depositIds.append(index.row());
   }

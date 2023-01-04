@@ -37,11 +37,11 @@ public:
 	Q_INVOKABLE void setupDepositDetails(int row);
 
     void reloadWalletDeposits();
-    void transactionCreated(CryptoNote::TransactionId transactionId);
-    void transactionUpdated(CryptoNote::TransactionId _transactionId);
+    void transactionCreated(cn::TransactionId transactionId);
+    void transactionUpdated(cn::TransactionId _transactionId);
     void reset();
-    void depositsUpdated(const QVector<CryptoNote::DepositId>& _depositIds);
-    const QVector<CryptoNote::DepositId>& unlockedDepositIds() const {return m_unlockedDepositIds;}
+    void depositsUpdated(const QVector<cn::DepositId>& _depositIds);
+    const QVector<cn::DepositId>& unlockedDepositIds() const {return m_unlockedDepositIds;}
     int unlockedDepositCount() const { return m_unlockedDepositIds.size();}
     void reinitHeaderNames();
 
@@ -57,10 +57,10 @@ private:
     };
     static qreal calculateRate(quint64 _amount, //amount invested (in coin minimum increments)
                                quint64 _interest); //interest earned (in coin minimum increments)
-    void appendDeposit(CryptoNote::DepositId _depositId);
+    void appendDeposit(cn::DepositId _depositId);
     QVariant getUserRole(int row, int role) const;
     QString getColumnName(ColumnName columnName);
-    QVector<CryptoNote::DepositId> m_unlockedDepositIds;
+    QVector<cn::DepositId> m_unlockedDepositIds;
     QVector<int> m_orderedRows;
     bool translationsInit = false;
 };
