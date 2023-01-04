@@ -53,8 +53,8 @@ QVariant MessagesTableModel::data(const QModelIndex &index, int role) const
         return QVariant();
     }
 
-    CryptoNote::WalletLegacyTransaction transaction;
-    CryptoNote::TransactionId transactionId = m_messages.value(row).first;
+    cn::WalletLegacyTransaction transaction;
+    cn::TransactionId transactionId = m_messages.value(row).first;
     WalletGui::Message message = m_messages.value(row).second;
     if(!WalletAdapter::instance().getTransaction(transactionId, transaction)) {
       return QVariant();
@@ -74,7 +74,7 @@ QVariant MessagesTableModel::data(const QModelIndex &index, int role) const
             break;
         case Height: {
             const auto height = transaction.blockHeight;
-            out = (height == CryptoNote::WALLET_LEGACY_UNCONFIRMED_TRANSACTION_HEIGHT ? "-" : QString::number(height));
+            out = (height == cn::WALLET_LEGACY_UNCONFIRMED_TRANSACTION_HEIGHT ? "-" : QString::number(height));
         }
             break;
         case Message: {
@@ -127,8 +127,8 @@ void MessagesTableModel::setupMessageDetails(int row)
         qCritical() << "Invalid row index" << row;
         return;
     }
-    CryptoNote::WalletLegacyTransaction transaction;
-    CryptoNote::TransactionId transactionId = m_messages.value(row).first;
+    cn::WalletLegacyTransaction transaction;
+    cn::TransactionId transactionId = m_messages.value(row).first;
     WalletGui::Message message = m_messages.value(row).second;
 
 	int transactionIndex = indexAtUnseen(transactionId);
@@ -144,7 +144,7 @@ void MessagesTableModel::setupMessageDetails(int row)
     }
 
     const auto height = transaction.blockHeight;
-    const QString msgHeight = (height == CryptoNote::WALLET_LEGACY_UNCONFIRMED_TRANSACTION_HEIGHT ? "-" : QString::number(height));
+    const QString msgHeight = (height == cn::WALLET_LEGACY_UNCONFIRMED_TRANSACTION_HEIGHT ? "-" : QString::number(height));
     setMsgHeight(msgHeight);
 
     const auto hash = QByteArray(reinterpret_cast<char*>(&transaction.hash),
@@ -230,8 +230,8 @@ void MessagesTableModel::cancelDownload()
 
 bool MessagesTableModel::getReadState(int row) const
 {
-	CryptoNote::TransactionId transactionId = m_messages.value(row).first;
-	CryptoNote::WalletLegacyTransaction transaction;
+	cn::TransactionId transactionId = m_messages.value(row).first;
+	cn::WalletLegacyTransaction transaction;
 
 	if (!WalletAdapter::instance().getTransaction(transactionId, transaction)) {
 		return true;
@@ -305,7 +305,7 @@ void MessagesTableModel::reloadWalletTransactions()
 
     quint32 rowCount = 0;
 	messagesListTransactionId.clear();
-    for (CryptoNote::TransactionId transactionId = 0; transactionId < WalletAdapter::instance().getTransactionCount(); ++transactionId) {
+    for (cn::TransactionId transactionId = 0; transactionId < WalletAdapter::instance().getTransactionCount(); ++transactionId) {
       appendTransaction(transactionId, rowCount);
     }
 	
@@ -315,8 +315,8 @@ void MessagesTableModel::reloadWalletTransactions()
 		setMsgLastCount(messagesCount);
 		int msgDifference = messagesCount - savedMessageLastCount;
 		for (int i = 0; i < msgDifference; i++) {
-			CryptoNote::TransactionId transactionId = messagesListTransactionId.at(messagesCount - i - 1);
-			CryptoNote::WalletLegacyTransaction transaction;
+			cn::TransactionId transactionId = messagesListTransactionId.at(messagesCount - i - 1);
+			cn::WalletLegacyTransaction transaction;
 
 			if (WalletAdapter::instance().getTransaction(transactionId, transaction)) {
 				if (transaction.totalAmount > 0) {
@@ -330,10 +330,10 @@ void MessagesTableModel::reloadWalletTransactions()
     emit rowCountChanged();
 }
 
-void MessagesTableModel::appendTransaction(CryptoNote::TransactionId _id,
+void MessagesTableModel::appendTransaction(cn::TransactionId _id,
                                            quint32& _row_count)
 {
-    CryptoNote::WalletLegacyTransaction transaction;
+    cn::WalletLegacyTransaction transaction;
     if (!WalletAdapter::instance().getTransaction(_id, transaction)) {
       return;
     }
@@ -352,7 +352,7 @@ void MessagesTableModel::appendTransaction(CryptoNote::TransactionId _id,
     }
 }
 
-void MessagesTableModel::appendTransaction(CryptoNote::TransactionId _id)
+void MessagesTableModel::appendTransaction(cn::TransactionId _id)
 {
     if (m_transactionRow.contains(_id)) {
         return;
@@ -360,11 +360,11 @@ void MessagesTableModel::appendTransaction(CryptoNote::TransactionId _id)
 
     quint32 insertedRowCount = 0;
     emit layoutAboutToBeChanged();
-    for (CryptoNote::TransactionId transactionId =
-         static_cast<CryptoNote::TransactionId>(m_transactionRow.size());
+    for (cn::TransactionId transactionId =
+         static_cast<cn::TransactionId>(m_transactionRow.size());
          transactionId <= _id; ++transactionId) {
         appendTransaction(transactionId, insertedRowCount);
-		CryptoNote::WalletLegacyTransaction transaction;
+		cn::WalletLegacyTransaction transaction;
 		if (WalletAdapter::instance().getTransaction(transactionId, transaction)) {
 			if (transaction.totalAmount > 0)
 				appendToUnseen(transactionId);
@@ -378,7 +378,7 @@ void MessagesTableModel::appendTransaction(CryptoNote::TransactionId _id)
     emit rowCountChanged();
 }
 
-void MessagesTableModel::updateWalletTransaction(CryptoNote::TransactionId _id)
+void MessagesTableModel::updateWalletTransaction(cn::TransactionId _id)
 {
     Q_UNUSED(_id)
     emit layoutAboutToBeChanged();
@@ -405,10 +405,10 @@ void MessagesTableModel::sortMessages()
 {
     std::sort(m_messages.begin(), m_messages.end(),
               [&](TransactionMessageId &left, TransactionMessageId &right) {
-        const CryptoNote::TransactionId leftTransactionId = left.first;
-        const CryptoNote::TransactionId rightTransactionId = right.first;
-        CryptoNote::WalletLegacyTransaction leftTransaction;
-        CryptoNote::WalletLegacyTransaction rightTransaction;
+        const cn::TransactionId leftTransactionId = left.first;
+        const cn::TransactionId rightTransactionId = right.first;
+        cn::WalletLegacyTransaction leftTransaction;
+        cn::WalletLegacyTransaction rightTransaction;
         if (WalletAdapter::instance().getTransaction(leftTransactionId, leftTransaction) &&
             WalletAdapter::instance().getTransaction(rightTransactionId, rightTransaction)) {
             const QDateTime leftDate = (leftTransaction.timestamp > 0 ? QDateTime::fromTime_t(static_cast<uint>(leftTransaction.timestamp)) : QDateTime());
@@ -450,17 +450,17 @@ void MessagesTableModel::saveChangesToCache()
 	UnreadFile.close();
 }
 
-void MessagesTableModel::appendToUnseen(CryptoNote::TransactionId transactionId)
+void MessagesTableModel::appendToUnseen(cn::TransactionId transactionId)
 {
 	unseenList.append(transactionId);
 }
 
-void MessagesTableModel::removeFromUnseen(CryptoNote::TransactionId transactionId)
+void MessagesTableModel::removeFromUnseen(cn::TransactionId transactionId)
 {
 	unseenList.remove(indexAtUnseen(transactionId));
 }
 
-int MessagesTableModel::indexAtUnseen(CryptoNote::TransactionId transactionId) const
+int MessagesTableModel::indexAtUnseen(cn::TransactionId transactionId) const
 {
 	return unseenList.indexOf(transactionId);
 }

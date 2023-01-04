@@ -30,7 +30,7 @@ DepositTableModel::DepositTableModel(QObject *parent) : QAbstractTableModel(pare
             const DepositState depositState = static_cast<DepositState>(getUserRole(i,
                                               ROLE_STATE).toInt());
             if (STATE_UNLOCKED == depositState) {
-                m_unlockedDepositIds.push_back(static_cast<CryptoNote::DepositId>(i));
+                m_unlockedDepositIds.push_back(static_cast<cn::DepositId>(i));
             }
         }
 		emit unlockedDepositCountChanged();
@@ -96,7 +96,7 @@ QVariant DepositTableModel::data(const QModelIndex &index, int role) const
             break;
         case UnlockHeight: {
             quint64 unlockHeight = getUserRole(row, ROLE_UNLOCK_HEIGHT).value<quint64>();
-            if (unlockHeight == CryptoNote::WALLET_LEGACY_UNCONFIRMED_TRANSACTION_HEIGHT) {
+            if (unlockHeight == cn::WALLET_LEGACY_UNCONFIRMED_TRANSACTION_HEIGHT) {
                 out = "-";
             } else {
                 out = unlockHeight > 0 ? unlockHeight - 1 : 0;
@@ -107,7 +107,7 @@ QVariant DepositTableModel::data(const QModelIndex &index, int role) const
             DepositState depositState = static_cast<DepositState>(getUserRole(row, ROLE_STATE).toInt());
             if (depositState == STATE_LOCKED) {
                 quint64 unlockHeight = getUserRole(row, ROLE_UNLOCK_HEIGHT).value<quint64>();
-                if (unlockHeight == CryptoNote::WALLET_LEGACY_UNCONFIRMED_TRANSACTION_HEIGHT) {
+                if (unlockHeight == cn::WALLET_LEGACY_UNCONFIRMED_TRANSACTION_HEIGHT) {
                     out = "-";
                 } else {
                     out = getExpectedTimeForHeight(unlockHeight).toString("yyyy-MM-dd HH:mm");
@@ -118,8 +118,8 @@ QVariant DepositTableModel::data(const QModelIndex &index, int role) const
         }
             break;
         case SpendingTime: {
-            CryptoNote::TransactionId spendingTransactionId = getUserRole(row, ROLE_SPENDING_TRANSACTION_ID).value<CryptoNote::TransactionId>();
-            if (spendingTransactionId == CryptoNote::WALLET_LEGACY_INVALID_TRANSACTION_ID) {
+            cn::TransactionId spendingTransactionId = getUserRole(row, ROLE_SPENDING_TRANSACTION_ID).value<cn::TransactionId>();
+            if (spendingTransactionId == cn::WALLET_LEGACY_INVALID_TRANSACTION_ID) {
                 out = "-";
             } else {
                 out = WalletGui::TransactionsModel::instance().index(static_cast<int>(spendingTransactionId), WalletGui::TransactionsModel::COLUMN_DATE).data();
@@ -137,7 +137,7 @@ QVariant DepositTableModel::data(const QModelIndex &index, int role) const
 
 QVariant DepositTableModel::getUserRole(int row, int role) const
 {
-    CryptoNote::Deposit deposit;
+    cn::Deposit deposit;
 
     if(!WalletGui::WalletAdapter::instance().getDeposit(row, deposit)) {
         return QVariant();
@@ -156,7 +156,7 @@ QVariant DepositTableModel::getUserRole(int row, int role) const
     case ROLE_STATE:
         if (deposit.locked) {
             return static_cast<int>(STATE_LOCKED);
-        } else if (deposit.spendingTransactionId == CryptoNote::WALLET_LEGACY_INVALID_TRANSACTION_ID) {
+        } else if (deposit.spendingTransactionId == cn::WALLET_LEGACY_INVALID_TRANSACTION_ID) {
             return static_cast<int>(STATE_UNLOCKED);
         }
         return static_cast<int>(STATE_SPENT);
@@ -168,11 +168,11 @@ QVariant DepositTableModel::getUserRole(int row, int role) const
         return static_cast<quintptr>(deposit.spendingTransactionId);
 
     case ROLE_UNLOCK_HEIGHT: {
-        CryptoNote::TransactionId creatingTransactionId = getUserRole(row, ROLE_CREATING_TRANSACTION_ID).value<CryptoNote::TransactionId>();
+        cn::TransactionId creatingTransactionId = getUserRole(row, ROLE_CREATING_TRANSACTION_ID).value<cn::TransactionId>();
         quint64 creatingHeight = WalletGui::TransactionsModel::instance().index(static_cast<int>(creatingTransactionId), 0).
                 data(WalletGui::TransactionsModel::ROLE_HEIGHT).value<quint64>();
-        if (creatingHeight == CryptoNote::WALLET_LEGACY_UNCONFIRMED_TRANSACTION_HEIGHT) {
-            return static_cast<const quint64>(CryptoNote::WALLET_LEGACY_UNCONFIRMED_TRANSACTION_HEIGHT);
+        if (creatingHeight == cn::WALLET_LEGACY_UNCONFIRMED_TRANSACTION_HEIGHT) {
+            return static_cast<const quint64>(cn::WALLET_LEGACY_UNCONFIRMED_TRANSACTION_HEIGHT);
         }
 
         return creatingHeight + getUserRole(row, ROLE_DEPOSIT_TERM).value<quint32>();
@@ -313,14 +313,14 @@ void DepositTableModel::reset()
     emit layoutChanged();
 }
 
-void DepositTableModel::transactionCreated(CryptoNote::TransactionId transactionId)
+void DepositTableModel::transactionCreated(cn::TransactionId transactionId)
 {
     if (m_depositCount < WalletGui::WalletAdapter::instance().getDepositCount()) {
         appendDeposit(WalletGui::WalletAdapter::instance().getDepositCount() - 1);
     }
 }
 
-void DepositTableModel::appendDeposit(CryptoNote::DepositId _depositId)
+void DepositTableModel::appendDeposit(cn::DepositId _depositId)
 {
     if (_depositId < m_depositCount) {
         return;
@@ -331,7 +331,7 @@ void DepositTableModel::appendDeposit(CryptoNote::DepositId _depositId)
     emit layoutChanged();
 }
 
-void DepositTableModel::transactionUpdated(CryptoNote::TransactionId _transactionId)
+void DepositTableModel::transactionUpdated(cn::TransactionId _transactionId)
 {
     QModelIndex transactionIndex = WalletGui::TransactionsModel::instance().index(static_cast<int>(_transactionId), 0);
     if (!transactionIndex.isValid()) {
@@ -343,7 +343,7 @@ void DepositTableModel::transactionUpdated(CryptoNote::TransactionId _transactio
     emit dataChanged(index(firstDepositId, 0), index(firstDepositId + depositCount - 1, columnCount() - 1));
 }
 
-void DepositTableModel::depositsUpdated(const QVector<CryptoNote::DepositId>& _depositIds)
+void DepositTableModel::depositsUpdated(const QVector<cn::DepositId>& _depositIds)
 {
     for (const auto& depositId: _depositIds) {
         emit dataChanged(index(static_cast<int>(depositId), 0), index(static_cast<int>(depositId), columnCount() - 1));

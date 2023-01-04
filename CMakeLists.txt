@@ -127,7 +127,7 @@ endif()
 # in the case no Qt5Config.cmake file could be found, cmake will explicitly ask the user for the QT5_DIR containing it!
 # thus no need to keep additional variables and checks
 
-find_package(Qt5 5.13 COMPONENTS Core Quick QuickControls2 Gui Widgets Network Multimedia WebEngine WebEngineWidgets Qml REQUIRED)
+find_package(Qt5 5.12.8 COMPONENTS Core Quick QuickControls2 Gui Widgets Network Multimedia WebEngine WebEngineWidgets Qml REQUIRED)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
@@ -280,6 +280,7 @@ set(CRYPTONOTE_SOURCES
   cryptonote/src/Logging/ConsoleLogger.cpp
   cryptonote/src/Logging/LoggerMessage.cpp
   cryptonote/src/Logging/LoggerRef.cpp
+  cryptonote/src/Mnemonics/electrum-words.cpp
   cryptonote/src/BlockchainExplorer/BlockchainExplorer.cpp
   cryptonote/src/BlockchainExplorer/BlockchainExplorerDataBuilder.cpp
   cryptonote/src/BlockchainExplorer/BlockchainExplorerErrors.cpp

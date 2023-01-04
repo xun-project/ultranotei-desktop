@@ -107,8 +107,8 @@ void SendMessageModel::send()
 }
 
 void SendMessageModel::sendMessage(const QString& ipfsHash, const QString& encrpyptionKey) {
-    QVector<CryptoNote::WalletLegacyTransfer> transfers;
-    QVector<CryptoNote::TransactionMessage> messages;
+    QVector<cn::WalletLegacyTransfer> transfers;
+    QVector<cn::TransactionMessage> messages;
 
     MessageHeader header;
     if(m_addReplyTo) {
@@ -275,7 +275,7 @@ void SendMessageModel::showUploadProgress(QNetworkReply* reply)
     emit showDownloadProgress();
 }
 
-void SendMessageModel::sendMessageCompleted(CryptoNote::TransactionId _transactionId,
+void SendMessageModel::sendMessageCompleted(cn::TransactionId _transactionId,
                                             bool _error, const QString& _errorText)
 {
     Q_UNUSED(_transactionId)

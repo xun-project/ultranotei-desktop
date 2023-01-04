@@ -73,7 +73,7 @@ void SendMessageFrame::setAddress(const QString& _address) {
   m_ui->m_addReplyToCheck->setChecked(true);
 }
 
-void SendMessageFrame::sendMessageCompleted(CryptoNote::TransactionId _transactionId, bool _error, const QString& _errorText) {
+void SendMessageFrame::sendMessageCompleted(cn::TransactionId _transactionId, bool _error, const QString& _errorText) {
   Q_UNUSED(_transactionId);
   if (_error) {
     QCoreApplication::postEvent(
@@ -365,8 +365,8 @@ void SendMessageFrame::attachmentUploaded(QNetworkReply* reply, const QString& e
 }
 
 void SendMessageFrame::sendMessage(const QString& ipfsHash, const QString& encrpyptionKey) {
-  QVector<CryptoNote::WalletLegacyTransfer> transfers;
-  QVector<CryptoNote::TransactionMessage> messages;
+  QVector<cn::WalletLegacyTransfer> transfers;
+  QVector<cn::TransactionMessage> messages;
 
   MessageHeader header;
   if(m_ui->m_addReplyToCheck->isChecked()) {

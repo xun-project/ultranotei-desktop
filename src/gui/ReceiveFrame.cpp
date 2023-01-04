@@ -37,9 +37,9 @@ void ReceiveFrame::walletOpened(int _error) {
     return;
   }
 
-  CryptoNote::AccountKeys keys;
+  cn::AccountKeys keys;
   WalletAdapter::instance().getAccountKeys(keys);
-  QString privateKeys = QString::fromStdString(Tools::Base58::encode_addr(CurrencyAdapter::instance().getAddressPrefix(),
+  QString privateKeys = QString::fromStdString(tools::base_58::encode_addr(CurrencyAdapter::instance().getAddressPrefix(),
     std::string(reinterpret_cast<char*>(&keys), sizeof(keys))));
 
   m_ui->m_keyEdit->setText(privateKeys);

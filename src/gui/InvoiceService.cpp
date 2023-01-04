@@ -83,7 +83,7 @@ InvoiceService::~InvoiceService()
 {
 }
 
-void InvoiceService::sendMessageCompleted(CryptoNote::TransactionId _transactionId, bool _error, const QString& _errorText)
+void InvoiceService::sendMessageCompleted(cn::TransactionId _transactionId, bool _error, const QString& _errorText)
 {
     Q_UNUSED(_transactionId)
     if (_error) {
@@ -441,8 +441,8 @@ void InvoiceService::attachmentUploaded(QNetworkReply* reply, const QString& enc
 
 void InvoiceService::sendMessage(const QString& ipfsHash, const QString& encrpyptionKey)
 {
-    QVector<CryptoNote::WalletLegacyTransfer> transfers;
-    QVector<CryptoNote::TransactionMessage> messages;
+    QVector<cn::WalletLegacyTransfer> transfers;
+    QVector<cn::TransactionMessage> messages;
 
     MessageHeader header;
     if (m_replyToChecked) {
@@ -519,7 +519,7 @@ bool InvoiceService::isValidPaymentId(const QByteArray& _paymentIdString)
     }
 
     QByteArray paymentId = QByteArray::fromHex(_paymentIdString);
-    return (paymentId.size() == sizeof(Crypto::Hash)) && (_paymentIdString.toUpper() == paymentId.toHex().toUpper());
+    return (paymentId.size() == sizeof(crypto::Hash)) && (_paymentIdString.toUpper() == paymentId.toHex().toUpper());
 }
 
 void InvoiceService::addAttachmentClicked(const QString& fileUrl)

@@ -104,7 +104,7 @@ int main(int argc, char* argv[]) {
         splash.setEnabled(false);
         splash.showMessage(QObject::tr("Loading blockchain..."), Qt::AlignCenter | Qt::AlignBottom, Qt::white);
         QApplication::processEvents();
-        qRegisterMetaType<CryptoNote::TransactionId>("CryptoNote::TransactionId");
+        qRegisterMetaType<cn::TransactionId>("cn::TransactionId");
         qRegisterMetaType<quintptr>("quintptr");
 
         if (!NodeAdapter::instance().init()) {

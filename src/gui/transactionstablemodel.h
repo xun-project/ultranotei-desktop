@@ -7,7 +7,7 @@
 namespace WalletGui {
 
 enum class TransactionType : quint8 {MINED, INPUT, OUTPUT, INOUT, DEPOSIT};
-typedef QPair<CryptoNote::TransactionId, CryptoNote::TransferId> TransactionTransferId;
+typedef QPair<cn::TransactionId, cn::TransferId> TransactionTransferId;
 
 class TransactionsTableModel : public QAbstractTableModel
 {
@@ -36,8 +36,8 @@ public:
     Q_INVOKABLE void exportToCsv(const QUrl &fileUrl);
 
     void reloadWalletTransactions();
-    void appendTransaction(CryptoNote::TransactionId _id);
-    void updateWalletTransaction(CryptoNote::TransactionId _id);
+    void appendTransaction(cn::TransactionId _id);
+    void updateWalletTransaction(cn::TransactionId _id);
     void lastKnownHeightUpdated(quint64 _height);
     void reset();
 Q_SIGNALS:
@@ -45,16 +45,16 @@ Q_SIGNALS:
 
 private:
     QVector<TransactionTransferId> m_transfers;
-    QHash<CryptoNote::TransactionId, QPair<quint32, quint32> > m_transactionRow;
-    void appendTransaction(CryptoNote::TransactionId _id, quint32& _row_count);
+    QHash<cn::TransactionId, QPair<quint32, quint32> > m_transactionRow;
+    void appendTransaction(cn::TransactionId _id, quint32& _row_count);
 
     static QVariant stateIcon(quint64 numberOfConfirmations);
-    static qint64 getAmount(CryptoNote::WalletLegacyTransaction transaction,
-                         const CryptoNote::WalletLegacyTransfer &transfer,
-                         const CryptoNote::TransferId transferId,
-                         const CryptoNote::Deposit &deposit);
-    static quint8 roleType(CryptoNote::WalletLegacyTransaction transaction,
-                    const CryptoNote::WalletLegacyTransfer &transfer);
+    static qint64 getAmount(cn::WalletLegacyTransaction transaction,
+                         const cn::WalletLegacyTransfer &transfer,
+                         const cn::TransferId transferId,
+                         const cn::Deposit &deposit);
+    static quint8 roleType(cn::WalletLegacyTransaction transaction,
+                    const cn::WalletLegacyTransfer &transfer);
     void sortTransfers();
     QByteArray toCsv() const;
     QString getColumnName(ColumnName columnName);

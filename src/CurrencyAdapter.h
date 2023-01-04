@@ -19,7 +19,7 @@ class CurrencyAdapter : public QObject {
 public:
   static CurrencyAdapter& instance();
 
-  const CryptoNote::Currency& getCurrency();
+  const cn::Currency& getCurrency();
   Q_INVOKABLE QString getCurrencyDisplayName() const;
   QString getCurrencyName() const;
   Q_INVOKABLE QString getCurrencyTicker() const;
@@ -38,7 +38,7 @@ public:
   Q_INVOKABLE bool validatePaymentId(const QString& _paymentIdString) const;
 
 private:
-  CryptoNote::Currency m_currency;
+  cn::Currency m_currency;
 
   CurrencyAdapter();
   ~CurrencyAdapter() = default;

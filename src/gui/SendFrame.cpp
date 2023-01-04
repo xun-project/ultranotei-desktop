@@ -85,8 +85,8 @@ void SendFrame::clearAllClicked() {
 }
 
 void SendFrame::sendClicked() {
-  QVector<CryptoNote::WalletLegacyTransfer> walletTransfers;
-  QVector<CryptoNote::TransactionMessage> walletMessages;
+  QVector<cn::WalletLegacyTransfer> walletTransfers;
+  QVector<cn::TransactionMessage> walletMessages;
   Q_FOREACH (TransferFrame * transfer, m_transfers) {
     QString address = transfer->getAddress();
     if (!CurrencyAdapter::instance().validateAddress(address)) {
@@ -94,7 +94,7 @@ void SendFrame::sendClicked() {
       return;
     }
 
-    CryptoNote::WalletLegacyTransfer walletTransfer;
+    cn::WalletLegacyTransfer walletTransfer;
     walletTransfer.address = address.toStdString();
     uint64_t amount = CurrencyAdapter::instance().parseAmount(transfer->getAmountString());
     walletTransfer.amount = amount;
@@ -106,7 +106,7 @@ void SendFrame::sendClicked() {
 
     QString comment = transfer->getComment();
     if (!comment.isEmpty()) {
-      walletMessages.append(CryptoNote::TransactionMessage{comment.toStdString(), address.toStdString()});
+      walletMessages.append(cn::TransactionMessage{comment.toStdString(), address.toStdString()});
     }
   }
 
@@ -132,7 +132,7 @@ void SendFrame::mixinValueChanged(int _value) {
   m_ui->m_mixinEdit->setText(QString::number(_value));
 }
 
-void SendFrame::sendTransactionCompleted(CryptoNote::TransactionId _id, bool _error, const QString& _errorText) {
+void SendFrame::sendTransactionCompleted(cn::TransactionId _id, bool _error, const QString& _errorText) {
   Q_UNUSED(_id);
   if (_error) {
     QCoreApplication::postEvent(&MainWindow::instance(), new ShowMessageEvent(_errorText, QtCriticalMsg));
@@ -161,7 +161,7 @@ bool SendFrame::isValidPaymentId(const QByteArray& _paymentIdString) {
   }
 
   QByteArray paymentId = QByteArray::fromHex(_paymentIdString);
-  return (paymentId.size() == sizeof(Crypto::Hash)) && (_paymentIdString.toUpper() == paymentId.toHex().toUpper());
+  return (paymentId.size() == sizeof(crypto::Hash)) && (_paymentIdString.toUpper() == paymentId.toHex().toUpper());
 }
 
 }
