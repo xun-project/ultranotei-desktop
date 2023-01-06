@@ -8,7 +8,7 @@
 #include <QJsonArray>
 #include <QDebug>
 
-#define SERVER_URL "https://api.coingecko.com/api/v3/coins/ultranote-infinity"
+#define SERVER_URL "https://www.exbitron.com/api/v2/peatio/public/markets/xuniusdt/tickers"
 #define COIN_NAME "xuni"
 #define PRICE_CHECK_PERIOD_SEC 300
 #define DEFAULT_FIAT_SYMBOL "usd"
