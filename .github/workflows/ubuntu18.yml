@@ -21,7 +21,7 @@ jobs:
         run: |
           rm -rf cryptonote
           git clone https://github.com/xun-project/ultranotei-core.git cryptonote
-          git submoudle init
+          git submodule init
       - name: Build
         id: build
         run: |
