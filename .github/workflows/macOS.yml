@@ -1,0 +1,53 @@
+name: macOS
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  build-macos:
+    name: macOS
+    runs-on: macos-11
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Install dependencies
+        run: |
+          brew install boost qt@5
+      - name: Clone ultranote-core
+        run: |
+          rm -rf cryptonote
+          git clone https://github.com/xun-project/ultranotei-core.git cryptonote
+      - name: Build
+        id: build
+        run: |
+          export PATH="/usr/local/opt/qt@5/bin:$PATH"
+          build_folder="build/release"
+          xuni_ver=$(echo ${{ github.ref }} | sed 's|refs/tags/||')
+          release_name="xuni-cli-desktop-macOS-v$xuni_ver"
+          app_name="ultranote-desktop.app"
+          make -j4 build-release
+          cd "$build_folder"
+          macdeployqt "$app_name"
+          cpack
+          mkdir "$release_name"
+          mv *.dmg "$release_name".dmg
+          zip "$release_name".zip "$release_name".dmg
+          sha256=$(shasum -a 256 "$release_name".zip | awk '{ print toupper($1) }')
+          echo "sha256=${sha256}" >> $GITHUB_OUTPUT
+          echo "release_name=${release_name}.zip" >> $GITHUB_OUTPUT
+          echo "asset_path=${build_folder}/${release_name}.zip" >> $GITHUB_OUTPUT
+          echo "xuni_ver=${xuni_ver}" >> $GITHUB_OUTPUT
+      - name: Create Release
+        uses: softprops/action-gh-release@v0.1.15
+        with:
+          files: ${{ steps.build.outputs.asset_path }}
+          name: UltraNote Desktop v${{ steps.build.outputs.xuni_ver }}
+          body: |
+            [Download for macOS](../../releases/download/${{ steps.build.outputs.ccx_version }}/${{ steps.build.outputs.release_name }}) **${{ steps.build.outputs.release_name }}**
+            `SHA256 : ${{ steps.build.outputs.sha256 }}`
+          append_body: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
