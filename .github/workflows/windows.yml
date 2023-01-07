@@ -30,7 +30,7 @@ jobs:
         with:
           host: "windows"
           target: "desktop"
-          modules: "qtcharts"
+          modules: "Core Quick QuickControls2 Gui Widgets Network Multimedia WebEngine WebEngineWidgets Qml"
           install-deps: "true"
 
       - name: Clone ultranote-core
