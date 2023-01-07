@@ -26,15 +26,18 @@ jobs:
       - name: Build
         id: build
         run: |
-          xuni_ver=$(echo "$GITHUB_REF" | sed 's|refs/tags/||')
+          xuni_ver="1.0.8"
           release_name=xuni-cli-desktop-ubuntu-2004-v"$xuni_ver"
-          build_folder="build/release"
-          make -j4 build-release
+          mkdir -p build/release
+          chmod a+x tor_build.sh
+          ./tor_build.sh
+          cd build/release
+          cmake -DCMAKE_BUILD_TYPE=Release ../..
+          cd ../..
+          make -j4
+          make package-deb
           mkdir $release_name
-          mkdir -p $release_name/icon
-          mv $build_folder/ultranote-desktop $release_name
-          cp ultranote-desktop.desktop $release_name
-          cp src/images/UltraNoteLogo.png $release_name/icon
+          mv build/release/*.deb $release_name
           tar -czf "$release_name".tar.gz "$release_name"
           sha256=$(shasum -a 256 "$release_name".tar.gz | awk '{print toupper($1)}')
           echo "sha256=${sha256}" >> $GITHUB_OUTPUT
