@@ -8,7 +8,7 @@
 #include <QJsonArray>
 #include <QDebug>
 
-#define SERVER_URL "https://www.exbitron.com/api/v2/peatio/public/markets/xuniusdt/tickers"
+#define SERVER_URL "https://api.xeggex.com/api/v2/ticker/XUNI_USDT"
 #define COIN_NAME "xuni"
 #define PRICE_CHECK_PERIOD_SEC 300
 #define DEFAULT_FIAT_SYMBOL "usd"
