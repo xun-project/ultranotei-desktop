@@ -7,7 +7,7 @@
 	url = https://bitbucket.org/xunteam/zlib/src/master/
 [submodule "tor"]
 	path = tor
-	url = https://bitbucket.org/xunteam/tor/src/master/
+	url = https://github.com/torproject/tor.git
 [submodule "cryptonote"]
 	path = cryptonote
 	url = https://github.com/xun-project/ultranotei-core.git
