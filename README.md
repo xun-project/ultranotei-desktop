@@ -29,7 +29,7 @@ import QtQuick 2.14
 import QtQuick.Controls 2.14
 
 git submodule init
-git submodule update
+git submodule update --remote
 
 mkdir -p build/release
 chmod a+x tor_build.sh
@@ -77,7 +77,7 @@ Clone the source repository with git and build the release version with the foll
 ```
 mkdir -p build/release
 git submodule init
-git submodule update
+git submodule update --remote
 chmod +x ./tor_build.sh
 ./tor_build.sh
 
@@ -162,7 +162,7 @@ set BOOST_LIBRARYDIR=C:\local\boost_1_65_1\lib64-msvc-14.1
 git clone https://github.com/xun-project/UltraNotewallet-Infinity.git
 cd UltraNoteWallet-infinity
 git submodule init
-git submodule update
+git submodule update --remote
 
 # prepare build
 
