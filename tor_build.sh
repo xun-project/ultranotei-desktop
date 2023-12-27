@@ -22,7 +22,8 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
         #exit
 elif [[ "$OSTYPE" == "cygwin" ]] || [[ "$OSTYPE" == "msys" ]]; then
         echo "Build for windows under sygwin/msys"
-        cd tor
+        rp=$(realpath .)
+        cd ./tor
         ./autogen.sh
         ./configure --enable-static-tor --with-libevent-dir=/mingw64 --with-openssl-dir=/mingw64 --with-zlib-dir=/mingw64 --disable-asciidoc --prefix=$rp/build/release/tor
         echo "#define HAVE_SSL_GET_CLIENT_CIPHERS 1" >> orconfig.h
