@@ -13,7 +13,17 @@ You may download them from here:
 
 or install them using your distribution's package manager.
 
-Debian example:
+Debian example with installation script:
+Clone repository
+cd ultranotei-desktop
+sudo chmod a+x install.sh
+sudo ./install.sh
+
+```
+sudo apt-get install build-essential git cmake automake libboost-all-dev libqrencode-dev qt5-default qttools5-dev qttools5-dev-tools qtdeclarative5-dev qtquickcontrols2-5-dev qtmultimedia5-dev qtwebengine5-dev libqt5webenginewidgets5 libssl-dev libevent-dev qml-module-qtquick-controls qml-module-qtquick-controls2 qml-module-qtquick-dialogs qml-module-qtquick-shapes qml-module-qt-labs-qmlmodels qml-module-qt-labs-platform qml-module-qtwebengine
+
+
+```
 Installing dependencies:
 
 ```
