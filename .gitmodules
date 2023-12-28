@@ -8,6 +8,7 @@
 [submodule "tor"]
 	path = tor
 	url = https://github.com/torproject/tor.git
+	branch = main
 [submodule "cryptonote"]
 	path = cryptonote
 	url = https://github.com/xun-project/ultranotei-core.git
