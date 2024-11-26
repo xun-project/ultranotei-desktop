@@ -1,4 +1,4 @@
-## Building UltraNote Infinity Wallet
+## Building UltraNote Infinity Wallet 
 
 ### On Linux
 
