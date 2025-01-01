@@ -1,6 +1,6 @@
 ## Building UltraNote Infinity Wallet
 
-### On Linux
+### On Linux 
 
 Dependencies: GCC 4.7.3 or later, CMake 3.9 or later, Boost 1.55 or later, and Qt 5.14 or later.
 
