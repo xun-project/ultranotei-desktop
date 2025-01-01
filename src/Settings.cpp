@@ -32,6 +32,7 @@ Q_DECL_CONSTEXPR char OPTION_REMOTE_NODE[] = "remoteNode";
 Q_DECL_CONSTEXPR char OPTION_FIAT_SYMBOL[] = "fiatSymbol";
 Q_DECL_CONSTEXPR char OPTION_DEFAULT_FIAT_SYMBOL[] = "usd";
 Q_DECL_CONSTEXPR char OPTION_AUTOOPTIMIZATION[] = "autoOptimization";
+Q_DECL_CONSTEXPR char OPTION_SOUND_ENABLED[] = "soundEnabled";
 
 Settings& Settings::instance() {
   static Settings inst;
@@ -482,6 +483,20 @@ void Settings::setFiatSymbol(const QString &val)
     }
 
     saveSettings();
+}
+
+bool Settings::isSoundEnabled() const {
+  if (!m_settings.contains(OPTION_SOUND_ENABLED)) {
+    return true;  // Sound enabled by default
+  }
+  return m_settings.value(OPTION_SOUND_ENABLED).toBool();
+}
+
+void Settings::setSoundEnabled(bool _enabled) {
+  if (isSoundEnabled() != _enabled) {
+    m_settings.insert(OPTION_SOUND_ENABLED, _enabled);
+    saveSettings();
+  }
 }
 
 void Settings::saveSettings() const {

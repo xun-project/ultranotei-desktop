@@ -62,7 +62,7 @@ WalletAdapter::WalletAdapter()
 
 	//set source for transactions notification sounds
 	incomingTransactionEffect.setSource(QUrl::fromLocalFile(":/sounds/resources/sounds/poker-chip.wav"));
-	outgoingTransactionEffect.setSource(QUrl::fromLocalFile(":/sounds/resources/sounds/Swoosh-1.wav"));
+	outgoingTransactionEffect.setSource(QUrl::fromLocalFile(":/sounds/resources/sounds/Swoosh-1.wav"));;
 
     connect(this, &WalletAdapter::walletInitCompletedSignal, this, &WalletAdapter::onWalletInitCompleted, Qt::QueuedConnection);
     connect(this, &WalletAdapter::walletSendTransactionCompletedSignal, this, &WalletAdapter::onWalletSendTransactionCompleted, Qt::QueuedConnection);
@@ -1403,13 +1403,20 @@ void WalletAdapter::updateWalletTransactions()
 
 void WalletAdapter::newTransactionSoundEffect(cn::TransactionId _transactionId)
 {
-    Q_EMIT alertOnApplication();
-    qInfo() << QString("newTransactionSoundEffect _transactionId:%1\n").arg(_transactionId);
-	cn::WalletLegacyTransaction transaction;
-	if (!this->getTransaction(_transactionId, transaction)) {
-		return;
-	}
-	transaction.totalAmount < 0 ? outgoingTransactionEffect.play() : incomingTransactionEffect.play();
+    cn::WalletLegacyTransaction txInfo;
+    if (!getTransaction(_transactionId, txInfo)) {
+        return;
+    }
+
+    if (!Settings::instance().isSoundEnabled()) {
+        return;  // Skip sound if disabled
+    }
+
+    if (txInfo.totalAmount < 0) {
+        outgoingTransactionEffect.play();
+    } else {
+        incomingTransactionEffect.play();
+    }
 }
 
 void WalletAdapter::setTorSettings()
