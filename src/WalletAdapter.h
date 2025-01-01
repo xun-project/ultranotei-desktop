@@ -48,6 +48,8 @@ class WalletAdapter : public QObject, public cn::IWalletLegacyObserver {
     QML_READABLE_PROPERTY(QString, statusBarText, setStatusBarText, "")
 
     QML_READABLE_PROPERTY(bool, isTorEnabled, setTorEnabled, false)
+    QML_READABLE_PROPERTY(bool, isSoundEnabled, setSoundEnabled, true)
+    QML_READABLE_PROPERTY(bool, showVisualNotifications, setShowVisualNotifications, true)
     QML_READABLE_PROPERTY(QString, remoteModeIcon, setRemoteModeIcon, "")
     QML_READABLE_PROPERTY(QString, remoteModeToolTip, setRemoteModeToolTip, "")
     QML_READABLE_PROPERTY(QString, connectionStateIcon, setConnectionStateIcon, "")

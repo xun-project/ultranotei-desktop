@@ -321,6 +321,11 @@ Are you sure?</source>
         <source>Minimize to tray</source>
         <translation>Свернуть в трей</translation>
     </message>
+    <message>
+        <location filename="../src/qml/UltraNote/UI/AppWindow.qml" line="1488"/>
+        <source>Mute Sound</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BrowserPage</name>

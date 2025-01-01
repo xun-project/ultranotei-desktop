@@ -1403,13 +1403,22 @@ void WalletAdapter::updateWalletTransactions()
 
 void WalletAdapter::newTransactionSoundEffect(cn::TransactionId _transactionId)
 {
+    if (!m_isSynchronized) {
+        return;
+    }
+    
+    // Always show visual notification
     Q_EMIT alertOnApplication();
     qInfo() << QString("newTransactionSoundEffect _transactionId:%1\n").arg(_transactionId);
-	cn::WalletLegacyTransaction transaction;
-	if (!this->getTransaction(_transactionId, transaction)) {
-		return;
-	}
-	transaction.totalAmount < 0 ? outgoingTransactionEffect.play() : incomingTransactionEffect.play();
+    
+    // Play sound only if enabled
+    if (m_isSoundEnabled) {
+        cn::WalletLegacyTransaction transaction;
+        if (!this->getTransaction(_transactionId, transaction)) {
+            return;
+        }
+        transaction.totalAmount < 0 ? outgoingTransactionEffect.play() : incomingTransactionEffect.play();
+    }
 }
 
 void WalletAdapter::setTorSettings()

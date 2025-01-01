@@ -1481,6 +1481,17 @@ UNFramelessApplicationWindow {
                         walletAdapter.enableTor()
                     }
                 }
+
+UNMenuItem {
+    checkable: true
+    checked: !walletAdapter.isSoundEnabled
+    text: qsTr("Mute Sound")
+
+    onClicked: {
+        walletAdapter.isSoundEnabled = !checked
+        // Visual notifications remain enabled regardless of sound setting
+    }
+}
             }
         }
         UNStatusBarMenuButton{
