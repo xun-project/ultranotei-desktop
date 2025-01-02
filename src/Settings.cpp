@@ -29,8 +29,6 @@ Q_DECL_CONSTEXPR char OPTION_CONNECTION[] = "connectionMode";
 Q_DECL_CONSTEXPR char OPTION_RPCNODES[] = "remoteNodes";
 Q_DECL_CONSTEXPR char OPTION_DAEMON_PORT[] = "daemonPort";
 Q_DECL_CONSTEXPR char OPTION_REMOTE_NODE[] = "remoteNode";
-Q_DECL_CONSTEXPR char OPTION_FIAT_SYMBOL[] = "fiatSymbol";
-Q_DECL_CONSTEXPR char OPTION_DEFAULT_FIAT_SYMBOL[] = "usd";
 Q_DECL_CONSTEXPR char OPTION_AUTOOPTIMIZATION[] = "autoOptimization";
 
 Settings& Settings::instance() {
@@ -111,9 +109,6 @@ void Settings::load() {
     }
     setRPCNodesList(nodesList);
  }
-  if (!m_settings.contains(OPTION_FIAT_SYMBOL)) {
-    setFiatSymbol(OPTION_DEFAULT_FIAT_SYMBOL);
-  }
 }
 
 QStringList Settings::resetPools() {
@@ -342,13 +337,6 @@ bool Settings::isCloseToTrayEnabled() const {
 }
 #endif
 
-QString Settings::getFiatSymbol() const
-{
-    return m_settings.contains(OPTION_FIAT_SYMBOL) ?
-                m_settings.value(OPTION_FIAT_SYMBOL).toString() :
-                OPTION_DEFAULT_FIAT_SYMBOL;
-}
-
 void Settings::setWalletFile(const QString& _file) {
   if (_file.endsWith(".wallet") || _file.endsWith(".keys")) {
     m_settings.insert(OPTION_WALLET_FILE, _file);
@@ -474,15 +462,6 @@ void Settings::setCloseToTrayEnabled(bool _enable) {
   }
 }
 #endif
-
-void Settings::setFiatSymbol(const QString &val)
-{
-    if (getFiatSymbol() != val) {
-      m_settings.insert(OPTION_FIAT_SYMBOL, val);
-    }
-
-    saveSettings();
-}
 
 void Settings::saveSettings() const {
   QFile cfgFile(getDataDir().absoluteFilePath(QCoreApplication::applicationName() + ".cfg"));

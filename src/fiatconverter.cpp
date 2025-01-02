@@ -8,7 +8,8 @@
 #include <QJsonArray>
 #include <QDebug>
 
-#define SERVER_URL "https://www.exbitron.com/api/v2/peatio/public/markets/xuniusdt/tickers"
+#define XUNI_USDT_URL "https://api.xeggex.com/api/v2/ticker/XUNI_USDT"
+#define BTC_USDT_URL "https://api.xeggex.com/api/v2/ticker/BTC_USDT"
 #define COIN_NAME "xuni"
 #define PRICE_CHECK_PERIOD_SEC 300
 #define DEFAULT_FIAT_SYMBOL "usd"
@@ -18,14 +19,7 @@ namespace WalletGui {
 FiatConverter::FiatConverter(QObject *parent) : QObject(parent),
     m_http(new QNetworkAccessManager())
 {
-    QString fiatSymbol = Settings::instance().getFiatSymbol();
-    if (fiatSymbol == "")
-    {
-        fiatSymbol = DEFAULT_FIAT_SYMBOL;
-        Settings::instance().setFiatSymbol(fiatSymbol);
-        qInfo() << QString("FiatConverter: set the fiat symbol to default (%1)").arg(fiatSymbol);
-    }
-    setFiatId(fiatSymbol);
+    setFiatId(DEFAULT_FIAT_SYMBOL);
 
     connect(m_http, &QNetworkAccessManager::sslErrors,
             this, [&](QNetworkReply *reply, const QList<QSslError> &errors) {
@@ -41,7 +35,7 @@ FiatConverter::FiatConverter(QObject *parent) : QObject(parent),
         sendRequest(RequestType::CoinPrice);
     });
 
-    sendRequest(RequestType::CoinList);
+    sendRequest(RequestType::CoinPrice);
 }
 
 FiatConverter::~FiatConverter()
@@ -70,11 +64,13 @@ bool FiatConverter::sendRequest(RequestType type)
 
 QString FiatConverter::fullUrl(RequestType type) const
 {
-    QString out(SERVER_URL);
+    QString out;
     switch (type) {
-    case RequestType::CoinList:
-    case RequestType::SupportedCurrencies:
     case RequestType::CoinPrice:
+        out = XUNI_USDT_URL;
+        break;
+    case RequestType::BtcPrice:
+        out = BTC_USDT_URL;
         break;
     default:
         out.clear();
@@ -84,11 +80,6 @@ QString FiatConverter::fullUrl(RequestType type) const
 
 QNetworkReply* FiatConverter::networkReply(RequestType type, QUrl url)
 {
-    if (RequestType::CoinPrice == type && m_availableFiatList.isEmpty()) {
-        qCritical() << "Fiat list is empty";
-        return nullptr;
-    }
-
     QNetworkRequest request(url);
     QSslConfiguration config = request.sslConfiguration();
     config.setProtocol(QSsl::SecureProtocols);
@@ -116,10 +107,8 @@ void FiatConverter::requestFinished(QNetworkReply* reply)
         const QString msg = "Error code " + QString::number(rc) + ": " + reply->errorString();
         qCritical() << msg;
         //in case of error, restart price polling if possible
-        if (!m_availableFiatList.isEmpty()) {
-            qDebug() << "Restart price check timer";
-            m_priceCheckTimer.start();
-        }
+    qDebug() << "Restart price check timer";
+    m_priceCheckTimer.start();
     }
 }
 
@@ -129,63 +118,59 @@ void FiatConverter::processReply(RequestType type, const QByteArray &data)
 
     QJsonDocument doc = QJsonDocument::fromJson(data, &error);
     switch (type) {
-    case RequestType::CoinList:
-    case RequestType::SupportedCurrencies:
-        if (doc.isObject()) {
-
-            qDebug() << "Processing coin list";
-
-            m_coinPriceDict = doc.object()["market_data"].toObject().value("current_price").toObject();
-            m_availableFiatList.clear();
-
-            QList<QString> keyList = m_coinPriceDict.keys();
-
-            for (int i = 0; i < keyList.size(); ++i) {
-                m_availableFiatList << keyList.at(i);
-                if (0 == m_fiatId.compare(keyList.at(i), Qt::CaseInsensitive)) {
-                    setCurrentIndex(i);
-                }
-            }
-            emit availableFiatListChanged();
-
-            sendRequest(RequestType::CoinPrice);
-        } else {
-            qCritical() << "Reply is not a JSON array" << error.errorString();
-            qDebug() << data;
-        }
-        break;
     case RequestType::CoinPrice:
-        qDebug() << "Process coin price ";
-
         if (doc.isObject()) {
-            
-            m_coinPriceDict = doc.object()["market_data"].toObject().value("current_price").toObject();
-
-            if (!m_coinPriceDict.isEmpty()) {
-                setCoinPrice();
-                m_priceCheckTimer.start();
-            } else {
-                qCritical() << "Cannot find" << m_fiatId;
+            QJsonObject obj = doc.object();
+            if (!obj.contains("last_price")) {
+                qCritical() << "Missing last_price in API response";
+                return;
             }
+            bool ok = false;
+            double lastPrice = obj["last_price"].toString().toDouble(&ok);
+            if (!ok) {
+                qCritical() << "Invalid last_price format:" << obj["last_price"];
+                return;
+            }
+            m_coinPriceDict = QJsonObject();
+            m_coinPriceDict[m_fiatId] = lastPrice;
+            qDebug() << "XUNI price updated:" << lastPrice;
 
+            // Get BTC price
+            sendRequest(RequestType::BtcPrice);
         } else {
-            qCritical() << "Reply is not a JSON object" << error.errorString();
-            qDebug() << data;
+            qCritical() << "Invalid XUNI price response" << error.errorString();
         }
         break;
-    case RequestType::Unknown:
-        break;//remove compiler warning
+        
+    case RequestType::BtcPrice:
+        if (doc.isObject()) {
+            QJsonObject obj = doc.object();
+            if (!obj.contains("last_price")) {
+                qCritical() << "Missing last_price in API response";
+                return;
+            }
+            bool ok = false;
+            double btcPrice = obj["last_price"].toString().toDouble(&ok);
+            if (!ok) {
+                qCritical() << "Invalid last_price format:" << obj["last_price"];
+                return;
+            }
+            m_btcPrice = btcPrice;
+            qDebug() << "BTC price updated:" << btcPrice;
+            
+            // Update price display
+            setCoinPrice();
+            m_priceCheckTimer.start();
+        } else {
+            qCritical() << "Invalid BTC price response" << error.errorString();
+        }
+        break;
+        
+    default:
+        break;
     }
 }
 
-void FiatConverter::setFiatId(int index)
-{
-    if ((0 <= index) && (index < m_availableFiatList.size())) {
-        setFiatId(m_availableFiatList.at(index));
-        Settings::instance().setFiatSymbol(m_fiatId);
-        setCoinPrice();
-    }
-}
 
 void FiatConverter::setCoinPrice()
 {

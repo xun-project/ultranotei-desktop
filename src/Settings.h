@@ -58,8 +58,6 @@ public:
   bool isMinimizeToTrayEnabled() const;
   bool isCloseToTrayEnabled() const;
 #endif
-  QString getFiatSymbol() const;
-
   void setTrackingMode(bool _tracking);
   void setWalletFile(const QString& _file);
   void setEncrypted(bool _encrypted);
@@ -70,7 +68,6 @@ public:
   void setCurrentLocalDaemonPort(const quint16& _daemonPort);
   void setCurrentRemoteNode(const QString& _remoteNode);
   void setRPCNodesList(const QStringList& _RPCNodesList);
-  void setFiatSymbol(const QString &val);
   void setLanguage(const QString& _language);
 #ifdef Q_OS_WIN
   void setMinimizeToTrayEnabled(bool _enable);

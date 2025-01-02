@@ -1169,17 +1169,6 @@ UNFramelessApplicationWindow {
             id: _SeedTrackingKeyDialog
         }
 
-        FiatSymbolDialog {
-            id: _fiatSymbolDialog
-
-            fiatModel: walletAdapter.fiatConverter.availableFiatList
-            selectedIndex: walletAdapter.fiatConverter.currentIndex
-
-            onAccepted: {
-                walletAdapter.fiatConverter.currentIndex = _fiatSymbolDialog.selectedIndex
-                walletAdapter.fiatConverter.setFiatId(_fiatSymbolDialog.selectedIndex)
-            }
-        }
 
         LanguageSettingDialog {
             id: _LanguageSettingDialog
@@ -1440,14 +1429,7 @@ UNFramelessApplicationWindow {
                     }
                 }
 
-                UNMenuItem {
-                    text: qsTr("Change Fiat Symbol")
-
-                    onClicked: {
-                        _fiatSymbolDialog.open()
-                    }
-                }
-
+                
                 UNMenuItem {
                     text: qsTr("Language Setting")
                     onClicked: _LanguageSettingDialog.open()

@@ -16,16 +16,13 @@ class FiatConverter : public QObject
 {
     Q_OBJECT
     QML_READABLE_PROPERTY_FLOAT(double, coinPrice, setCoinPrice, 0)
-    QML_WRITABLE_PROPERTY(QString, fiatId, setFiatId, "")
-    QML_READABLE_PROPERTY(QStringList, availableFiatList, setAvailableFiatList, QStringList())
-    QML_WRITABLE_PROPERTY(int, currentIndex, setCurrentIndex, -1)
+    QML_WRITABLE_PROPERTY(QString, fiatId, setFiatId, "usd")
 public:
     enum class RequestType {
-        Unknown, CoinList, SupportedCurrencies, CoinPrice
+        Unknown, CoinPrice, BtcPrice
     };
     explicit FiatConverter(QObject *parent = nullptr);
     ~FiatConverter();
-    Q_INVOKABLE void setFiatId(int index);
 private:
     bool sendRequest(RequestType type);
     QString fullUrl(RequestType type) const;
@@ -35,6 +32,7 @@ private:
     void setCoinPrice();
     QNetworkAccessManager* m_http = nullptr;
     QJsonObject m_coinPriceDict;
+    double m_btcPrice = 0;
     QString m_fiatList;
     QMap<QNetworkReply*, RequestType> m_loadingMap;
     QMutex m_loadingMapMutex;

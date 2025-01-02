@@ -114,7 +114,6 @@
         <file>qml/UltraNote/UI/Dialogs/ChangePasswordDialog.qml</file>
         <file>qml/UltraNote/UI/Dialogs/ConnectionSettingsDialog.qml</file>
         <file>qml/UltraNote/UI/Dialogs/DownloadProgressDialog.qml</file>
-        <file>qml/UltraNote/UI/Dialogs/FiatSymbolDialog.qml</file>
         <file>qml/UltraNote/UI/Dialogs/ImportPrivateKeysDialog.qml</file>
         <file>qml/UltraNote/UI/Dialogs/MessageDetailsDialog.qml</file>
         <file>qml/UltraNote/UI/Dialogs/MessageDialog.qml</file>
