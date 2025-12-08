@@ -9,6 +9,8 @@
 
 #include <QObject>
 #include <QThread>
+#include <QMutex>
+#include <memory>
 
 #include <INode.h>
 #include <IWalletLegacy.h>
@@ -51,9 +53,10 @@ public:
   void lastKnownBlockHeightUpdated(Node& _node, uint64_t _height) Q_DECL_OVERRIDE;
 
 private:
-  Node* m_node;
+  std::unique_ptr<Node> m_node;
   QThread m_nodeInitializerThread;
   InProcessNodeInitializer* m_nodeInitializer;
+  mutable QMutex m_mutex;
 
   NodeAdapter();
   ~NodeAdapter();
@@ -69,7 +72,7 @@ Q_SIGNALS:
   void peerCountUpdatedSignal(int _count);
   void initNodeSignal(Node** _node, const cn::Currency* currency, INodeCallback* _callback, logging::LoggerManager* _loggerManager,
     const cn::CoreConfig& _coreConfig, const cn::NetNodeConfig& _netNodeConfig);
-  void deinitNodeSignal(Node** _node);
+  void deinitNodeSignal(Node* _node);
 };
 
 }

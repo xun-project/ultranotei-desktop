@@ -7,6 +7,7 @@
 
 #include <QCoreApplication>
 #include <QDateTime>
+#include <QDebug>
 #include <QDir>
 #include <QTimer>
 #include <QUrl>
@@ -19,6 +20,7 @@
 #include "LoggerAdapter.h"
 #include "NodeAdapter.h"
 #include "Settings.h"
+#include "ShutdownController.h"
 
 namespace WalletGui {
 
@@ -68,15 +70,11 @@ public:
       QCoreApplication::processEvents();
       return;
     }
-
-    delete *_node;
-    *_node = nullptr;
-    Q_EMIT nodeDeinitCompletedSignal();
   }
 
-  void stop(Node** _node) {
-    Q_CHECK_PTR(*_node);
-    (*_node)->deinit();
+  void stop(Node* _node) {
+    Q_CHECK_PTR(_node);
+    _node->deinit();
   }
 };
 
@@ -99,33 +97,28 @@ NodeAdapter::NodeAdapter() : QObject(), m_node(nullptr), m_nodeInitializerThread
 NodeAdapter::~NodeAdapter() {
 }
 
-quintptr NodeAdapter::getPeerCount() const {
-  Q_ASSERT(m_node != nullptr);
-  return m_node->getPeerCount();
-}
-
-std::string NodeAdapter::convertPaymentId(const QString& _paymentIdString) const {
+std::string NodeAdapter::convertPaymentId(const QString& _payment_id_string) const {
+  QMutexLocker lock(&m_mutex);
   Q_CHECK_PTR(m_node);
-  try {
-    return m_node->convertPaymentId(_paymentIdString.toStdString());
-  } catch (std::runtime_error& err) {
-      Q_UNUSED(err);
-  }
-  return std::string();
+  return m_node->convertPaymentId(_payment_id_string.toStdString());
 }
 
 QString NodeAdapter::extractPaymentId(const std::string& _extra) const {
+  QMutexLocker lock(&m_mutex);
   Q_CHECK_PTR(m_node);
   return QString::fromStdString(m_node->extractPaymentId(_extra));
 }
 
 cn::IWalletLegacy* NodeAdapter::createWallet() const {
+  QMutexLocker lock(&m_mutex);
   Q_CHECK_PTR(m_node);
   return m_node->createWallet();
 }
 
 bool NodeAdapter::init() {
+  QMutexLocker lock(&m_mutex);
   Q_ASSERT(m_node == nullptr);
+  qInfo() << "NodeAdapter::init: starting node initialization, connection:" << Settings::instance().getConnection();
     
   QString connection = Settings::instance().getConnection();
 
@@ -137,8 +130,8 @@ bool NodeAdapter::init() {
   } else if(connection.compare("local") == 0) {
     QUrl localNodeUrl = QUrl::fromUserInput(QString("127.0.0.1:%1").arg(cn::RPC_DEFAULT_PORT));
 
-    m_node = createRpcNode(CurrencyAdapter::instance().getCurrency(), LoggerAdapter::instance().getLoggerManager(), *this,
-                           localNodeUrl.host().toStdString(), localNodeUrl.port());
+    m_node.reset(createRpcNode(CurrencyAdapter::instance().getCurrency(), LoggerAdapter::instance().getLoggerManager(), *this,
+                           localNodeUrl.host().toStdString(), localNodeUrl.port()));
 
     QTimer initTimer;
     initTimer.setInterval(3000);
@@ -166,14 +159,15 @@ bool NodeAdapter::init() {
 
     if (initTimer.isActive()) {
       initTimer.stop();
+      qInfo() << "NodeAdapter::init: local node initialized successfully";
       Q_EMIT nodeInitCompletedSignal();
       return true;
     }
   } else if(connection.compare("remote") == 0) {
       QUrl remoteNodeUrl = QUrl::fromUserInput(Settings::instance().getCurrentRemoteNode());
       //m_node = createRpcNode(CurrencyAdapter::instance().getCurrency(), *this, localNodeUrl.host().toStdString(), localNodeUrl.port());
-      m_node = createRpcNode(CurrencyAdapter::instance().getCurrency(), LoggerAdapter::instance().getLoggerManager(), *this,
-                             remoteNodeUrl.host().toStdString(), remoteNodeUrl.port());
+      m_node.reset(createRpcNode(CurrencyAdapter::instance().getCurrency(), LoggerAdapter::instance().getLoggerManager(), *this,
+                             remoteNodeUrl.host().toStdString(), remoteNodeUrl.port()));
       QTimer initTimer;
       initTimer.setInterval(3000);
       initTimer.setSingleShot(true);
@@ -188,13 +182,14 @@ bool NodeAdapter::init() {
       waitLoop.exec();
       if (initTimer.isActive()) {
           initTimer.stop();
+          qInfo() << "NodeAdapter::init: remote node initialized successfully";
           Q_EMIT nodeInitCompletedSignal();
           return true;
       }
   } else {
       QUrl localNodeUrl = QUrl::fromUserInput(QString("127.0.0.1:%1").arg(cn::RPC_DEFAULT_PORT));
-      m_node = createRpcNode(CurrencyAdapter::instance().getCurrency(), LoggerAdapter::instance().getLoggerManager(), *this,
-                             localNodeUrl.host().toStdString(), localNodeUrl.port());
+      m_node.reset(createRpcNode(CurrencyAdapter::instance().getCurrency(), LoggerAdapter::instance().getLoggerManager(), *this,
+                             localNodeUrl.host().toStdString(), localNodeUrl.port()));
       QTimer initTimer;
       initTimer.setInterval(3000);
       initTimer.setSingleShot(true);
@@ -209,27 +204,30 @@ bool NodeAdapter::init() {
       waitLoop.exec();
       if (initTimer.isActive()) {
           initTimer.stop();
+          qInfo() << "NodeAdapter::init: auto (local RPC) node initialized successfully";
           Q_EMIT nodeInitCompletedSignal();
           return true;
       }
-      delete m_node;
-      m_node = nullptr;
+      m_node.reset();
       return initInProcessNode();
   }
   return false;
 }
 
 quint64 NodeAdapter::getLastKnownBlockHeight() const {
+  QMutexLocker lock(&m_mutex);
   Q_CHECK_PTR(m_node);
   return m_node->getLastKnownBlockHeight();
 }
 
 quint64 NodeAdapter::getLastLocalBlockHeight() const {
+  QMutexLocker lock(&m_mutex);
   Q_CHECK_PTR(m_node);
   return m_node->getLastLocalBlockHeight();
 }
 
 QDateTime NodeAdapter::getLastLocalBlockTimestamp() const {
+  QMutexLocker lock(&m_mutex);
   Q_CHECK_PTR(m_node);
   return QDateTime::fromTime_t(m_node->getLastLocalBlockTimestamp(), Qt::UTC);
 }
@@ -254,7 +252,8 @@ bool NodeAdapter::initInProcessNode() {
   m_nodeInitializerThread.start();
   cn::CoreConfig coreConfig = makeCoreConfig();
   cn::NetNodeConfig netNodeConfig = makeNetNodeConfig();
-  Q_EMIT initNodeSignal(&m_node, &CurrencyAdapter::instance().getCurrency(), this, &LoggerAdapter::instance().getLoggerManager(), coreConfig, netNodeConfig);
+  Node* rawNode = nullptr;
+  Q_EMIT initNodeSignal(&rawNode, &CurrencyAdapter::instance().getCurrency(), this, &LoggerAdapter::instance().getLoggerManager(), coreConfig, netNodeConfig);
   QEventLoop waitLoop;
   bool initCompleted = false;
   connect(m_nodeInitializer, &InProcessNodeInitializer::nodeInitCompletedSignal, [&initCompleted]() {
@@ -267,8 +266,11 @@ bool NodeAdapter::initInProcessNode() {
   connect(m_nodeInitializer, &InProcessNodeInitializer::nodeInitFailedSignal, &waitLoop, &QEventLoop::exit);
 
   if (waitLoop.exec() != 0 || !initCompleted) {
+    qInfo() << "NodeAdapter::initInProcessNode: node initialization failed";
     return false;
   }
+  m_node.reset(rawNode);
+  qInfo() << "NodeAdapter::initInProcessNode: node initialized successfully";
 
   Q_EMIT localBlockchainUpdatedSignal(getLastLocalBlockHeight());
   Q_EMIT lastKnownBlockHeightUpdatedSignal(getLastKnownBlockHeight());
@@ -276,19 +278,26 @@ bool NodeAdapter::initInProcessNode() {
 }
 
 void NodeAdapter::deinit() {
+  QMutexLocker lock(&m_mutex);
   if (m_node != nullptr) {
     if (m_nodeInitializerThread.isRunning()) {
-      m_nodeInitializer->stop(&m_node);
+      m_nodeInitializer->stop(m_node.get());
       QEventLoop waitLoop;
       connect(m_nodeInitializer, &InProcessNodeInitializer::nodeDeinitCompletedSignal, &waitLoop, &QEventLoop::quit, Qt::QueuedConnection);
+      
+      // Wait with timeout (3 seconds)
+      QTimer::singleShot(3000, &waitLoop, &QEventLoop::quit);
       waitLoop.exec();
+      
       m_nodeInitializerThread.quit();
-      m_nodeInitializerThread.wait();
+      m_nodeInitializerThread.wait(2000); // Wait up to 2 seconds for thread to finish
     } else {
-      delete m_node;
-      m_node = nullptr;
+      m_node.reset();
     }
   }
+  
+  // Notify shutdown controller that node is deinitialized
+  ShutdownController::instance().onNodeDeinitialized();
 }
 
 cn::CoreConfig NodeAdapter::makeCoreConfig() const {

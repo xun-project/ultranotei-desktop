@@ -29,6 +29,84 @@ UNPage {
         }
     }
 
+    Connections {
+        target: walletAdapter
+        function onWalletSendTransactionCompletedSignal(transactionId, errorCode, errorMessage) {
+            // console.log("=== Transaction completed signal received ===")
+            // console.log("Transaction ID:", transactionId)
+            // console.log("Error code:", errorCode)
+            // console.log("Error message:", errorMessage)
+            
+            if (errorCode === 0) {
+                _messageDialogProperties.showMessage(qsTr("Success"), qsTr("Transaction sent successfully!"))
+            } else {
+                _messageDialogProperties.showMessage(qsTr("Error"), qsTr("Transaction failed: ") + errorMessage)
+            }
+        }
+    }
+
+// ... (omitting unrelated code)
+
+                    UNButton {
+                        text: qsTr("Send")
+                        onClicked: {
+                            // console.log("=== Send button clicked ===")
+                            var address = _payToTextField.text.trim()
+                            var paymentId = _paymentIDTextField.text.trim()
+
+                            // console.log("Address:", address)
+                            // console.log("Address length:", address.length)
+                            // console.log("Payment ID:", paymentId)
+
+                            if (address.length !== 99 && address.length !== 187) {
+                                // console.log("ERROR: Invalid address length")
+                                _messageDialogProperties.showMessage(qsTr("Error"), qsTr("Please provide a valid address"))
+                                return
+                            }
+                            if (address.length === 187 && paymentId !== "") {
+                                // console.log("ERROR: Payment ID provided with integrated address")
+                                _messageDialogProperties.showMessage(qsTr("Error"), qsTr("No payment id needed"))
+                                return
+                            }
+
+                            // console.log("Calling validateAddress...")
+                            if (!currencyAdapter.validateAddress(address)) {
+                                // console.log("ERROR: Address validation failed")
+                                _messageDialogProperties.showMessage(qsTr("Error"), qsTr("Invalid recipient address"))
+                                return
+                            }
+                            // console.log("Address validation passed!")
+                            
+                            if (0 === _amountEditBox.value) {
+                                // console.log("ERROR: Amount is zero")
+                                _messageDialogProperties.showMessage(qsTr("Error"), qsTr("Incorrect amount value"))
+                                return
+                            }
+                            // console.log("Amount:", _amountEditBox.value)
+                            
+                            if (!currencyAdapter.validatePaymentId(_paymentIDTextField.text)) {
+                                // console.log("ERROR: Invalid payment ID")
+                                _messageDialogProperties.showMessage(qsTr("Error"), qsTr("Invalid payment ID"))
+                                return
+                            }
+                            // console.log("Payment ID validation passed!")
+                            
+                            if (!walletAdapter.isOpen()) {
+                                // console.log("ERROR: Wallet is closed")
+                                _messageDialogProperties.showMessage(qsTr("Error"), qsTr("Wallet is closed"))
+                                return
+                            }
+                            // console.log("Wallet is open, calling send...")
+                            
+                            walletAdapter.send(_payToTextField.text, _paymentIDTextField.text,
+                                               _labelTextField.text, _cryptoCommentTextField.text,
+                                               _amountEditBox.value, _feeEditBox.value,
+                                               _anonymitySlider.value)
+                            
+                            // console.log("Send called successfully!")
+                        }
+                    }
+
     Component.onDestruction:{
         _globalProperties.payToAddress = false
     }
@@ -91,7 +169,7 @@ UNPage {
                         type: UNLabel.Type.TypePageSubcategoryTitle
 
                         color: Theme.textColor
-                        text: qsTr("Pay to")
+                        text: qsTr("Address")
                     }
 
                     UNTextField {
@@ -102,6 +180,7 @@ UNPage {
 
                         text: _page.address
                         onTextChanged: _page.address = text
+                        placeholderText: qsTr("Recipient Address or Integrated Address")
                     }
 
                     UNIcon {
@@ -458,26 +537,60 @@ UNPage {
                     UNButton {
                         text: qsTr("Send")
                         onClicked: {
-                            if (!currencyAdapter.validateAddress(_payToTextField.text)) {
+                            console.log("=== Send button clicked ===")
+                            var address = _payToTextField.text.trim()
+                            var paymentId = _paymentIDTextField.text.trim()
+
+                            console.log("Address:", address)
+                            console.log("Address length:", address.length)
+                            console.log("Payment ID:", paymentId)
+
+                            if (address.length !== 99 && address.length !== 187) {
+                                console.log("ERROR: Invalid address length")
+                                _messageDialogProperties.showMessage(qsTr("Error"), qsTr("Please provide a valid address"))
+                                return
+                            }
+                            if (address.length === 187 && paymentId !== "") {
+                                console.log("ERROR: Payment ID provided with integrated address")
+                                _messageDialogProperties.showMessage(qsTr("Error"), qsTr("No payment id needed"))
+                                return
+                            }
+
+                            console.log("Calling validateAddress...")
+                            if (!currencyAdapter.validateAddress(address)) {
+                                console.log("ERROR: Address validation failed")
                                 _messageDialogProperties.showMessage(qsTr("Error"), qsTr("Invalid recipient address"))
                                 return
                             }
+                            console.log("Address validation passed!")
+                            
                             if (0 === _amountEditBox.value) {
+                                console.log("ERROR: Amount is zero")
                                 _messageDialogProperties.showMessage(qsTr("Error"), qsTr("Incorrect amount value"))
                                 return
                             }
+                            console.log("Amount:", _amountEditBox.value)
+                            
                             if (!currencyAdapter.validatePaymentId(_paymentIDTextField.text)) {
+                                console.log("ERROR: Invalid payment ID")
                                 _messageDialogProperties.showMessage(qsTr("Error"), qsTr("Invalid payment ID"))
                                 return
                             }
+                            console.log("Payment ID validation passed!")
+                            
                             if (!walletAdapter.isOpen()) {
+                                console.log("ERROR: Wallet is closed")
                                 _messageDialogProperties.showMessage(qsTr("Error"), qsTr("Wallet is closed"))
                                 return
                             }
+                            console.log("Wallet is open, calling send...")
+                            
                             walletAdapter.send(_payToTextField.text, _paymentIDTextField.text,
                                                _labelTextField.text, _cryptoCommentTextField.text,
                                                _amountEditBox.value, _feeEditBox.value,
                                                _anonymitySlider.value)
+                            
+                            console.log("Send called successfully!")
                         }
                     }
                 }

@@ -10,6 +10,8 @@
 #include "LoggerAdapter.h"
 #include "Settings.h"
 #include "NodeAdapter.h"
+#include "Common/Base58.h"
+#include <QDebug>
 
 namespace WalletGui {
 
@@ -132,9 +134,40 @@ quint64 CurrencyAdapter::parseAmount(const QString& _amountString) const {
   return amountString.toULongLong();
 }
 
-bool CurrencyAdapter::validateAddress(const QString& _address) const {
+bool CurrencyAdapter::validateAddress(const QString&_address) const {
+  // qDebug() << "=== validateAddress called with address length:" << _address.length() << "===";
+  // qDebug() << "Address:" << _address;
+  
+  // First try to parse as a regular address
   cn::AccountPublicAddress internalAddress;
-  return m_currency.parseAccountAddressString(_address.toStdString(), internalAddress);
+  if (m_currency.parseAccountAddressString(_address.toStdString(), internalAddress)) {
+    // qDebug() << "Address validated as regular address (99 chars)";
+    return true;
+  }
+  
+  // If that fails, check if it's an integrated address (187 characters)
+  if (_address.length() == 187) {
+    // qDebug() << "Checking as integrated address (187 chars)";
+    // Integrated addresses should start with the same prefix as regular addresses
+    // We can validate by checking if it decodes properly
+    std::string decoded;
+    uint64_t prefix;
+    if (tools::base_58::decode_addr(_address.toStdString(), prefix, decoded)) {
+      // Check if the prefix matches
+      if (prefix == m_currency.publicAddressBase58Prefix()) {
+        // qDebug() << "Integrated address validated successfully!";
+        return true;
+      } else {
+          qDebug() << "Integrated address prefix mismatch. Expected:" << m_currency.publicAddressBase58Prefix() << "Got:" << prefix;
+      }
+    } else {
+        qDebug() << "Integrated address decode failed";
+    }
+  } else {
+      qDebug() << "Address validation failed. Length:" << _address.length();
+  }
+  
+  return false;
 }
 
 bool CurrencyAdapter::validatePaymentId(const QString& _paymentIdString) const {

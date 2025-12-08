@@ -6,6 +6,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <QApplication>
+#include <QTimer>
 #include <QCommandLineParser>
 #include <QLocale>
 #include <QLockFile>
@@ -36,10 +37,47 @@
 #include "update.h"
 #include "gui/MainWindow.h"
 #include "systemtray.h"
+#include "ShutdownController.h"
 
 #define DEBUG 1
 
 using namespace WalletGui;
+
+void customMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
+{
+    QByteArray localMsg = msg.toLocal8Bit();
+    const char *file = context.file ? context.file : "";
+    const char *function = context.function ? context.function : "";
+    
+    QString logFileName = Settings::instance().getDataDir().absoluteFilePath("debug.log");
+    QFile outFile(logFileName);
+    outFile.open(QIODevice::WriteOnly | QIODevice::Append);
+    QTextStream ts(&outFile);
+    
+    QString typeStr;
+    switch (type) {
+    case QtDebugMsg:
+        typeStr = "Debug";
+        break;
+    case QtInfoMsg:
+        typeStr = "Info";
+        break;
+    case QtWarningMsg:
+        typeStr = "Warning";
+        break;
+    case QtCriticalMsg:
+        typeStr = "Critical";
+        break;
+    case QtFatalMsg:
+        typeStr = "Fatal";
+        break;
+    }
+    
+    ts << typeStr << ": " << localMsg.constData() << " (" << file << ":" << context.line << ", " << function << ")" << endl;
+    
+    // Also print to stderr for console visibility if attached
+    fprintf(stderr, "%s: %s (%s:%u, %s)\n", typeStr.toStdString().c_str(), localMsg.constData(), file, context.line, function);
+}
 
 int main(int argc, char* argv[]) {
 
@@ -68,6 +106,8 @@ int main(int argc, char* argv[]) {
             qWarning() << "Error in CommandLineParser:process";
         }
         Settings::instance().load();
+
+        qInstallMessageHandler(customMessageHandler);
 
 #ifdef Q_OS_WIN
         if (!cmdLineParseResult) {
@@ -103,15 +143,44 @@ int main(int argc, char* argv[]) {
         QSplashScreen splash(splashImg.scaled(800, 600), Qt::WindowStaysOnTopHint | Qt::X11BypassWindowManagerHint);
         splash.show();
         splash.setEnabled(false);
-        splash.showMessage(QObject::tr("Loading blockchain..."), Qt::AlignCenter | Qt::AlignBottom, Qt::white);
+        QString connection = Settings::instance().getConnection();
+        QString nodeMessage;
+        if (connection == "embedded") {
+            nodeMessage = QObject::tr("Starting local node...");
+        } else if (connection == "remote") {
+            nodeMessage = QObject::tr("Connecting to remote node...");
+        } else if (connection == "local") {
+            nodeMessage = QObject::tr("Connecting to local daemon...");
+        } else {
+            nodeMessage = QObject::tr("Auto-detecting connection...");
+        }
+        // Animated progress dots
+        QString currentStageMessage = nodeMessage;
+        int dotCount = 0;
+        QTimer animationTimer;
+        animationTimer.setInterval(500);
+        QObject::connect(&animationTimer, &QTimer::timeout, [&]() {
+            dotCount = (dotCount + 1) % 4;
+            QString dots = QString(".").repeated(dotCount);
+            splash.showMessage(currentStageMessage + dots, Qt::AlignCenter | Qt::AlignBottom, Qt::white);
+        });
+        animationTimer.start();
+        splash.showMessage(currentStageMessage, Qt::AlignCenter | Qt::AlignBottom, Qt::white);
         QApplication::processEvents();
         qRegisterMetaType<cn::TransactionId>("cn::TransactionId");
         qRegisterMetaType<quintptr>("quintptr");
 
         if (!NodeAdapter::instance().init()) {
             qCritical() << "Failed to init node";
+            animationTimer.stop();
             return 0;
         }
+        currentStageMessage = QObject::tr("Opening wallet...");
+        splash.showMessage(currentStageMessage, Qt::AlignCenter | Qt::AlignBottom, Qt::white);
+        QApplication::processEvents();
+        // Stop animation when wallet opens (splash will hide soon)
+        // Actually we stop when splash hides
+        // We'll stop after splash.hide() but we can keep it running until then.
 
         if (currentExitCode == WalletAdapter::EXIT_CODE_REBOOT)
             WalletAdapter::instance().initializeAdapter();
@@ -159,6 +228,7 @@ int main(int argc, char* argv[]) {
         qmlRegisterType<QrImage>("QrImage", 1, 0, "QrImage");
         qmlRegisterType<DocumentHandler>("DocumentHandler", 1, 0, "DocumentHandler");
         engine.load(QUrl(QStringLiteral("qrc:/qml/qml/UltraNote/UI/AppWindow.qml")));
+        animationTimer.stop();
         splash.hide();
 
         /*QObject::connect(&engine, &QQmlApplicationEngine::objectCreated, [=]() {
@@ -171,12 +241,24 @@ int main(int argc, char* argv[]) {
         if (engine.rootObjects().isEmpty()) {
             return EXIT_FAILURE;
         }
+        // Use ShutdownController for proper shutdown sequence
         QObject::connect(QApplication::instance(), &QApplication::aboutToQuit, []() {
-            if (WalletAdapter::instance().isOpen()) {
-                WalletAdapter::instance().close();
-            }
-
-            NodeAdapter::instance().deinit();
+            auto& shutdownController = ShutdownController::instance();
+            
+            // Connect shutdown completion to actual quit
+            QObject::connect(&shutdownController, &ShutdownController::shutdownComplete,
+                             QApplication::instance(), &QApplication::quit, Qt::QueuedConnection);
+            
+            // Connect timeout to force quit
+            QObject::connect(&shutdownController, &ShutdownController::shutdownTimeout,
+                             QApplication::instance(), &QApplication::quit, Qt::QueuedConnection);
+            
+            // Start shutdown sequence
+            shutdownController.initiateShutdown();
+            
+            // Don't exit immediately - let shutdown controller manage it
+            // The old shutdown code will now be called by the components themselves
+            // when they notify the ShutdownController
         });
         QApplication::setQuitOnLastWindowClosed(true);
 
