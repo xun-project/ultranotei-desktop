@@ -31,7 +31,7 @@ void Miner::start(quint32 _coreCount) {
   }
 
   for (quint32 i = 0; i < _coreCount; ++i) {
-    if (m_workerThreadList.size() < i + 1) {
+    if (static_cast<quint32>(m_workerThreadList.size()) < i + 1) {
       Worker* worker = new Worker(nullptr, m_stratumClient, m_currentJob, m_jobLock, m_nonce, m_hashCounter);
       QThread* thread = new QThread(this);
       connect(thread, &QThread::started, worker, &Worker::start);

@@ -8,10 +8,10 @@
 #include <QJsonArray>
 #include <QDebug>
 
-#define SERVER_URL "https://www.exbitron.com/api/v2/peatio/public/markets/xuniusdt/tickers"
+#define SERVER_URL "https://api.exbitron.com/api/v1/cg/tickers"
 #define COIN_NAME "xuni"
 #define PRICE_CHECK_PERIOD_SEC 300
-#define DEFAULT_FIAT_SYMBOL "usd"
+#define DEFAULT_FIAT_SYMBOL "USD"
 
 namespace WalletGui {
 
@@ -84,11 +84,7 @@ QString FiatConverter::fullUrl(RequestType type) const
 
 QNetworkReply* FiatConverter::networkReply(RequestType type, QUrl url)
 {
-    if (RequestType::CoinPrice == type && m_availableFiatList.isEmpty()) {
-        qCritical() << "Fiat list is empty";
-        return nullptr;
-    }
-
+    // For Exbitron, we just need to hit the tickers endpoint for everything
     QNetworkRequest request(url);
     QSslConfiguration config = request.sslConfiguration();
     config.setProtocol(QSsl::SecureProtocols);
@@ -126,56 +122,72 @@ void FiatConverter::requestFinished(QNetworkReply* reply)
 void FiatConverter::processReply(RequestType type, const QByteArray &data)
 {
     QJsonParseError error{};
-
     QJsonDocument doc = QJsonDocument::fromJson(data, &error);
-    switch (type) {
-    case RequestType::CoinList:
-    case RequestType::SupportedCurrencies:
-        if (doc.isObject()) {
 
-            qDebug() << "Processing coin list";
-
-            m_coinPriceDict = doc.object()["market_data"].toObject().value("current_price").toObject();
-            m_availableFiatList.clear();
-
-            QList<QString> keyList = m_coinPriceDict.keys();
-
-            for (int i = 0; i < keyList.size(); ++i) {
-                m_availableFiatList << keyList.at(i);
-                if (0 == m_fiatId.compare(keyList.at(i), Qt::CaseInsensitive)) {
-                    setCurrentIndex(i);
-                }
-            }
-            emit availableFiatListChanged();
-
-            sendRequest(RequestType::CoinPrice);
-        } else {
-            qCritical() << "Reply is not a JSON array" << error.errorString();
-            qDebug() << data;
-        }
-        break;
-    case RequestType::CoinPrice:
-        qDebug() << "Process coin price ";
-
-        if (doc.isObject()) {
-            
-            m_coinPriceDict = doc.object()["market_data"].toObject().value("current_price").toObject();
-
-            if (!m_coinPriceDict.isEmpty()) {
-                setCoinPrice();
-                m_priceCheckTimer.start();
-            } else {
-                qCritical() << "Cannot find" << m_fiatId;
-            }
-
-        } else {
-            qCritical() << "Reply is not a JSON object" << error.errorString();
-            qDebug() << data;
-        }
-        break;
-    case RequestType::Unknown:
-        break;//remove compiler warning
+    if (!doc.isArray()) {
+        qCritical() << "Reply is not a JSON array" << error.errorString();
+        qDebug() << data;
+        return;
     }
+
+    QJsonArray tickers = doc.array();
+    double xuniUsdtPrice = 0.0;
+    double btcUsdtPrice = 0.0;
+    double ethUsdtPrice = 0.0;
+    double ltcUsdtPrice = 0.0;
+    double dogeUsdtPrice = 0.0;
+
+    // First pass: find base prices
+    for (const QJsonValue &val : tickers) {
+        QJsonObject ticker = val.toObject();
+        QString tickerId = ticker["ticker_id"].toString();
+        double lastPrice = ticker["last_price"].toString().toDouble();
+
+        if (tickerId == "XUNI-USDT") {
+            xuniUsdtPrice = lastPrice;
+        } else if (tickerId == "BTC-USDT") {
+            btcUsdtPrice = lastPrice;
+        } else if (tickerId == "ETH-USDT") {
+            ethUsdtPrice = lastPrice;
+        } else if (tickerId == "LTC-USDT") {
+            ltcUsdtPrice = lastPrice;
+        } else if (tickerId == "DOGE-USDT") {
+            dogeUsdtPrice = lastPrice;
+        }
+    }
+
+    if (xuniUsdtPrice <= 0) {
+        qCritical() << "Could not find XUNI-USDT price";
+        return;
+    }
+
+    QJsonObject newPrices;
+    newPrices["USD"] = xuniUsdtPrice;
+    
+    if (btcUsdtPrice > 0) newPrices["BTC"] = xuniUsdtPrice / btcUsdtPrice;
+    if (ethUsdtPrice > 0) newPrices["ETH"] = xuniUsdtPrice / ethUsdtPrice;
+    if (ltcUsdtPrice > 0) newPrices["LTC"] = xuniUsdtPrice / ltcUsdtPrice;
+    if (dogeUsdtPrice > 0) newPrices["DOGE"] = xuniUsdtPrice / dogeUsdtPrice;
+
+    m_coinPriceDict = newPrices;
+
+    // Update available list if needed (only once or if changed)
+    if (m_availableFiatList.isEmpty()) {
+        m_availableFiatList.clear();
+        m_availableFiatList << "USD" << "BTC" << "ETH" << "LTC" << "DOGE";
+        
+        // Ensure current index is set correctly
+        for (int i = 0; i < m_availableFiatList.size(); ++i) {
+            if (0 == m_fiatId.compare(m_availableFiatList.at(i), Qt::CaseInsensitive)) {
+                setCurrentIndex(i);
+            }
+        }
+        emit availableFiatListChanged();
+    }
+
+    // Update current price
+    setCoinPrice();
+    m_priceCheckTimer.start();
 }
 
 void FiatConverter::setFiatId(int index)
@@ -189,9 +201,15 @@ void FiatConverter::setFiatId(int index)
 
 void FiatConverter::setCoinPrice()
 {
-    const qreal curPrice = m_coinPriceDict[m_fiatId].toDouble();
-    qDebug() << "Current price" << curPrice << m_fiatId;
-    setCoinPrice(curPrice);
+    // Case insensitive lookup
+    QString key = m_fiatId.toUpper();
+    if (m_coinPriceDict.contains(key)) {
+        const qreal curPrice = m_coinPriceDict[key].toDouble();
+        qDebug() << "Current price" << curPrice << m_fiatId;
+        setCoinPrice(curPrice);
+    } else {
+         qDebug() << "Price not found for" << m_fiatId;
+    }
 }
 
 } //WalletGui

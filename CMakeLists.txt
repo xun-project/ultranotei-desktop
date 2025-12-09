@@ -466,7 +466,7 @@ elseif (UNIX)
 elseif (WIN32)
   find_program(WINDEPLOYQT windeployqt PATHS ${QT5_ROOT_PATH}/bin/)
   install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION .)
-  install(PROGRAMS build/release/tor/bin/tor.exe DESTINATION .)
+  install(PROGRAMS build/release/Release/release/tor.exe DESTINATION .)
   install(DIRECTORY build/release/Release/languages DESTINATION .)
 
   if (PACKMSI)
@@ -508,8 +508,8 @@ elseif (WIN32)
   GET_FILENAME_COMPONENT(vcredist_name "${MSVC_REDIST}" NAME)
   set(CPACK_NSIS_EXTRA_INSTALL_COMMANDS "ExecWait '\\\"$INSTDIR\\\\vcredist_${CMAKE_MSVC_ARCH}.exe\\\" /install /quiet /norestart'")
 
-  #using openSSL 1.1
-  set(OPENSSL_PATH "C:/Program Files/OpenSSL-Win64")
+  #using openSSL 1.1.1
+  # set(OPENSSL_PATH "C:/Program Files/OpenSSL-Win64")
   install(FILES ${OPENSSL_PATH}/libcrypto-1_1-x64.dll DESTINATION .)
   install(FILES ${OPENSSL_PATH}/libssl-1_1-x64.dll DESTINATION .)
 

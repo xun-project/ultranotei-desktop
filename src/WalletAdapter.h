@@ -96,6 +96,7 @@ public:
     Q_INVOKABLE void removeLock(const QString& _password);
     void createWithKeys(const cn::AccountKeys& _keys);
     void close();
+    void closeSynchronously();
     bool save(bool _details, bool _cache);
     void backup(const QString& _file);
     void reset();
@@ -189,13 +190,15 @@ public:
         ~WalletAdapter() = default;
 
 private:
+#include <memory>
+
     QProcess* torProcess = nullptr;
     OptimizationService* optimizationService = nullptr;
     TranslatorManager& m_translatorManager;
 	QSoundEffect incomingTransactionEffect;
 	QSoundEffect outgoingTransactionEffect;
     std::fstream m_file;
-    cn::IWalletLegacy* m_wallet;
+    std::unique_ptr<cn::IWalletLegacy> m_wallet;
     QMutex m_mutex;
     std::atomic<bool> m_isBackupInProgress;
     std::atomic<bool> m_isSynchronized;

@@ -130,10 +130,9 @@ FocusScope {
         onTriggered: currentWebView.zoomFactor += 0.1
     }
 
-    QQPrivate.Shortcut {
-        sequence: StandardKey.Copy
-        onActivated: currentWebView.triggerWebAction(WebEngineView.Copy)
-        enabled: _dialog.visible
+    Action {
+        shortcut: StandardKey.Copy
+        onTriggered: currentWebView.triggerWebAction(WebEngineView.Copy)
     }
     Action {
         shortcut: StandardKey.Cut

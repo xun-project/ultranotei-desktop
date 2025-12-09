@@ -26,6 +26,7 @@
 #include "NodeAdapter.h"
 #include "Settings.h"
 #include "WalletAdapter.h"
+#include "ShutdownController.h"
 #include "CryptoNoteCore/Account.h"
 #include "Mnemonics/electrum-words.h"
 
@@ -247,8 +248,9 @@ void WalletAdapter::open(const QString& _password)
     Settings::instance().setEncrypted(!_password.isEmpty());
     emit isWalletEncryptedChanged();
     setStatusBarText(tr("Opening wallet"));
+    qInfo() << "WalletAdapter::open: starting wallet open, wallet file:" << Settings::instance().getWalletFile();
 
-    m_wallet = NodeAdapter::instance().createWallet();
+    m_wallet.reset(NodeAdapter::instance().createWallet());
     m_wallet->addObserver(this);
 
     if (QFile::exists(Settings::instance().getWalletFile())) {
@@ -263,7 +265,7 @@ void WalletAdapter::open(const QString& _password)
                 m_wallet->initAndLoad(m_file, _password.toStdString());
             } catch (std::system_error&) {
                 closeFile();
-                delete m_wallet;
+                m_wallet.reset();
                 m_wallet = nullptr;
             }
         }
@@ -272,7 +274,7 @@ void WalletAdapter::open(const QString& _password)
         try {
             m_wallet->initAndGenerate("");
         } catch (std::system_error&) {
-            delete m_wallet;
+            m_wallet.reset();
             m_wallet = nullptr;
         }
     }
@@ -290,7 +292,7 @@ void WalletAdapter::removeLock(const QString& _password)
 
 void WalletAdapter::createWithKeys(const cn::AccountKeys& _keys)
 {
-    m_wallet = NodeAdapter::instance().createWallet();
+    m_wallet.reset(NodeAdapter::instance().createWallet());
     m_wallet->addObserver(this);
     Settings::instance().setEncrypted(false);
     setStatusBarText(tr("Importing keys"));
@@ -309,7 +311,7 @@ bool WalletAdapter::importLegacyWallet(const QString& _password)
     try {
         fileName.replace(fileName.lastIndexOf(".keys"), 5, ".wallet");
         if (!openFile(fileName, false)) {
-            delete m_wallet;
+            m_wallet.reset();
             m_wallet = nullptr;
             return false;
         }
@@ -329,7 +331,7 @@ bool WalletAdapter::importLegacyWallet(const QString& _password)
         closeFile();
     }
 
-    delete m_wallet;
+    m_wallet.reset();
     m_wallet = nullptr;
     return false;
 }
@@ -337,6 +339,7 @@ bool WalletAdapter::importLegacyWallet(const QString& _password)
 void WalletAdapter::close()
 {
     Q_CHECK_PTR(m_wallet);
+    qInfo() << "WalletAdapter::close: closing wallet";
     save(true, true);
     lock();
     m_wallet->removeObserver(this);
@@ -345,7 +348,7 @@ void WalletAdapter::close()
     m_lastWalletTransactionId = std::numeric_limits<quint64>::max();
     Q_EMIT walletCloseCompletedSignal();
     QCoreApplication::processEvents();
-    delete m_wallet;
+    m_wallet.reset();
     m_wallet = nullptr;
     stopTorProcess();
     unlock();
@@ -360,6 +363,23 @@ void WalletAdapter::close()
     }
 
     m_depositTableModel->reinitHeaderNames();
+    
+    // Notify shutdown controller that wallet is closed
+    ShutdownController::instance().onWalletClosed();
+    qInfo() << "WalletAdapter::close: wallet closed";
+}
+
+void WalletAdapter::closeSynchronously()
+{
+    QEventLoop waitLoop;
+    QObject::connect(this, &WalletAdapter::walletCloseCompletedSignal, 
+                     &waitLoop, &QEventLoop::quit);
+    
+    close();
+    
+    // Wait with timeout (5 seconds)
+    QTimer::singleShot(5000, &waitLoop, &QEventLoop::quit);
+    waitLoop.exec();
 }
 
 bool WalletAdapter::save(bool _details, bool _cache)
@@ -403,7 +423,7 @@ void WalletAdapter::reset()
     m_lastWalletTransactionId = std::numeric_limits<quint64>::max();
     Q_EMIT walletCloseCompletedSignal();
     QCoreApplication::processEvents();
-    delete m_wallet;
+    m_wallet.reset();
     m_wallet = nullptr;
     unlock();
 }
@@ -1153,11 +1173,11 @@ void WalletAdapter::onWalletInitCompleted(int _error, const QString& _errorText)
     case cn::error::WRONG_PASSWORD:
         Q_EMIT openWalletWithPasswordSignal(Settings::instance().isEncrypted());
         Settings::instance().setEncrypted(true);
-        delete m_wallet;
+        m_wallet.reset();
         m_wallet = nullptr;
         break;
     default: {
-        delete m_wallet;
+        m_wallet.reset();
         m_wallet = nullptr;
         break;
     }
