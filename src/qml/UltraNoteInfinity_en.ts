@@ -1583,79 +1583,75 @@ the wallet might need optimization more than once.</source>
     <message>
         <location filename="UltraNote/UI/Pages/SendPage.qml" line="14"/>
         <location filename="UltraNote/UI/Pages/SendPage.qml" line="51"/>
-        <location filename="UltraNote/UI/Pages/SendPage.qml" line="538"/>
+        <location filename="UltraNote/UI/Pages/SendPage.qml" line="535"/>
         <source>Send</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Pages/SendPage.qml" line="172"/>
+        <location filename="UltraNote/UI/Pages/SendPage.qml" line="165"/>
         <source>Address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Pages/SendPage.qml" line="195"/>
+        <location filename="UltraNote/UI/Pages/SendPage.qml" line="192"/>
         <source>Address Book</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Pages/SendPage.qml" line="211"/>
+        <location filename="UltraNote/UI/Pages/SendPage.qml" line="208"/>
         <source>Paste from Clipboard</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Pages/SendPage.qml" line="245"/>
+        <location filename="UltraNote/UI/Pages/SendPage.qml" line="242"/>
         <source>Payment ID</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Pages/SendPage.qml" line="282"/>
+        <location filename="UltraNote/UI/Pages/SendPage.qml" line="279"/>
         <source>Label</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Pages/SendPage.qml" line="292"/>
+        <location filename="UltraNote/UI/Pages/SendPage.qml" line="289"/>
         <source>Enter a label for this address to add it to your address book</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Pages/SendPage.qml" line="322"/>
+        <location filename="UltraNote/UI/Pages/SendPage.qml" line="319"/>
         <source>Crypto comment</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Pages/SendPage.qml" line="362"/>
+        <location filename="UltraNote/UI/Pages/SendPage.qml" line="359"/>
         <source>Amount</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Pages/SendPage.qml" line="414"/>
+        <location filename="UltraNote/UI/Pages/SendPage.qml" line="411"/>
         <source>Fee</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Pages/SendPage.qml" line="468"/>
+        <location filename="UltraNote/UI/Pages/SendPage.qml" line="465"/>
         <source>Anonymity level</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Pages/SendPage.qml" line="523"/>
+        <location filename="UltraNote/UI/Pages/SendPage.qml" line="520"/>
         <source>Clear All</source>
         <translation></translation>
     </message>
     <message>
         <location filename="UltraNote/UI/Pages/SendPage.qml" line="43"/>
-        <location filename="UltraNote/UI/Pages/SendPage.qml" line="63"/>
-        <location filename="UltraNote/UI/Pages/SendPage.qml" line="68"/>
+        <location filename="UltraNote/UI/Pages/SendPage.qml" line="64"/>
         <location filename="UltraNote/UI/Pages/SendPage.qml" line="75"/>
         <location filename="UltraNote/UI/Pages/SendPage.qml" line="82"/>
         <location filename="UltraNote/UI/Pages/SendPage.qml" line="89"/>
-        <location filename="UltraNote/UI/Pages/SendPage.qml" line="96"/>
-        <location filename="UltraNote/UI/Pages/SendPage.qml" line="550"/>
-        <location filename="UltraNote/UI/Pages/SendPage.qml" line="555"/>
-        <location filename="UltraNote/UI/Pages/SendPage.qml" line="562"/>
-        <location filename="UltraNote/UI/Pages/SendPage.qml" line="569"/>
-        <location filename="UltraNote/UI/Pages/SendPage.qml" line="576"/>
-        <location filename="UltraNote/UI/Pages/SendPage.qml" line="583"/>
+        <location filename="UltraNote/UI/Pages/SendPage.qml" line="548"/>
+        <location filename="UltraNote/UI/Pages/SendPage.qml" line="559"/>
+        <location filename="UltraNote/UI/Pages/SendPage.qml" line="566"/>
+        <location filename="UltraNote/UI/Pages/SendPage.qml" line="573"/>
         <source>Error</source>
         <translation></translation>
     </message>
@@ -1675,43 +1671,31 @@ the wallet might need optimization more than once.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Pages/SendPage.qml" line="183"/>
+        <location filename="UltraNote/UI/Pages/SendPage.qml" line="176"/>
         <source>Recipient Address or Integrated Address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Pages/SendPage.qml" line="63"/>
-        <location filename="UltraNote/UI/Pages/SendPage.qml" line="550"/>
-        <source>Please provide a valid address</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="UltraNote/UI/Pages/SendPage.qml" line="68"/>
-        <location filename="UltraNote/UI/Pages/SendPage.qml" line="555"/>
+        <location filename="UltraNote/UI/Pages/SendPage.qml" line="64"/>
+        <location filename="UltraNote/UI/Pages/SendPage.qml" line="548"/>
         <source>No payment id needed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="UltraNote/UI/Pages/SendPage.qml" line="75"/>
-        <location filename="UltraNote/UI/Pages/SendPage.qml" line="562"/>
-        <source>Invalid recipient address</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="UltraNote/UI/Pages/SendPage.qml" line="82"/>
-        <location filename="UltraNote/UI/Pages/SendPage.qml" line="569"/>
+        <location filename="UltraNote/UI/Pages/SendPage.qml" line="559"/>
         <source>Incorrect amount value</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Pages/SendPage.qml" line="89"/>
-        <location filename="UltraNote/UI/Pages/SendPage.qml" line="576"/>
+        <location filename="UltraNote/UI/Pages/SendPage.qml" line="82"/>
+        <location filename="UltraNote/UI/Pages/SendPage.qml" line="566"/>
         <source>Invalid payment ID</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="UltraNote/UI/Pages/SendPage.qml" line="96"/>
-        <location filename="UltraNote/UI/Pages/SendPage.qml" line="583"/>
+        <location filename="UltraNote/UI/Pages/SendPage.qml" line="89"/>
+        <location filename="UltraNote/UI/Pages/SendPage.qml" line="573"/>
         <source>Wallet is closed</source>
         <translation></translation>
     </message>

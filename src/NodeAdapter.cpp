@@ -7,7 +7,6 @@
 
 #include <QCoreApplication>
 #include <QDateTime>
-#include <QDebug>
 #include <QDir>
 #include <QTimer>
 #include <QUrl>
@@ -20,7 +19,6 @@
 #include "LoggerAdapter.h"
 #include "NodeAdapter.h"
 #include "Settings.h"
-#include "ShutdownController.h"
 
 namespace WalletGui {
 
@@ -70,11 +68,15 @@ public:
       QCoreApplication::processEvents();
       return;
     }
+
+    delete *_node;
+    *_node = nullptr;
+    Q_EMIT nodeDeinitCompletedSignal();
   }
 
-  void stop(Node* _node) {
-    Q_CHECK_PTR(_node);
-    _node->deinit();
+  void stop(Node** _node) {
+    Q_CHECK_PTR(*_node);
+    (*_node)->deinit();
   }
 };
 
@@ -83,7 +85,7 @@ NodeAdapter& NodeAdapter::instance() {
   return inst;
 }
 
-NodeAdapter::NodeAdapter() : QObject(), m_node(nullptr), m_nodeInitializerThread(), m_nodeInitializer(new InProcessNodeInitializer()) {
+NodeAdapter::NodeAdapter() : QObject(), m_node(), m_nodeInitializerThread(), m_nodeInitializer(new InProcessNodeInitializer()) {
   m_nodeInitializer->moveToThread(&m_nodeInitializerThread);
 
   qRegisterMetaType<cn::CoreConfig>("cn::CoreConfig");
@@ -97,20 +99,27 @@ NodeAdapter::NodeAdapter() : QObject(), m_node(nullptr), m_nodeInitializerThread
 NodeAdapter::~NodeAdapter() {
 }
 
-std::string NodeAdapter::convertPaymentId(const QString& _payment_id_string) const {
-  QMutexLocker lock(&m_mutex);
+quintptr NodeAdapter::getPeerCount() const {
+  Q_ASSERT(m_node != nullptr);
+  return m_node->getPeerCount();
+}
+
+std::string NodeAdapter::convertPaymentId(const QString& _paymentIdString) const {
   Q_CHECK_PTR(m_node);
-  return m_node->convertPaymentId(_payment_id_string.toStdString());
+  try {
+    return m_node->convertPaymentId(_paymentIdString.toStdString());
+  } catch (std::runtime_error& err) {
+      Q_UNUSED(err);
+  }
+  return std::string();
 }
 
 QString NodeAdapter::extractPaymentId(const std::string& _extra) const {
-  QMutexLocker lock(&m_mutex);
   Q_CHECK_PTR(m_node);
   return QString::fromStdString(m_node->extractPaymentId(_extra));
 }
 
 cn::IWalletLegacy* NodeAdapter::createWallet() const {
-  QMutexLocker lock(&m_mutex);
   Q_CHECK_PTR(m_node);
   return m_node->createWallet();
 }
@@ -118,13 +127,12 @@ cn::IWalletLegacy* NodeAdapter::createWallet() const {
 bool NodeAdapter::init() {
   QMutexLocker lock(&m_mutex);
   Q_ASSERT(m_node == nullptr);
-  qInfo() << "NodeAdapter::init: starting node initialization, connection:" << Settings::instance().getConnection();
     
   QString connection = Settings::instance().getConnection();
 
   if(connection.compare("embedded") == 0) {
   
-    m_node = nullptr;
+    m_node.reset();
     return initInProcessNode();
         
   } else if(connection.compare("local") == 0) {
@@ -159,7 +167,6 @@ bool NodeAdapter::init() {
 
     if (initTimer.isActive()) {
       initTimer.stop();
-      qInfo() << "NodeAdapter::init: local node initialized successfully";
       Q_EMIT nodeInitCompletedSignal();
       return true;
     }
@@ -182,7 +189,6 @@ bool NodeAdapter::init() {
       waitLoop.exec();
       if (initTimer.isActive()) {
           initTimer.stop();
-          qInfo() << "NodeAdapter::init: remote node initialized successfully";
           Q_EMIT nodeInitCompletedSignal();
           return true;
       }
@@ -204,7 +210,6 @@ bool NodeAdapter::init() {
       waitLoop.exec();
       if (initTimer.isActive()) {
           initTimer.stop();
-          qInfo() << "NodeAdapter::init: auto (local RPC) node initialized successfully";
           Q_EMIT nodeInitCompletedSignal();
           return true;
       }
@@ -215,19 +220,16 @@ bool NodeAdapter::init() {
 }
 
 quint64 NodeAdapter::getLastKnownBlockHeight() const {
-  QMutexLocker lock(&m_mutex);
   Q_CHECK_PTR(m_node);
   return m_node->getLastKnownBlockHeight();
 }
 
 quint64 NodeAdapter::getLastLocalBlockHeight() const {
-  QMutexLocker lock(&m_mutex);
   Q_CHECK_PTR(m_node);
   return m_node->getLastLocalBlockHeight();
 }
 
 QDateTime NodeAdapter::getLastLocalBlockTimestamp() const {
-  QMutexLocker lock(&m_mutex);
   Q_CHECK_PTR(m_node);
   return QDateTime::fromTime_t(m_node->getLastLocalBlockTimestamp(), Qt::UTC);
 }
@@ -266,12 +268,10 @@ bool NodeAdapter::initInProcessNode() {
   connect(m_nodeInitializer, &InProcessNodeInitializer::nodeInitFailedSignal, &waitLoop, &QEventLoop::exit);
 
   if (waitLoop.exec() != 0 || !initCompleted) {
-    qInfo() << "NodeAdapter::initInProcessNode: node initialization failed";
     return false;
   }
-  m_node.reset(rawNode);
-  qInfo() << "NodeAdapter::initInProcessNode: node initialized successfully";
 
+  m_node.reset(rawNode);
   Q_EMIT localBlockchainUpdatedSignal(getLastLocalBlockHeight());
   Q_EMIT lastKnownBlockHeightUpdatedSignal(getLastKnownBlockHeight());
   return true;
@@ -281,23 +281,17 @@ void NodeAdapter::deinit() {
   QMutexLocker lock(&m_mutex);
   if (m_node != nullptr) {
     if (m_nodeInitializerThread.isRunning()) {
-      m_nodeInitializer->stop(m_node.get());
+      Node* rawNode = m_node.get();
+      m_nodeInitializer->stop(&rawNode);
       QEventLoop waitLoop;
       connect(m_nodeInitializer, &InProcessNodeInitializer::nodeDeinitCompletedSignal, &waitLoop, &QEventLoop::quit, Qt::QueuedConnection);
-      
-      // Wait with timeout (3 seconds)
-      QTimer::singleShot(3000, &waitLoop, &QEventLoop::quit);
       waitLoop.exec();
-      
       m_nodeInitializerThread.quit();
-      m_nodeInitializerThread.wait(2000); // Wait up to 2 seconds for thread to finish
+      m_nodeInitializerThread.wait();
     } else {
       m_node.reset();
     }
   }
-  
-  // Notify shutdown controller that node is deinitialized
-  ShutdownController::instance().onNodeDeinitialized();
 }
 
 cn::CoreConfig NodeAdapter::makeCoreConfig() const {

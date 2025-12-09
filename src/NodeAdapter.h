@@ -72,7 +72,7 @@ Q_SIGNALS:
   void peerCountUpdatedSignal(int _count);
   void initNodeSignal(Node** _node, const cn::Currency* currency, INodeCallback* _callback, logging::LoggerManager* _loggerManager,
     const cn::CoreConfig& _coreConfig, const cn::NetNodeConfig& _netNodeConfig);
-  void deinitNodeSignal(Node* _node);
+  void deinitNodeSignal(Node** _node);
 };
 
 }

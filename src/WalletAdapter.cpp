@@ -17,6 +17,7 @@
 #include <Common/Util.h>
 #include <Common/int-util.h>
 #include <Common/StringTools.h>
+#include <Common/DnsTools.h>
 #include <QQmlEngine>
 #include <Wallet/LegacyKeysImporter.h>
 #include <Wallet/WalletErrors.h>
@@ -1566,15 +1567,68 @@ void WalletAdapter::send(const QString& payTo, const QString& paymentId,
     const QString& label, const QString& comment,
 	qreal amount, int fee, int anonLevel)
 {
+    qDebug() << "[WalletAdapter] send called with payTo:" << payTo << "amount:" << amount << "fee:" << fee;
+    
     if (Settings::instance().isTrackingMode())
     {
+        qDebug() << "[WalletAdapter] Cannot send from tracking wallet";
         emit showMessage(tr("Tracking Wallet"), tr("This is a tracking wallet. This action is not available."));
         return;
     }
     else {
+    QString resolvedAddress = payTo;
+    
+    // Check if payTo is a valid UltraNote address
+    if (!CurrencyAdapter::instance().validateAddress(payTo)) {
+        qDebug() << "[WalletAdapter] payTo is not a valid UltraNote address, trying DNS alias resolution...";
+        // Might be a DNS alias, try to resolve it
+        std::string domainStr = payTo.toStdString();
+        std::vector<std::string> records;
+        
+        qDebug() << "[WalletAdapter] Attempting DNS resolution for:" << payTo;
+        if (common::fetch_dns_txt(domainStr, records)) {
+            qDebug() << "[WalletAdapter] DNS resolution successful, records found:" << records.size();
+            // Try to parse OpenAlias record
+            for (const auto& record : records) {
+                QString qrecord = QString::fromStdString(record);
+                qDebug() << "[WalletAdapter] Checking DNS record:" << qrecord;
+                if (qrecord.contains("oa1:xuni")) {
+                    qDebug() << "[WalletAdapter] Found OpenAlias record (oa1:xuni)";
+                    // Parse OpenAlias format: oa1:xuni recipient_address=<address>; recipient_name=<name>;
+                    QRegularExpression regex("recipient_address=([^;]+)");
+                    QRegularExpressionMatch match = regex.match(qrecord);
+                    if (match.hasMatch()) {
+                        QString address = match.captured(1).trimmed();
+                        qDebug() << "[WalletAdapter] Parsed address from OpenAlias:" << address;
+                        // Validate the address
+                        if (CurrencyAdapter::instance().validateAddress(address)) {
+                            qDebug() << "[WalletAdapter] Parsed address is valid UltraNote address";
+                            resolvedAddress = address;
+                            break;
+                        } else {
+                            qDebug() << "[WalletAdapter] Parsed address is NOT a valid UltraNote address";
+                        }
+                    }
+                }
+            }
+        } else {
+            qDebug() << "[WalletAdapter] DNS resolution failed for:" << payTo;
+        }
+        
+        // If still not a valid address, show error
+        if (!CurrencyAdapter::instance().validateAddress(resolvedAddress)) {
+            qDebug() << "[WalletAdapter] Address resolution failed. Original:" << payTo << "Resolved:" << resolvedAddress;
+            emit showMessage(tr("Invalid address"), tr("The address '%1' is not a valid UltraNote address and could not be resolved as a DNS alias.").arg(payTo));
+            return;
+        }
+    } else {
+        qDebug() << "[WalletAdapter] payTo is already a valid UltraNote address";
+    }
+    
+    qDebug() << "[WalletAdapter] Final resolved address:" << resolvedAddress;
     QVector<cn::WalletLegacyTransfer> walletTransfers;
     cn::WalletLegacyTransfer walletTransfer;
-    walletTransfer.address = payTo.toStdString();
+    walletTransfer.address = resolvedAddress.toStdString();
 
     walletTransfer.amount = amount;
 
@@ -1586,9 +1640,10 @@ void WalletAdapter::send(const QString& payTo, const QString& paymentId,
     QVector<cn::TransactionMessage> walletMessages;
     if (!comment.isEmpty()) {
         walletMessages.append(cn::TransactionMessage { comment.toStdString(),
-            payTo.toStdString() });
+            resolvedAddress.toStdString() });
     }
 
+    qDebug() << "[WalletAdapter] Calling sendTransaction with resolved address";
     sendTransaction(walletTransfers, static_cast<quint64>(fee), paymentId,
         static_cast<quint64>(anonLevel), walletMessages);
     }

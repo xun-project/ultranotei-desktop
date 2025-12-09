@@ -1611,7 +1611,7 @@ the wallet might need optimization more than once.</source>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="14"/>
         <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="51"/>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="538"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="535"/>
         <source>Send</source>
         <translation>发送</translation>
     </message>
@@ -1620,74 +1620,70 @@ the wallet might need optimization more than once.</source>
         <translation type="vanished">付给</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="172"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="165"/>
         <source>Address</source>
         <translation type="unfinished">地址</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="195"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="192"/>
         <source>Address Book</source>
         <translation>地址簿</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="211"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="208"/>
         <source>Paste from Clipboard</source>
         <translation>从剪贴板粘贴</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="245"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="242"/>
         <source>Payment ID</source>
         <translation>付款ID</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="282"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="279"/>
         <source>Label</source>
         <translation>标签</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="292"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="289"/>
         <source>Enter a label for this address to add it to your address book</source>
         <translation>输入此地址的标签，将其添加到地址簿中</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="322"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="319"/>
         <source>Crypto comment</source>
         <translation>加密注释</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="362"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="359"/>
         <source>Amount</source>
         <translation>金额</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="414"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="411"/>
         <source>Fee</source>
         <translation>费用</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="468"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="465"/>
         <source>Anonymity level</source>
         <translation>匿名等级</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="523"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="520"/>
         <source>Clear All</source>
         <translation>全部清除</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="43"/>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="63"/>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="68"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="64"/>
         <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="75"/>
         <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="82"/>
         <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="89"/>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="96"/>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="550"/>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="555"/>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="562"/>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="569"/>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="576"/>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="583"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="548"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="559"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="566"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="573"/>
         <source>Error</source>
         <translation>错误</translation>
     </message>
@@ -1707,43 +1703,35 @@ the wallet might need optimization more than once.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="183"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="176"/>
         <source>Recipient Address or Integrated Address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="63"/>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="550"/>
-        <source>Please provide a valid address</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="68"/>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="555"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="64"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="548"/>
         <source>No payment id needed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="75"/>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="562"/>
         <source>Invalid recipient address</source>
-        <translation>接收地址无效</translation>
+        <translation type="vanished">接收地址无效</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="82"/>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="569"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="75"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="559"/>
         <source>Incorrect amount value</source>
         <translation>金额值不正确</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="89"/>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="576"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="82"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="566"/>
         <source>Invalid payment ID</source>
         <translation>付款ID无效</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="96"/>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="583"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="89"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="573"/>
         <source>Wallet is closed</source>
         <translation>钱包已关闭</translation>
     </message>

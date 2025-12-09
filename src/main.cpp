@@ -170,11 +170,15 @@ int main(int argc, char* argv[]) {
         qRegisterMetaType<cn::TransactionId>("cn::TransactionId");
         qRegisterMetaType<quintptr>("quintptr");
 
-        if (!NodeAdapter::instance().init()) {
-            qCritical() << "Failed to init node";
-            animationTimer.stop();
-            return 0;
-        }
+    if (!NodeAdapter::instance().init()) {
+        qCritical() << "Failed to init node";
+        animationTimer.stop();
+        splash.hide();
+        QMessageBox::critical(nullptr, QObject::tr("Connection Error"), 
+            QObject::tr("Failed to connect to the UltraNote network.\n\n"
+                       "Please check your internet connection and try again."));
+        return 0;
+    }
         currentStageMessage = QObject::tr("Opening wallet...");
         splash.showMessage(currentStageMessage, Qt::AlignCenter | Qt::AlignBottom, Qt::white);
         QApplication::processEvents();
