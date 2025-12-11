@@ -6,6 +6,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <QDateTime>
+#include <QDebug>
 #include <QFont>
 #include <QMetaEnum>
 #include <QPixmap>
@@ -295,12 +296,32 @@ void MessagesModel::appendTransaction(cn::TransactionId _transactionId, quint32&
 
     m_transactionRow.insert(_transactionId, qMakePair(std::numeric_limits<quint32>::max(), std::numeric_limits<quint32>::max()));
     if (transaction.messages.empty()) {
+        qDebug() << "[MessagesModel] Transaction" << _transactionId << "has no messages";
         return;
     }
 
+    qDebug() << "[MessagesModel] Processing transaction" << _transactionId << "with" << transaction.messages.size() << "message(s)";
+    
     m_transactionRow[_transactionId] = qMakePair(m_messages.size(), transaction.messages.size());
     for (quint32 i = 0; i < transaction.messages.size(); ++i) {
-        Message message(QString::fromStdString(transaction.messages[i]));
+        QString rawMessage = QString::fromStdString(transaction.messages[i]);
+        qDebug() << "[MessagesModel] Raw message" << i << "(first 200 chars):" << rawMessage.left(200);
+        
+        Message message(rawMessage);
+        QString parsedMessage = message.getMessage();
+        qDebug() << "[MessagesModel] Parsed message" << i << ":" << parsedMessage;
+        
+        // Check for headers
+        QString replyTo = message.getHeaderValue(HEADER_REPLY_TO_KEY);
+        if (!replyTo.isEmpty()) {
+            qDebug() << "[MessagesModel] Found Reply-To header:" << replyTo;
+        }
+        
+        QString attachment = message.getHeaderValue(HEADER_ATTACHMENT);
+        if (!attachment.isEmpty()) {
+            qDebug() << "[MessagesModel] Found Attachment header:" << attachment;
+        }
+        
         m_messages.append(TransactionMessageId(_transactionId, std::move(message)));
         ++_insertedRowCount;
     }

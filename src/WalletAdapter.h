@@ -27,6 +27,7 @@
 #include "gui/sendmessagemodel.h"
 #include "gui/transactionstablemodel.h"
 #include "gui/MiningService.h"
+#include "gui/invoicestablemodel.h"
 #include "qmlhelpers.h"
 #include <IWalletLegacy.h>
 #include "gui/OptimizationService.h"
@@ -66,6 +67,7 @@ class WalletAdapter : public QObject, public cn::IWalletLegacyObserver {
     QML_CONSTANT_PROPERTY_PTR(SendMessageModel, sendMessageModel)
     QML_CONSTANT_PROPERTY_PTR(SearchService, searchService)
     QML_CONSTANT_PROPERTY_PTR(InvoiceService, invoiceService)
+    QML_CONSTANT_PROPERTY_PTR(InvoiceTableModel, invoicesTableModel)
     QML_CONSTANT_PROPERTY_PTR(MiningService, miningService)
 
     QML_READABLE_PROPERTY(QString, publicAddress, setPublicAddress, "")

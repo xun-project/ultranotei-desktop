@@ -160,6 +160,21 @@ WalletAdapter::WalletAdapter()
     connect(this, &WalletAdapter::walletCloseCompletedSignal, m_messagesTableModel,
         &MessagesTableModel::reset, Qt::QueuedConnection);
 
+    //setup connections for InvoiceTableModel
+    connect(this, &WalletAdapter::reloadWalletTransactionsSignal, m_invoicesTableModel,
+        &InvoiceTableModel::reloadWalletTransactions, Qt::QueuedConnection);
+    connect(this, &WalletAdapter::walletTransactionCreatedSignal, m_invoicesTableModel,
+        static_cast<void (InvoiceTableModel::*)(cn::TransactionId)>(&InvoiceTableModel::appendTransaction),
+        Qt::QueuedConnection);
+    connect(this, &WalletAdapter::walletTransactionUpdatedSignal, m_invoicesTableModel,
+        &InvoiceTableModel::updateWalletTransaction,
+        Qt::QueuedConnection);
+    connect(&NodeAdapter::instance(), &NodeAdapter::lastKnownBlockHeightUpdatedSignal,
+        m_invoicesTableModel,
+        &InvoiceTableModel::lastKnownHeightUpdated, Qt::QueuedConnection);
+    connect(this, &WalletAdapter::walletCloseCompletedSignal, m_invoicesTableModel,
+        &InvoiceTableModel::reset, Qt::QueuedConnection);
+
     //set connections for SendMessageModel
     connect(this, &WalletAdapter::walletSendMessageCompletedSignal, m_sendMessageModel,
         &SendMessageModel::sendMessageCompleted, Qt::QueuedConnection);

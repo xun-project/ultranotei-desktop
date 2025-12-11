@@ -29,6 +29,7 @@
 #include "WalletEvents.h"
 
 #include "MessageAttachmentFrame.h"
+#include <Common/DnsTools.h>
 
 namespace WalletGui {
 
@@ -461,9 +462,58 @@ void InvoiceService::sendMessage(const QString& ipfsHash, const QString& encrpyp
     transfers.reserve(1);
     //  for (MessageAddressFrame* addressFrame : m_addressFrames) {
     QString address = extractAddress(getAddress());
+    
+    // Check if address is a valid UltraNote address
     if (!CurrencyAdapter::instance().validateAddress(address)) {
-        QCoreApplication::postEvent(&MainWindow::instance(), new ShowMessageEvent(tr("Invalid recipient address"), QtCriticalMsg));
-        return;
+        // Might be a DNS alias, try to resolve it
+        qDebug() << "[InvoiceService] Address is not a valid UltraNote address, trying DNS alias resolution...";
+        QString resolvedAddress = address;
+        
+        // Try to resolve as OpenAlias DNS record
+        std::string domainStr = address.toStdString();
+        std::vector<std::string> records;
+        
+        qDebug() << "[InvoiceService] Attempting DNS resolution for:" << address;
+        if (common::fetch_dns_txt(domainStr, records)) {
+            qDebug() << "[InvoiceService] DNS resolution successful, records found:" << records.size();
+            // Try to parse OpenAlias record
+            for (const auto& record : records) {
+                QString qrecord = QString::fromStdString(record);
+                qDebug() << "[InvoiceService] Checking DNS record:" << qrecord;
+                if (qrecord.contains("oa1:xuni")) {
+                    qDebug() << "[InvoiceService] Found OpenAlias record (oa1:xuni)";
+                    // Parse OpenAlias format: oa1:xuni recipient_address=<address>; recipient_name=<name>;
+                    QRegularExpression regex("recipient_address=([^;]+)");
+                    QRegularExpressionMatch match = regex.match(qrecord);
+                    if (match.hasMatch()) {
+                        QString aliasAddress = match.captured(1).trimmed();
+                        qDebug() << "[InvoiceService] Parsed address from OpenAlias:" << aliasAddress;
+                        // Validate the address
+                        if (CurrencyAdapter::instance().validateAddress(aliasAddress)) {
+                            qDebug() << "[InvoiceService] Parsed address is valid UltraNote address";
+                            resolvedAddress = aliasAddress;
+                            break;
+                        } else {
+                            qDebug() << "[InvoiceService] Parsed address is NOT a valid UltraNote address";
+                        }
+                    }
+                }
+            }
+        } else {
+            qDebug() << "[InvoiceService] DNS resolution failed for:" << address;
+        }
+        
+        // If still not a valid address, show error
+        if (!CurrencyAdapter::instance().validateAddress(resolvedAddress)) {
+            qDebug() << "[InvoiceService] Address resolution failed. Original:" << address << "Resolved:" << resolvedAddress;
+            QCoreApplication::postEvent(&MainWindow::instance(), 
+                new ShowMessageEvent(tr("The address '%1' is not a valid UltraNote address and could not be resolved as a DNS alias.").arg(address), 
+                QtCriticalMsg));
+            return;
+        }
+        
+        address = resolvedAddress;
+        qDebug() << "[InvoiceService] Successfully resolved alias to address:" << address;
     }
 
     transfers.append({ address.toStdString(), MESSAGE_AMOUNT });

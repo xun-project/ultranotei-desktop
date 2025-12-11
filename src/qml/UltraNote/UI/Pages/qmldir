@@ -2,6 +2,7 @@ module UltraNote.UI.Pages
 
 AddressBookPage 1.0 AddressBookPage.qml
 DepositsPage 1.0 DepositsPage.qml
+InvoicesPage 1.0 InvoicesPage.qml
 MessagesPage 1.0 MessagesPage.qml
 MiningPage 1.0 MiningPage.qml
 ReceivePage 1.0 ReceivePage.qml
