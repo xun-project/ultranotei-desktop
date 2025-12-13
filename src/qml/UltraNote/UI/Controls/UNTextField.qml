@@ -38,7 +38,7 @@ TextField {
         _itm.enterPressed()
     }
 
-    color: Theme.textFieldTextColor
+    color: "#FFFFFF"
     placeholderTextColor: Theme.textFieldPlaceholderTextColor
     font.pixelSize: Theme.textFieldTextSize
     font.family: UNFontsFactory.workSansRegular.name

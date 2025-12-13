@@ -120,7 +120,7 @@ UNPage {
                             anchors.leftMargin: 5
                             width: 15
                             height: 15
-                            source: "qrc:/icons/resources/icons/drawer_send_invoice_list_item_icon.svg"
+                            source: "qrc:/icons/resources/icons/drawer_invoices_list_item_icon.svg"
                         }
                     }
 
@@ -167,15 +167,7 @@ UNPage {
 
                 UNLayoutSpacer {}
 
-                UNButton {
-                    id: _payInvoiceButton
-                    text: qsTr("Pay Invoice")
-                    visible: _selectedRow >= 0 && walletAdapter.invoicesTableModel.isIncomingInvoice(_selectedRow)
 
-                    onClicked: {
-                        _globalProperties.setupPayMsg(walletAdapter.invoicesTableModel.getInvoiceSenderAddress(_selectedRow))
-                    }
-                }
 
                 UNButton {
                     id: _viewDetailsButton

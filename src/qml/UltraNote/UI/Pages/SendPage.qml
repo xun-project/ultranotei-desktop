@@ -108,7 +108,19 @@ UNPage {
         if(_globalProperties.payToAddress){
             address = _globalProperties.sendToAddress
             _paymentIDTextField.text = walletAdapter.messagesTableModel.msgPaymentId
-            _amountEditBox.text = walletAdapter.messagesTableModel.msgInvoiceAmount
+            
+            // Set invoice amount
+            var invoiceAmountStr = walletAdapter.messagesTableModel.msgInvoiceAmount
+            if (invoiceAmountStr && invoiceAmountStr !== "") {
+                // Check if it looks like atomic integer (only digits)
+                if (/^\d+$/.test(invoiceAmountStr)) {
+                    var val = parseInt(invoiceAmountStr)
+                    _amountEditBox.updateFee(val, Qt.locale())
+                } else {
+                    _amountEditBox.text = invoiceAmountStr
+                }
+            }
+            
             _cryptoCommentTextField.text = "Pay for InvoiceID : "+ walletAdapter.messagesTableModel.msgInvoiceId
         }
     }

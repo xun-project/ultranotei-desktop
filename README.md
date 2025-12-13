@@ -173,6 +173,8 @@ cd UltraNoteWallet-infinity
 git submodule init
 git submodule update --remote
 
+make sure to update zlib CMakeLists.txt in win32 to use cmake 3.5
+
 # prepare build
 
 mkdir  build\release\Release

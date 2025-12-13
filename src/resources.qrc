@@ -47,7 +47,7 @@
         <file>resources/icons/drawer_deposits_list_item_icon.svg</file>
         <file>resources/icons/drawer_messages_list_item_icon.svg</file>
         <file>resources/icons/drawer_receive_list_item_icon.svg</file>
-        <file alias="drawer_invoices_list_item_icon.svg">resources/icons/drawer_send_invoice_list_item_icon.svg</file>
+        <file>resources/icons/drawer_invoices_list_item_icon.svg</file>
         <file>resources/icons/drawer_send_invoice_list_item_icon.svg</file>
         <file>resources/icons/drawer_send_list_item_icon.svg</file>
         <file>resources/icons/drawer_send_message_list_item_icon.svg</file>

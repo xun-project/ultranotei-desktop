@@ -448,8 +448,12 @@ UNDialog {
 
                     onClicked: {
                         _messageDetailsDialog.close()
+                        // The invoice data should already be set in messages table model by setupMessageDetails
+                        // But we set them explicitly to be sure
+                        walletAdapter.messagesTableModel.msgInvoiceId = _dialog.model.msgInvoiceId
+                        walletAdapter.messagesTableModel.msgPaymentId = _dialog.model.msgPaymentId
+                        walletAdapter.messagesTableModel.msgInvoiceAmount = _dialog.model.msgInvoiceAmount
                         _globalProperties.setupPayMsg(_dialog.model.msgReplyTo)
-
                     }
                 }
 

@@ -591,6 +591,10 @@ UNDialog {
 
                     onClicked: {
                         _invoiceDetailsDialog.close()
+                        // Set invoice data in messages table model for auto-fill in send page
+                        walletAdapter.messagesTableModel.msgInvoiceId = _dialog.model.invoiceId
+                        walletAdapter.messagesTableModel.msgPaymentId = _dialog.model.paymentId
+                        walletAdapter.messagesTableModel.msgInvoiceAmount = _dialog.model.invoiceAmountValue
                         _globalProperties.setupPayMsg(_dialog.model.invoiceReplyTo)
                     }
                 }

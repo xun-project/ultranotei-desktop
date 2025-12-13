@@ -20,7 +20,7 @@ TextField {
     horizontalAlignment: Text.AlignHCenter
     Material.theme: Material.Dark
     Material.accent: Theme.spinBoxActiveColor
-    Material.foreground: Theme.spinBoxTextColor
+    Material.foreground: "#FFFFFF"
     font.pixelSize: Theme.spinBoxFontSize
     font.family: UNFontsFactory.workSansMedium.name
 

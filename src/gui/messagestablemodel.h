@@ -84,7 +84,6 @@ private:
     QNetworkReply* m_downloadReply = nullptr;
 	QVector<size_t> messagesListTransactionId;
 
-private:
     QML_CONSTANT_PROPERTY(int, columnCount, ColumnName::Count)
     Q_PROPERTY(int rowCount READ getRowCount NOTIFY rowCountChanged)
 
@@ -95,10 +94,12 @@ private:
     QML_READABLE_PROPERTY(QString, msgFullText, setMsgFullText, "")
     QML_READABLE_PROPERTY(QString, msgReplyTo, setMsgReplyTo, "")
     QML_READABLE_PROPERTY(QString, msgAttachment, setMsgAttachment, "")
-	QML_READABLE_PROPERTY(QString, msgInvoiceId, setmsgInvoiceId, "")
-    QML_READABLE_PROPERTY(QString, msgPaymentId, setmsgPaymentId, "")
-    QML_READABLE_PROPERTY(QString, msgInvoiceAmount, setmsgInvoiceAmount, "")
-	QML_READABLE_PROPERTY(bool, hasInvoiceId, setMsgInvoice, false)
+    QML_WRITABLE_PROPERTY(QString, msgInvoiceId, setmsgInvoiceId, "")
+    QML_WRITABLE_PROPERTY(QString, msgPaymentId, setmsgPaymentId, "")
+    QML_WRITABLE_PROPERTY(QString, msgInvoiceAmount, setmsgInvoiceAmount, "")
+    QML_READABLE_PROPERTY(bool, hasInvoiceId, setMsgInvoice, false)
+
+private:
 };
 
 } //WalletGui

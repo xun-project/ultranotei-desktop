@@ -32,7 +32,6 @@ UNPage {
                 property int labelTextWidthTop: Math.max(
                                                     _addressLabelText.implicitWidth,
                                                     _labelLabelText.implicitWidth,
-                                                    _paymentIDLabelText.implicitWidth,
                                                     _amountLabelText.implicitWidth,
                                                     _invoiceIDLabelText.implicitWidth
                                                     )
@@ -51,73 +50,62 @@ UNPage {
 
                 spacing: 0
 
-                RowLayout {
+                ColumnLayout {
                     anchors.left: parent.left
                     anchors.right: parent.right
 
-                    height: 40
-
-                    spacing: 16
+                    spacing: 8
 
                     UNLabel {
                         id: _addressLabelText
-
-                        Layout.fillHeight: true
-                        Layout.preferredWidth: _pageContent.labelTextWidthTop
-                        Layout.maximumWidth:  _pageContent.labelTextWidthTop
-                        Layout.minimumWidth:  _pageContent.labelTextWidthTop
-
+                        Layout.fillWidth: true
                         type: UNLabel.Type.TypePageSubcategoryTitle
-
                         color: Theme.textColor
                         text: qsTr("Address")
                     }
 
-                    UNTextField {
-                        id: _addressTextField
-
+                    RowLayout {
                         Layout.fillWidth: true
-                        Layout.alignment: Qt.AlignVCenter
+                        spacing: 16
 
-                        text: walletAdapter.addressBookTableModel.selectedAddress
-
-                        onTextChanged: {
-                            walletAdapter.invoiceService.address = text
-                            walletAdapter.invoiceService.recalculateFeeValue()
+                        UNTextField {
+                            id: _addressTextField
+                            Layout.fillWidth: true
+                            Layout.alignment: Qt.AlignVCenter
+                            text: walletAdapter.addressBookTableModel.selectedAddress
+                            onTextChanged: {
+                                walletAdapter.invoiceService.address = text
+                                walletAdapter.invoiceService.recalculateFeeValue()
+                            }
                         }
-                    }
 
-                    UNIcon {
-                        id: _addressBookToolButton
-
-                        Layout.preferredWidth: implicitWidth
-                        Layout.maximumWidth: implicitWidth
-                        Layout.minimumWidth: implicitWidth
-                        Layout.alignment: Qt.AlignVCenter
-
-                        color: Theme.sendInvoicePageIconColor
-                        clickable: true
-                        source: "qrc:/icons/resources/icons/address_book_icon.svg"
-                        toolTip: qsTr("Address Book")
-
-                        onClicked: {
-                            _addressBookDialog.open()
+                        UNIcon {
+                            id: _addressBookToolButton
+                            Layout.preferredWidth: implicitWidth
+                            Layout.maximumWidth: implicitWidth
+                            Layout.minimumWidth: implicitWidth
+                            Layout.alignment: Qt.AlignVCenter
+                            color: Theme.sendInvoicePageIconColor
+                            clickable: true
+                            source: "qrc:/icons/resources/icons/address_book_icon.svg"
+                            toolTip: qsTr("Address Book")
+                            onClicked: {
+                                _addressBookDialog.open()
+                            }
                         }
-                    }
 
-                    UNIcon {
-                        Layout.preferredWidth: implicitWidth
-                        Layout.maximumWidth: implicitWidth
-                        Layout.minimumWidth: implicitWidth
-                        Layout.alignment: Qt.AlignVCenter
-
-                        color: Theme.sendInvoicePageIconColor
-                        clickable: true
-                        source: "qrc:/icons/resources/icons/clipboard_copy_icon.svg"
-                        toolTip: qsTr("Paste from Clipboard")
-
-                        onClicked: {
-                            walletAdapter.invoiceService.pasteClicked()
+                        UNIcon {
+                            Layout.preferredWidth: implicitWidth
+                            Layout.maximumWidth: implicitWidth
+                            Layout.minimumWidth: implicitWidth
+                            Layout.alignment: Qt.AlignVCenter
+                            color: Theme.sendInvoicePageIconColor
+                            clickable: true
+                            source: "qrc:/icons/resources/icons/clipboard_copy_icon.svg"
+                            toolTip: qsTr("Paste from Clipboard")
+                            onClicked: {
+                                walletAdapter.invoiceService.pasteClicked()
+                            }
                         }
                     }
                 }
@@ -129,36 +117,25 @@ UNPage {
                     height: 16
                 }
 
-                RowLayout {
+                ColumnLayout {
                     anchors.left: parent.left
                     anchors.right: parent.right
 
-                    height: 40
-
-                    spacing: 16
+                    spacing: 8
 
                     UNLabel {
                         id: _labelLabelText
-
-                        Layout.fillHeight: true
-                        Layout.preferredWidth: _pageContent.labelTextWidthTop
-                        Layout.maximumWidth:  _pageContent.labelTextWidthTop
-                        Layout.minimumWidth:  _pageContent.labelTextWidthTop
-
+                        Layout.fillWidth: true
                         type: UNLabel.Type.TypePageSubcategoryTitle
-
                         color: Theme.textColor
                         text: qsTr("Label")
                     }
 
                     UNTextField {
                         id: _labelTextField
-
                         Layout.fillWidth: true
                         Layout.alignment: Qt.AlignVCenter
-
                         text: walletAdapter.invoiceService.label
-
                         onTextChanged: {
                             walletAdapter.invoiceService.label = text
                             walletAdapter.invoiceService.recalculateFeeValue()
@@ -173,47 +150,7 @@ UNPage {
                     height: 16
                 }
 
-                RowLayout {
-                    anchors.left: parent.left
-                    anchors.right: parent.right
 
-                    height: 40
-
-                    spacing: 16
-
-                    UNLabel {
-                        id: _paymentIDLabelText
-
-                        Layout.fillHeight: true
-                        Layout.preferredWidth: _pageContent.labelTextWidthTop
-                        Layout.maximumWidth:  _pageContent.labelTextWidthTop
-                        Layout.minimumWidth:  _pageContent.labelTextWidthTop
-
-                        type: UNLabel.Type.TypePageSubcategoryTitle
-
-                        color: Theme.textColor
-                        text: qsTr("Payment ID")
-                    }
-
-                    UNTextField {
-                        id: _paymentIDTextField
-
-                        Layout.fillWidth: true
-                        Layout.alignment: Qt.AlignVCenter
-
-                        onTextChanged: {
-                            walletAdapter.invoiceService.paymentID = text
-                            walletAdapter.invoiceService.recalculateFeeValue()
-                        }
-                    }
-                }
-
-                Item {
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-
-                    height: 16
-                }
 
                 RowLayout {
                     anchors.left: parent.left
@@ -239,35 +176,13 @@ UNPage {
 
                     UNLayoutSpacer {}
 
-                    UNSpinBox {
+                    UNAmountBox {
                         id: _amountSpinBox
-
-                        Layout.preferredWidth: implicitWidth
-                        Layout.maximumWidth: implicitWidth
-                        Layout.minimumWidth: implicitWidth
+                        Layout.fillWidth: true
                         Layout.alignment: Qt.AlignVCenter
-
-                        property real realValue: value / props.actStepSize
-
-                        QtObject {
-                            id: props
-
-                            readonly property int decimals: currencyAdapter.getNumberOfDecimalPlaces()
-                            readonly property int actStepSize: Math.pow(10, props.decimals)
-                        }
-
-                        value: walletAdapter.invoiceService.amount
-                        from: 0
-                        stepSize: 1
-                        to: 2147483647
-                        editable: true
-                        validator: DoubleValidator {
-                            bottom: Math.min(_amountSpinBox.from, _amountSpinBox.to)
-                            top:  Math.max(_amountSpinBox.from, _amountSpinBox.to)
-                        }
-
-                        onValueChanged: {
-                            walletAdapter.invoiceService.amount = value
+                        value: walletAdapter.invoiceService.amount * 1000000
+                        onTextChanged: {
+                            walletAdapter.invoiceService.amount = value / 1000000
                             walletAdapter.invoiceService.recalculateFeeValue()
                         }
                     }
@@ -286,34 +201,24 @@ UNPage {
                     height: 16
                 }
 
-                RowLayout {
+                ColumnLayout {
                     anchors.left: parent.left
                     anchors.right: parent.right
 
-                    height: 40
-
-                    spacing: 16
+                    spacing: 8
 
                     UNLabel {
                         id: _invoiceIDLabelText
-
-                        Layout.fillHeight: true
-                        Layout.preferredWidth: _pageContent.labelTextWidthTop
-                        Layout.maximumWidth:  _pageContent.labelTextWidthTop
-                        Layout.minimumWidth:  _pageContent.labelTextWidthTop
-
+                        Layout.fillWidth: true
                         type: UNLabel.Type.TypePageSubcategoryTitle
-
                         color: Theme.textColor
                         text: qsTr("Invoice ID")
                     }
 
                     UNTextField {
                         id: _invoiceIDTextField
-
                         Layout.fillWidth: true
                         Layout.alignment: Qt.AlignVCenter
-
                         text: walletAdapter.invoiceService.invoiceID
                         onTextChanged: {
                             walletAdapter.invoiceService.invoiceIdEdited(text)

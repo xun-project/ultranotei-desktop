@@ -864,12 +864,12 @@ Are you sure?</source>
         <translation type="unfinished">Ödemek</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/InvoiceDetailsDialog.qml" line="610"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/InvoiceDetailsDialog.qml" line="614"/>
         <source>Save to file</source>
         <translation type="unfinished">Dosyaya kaydet</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/InvoiceDetailsDialog.qml" line="632"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/InvoiceDetailsDialog.qml" line="636"/>
         <source>Download attachment</source>
         <translation type="unfinished">Eki indir</translation>
     </message>
@@ -882,12 +882,7 @@ Are you sure?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/InvoicesPage.qml" line="172"/>
-        <source>Pay Invoice</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/InvoicesPage.qml" line="182"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/InvoicesPage.qml" line="174"/>
         <source>View Details</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1112,12 +1107,12 @@ Are you sure?</source>
         <translation>Ödemek</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="468"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="472"/>
         <source>Save to file</source>
         <translation>Dosyaya kaydet</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="490"/>
+        <location filename="../src/qml/UltraNote/UI/Dialogs/MessageDetailsDialog.qml" line="494"/>
         <source>Download attachment</source>
         <translation>Eki indir</translation>
     </message>
@@ -1529,92 +1524,91 @@ the wallet might need optimization more than once.</source>
         <translation>Fatura Gönder</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="73"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="64"/>
         <source>Address</source>
         <translation>Adres</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="101"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="91"/>
         <source>Address Book</source>
         <translation>Adres Defteri</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="117"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="105"/>
         <source>Paste from Clipboard</source>
         <translation>Panodan Yapıştır</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="151"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="131"/>
         <source>Label</source>
         <translation>Etiket</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="195"/>
         <source>Payment ID</source>
-        <translation>Ödeme Kimliği</translation>
+        <translation type="vanished">Ödeme Kimliği</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="237"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="174"/>
         <source>Amount</source>
         <translation>Miktar</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="308"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="215"/>
         <source>Invoice ID</source>
         <translation>Fatura Kimliği</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="374"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="279"/>
         <source>Payload</source>
         <translation>Yük</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="417"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="322"/>
         <source>Encrypted Message</source>
         <translation>Şifrelenmiş Mesaj</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="463"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="368"/>
         <source>Attachments</source>
         <translation>Ekler</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="544"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="449"/>
         <source>Remove Attachment</source>
         <translation>Eki Kaldır</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="575"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="480"/>
         <source>Add &quot;Reply to&quot;</source>
         <translation>&quot;Cevap&quot; ekle</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="608"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="513"/>
         <source>Set self destruct time</source>
         <translation>Kendini yok etme zamanı ayarla</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="679"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="584"/>
         <source>Fee</source>
         <translation>Ücret</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="736"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="641"/>
         <source>Anonymity level</source>
         <translation>Anonimlik seviyesi</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="789"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="694"/>
         <source>Add attachment</source>
         <translation>Ek Ekle</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="793"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="698"/>
         <source>Select attachment...</source>
         <translation>Ek seçin...</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="801"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendInvoicePage.qml" line="706"/>
         <source>Send</source>
         <translation>GÖNDER</translation>
     </message>
@@ -1712,7 +1706,7 @@ the wallet might need optimization more than once.</source>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="14"/>
         <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="51"/>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="535"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="547"/>
         <source>Send</source>
         <translation>GÖNDER</translation>
     </message>
@@ -1721,57 +1715,57 @@ the wallet might need optimization more than once.</source>
         <translation type="vanished">Ödemek</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="165"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="177"/>
         <source>Address</source>
         <translation type="unfinished">Adres</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="192"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="204"/>
         <source>Address Book</source>
         <translation>Adres Defteri</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="208"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="220"/>
         <source>Paste from Clipboard</source>
         <translation>Panodan Yapıştır</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="242"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="254"/>
         <source>Payment ID</source>
         <translation>Payment ID</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="279"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="291"/>
         <source>Label</source>
         <translation>Etiket</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="289"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="301"/>
         <source>Enter a label for this address to add it to your address book</source>
         <translation>Bu adres için adres defterinize eklemek üzere bir etiket girin</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="319"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="331"/>
         <source>Crypto comment</source>
         <translation>Şifreli mesaj</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="359"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="371"/>
         <source>Amount</source>
         <translation>Miktar</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="411"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="423"/>
         <source>Fee</source>
         <translation>Ücret</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="465"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="477"/>
         <source>Anonymity level</source>
         <translation>Anonimlik seviyesi</translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="520"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="532"/>
         <source>Clear All</source>
         <translation>HEPSİNİ TEMİZLE</translation>
     </message>
@@ -1781,10 +1775,10 @@ the wallet might need optimization more than once.</source>
         <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="75"/>
         <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="82"/>
         <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="89"/>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="548"/>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="559"/>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="566"/>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="573"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="560"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="571"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="578"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="585"/>
         <source>Error</source>
         <translation>Hata</translation>
     </message>
@@ -1804,13 +1798,13 @@ the wallet might need optimization more than once.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="176"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="188"/>
         <source>Recipient Address or Integrated Address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="64"/>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="548"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="560"/>
         <source>No payment id needed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1820,19 +1814,19 @@ the wallet might need optimization more than once.</source>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="75"/>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="559"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="571"/>
         <source>Incorrect amount value</source>
         <translation>Yanlış miktar değeri</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="82"/>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="566"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="578"/>
         <source>Invalid payment ID</source>
         <translation>Geçersiz ödeme kimliği</translation>
     </message>
     <message>
         <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="89"/>
-        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="573"/>
+        <location filename="../src/qml/UltraNote/UI/Pages/SendPage.qml" line="585"/>
         <source>Wallet is closed</source>
         <translation>Cüzdan kapatıldı</translation>
     </message>

@@ -113,7 +113,7 @@ UNPage {
                         width: height
                         fillMode: Image.PreserveAspectFit
                         mipmap: true
-                        source: stateImg.visible ? display : ""
+                        source: (stateImg.visible && display.toString().indexOf("qrc:/") === 0) ? display : ""
                     }
 
                     Item {
