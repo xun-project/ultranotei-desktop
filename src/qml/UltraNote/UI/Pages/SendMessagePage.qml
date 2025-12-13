@@ -246,19 +246,6 @@ UNPage {
                         text: qsTr("Encrypted Message")
                     }
 
-                    UNTextArea {
-                        id: _encryptedMessageTextArea
-
-                        Layout.fillWidth: true
-                        Layout.preferredHeight: 150
-                        Layout.maximumHeight: 150
-                        Layout.minimumHeight: 150
-                        Layout.alignment: Qt.AlignVCenter
-                        onTextChanged: {
-                            walletAdapter.sendMessageModel.message = text
-                            walletAdapter.sendMessageModel.recalculateFeeValue()
-                        }
-                    }
                     QQC1.ToolBar {
                         Layout.fillWidth: true
                         Layout.preferredHeight: 50
@@ -418,6 +405,20 @@ UNPage {
                                     onClicked : document.alignment = Qt.AlignJustify
                                 }
                             }
+                        }
+                    }
+
+                    UNTextArea {
+                        id: _encryptedMessageTextArea
+
+                        Layout.fillWidth: true
+                        Layout.preferredHeight: 150
+                        Layout.maximumHeight: 150
+                        Layout.minimumHeight: 150
+                        Layout.alignment: Qt.AlignVCenter
+                        onTextChanged: {
+                            walletAdapter.sendMessageModel.message = text
+                            walletAdapter.sendMessageModel.recalculateFeeValue()
                         }
                     }
                 }

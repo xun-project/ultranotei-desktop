@@ -170,7 +170,7 @@ void MessagesTableModel::setupMessageDetails(int row)
 	else{ 
 		setMsgInvoice(false);
 	}
-    //qDebug() << message.getHeaderValue(HEADER_INVOICE_ID) << message.getHeaderValue(HEADER_INVOICE_AMOUNT) << message.getHeaderValue(HEADER_PAYMENT_ID);
+    qDebug() << "[messagestablemodel] Invoice headers:" << message.getHeaderValue(HEADER_INVOICE_ID) << message.getHeaderValue(HEADER_INVOICE_AMOUNT) << message.getHeaderValue(HEADER_PAYMENT_ID);
 
     setMsgAttachment(message.getHeaderValue(HEADER_ATTACHMENT));
 
@@ -345,7 +345,15 @@ void MessagesTableModel::appendTransaction(cn::TransactionId _id,
 
     m_transactionRow[_id] = qMakePair(m_messages.size(), transaction.messages.size());
     for (quint32 i = 0; i < transaction.messages.size(); ++i) {
-      WalletGui::Message message = QString::fromStdString(transaction.messages[i]);
+      QString rawMessage = QString::fromStdString(transaction.messages[i]);
+      
+      WalletGui::Message message(rawMessage);
+      QString parsedMessage = message.getMessage();
+      
+      // Check for headers
+      QString replyTo = message.getHeaderValue(HEADER_REPLY_TO_KEY);
+      QString attachment = message.getHeaderValue(HEADER_ATTACHMENT);
+      
       m_messages.append(TransactionMessageId(_id, std::move(message)));
 	  messagesListTransactionId.append(_id);
       ++_row_count;

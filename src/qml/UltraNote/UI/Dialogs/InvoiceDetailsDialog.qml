@@ -10,7 +10,7 @@ UNDialog {
     id: _dialog
 
     property int currentRow: -1
-    property var model: walletAdapter.messagesTableModel
+    property var model: walletAdapter.invoicesTableModel
 
     buttons: ListModel {
         ListElement { type: UNDialog.ButtonType.TypeNormal; role: DialogButtonBox.RejectRole; text: qsTr("Close")}
@@ -18,7 +18,7 @@ UNDialog {
 
     implicitWidth: Theme.messageDetailsDialogWindowWidth
     closePolicy: Popup.CloseOnEscape
-    title: qsTr("Message details")
+    title: qsTr("Invoice details")
     modal: true
 
     Item {
@@ -38,12 +38,12 @@ UNDialog {
             visible: false
 
             onRejected: {
-                walletAdapter.messagesTableModel.cancelDownload()
+                walletAdapter.invoicesTableModel.cancelDownload()
             }
         }
 
         Connections {
-            target: walletAdapter.messagesTableModel
+            target: walletAdapter.invoicesTableModel
             onDownloadProgressChanged: {
                 _progressDialog.value = value
                 _progressDialog.open()
@@ -67,11 +67,124 @@ UNDialog {
             spacing: 0
 
             property int labelWidth: Math.max(
+                                         _invoiceIdLabel.implicitWidth,
+                                         _paymentIdLabel.implicitWidth,
                                          _blockHeightLabel.implicitWidth,
                                          _transactionHashLabel.implicitWidth,
                                          _amountLabel.implicitWidth,
-                                         _messageSizeLabel.implicitWidth,
+                                         _senderAddressLabel.implicitWidth,
+                                         _invoiceSizeLabel.implicitWidth
                                          )
+
+            RowLayout {
+                Layout.fillWidth: true
+                Layout.preferredHeight: implicitHeight
+                Layout.maximumHeight: implicitHeight
+                Layout.minimumHeight: implicitHeight
+
+                spacing: 24
+
+                UNLabel {
+                    id: _invoiceIdLabel
+
+                    Layout.preferredWidth: _contentData.labelWidth
+                    Layout.maximumWidth: _contentData.labelWidth
+                    Layout.minimumWidth: _contentData.labelWidth
+                    Layout.alignment: Qt.AlignVCenter
+
+                    type: UNLabel.Type.TypeNormal
+
+                    lineHeight: 17
+                    lineHeightMode: Label.FixedHeight
+                    color: Theme.dialogTextColor
+                    elide: Label.ElideNone
+                    wrapMode: Label.WordWrap
+                    maximumLineCount: 10
+                    horizontalAlignment: Label.AlignLeft
+                    verticalAlignment: Label.AlignVCenter
+
+                    text: qsTr("Invoice ID:")
+                }
+
+                UNLabel {
+                    id: _invoiceId
+
+                    Layout.fillWidth: true
+                    Layout.alignment: Qt.AlignVCenter
+
+                    type: UNLabel.Type.TypeNormal
+
+                    lineHeight: 17
+                    lineHeightMode: Label.FixedHeight
+                    color: Theme.dialogTextColor
+                    elide: Label.ElideNone
+                    wrapMode: Label.WordWrap
+                    maximumLineCount: 10
+                    horizontalAlignment: Label.AlignLeft
+                    verticalAlignment: Label.AlignVCenter
+
+                    text: _dialog.model.invoiceId
+                }
+            }
+
+            UNLayoutSpacer {
+                fixedHeight: 16
+            }
+
+            RowLayout {
+                Layout.fillWidth: true
+                Layout.preferredHeight: implicitHeight
+                Layout.maximumHeight: implicitHeight
+                Layout.minimumHeight: implicitHeight
+
+                spacing: 24
+
+                UNLabel {
+                    id: _paymentIdLabel
+
+                    Layout.preferredWidth: _contentData.labelWidth
+                    Layout.maximumWidth: _contentData.labelWidth
+                    Layout.minimumWidth: _contentData.labelWidth
+                    Layout.alignment: Qt.AlignVCenter
+
+                    type: UNLabel.Type.TypeNormal
+
+                    lineHeight: 17
+                    lineHeightMode: Label.FixedHeight
+                    color: Theme.dialogTextColor
+                    elide: Label.ElideNone
+                    wrapMode: Label.WordWrap
+                    maximumLineCount: 10
+                    horizontalAlignment: Label.AlignLeft
+                    verticalAlignment: Label.AlignVCenter
+
+                    text: qsTr("Payment ID:")
+                }
+
+                UNLabel {
+                    id: _paymentId
+
+                    Layout.fillWidth: true
+                    Layout.alignment: Qt.AlignVCenter
+
+                    type: UNLabel.Type.TypeNormal
+
+                    lineHeight: 17
+                    lineHeightMode: Label.FixedHeight
+                    color: Theme.dialogTextColor
+                    elide: Label.ElideNone
+                    wrapMode: Label.WordWrap
+                    maximumLineCount: 10
+                    horizontalAlignment: Label.AlignLeft
+                    verticalAlignment: Label.AlignVCenter
+
+                    text: _dialog.model.paymentId
+                }
+            }
+
+            UNLayoutSpacer {
+                fixedHeight: 16
+            }
 
             RowLayout {
                 Layout.fillWidth: true
@@ -120,7 +233,7 @@ UNDialog {
                     horizontalAlignment: Label.AlignLeft
                     verticalAlignment: Label.AlignVCenter
 
-                    text: _dialog.model.msgHeight
+                    text: _dialog.model.invoiceHeight
                 }
             }
 
@@ -175,7 +288,7 @@ UNDialog {
                     horizontalAlignment: Label.AlignLeft
                     verticalAlignment: Label.AlignVCenter
 
-                    text: _dialog.model.msgHash
+                    text: _dialog.model.invoiceHash
                 }
             }
 
@@ -230,7 +343,7 @@ UNDialog {
                     horizontalAlignment: Label.AlignLeft
                     verticalAlignment: Label.AlignVCenter
 
-                    text: _dialog.model.msgAmount
+                    text: _dialog.model.invoiceAmount
                 }
             }
 
@@ -247,7 +360,7 @@ UNDialog {
                 spacing: 24
 
                 UNLabel {
-                    id: _messageSizeLabel
+                    id: _senderAddressLabel
 
                     Layout.preferredWidth: _contentData.labelWidth
                     Layout.maximumWidth: _contentData.labelWidth
@@ -265,11 +378,11 @@ UNDialog {
                     horizontalAlignment: Label.AlignLeft
                     verticalAlignment: Label.AlignVCenter
 
-                    text: qsTr("Message size (bytes):")
+                    text: qsTr("Sender address:")
                 }
 
                 UNLabel {
-                    id: _messageSize
+                    id: _senderAddress
 
                     Layout.fillWidth: true
                     Layout.alignment: Qt.AlignVCenter
@@ -285,7 +398,62 @@ UNDialog {
                     horizontalAlignment: Label.AlignLeft
                     verticalAlignment: Label.AlignVCenter
 
-                    text: _dialog.model.msgSize
+                    text: _dialog.model.senderAddress
+                }
+            }
+
+            UNLayoutSpacer {
+                fixedHeight: 16
+            }
+
+            RowLayout {
+                Layout.fillWidth: true
+                Layout.preferredHeight: implicitHeight
+                Layout.maximumHeight: implicitHeight
+                Layout.minimumHeight: implicitHeight
+
+                spacing: 24
+
+                UNLabel {
+                    id: _invoiceSizeLabel
+
+                    Layout.preferredWidth: _contentData.labelWidth
+                    Layout.maximumWidth: _contentData.labelWidth
+                    Layout.minimumWidth: _contentData.labelWidth
+                    Layout.alignment: Qt.AlignVCenter
+
+                    type: UNLabel.Type.TypeNormal
+
+                    lineHeight: 17
+                    lineHeightMode: Label.FixedHeight
+                    color: Theme.dialogTextColor
+                    elide: Label.ElideNone
+                    wrapMode: Label.WordWrap
+                    maximumLineCount: 10
+                    horizontalAlignment: Label.AlignLeft
+                    verticalAlignment: Label.AlignVCenter
+
+                    text: qsTr("Invoice size (bytes):")
+                }
+
+                UNLabel {
+                    id: _invoiceSize
+
+                    Layout.fillWidth: true
+                    Layout.alignment: Qt.AlignVCenter
+
+                    type: UNLabel.Type.TypeNormal
+
+                    lineHeight: 17
+                    lineHeightMode: Label.FixedHeight
+                    color: Theme.dialogTextColor
+                    elide: Label.ElideNone
+                    wrapMode: Label.WordWrap
+                    maximumLineCount: 10
+                    horizontalAlignment: Label.AlignLeft
+                    verticalAlignment: Label.AlignVCenter
+
+                    text: _dialog.model.invoiceSize
                 }
             }
 
@@ -305,7 +473,7 @@ UNDialog {
                     type: UNLabel.Type.TypeMedium
                     size: 17
                     color: Theme.primaryDarkColor
-                    text: qsTr("Message data")
+                    text: qsTr("Invoice message")
                     wrapMode: Label.WordWrap
                     elide: Label.ElideNone
                 }
@@ -318,7 +486,7 @@ UNDialog {
             }
 
             UNTextArea {
-                id: _messageTextArea
+                id: _invoiceTextArea
 
                 Layout.fillWidth: true
                 Layout.preferredHeight: 200
@@ -327,33 +495,29 @@ UNDialog {
 
                 focus: true
 
-                text: _dialog.model.msgFullText
+                text: _dialog.model.invoiceFullText
                 readOnly: true
 
-                //placeholderText: qsTr("Message text")
                 textColor: Theme.dialogTextColor
 
                 function copySelected() {
-                    clipboard.setText(_messageTextArea._textArea.selectedText)
+                    clipboard.setText(_invoiceTextArea._textArea.selectedText)
                 }
 
                 function selectAll() {
-                    _messageTextArea._textArea.select(0,_messageTextArea.text.length);
+                    _invoiceTextArea._textArea.select(0,_invoiceTextArea.text.length);
                 }
 
                 Shortcut {
                     sequence: StandardKey.Copy
-                    onActivated: _messageTextArea.copySelected()
+                    onActivated: _invoiceTextArea.copySelected()
                     enabled: _dialog.visible
                 }
 
                 Shortcut {
                     sequence: StandardKey.SelectAll
-                    onActivated: _messageTextArea.selectAll()
+                    onActivated: _invoiceTextArea.selectAll()
                 }
-
-                property int selectionStartOnClick: 0
-                property int selectionEndOnClick: 0
 
                 MouseArea {
                     anchors.fill: parent
@@ -384,7 +548,7 @@ UNDialog {
                         text: qsTr("Select All")
 
                         onClicked: {
-                            _messageTextArea.selectAll()
+                            _invoiceTextArea.selectAll()
                         }
                     }
 
@@ -392,7 +556,7 @@ UNDialog {
                         text: qsTr("Copy")
 
                         onClicked: {
-                            _messageTextArea.copySelected()
+                            _invoiceTextArea.copySelected()
                         }
                     }
                 }
@@ -411,27 +575,6 @@ UNDialog {
                 spacing: 8
 
                 UNButton {
-                    id: _replyButton
-
-                    Layout.preferredWidth: implicitWidth
-                    Layout.maximumWidth: implicitWidth
-                    Layout.alignment: Qt.AlignVCenter
-                    activeColor:Theme.messageDetailsDialogButtonActiveColor
-                    baseColor: Theme.messageDetailsDialogButtonColor
-                    textColor: Theme.messageDetailsDialogButtonTextColor
-                    width: Theme.messageDetailsDialogButtonwidth
-                    height:  Theme.messageDetailsDialogButtonheight
-                    lableTextSize: Theme.messageDetailsDialogButtonFontSize
-                    enabled: "" !== _dialog.model.msgReplyTo
-                    visible: !_dialog.model.hasInvoiceId
-                    text: qsTr("Reply")
-
-                    onClicked: {
-                        _messageDetailsDialog.close()
-                        _globalProperties.setupSendMsg(_dialog.model.msgReplyTo)
-                    }
-                }
-                UNButton {
                     id: _payButton
 
                     Layout.preferredWidth: implicitWidth
@@ -443,17 +586,16 @@ UNDialog {
                     width: Theme.messageDetailsDialogButtonwidth
                     height:  Theme.messageDetailsDialogButtonheight
                     lableTextSize: Theme.messageDetailsDialogButtonFontSize
-                    visible: _dialog.model.hasInvoiceId
+                    visible: _dialog.model.hasInvoiceId && _dialog.model.invoiceReplyTo !== ""
                     text: qsTr("Pay")
 
                     onClicked: {
-                        _messageDetailsDialog.close()
-                        // The invoice data should already be set in messages table model by setupMessageDetails
-                        // But we set them explicitly to be sure
-                        walletAdapter.messagesTableModel.msgInvoiceId = _dialog.model.msgInvoiceId
-                        walletAdapter.messagesTableModel.msgPaymentId = _dialog.model.msgPaymentId
-                        walletAdapter.messagesTableModel.msgInvoiceAmount = _dialog.model.msgInvoiceAmount
-                        _globalProperties.setupPayMsg(_dialog.model.msgReplyTo)
+                        _invoiceDetailsDialog.close()
+                        // Set invoice data in messages table model for auto-fill in send page
+                        walletAdapter.messagesTableModel.msgInvoiceId = _dialog.model.invoiceId
+                        walletAdapter.messagesTableModel.msgPaymentId = _dialog.model.paymentId
+                        walletAdapter.messagesTableModel.msgInvoiceAmount = _dialog.model.invoiceAmountValue
+                        _globalProperties.setupPayMsg(_dialog.model.invoiceReplyTo)
                     }
                 }
 
@@ -474,7 +616,7 @@ UNDialog {
                     onClicked: {
                         _walletDialog.selectFolder = false
                         _walletDialog.selectExisting = false
-                        _walletDialog.acceptedCallback = walletAdapter.messagesTableModel.save
+                        _walletDialog.acceptedCallback = walletAdapter.invoicesTableModel.save
                         _walletDialog.visible = true
                     }
                 }
@@ -489,14 +631,14 @@ UNDialog {
                     textColor: Theme.messageDetailsDialogButtonTextColor
                     height:  Theme.messageDetailsDialogButtonheight
                     lableTextSize: Theme.messageDetailsDialogButtonFontSize
-                    enabled: "" !== _dialog.model.msgAttachment
+                    enabled: "" !== _dialog.model.invoiceAttachment
 
                     text: qsTr("Download attachment")
 
                     onClicked: {
                         _walletDialog.selectFolder = true
                         _walletDialog.selectExisting = true
-                        _walletDialog.acceptedCallback = walletAdapter.messagesTableModel.download
+                        _walletDialog.acceptedCallback = walletAdapter.invoicesTableModel.download
                         _walletDialog.visible = true
                     }
                 }
@@ -520,7 +662,7 @@ UNDialog {
 
                     onClicked: {
                         _dialog.currentRow -= 1
-                        _dialog.model.setupMessageDetails(_dialog.currentRow)
+                        _dialog.model.setupInvoiceDetails(_dialog.currentRow)
                     }
                 }
 
@@ -541,7 +683,7 @@ UNDialog {
 
                     onClicked: {
                         _dialog.currentRow += 1
-                        _dialog.model.setupMessageDetails(_dialog.currentRow)
+                        _dialog.model.setupInvoiceDetails(_dialog.currentRow)
                     }
                 }
             }

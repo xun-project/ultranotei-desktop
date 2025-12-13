@@ -2,6 +2,7 @@
 #include "CurrencyAdapter.h"
 #include "WalletAdapter.h"
 #include "MessagesModel.h"
+#include "AliasProvider.h"
 #include "../qzipwriter_p.h"
 #include <QQmlEngine>
 #include <QDebug>
@@ -11,6 +12,8 @@
 #include <QNetworkRequest>
 #include <QNetworkReply>
 #include <QJsonDocument>
+#include <QTextDocumentFragment>
+#include <Common/DnsTools.h>
 
 namespace WalletGui {
 
@@ -113,24 +116,85 @@ void SendMessageModel::sendMessage(const QString& ipfsHash, const QString& encrp
     MessageHeader header;
     if(m_addReplyTo) {
         header.append(qMakePair(QString(MessagesModel::HEADER_REPLY_TO_KEY), WalletAdapter::instance().getAddress()));
+        qDebug() << "[SendMessageModel] Adding Reply-To header:" << WalletAdapter::instance().getAddress();
     }
     if(!ipfsHash.isEmpty() && !encrpyptionKey.isEmpty()) {
         header.append(qMakePair(QString(MessagesModel::HEADER_ATTACHMENT), ipfsHash));
         header.append(qMakePair(QString(MessagesModel::HEADER_ATTACHMENT_ENCRYPTION_KEY), encrpyptionKey));
+        qDebug() << "[SendMessageModel] Adding attachment headers - IPFS Hash:" << ipfsHash << "Encryption Key:" << encrpyptionKey;
     }
-    QString messageString = Message::makeTextMessage(m_message, header,true);
+    
+    qDebug() << "[SendMessageModel] Original message text:" << m_message;
+    qDebug() << "[SendMessageModel] Number of headers:" << header.size();
+    
+    // Convert HTML to plain text for sending (recipient's parser expects plain text)
+    QString plainTextMessage = QTextDocumentFragment::fromHtml(m_message).toPlainText();
+    qDebug() << "[SendMessageModel] Converted to plain text:" << plainTextMessage;
+    
+    QString messageString = Message::makeTextMessage(plainTextMessage, header,true);
+    qDebug() << "[SendMessageModel] Generated message string (first 200 chars):" << messageString.left(200);
+    qDebug() << "[SendMessageModel] Full message string length:" << messageString.length();
 
     transfers.reserve(m_recipientsModel->rowCount());
     for (int i = 0; i < m_recipientsModel->rowCount(); ++i) {
         QString address = extractAddress(m_recipientsModel->getAddress(i));
+        
+        // Check if address is a valid UltraNote address
         if (!CurrencyAdapter::instance().validateAddress(address)) {
-            emit WalletAdapter::instance().showMessage(tr("Error"),
-                                                       tr("Invalid recipient address"));
-            return;
+            // Might be a DNS alias, try to resolve it
+            qDebug() << "[SendMessageModel] Address is not a valid UltraNote address, trying DNS alias resolution...";
+            QString resolvedAddress = address;
+            
+            // Try to resolve as OpenAlias DNS record
+            std::string domainStr = address.toStdString();
+            std::vector<std::string> records;
+            
+            qDebug() << "[SendMessageModel] Attempting DNS resolution for:" << address;
+            if (common::fetch_dns_txt(domainStr, records)) {
+                qDebug() << "[SendMessageModel] DNS resolution successful, records found:" << records.size();
+                // Try to parse OpenAlias record
+                for (const auto& record : records) {
+                    QString qrecord = QString::fromStdString(record);
+                    qDebug() << "[SendMessageModel] Checking DNS record:" << qrecord;
+                    if (qrecord.contains("oa1:xuni")) {
+                        qDebug() << "[SendMessageModel] Found OpenAlias record (oa1:xuni)";
+                        // Parse OpenAlias format: oa1:xuni recipient_address=<address>; recipient_name=<name>;
+                        QRegularExpression regex("recipient_address=([^;]+)");
+                        QRegularExpressionMatch match = regex.match(qrecord);
+                        if (match.hasMatch()) {
+                            QString aliasAddress = match.captured(1).trimmed();
+                            qDebug() << "[SendMessageModel] Parsed address from OpenAlias:" << aliasAddress;
+                            // Validate the address
+                            if (CurrencyAdapter::instance().validateAddress(aliasAddress)) {
+                                qDebug() << "[SendMessageModel] Parsed address is valid UltraNote address";
+                                resolvedAddress = aliasAddress;
+                                break;
+                            } else {
+                                qDebug() << "[SendMessageModel] Parsed address is NOT a valid UltraNote address";
+                            }
+                        }
+                    }
+                }
+            } else {
+                qDebug() << "[SendMessageModel] DNS resolution failed for:" << address;
+            }
+            
+            // If still not a valid address, show error
+            if (!CurrencyAdapter::instance().validateAddress(resolvedAddress)) {
+                qDebug() << "[SendMessageModel] Address resolution failed. Original:" << address << "Resolved:" << resolvedAddress;
+                emit WalletAdapter::instance().showMessage(tr("Invalid address"), 
+                    tr("The address '%1' is not a valid UltraNote address and could not be resolved as a DNS alias.").arg(address));
+                return;
+            }
+            
+            address = resolvedAddress;
+            qDebug() << "[SendMessageModel] Successfully resolved alias to address:" << address;
         }
 
+        qDebug() << "[SendMessageModel] Adding transfer for address:" << address << "amount:" << MESSAGE_AMOUNT;
         transfers.append({address.toStdString(), MESSAGE_AMOUNT});
         messages.append({messageString.toStdString(), address.toStdString()});
+        qDebug() << "[SendMessageModel] Added message for address:" << address;
     }
 
     quint64 fee = static_cast<quint64>(m_messageFee);

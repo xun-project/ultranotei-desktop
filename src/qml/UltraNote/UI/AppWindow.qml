@@ -55,10 +55,10 @@ UNFramelessApplicationWindow {
             _appPagesStackView.push(_sendPageComponent)
         }
         function checkIfItemDisabled(index) {
-            //index === 0 (deposits),4(transactions),7(in case of tracking)
+            //index === 0 (deposits),5(transactions),8(address book) in case of tracking
             if((walletAdapter.trackingEnabledLablel === "[Tracking Wallet]"))
             {
-                if((index === 0) || (index === 7) || (index === 4)){
+                if((index === 0) || (index === 8) || (index === 5)){
                     return false
                 }else return true
             }else return false
@@ -69,7 +69,7 @@ UNFramelessApplicationWindow {
         target: walletAdapter
 
         onRequestTransactionScreen: {
-            _menuActionsList.currentIndex = 4
+            _menuActionsList.currentIndex = 5
             _appPagesStackView.pop(null, StackView.PopTransition)
             _appPagesStackView.push(_transactionsPageComponent)
         }
@@ -422,6 +422,7 @@ UNFramelessApplicationWindow {
                                             append({"text": qsTr("Deposits"), "iconSource": "qrc:/icons/resources/icons/drawer_deposits_list_item_icon.svg", "page": _depositsPageComponent, "pageObjectName": "deposits_page" })
                                             append({"text": qsTr("Send"), "iconSource": "qrc:/icons/resources/icons/drawer_send_list_item_icon.svg", "page": _sendPageComponent, "pageObjectName": "send_page" })
                                             append({"text": qsTr("Receive"), "iconSource": "qrc:/icons/resources/icons/drawer_receive_list_item_icon.svg", "page": _receivePageComponent, "pageObjectName": "receive_page" })
+                                            append({"text": qsTr("Invoices"), "iconSource": "qrc:/icons/resources/icons/drawer_invoices_list_item_icon.svg", "page": _invoicesPageComponent, "pageObjectName": "invoices_page" })
                                             append({"text": qsTr("Send Invoice"), "iconSource": "qrc:/icons/resources/icons/drawer_send_invoice_list_item_icon.svg", "page": _sendInvoicePageComponent, "pageObjectName": "send_invoice_page" })
                                             append({"text": qsTr("Transactions"), "iconSource": "qrc:/icons/resources/icons/drawer_transactions_list_item_icon.svg", "page": _transactionsPageComponent, "pageObjectName": "transactions_page" })
                                             append({"text": qsTr("Messages"), "iconSource": "qrc:/icons/resources/icons/drawer_messages_list_item_icon.svg", "page": _messagesPageComponent, "pageObjectName": "messages_page" })
@@ -916,6 +917,15 @@ UNFramelessApplicationWindow {
                     }
 
                     Component {
+                        id: _invoicesPageComponent
+
+                        InvoicesPage {
+                            id: _invoicesPageComponentItem
+                            invoiceDetailsDialog: _invoiceDetailsDialog
+                        }
+                    }
+
+                    Component {
                         id: _transactionsPageComponent
 
                         TransactionsPage {
@@ -1167,6 +1177,10 @@ UNFramelessApplicationWindow {
         }
         SeedTrackingKeyDialog {
             id: _SeedTrackingKeyDialog
+        }
+
+        InvoiceDetailsDialog {
+            id: _invoiceDetailsDialog
         }
 
         FiatSymbolDialog {

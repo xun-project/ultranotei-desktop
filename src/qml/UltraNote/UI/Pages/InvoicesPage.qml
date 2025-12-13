@@ -5,15 +5,17 @@ import QtQuick.Layouts 1.13
 
 import UltraNote.UI 1.0
 import UltraNote.UI.Controls 1.0
+import UltraNote.UI.Dialogs 1.0
 
 UNPage {
     id: _page
-    
+
     property int _selectedRow : 0
+    property var invoiceDetailsDialog
 
-    objectName: "transactions_page"
+    objectName: "invoices_page"
 
-    title: qsTr("Transactions")
+    title: qsTr("Invoices")
 
     contentItem: Item {
         anchors.fill: parent
@@ -33,7 +35,7 @@ UNPage {
             Row {
                 id: _tableHeader
 
-                readonly property var colWidthPercentArr: [0.04, 0.18, 0.12, 0.3, 0.21, 0.15]
+                readonly property var colWidthPercentArr: [0.10, 0.18, 0.15, 0.15, 0.42]
 
                 Layout.fillWidth: true
                 Layout.preferredHeight: Theme.tableHeaderHeight
@@ -57,9 +59,6 @@ UNPage {
             TableView {
                 id: _tableView
 
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-
                 function columnWidth(column) {
                     return _tableHeader.colWidthPercentArr[column]*_tableHeader.width
                 }
@@ -68,7 +67,10 @@ UNPage {
                     _tableView.forceLayout()
                 }
 
-                model: walletAdapter.transactionsTableModel
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+
+                model: walletAdapter.invoicesTableModel
 
                 ScrollIndicator.vertical: ScrollIndicator {
                     orientation: Qt.Vertical
@@ -105,61 +107,47 @@ UNPage {
                     color: rowNum === _selectedRow ? Theme.tableRowActiveColor : Theme.tableRowColor
                     clip: true
 
-                    Image {
-                        id: stateImg
-                        anchors.centerIn: parent
-                        visible: 0 === _itemController.colNum
-                        height: 0.55 * parent.height
-                        width: height
-                        fillMode: Image.PreserveAspectFit
-                        mipmap: true
-                        source: (stateImg.visible && display.toString().indexOf("qrc:/") === 0) ? display : ""
-                    }
-
                     Item {
-                        height: parent.height
-                        width: parent.width
+                        id: _unreadInvoiceIcon
+                        visible: colNum === 0 ?  !walletAdapter.invoicesTableModel.getReadState(rowNum) : false
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.left: parent.left
 
                         Image {
-                            id: transactionImg
+                            id: _icon
                             anchors.verticalCenter: parent.verticalCenter
-                            visible: 3 === _itemController.colNum
-                            height: stateImg.height
-                            width: transactionImg.visible ? height : 0
-                            fillMode: Image.PreserveAspectFit
-                            mipmap: true
-                            source: transactionImg.visible ? _tableView.model.transactionIcon(_itemController.rowNum) : ""
+                            anchors.left: parent.left
+                            anchors.leftMargin: 5
+                            width: 15
+                            height: 15
+                            source: "qrc:/icons/resources/icons/drawer_invoices_list_item_icon.svg"
                         }
+                    }
 
-                        UNLabel {
-                            id: itemLabel
-                            anchors.left: transactionImg.right
-                            visible: !stateImg.visible
-                            height: parent.height
-                            width: parent.width - transactionImg.width
-                            text: display
+                    UNToolTipLabel {
+                        id: _itemLabel
 
-                            type: UNLabel.Type.TypeNormal
+                        anchors.fill: parent
+                        anchors.left: _unreadInvoiceIcon.right
+                        text: display
+                        font.pointSize: Theme.textPointSize
+                        color: Theme.tableTextColor
+                        clip: true
+                        elide: Text.ElideRight
+                        horizontalAlignment: _itemController.colNum < 4 ? Text.AlignHCenter : Text.AlignLeft
+                        verticalAlignment: Text.AlignVCenter
+                        leftPadding: colNum === 0 ?  25 : 0
 
-                            color: Theme.tableTextColor
-
-                            clip: true
-                            elide: Text.ElideRight
-                            horizontalAlignment: _itemController.colNum < 3 ? Text.AlignHCenter : Text.AlignLeft
-                            verticalAlignment: Text.AlignVCenter
-                            leftPadding: 5
-
-                            MouseArea {
-                                anchors.fill: parent
-
-                                onDoubleClicked: {
-                                    walletAdapter.transactionsTableModel.setupTransactionDetails(_itemController.rowNum)
-                                    _transactionDetailsDialog.open()
-                                }
-                                onClicked: {
-                                    _selectedRow = _itemController.rowNum
-                                }
+                        onDoubleClicked: {
+                            _selectedRow = _itemController.rowNum
+                            walletAdapter.invoicesTableModel.setupInvoiceDetails(_itemController.rowNum)
+                            if (invoiceDetailsDialog) {
+                                invoiceDetailsDialog.currentRow = _itemController.rowNum
+                                invoiceDetailsDialog.open()
                             }
+                        }
+                        onClicked: {
+                            _selectedRow = _itemController.rowNum
                         }
                     }
                 }
@@ -179,18 +167,18 @@ UNPage {
 
                 UNLayoutSpacer {}
 
+
+
                 UNButton {
-                    id: _exportButton
-                    text: qsTr("Export")
+                    id: _viewDetailsButton
+                    text: qsTr("View Details")
 
                     onClicked: {
-                        _walletDialog.selectFolder = false
-                        _walletDialog.selectExisting = false
-                        _walletDialog.title = qsTr("Save Transactions to File")
-                        _walletDialog.defaultSuffix = "csv"
-                        _walletDialog.nameFilters = ["CSV Files (*.csv)"]
-                        _walletDialog.acceptedCallback = walletAdapter.transactionsTableModel.exportToCsv
-                        _walletDialog.open()
+                        walletAdapter.invoicesTableModel.setupInvoiceDetails(_selectedRow)
+                        if (invoiceDetailsDialog) {
+                            invoiceDetailsDialog.currentRow = _selectedRow
+                            invoiceDetailsDialog.open()
+                        }
                     }
                 }
             }
@@ -199,5 +187,6 @@ UNPage {
                 fixedHeight: 32
             }
         }
+
     }
 }

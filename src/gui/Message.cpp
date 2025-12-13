@@ -21,6 +21,8 @@ bool isEmptyChar(const QChar& _char) {
 MessageHeader parseMessage(QString& _message) {
   QString tmpMessage(_message);
   MessageHeader res;
+  
+  // Remove leading whitespace
   while (!tmpMessage.isEmpty() && isEmptyChar(tmpMessage[0])) {
     tmpMessage.remove(0, 1);
   }
@@ -29,22 +31,61 @@ MessageHeader parseMessage(QString& _message) {
     return res;
   }
 
-  QTextStream messageStream(&tmpMessage);
-  while (!messageStream.atEnd()) {
-    QString line = messageStream.readLine();
-    if (line.isEmpty()) {
-      _message = tmpMessage.mid(messageStream.pos());
+  // Parse headers
+  int headerEndPos = -1;
+  QStringList lines = tmpMessage.split('\n');
+  
+  // Look for empty line that marks end of headers
+  for (int i = 0; i < lines.size(); ++i) {
+    if (lines[i].trimmed().isEmpty()) {
+      headerEndPos = i;
       break;
     }
-
-    QStringList keyValue = line.split(":");
-    if (keyValue.size() < 2) {
+  }
+  
+  // If no empty line found, check if we have any lines that look like headers
+  if (headerEndPos == -1) {
+    // Check if first line looks like a header (contains colon)
+    if (!lines.isEmpty() && lines[0].contains(':')) {
+      // First line has colon, might be a header
+      // But without empty line, we can't be sure
+      // For compatibility, treat entire message as body
+      _message = tmpMessage;
+      return MessageHeader();
+    } else {
+      // No colon in first line, definitely not headers
+      // Entire message is body
+      _message = tmpMessage;
       return MessageHeader();
     }
-
-    res.append(qMakePair(keyValue[0].trimmed(), keyValue[1].trimmed()));
   }
-
+  
+  // We found an empty line - parse lines before it as headers
+  for (int i = 0; i < headerEndPos; ++i) {
+    QString line = lines[i];
+    int colonPos = line.indexOf(':');
+    if (colonPos == -1) {
+      // Not a valid header line
+      // This shouldn't happen if we have proper header format
+      // But for robustness, treat everything as message body
+      _message = tmpMessage;
+      return MessageHeader();
+    }
+    
+    QString key = line.left(colonPos).trimmed();
+    QString value = line.mid(colonPos + 1).trimmed();
+    res.append(qMakePair(key, value));
+  }
+  
+  // Reconstruct message body (skip header lines and the empty line)
+  _message.clear();
+  for (int i = headerEndPos + 1; i < lines.size(); ++i) {
+    if (!_message.isEmpty()) {
+      _message += '\n';
+    }
+    _message += lines[i];
+  }
+  
   return res;
 }
 

@@ -14,7 +14,7 @@ Item {
 
     property color activeColor: Theme.textAreaActiveColor
     property color backgroundColor: Theme.messageDetailsDialogTextAreaColor
-    property color textColor: Theme.textAreaTextColor
+    property color textColor: "#FFFFFF"
     property string placeholderText: ""
     property var inputMethodHints: Qt.ImhNone
     property color selectedTextColor: Theme.textAreaSelectedTextColor

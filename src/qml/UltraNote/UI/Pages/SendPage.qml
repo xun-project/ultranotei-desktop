@@ -58,23 +58,16 @@ UNPage {
                             // console.log("Address length:", address.length)
                             // console.log("Payment ID:", paymentId)
 
-                            if (address.length !== 99 && address.length !== 187) {
-                                // console.log("ERROR: Invalid address length")
-                                _messageDialogProperties.showMessage(qsTr("Error"), qsTr("Please provide a valid address"))
-                                return
-                            }
+                            // Check for integrated address with payment ID (invalid combination)
                             if (address.length === 187 && paymentId !== "") {
                                 // console.log("ERROR: Payment ID provided with integrated address")
                                 _messageDialogProperties.showMessage(qsTr("Error"), qsTr("No payment id needed"))
                                 return
                             }
 
-                            // console.log("Calling validateAddress...")
-                            if (!currencyAdapter.validateAddress(address)) {
-                                // console.log("ERROR: Address validation failed")
-                                _messageDialogProperties.showMessage(qsTr("Error"), qsTr("Invalid recipient address"))
-                                return
-                            }
+                            // Don't validate address length here - let C++ code handle it
+                            // C++ WalletAdapter::send() will validate addresses and resolve aliases
+                            // UltraNote addresses are 99 or 187 chars, but aliases (domains) can be any length
                             // console.log("Address validation passed!")
                             
                             if (0 === _amountEditBox.value) {
@@ -115,7 +108,19 @@ UNPage {
         if(_globalProperties.payToAddress){
             address = _globalProperties.sendToAddress
             _paymentIDTextField.text = walletAdapter.messagesTableModel.msgPaymentId
-            _amountEditBox.text = walletAdapter.messagesTableModel.msgInvoiceAmount
+            
+            // Set invoice amount
+            var invoiceAmountStr = walletAdapter.messagesTableModel.msgInvoiceAmount
+            if (invoiceAmountStr && invoiceAmountStr !== "") {
+                // Check if it looks like atomic integer (only digits)
+                if (/^\d+$/.test(invoiceAmountStr)) {
+                    var val = parseInt(invoiceAmountStr)
+                    _amountEditBox.updateFee(val, Qt.locale())
+                } else {
+                    _amountEditBox.text = invoiceAmountStr
+                }
+            }
+            
             _cryptoCommentTextField.text = "Pay for InvoiceID : "+ walletAdapter.messagesTableModel.msgInvoiceId
         }
     }
@@ -181,6 +186,10 @@ UNPage {
                         text: _page.address
                         onTextChanged: _page.address = text
                         placeholderText: qsTr("Recipient Address or Integrated Address")
+                        
+                        // Make text white and 2 fonts bigger
+                        color: "white"
+                        font.pixelSize: Theme.defaultFontPixelSize + 2
                     }
 
                     UNIcon {
@@ -545,23 +554,16 @@ UNPage {
                             console.log("Address length:", address.length)
                             console.log("Payment ID:", paymentId)
 
-                            if (address.length !== 99 && address.length !== 187) {
-                                console.log("ERROR: Invalid address length")
-                                _messageDialogProperties.showMessage(qsTr("Error"), qsTr("Please provide a valid address"))
-                                return
-                            }
+                            // Check for integrated address with payment ID (invalid combination)
                             if (address.length === 187 && paymentId !== "") {
                                 console.log("ERROR: Payment ID provided with integrated address")
                                 _messageDialogProperties.showMessage(qsTr("Error"), qsTr("No payment id needed"))
                                 return
                             }
 
-                            console.log("Calling validateAddress...")
-                            if (!currencyAdapter.validateAddress(address)) {
-                                console.log("ERROR: Address validation failed")
-                                _messageDialogProperties.showMessage(qsTr("Error"), qsTr("Invalid recipient address"))
-                                return
-                            }
+                            // Don't validate address length here - let C++ code handle it
+                            // C++ WalletAdapter::send() will validate addresses and resolve aliases
+                            // UltraNote addresses are 99 or 187 chars, but aliases (domains) can be any length
                             console.log("Address validation passed!")
                             
                             if (0 === _amountEditBox.value) {

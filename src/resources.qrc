@@ -47,6 +47,7 @@
         <file>resources/icons/drawer_deposits_list_item_icon.svg</file>
         <file>resources/icons/drawer_messages_list_item_icon.svg</file>
         <file>resources/icons/drawer_receive_list_item_icon.svg</file>
+        <file>resources/icons/drawer_invoices_list_item_icon.svg</file>
         <file>resources/icons/drawer_send_invoice_list_item_icon.svg</file>
         <file>resources/icons/drawer_send_list_item_icon.svg</file>
         <file>resources/icons/drawer_send_message_list_item_icon.svg</file>
@@ -129,8 +130,10 @@
         <file>qml/UltraNote/UI/Dialogs/SeedTrackingKeyDialog.qml</file>
         <file>qml/UltraNote/UI/Dialogs/LanguageSettingDialog.qml</file>
         <file>qml/UltraNote/UI/Dialogs/RestartWalletDialog.qml</file>
+        <file>qml/UltraNote/UI/Dialogs/InvoiceDetailsDialog.qml</file>
         <file>qml/UltraNote/UI/Pages/AddressBookPage.qml</file>
         <file>qml/UltraNote/UI/Pages/DepositsPage.qml</file>
+        <file>qml/UltraNote/UI/Pages/InvoicesPage.qml</file>
         <file>qml/UltraNote/UI/Pages/MessagesPage.qml</file>
         <file>qml/UltraNote/UI/Pages/MiningPage.qml</file>
         <file>qml/UltraNote/UI/Pages/ReceivePage.qml</file>
