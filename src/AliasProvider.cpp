@@ -31,39 +31,31 @@ DnsWorker::~DnsWorker() {
 }
 
 void DnsWorker::resolveDns(const QString& domain) {
-    qDebug() << "[AliasProvider] DNS resolution started for domain:" << domain;
     std::string domainStr = domain.toStdString();
     std::vector<std::string> records;
     
     bool success = common::fetch_dns_txt(domainStr, records);
-    qDebug() << "[AliasProvider] DNS fetch result:" << success << "records found:" << records.size();
     
     if (success && !records.empty()) {
         // Try to parse OpenAlias record
         for (const auto& record : records) {
             QString qrecord = QString::fromStdString(record);
-            qDebug() << "[AliasProvider] Checking DNS record:" << qrecord;
             QString address, name;
             
             // Check if it's an OpenAlias record
             if (parseOpenAliasRecord(qrecord, address, name)) {
-                qDebug() << "[AliasProvider] OpenAlias record parsed. Address:" << address << "Name:" << name;
                 // Validate the address using CurrencyAdapter
                 if (CurrencyAdapter::instance().validateAddress(address)) {
                     if (name.isEmpty()) {
                         name = domain;
                     }
-                    qDebug() << "[AliasProvider] DNS resolution successful. Emitting dnsResolved signal";
                     emit dnsResolved(name, address);
                     return;
-                } else {
-                    qDebug() << "[AliasProvider] Parsed address is not a valid UltraNote address";
                 }
             }
         }
     }
     
-    qDebug() << "[AliasProvider] DNS resolution failed. No valid OpenAlias record found";
     emit dnsError(tr("No valid OpenAlias record found"));
 }
 
@@ -84,29 +76,24 @@ AliasProvider::~AliasProvider() {
 }
 
 void AliasProvider::getAddresses(const QString& _urlString) {
-    qDebug() << "[AliasProvider] getAddresses called with:" << _urlString;
     
     // First check if it's a valid UltraNote address
     if (isValidUltraNoteAddress(_urlString)) {
-        qDebug() << "[AliasProvider] Input is already a valid UltraNote address";
         // It's already an address, not an alias
         return;
     }
     
     // Check if it looks like a domain (not an IP address and contains dots)
     if (isLikelyDomain(_urlString)) {
-        qDebug() << "[AliasProvider] Input appears to be a domain. Starting DNS resolution...";
         // Try DNS resolution first (OpenAlias)
         m_isActive = true;
         emit resolveDnsSignal(_urlString);
         return;
     }
     
-    qDebug() << "[AliasProvider] Input doesn't appear to be a domain. Trying HTTP resolution...";
     // Otherwise, try HTTP (CEDINAME)
     QUrl url = QUrl::fromUserInput(_urlString);
     if (!url.isValid()) {
-        qDebug() << "[AliasProvider] Invalid URL:" << _urlString;
         return;
     }
 
@@ -115,7 +102,6 @@ void AliasProvider::getAddresses(const QString& _urlString) {
     m_isActive = true;
     connect(reply, &QNetworkReply::readyRead, this, &AliasProvider::readyRead);
     connect(reply, &QNetworkReply::finished, reply, &QNetworkReply::deleteLater);
-    qDebug() << "[AliasProvider] HTTP request started for URL:" << url.toString();
 }
 
 bool AliasProvider::isActive() { return m_isActive; }
@@ -195,18 +181,13 @@ bool DnsWorker::parseOpenAliasRecord(const QString& record, QString& address, QS
 }
 
 void AliasProvider::onDnsResolved(const QString& name, const QString& address) {
-    qDebug() << "[AliasProvider] DNS resolution completed. Name:" << name << "Address:" << address;
     m_isActive = false;
     if (!address.isEmpty()) {
-        qDebug() << "[AliasProvider] Emitting aliasFoundSignal";
         Q_EMIT aliasFoundSignal(name, address);
-    } else {
-        qDebug() << "[AliasProvider] Address is empty, not emitting signal";
     }
 }
 
 void AliasProvider::onDnsError(const QString& error) {
-    qDebug() << "[AliasProvider] DNS resolution failed:" << error;
     m_isActive = false;
     // DNS failed, could try HTTP here if we want to fallback
     // But for now, just fail silently
