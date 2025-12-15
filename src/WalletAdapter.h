@@ -210,6 +210,7 @@ private:
     std::atomic<cn::TransactionId> m_sentMessageId;
     std::atomic<cn::TransactionId> m_depositId;
     std::atomic<cn::TransactionId> m_depositWithdrawalId;
+    bool m_isRecovering;
     bool m_isWalletOpen = false;
 
     QTranslator m_translator;   // contains the translations for this application

@@ -43,7 +43,7 @@
 
 using namespace WalletGui;
 
-/*void customMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
+void customMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
     QByteArray localMsg = msg.toLocal8Bit();
     const char *file = context.file ? context.file : "";
@@ -77,7 +77,7 @@ using namespace WalletGui;
     
     // Also print to stderr for console visibility if attached
     fprintf(stderr, "%s: %s (%s:%u, %s)\n", typeStr.toStdString().c_str(), localMsg.constData(), file, context.line, function);
-}*/
+}
 
 int main(int argc, char* argv[]) {
 

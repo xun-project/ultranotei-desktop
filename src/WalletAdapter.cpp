@@ -58,6 +58,7 @@ WalletAdapter::WalletAdapter()
     , m_depositId(cn::WALLET_LEGACY_INVALID_TRANSACTION_ID)
     , m_depositWithdrawalId(cn::WALLET_LEGACY_INVALID_TRANSACTION_ID)
     , m_translatorManager(TranslatorManager::instance())
+    , m_isRecovering(false)
 {
     setObjectName("walletAdapter");
     qmlRegisterType<WalletAdapter>("WalletAdapter", 1, 0, "WalletAdapter");
@@ -312,7 +313,13 @@ void WalletAdapter::createWithKeys(const cn::AccountKeys& _keys)
     m_wallet->addObserver(this);
     Settings::instance().setEncrypted(false);
     setStatusBarText(tr("Importing keys"));
+    m_isRecovering = true;
     m_wallet->initWithKeys(_keys, "");
+    setIsWalletOpen(nullptr != m_wallet);
+    if (m_isWalletOpen) {
+        setSynchronizationStateIcon("qrc:/icons/icons/sync_sprite.gif");
+        encryptedFlagChanged(Settings::instance().isEncrypted());
+    }
 }
 
 bool WalletAdapter::isOpen() const
@@ -357,6 +364,9 @@ void WalletAdapter::close()
     Q_CHECK_PTR(m_wallet);
     qInfo() << "WalletAdapter::close: closing wallet";
     save(true, true);
+    if (m_file.is_open()) {
+        closeFile();
+    }
     lock();
     m_wallet->removeObserver(this);
     m_isSynchronized = false;
@@ -1179,8 +1189,9 @@ void WalletAdapter::onWalletInitCompleted(int _error, const QString& _errorText)
 		QTimer::singleShot(5000, this, SLOT(updateWalletTransactions()));//300
         setStatusBarText(tr("Ready"));
         QTimer::singleShot(5000, this, &WalletAdapter::updateBlockStatusText);
-        if (!QFile::exists(Settings::instance().getWalletFile())) {
+        if (!QFile::exists(Settings::instance().getWalletFile()) || m_isRecovering) {
             save(true, true);
+            m_isRecovering = false;
         }
         checkTrackingMode();//check traking mode when wallet open
         setWalletTrackingLabel();
