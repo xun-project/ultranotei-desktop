@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
         echo "Build for linux-gnu"
@@ -14,7 +15,12 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
         rp=$(pwd) # macOS have not realpath utility
         cd ./tor
         ./autogen.sh
-        ./configure --enable-static-libevent --with-libevent-dir=/usr/local --enable-static-openssl --with-openssl-dir=/usr/local --disable-asciidoc --prefix=$rp/build/release/tor
+        
+        # Detect paths
+        LIBEVENT_PATH=$(brew --prefix libevent)
+        OPENSSL_PATH=$(brew --prefix openssl)
+        
+        ./configure --enable-static-libevent --with-libevent-dir="$LIBEVENT_PATH" --enable-static-openssl --with-openssl-dir="$OPENSSL_PATH" --disable-asciidoc --prefix=$rp/build/release/tor
         make
         make install
         #make clean

@@ -43,26 +43,25 @@ endif()
 # pull version from Git tag and revision
 find_package(Git)
 if(GIT_FOUND)
-  exec_program(
-    ${GIT_EXECUTABLE}
-    ${CMAKE_CURRENT_SOURCE_DIR}
-    ARGS "rev-parse --is-inside-work-tree"
-    OUTPUT_VARIABLE GITWORKTREE )
+  execute_process(
+    COMMAND ${GIT_EXECUTABLE} rev-parse --is-inside-work-tree
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+    OUTPUT_VARIABLE GITWORKTREE
+    OUTPUT_STRIP_TRAILING_WHITESPACE )
   if( "${GITWORKTREE}" STREQUAL "true" )
-    exec_program(
-      ${GIT_EXECUTABLE}
-      ${CMAKE_CURRENT_SOURCE_DIR}
-      ARGS "name-rev --tags --name-only $(git rev-parse HEAD)"
-      OUTPUT_VARIABLE GITTAG )
-    exec_program(
-      ${GIT_EXECUTABLE}
-      ${CMAKE_CURRENT_SOURCE_DIR}
-      ARGS "rev-parse --short HEAD"
-      OUTPUT_VARIABLE GITHASH )
-    exec_program(
-      ${GIT_EXECUTABLE}
-      ${CMAKE_CURRENT_SOURCE_DIR}
-      ARGS "diff-index --name-only HEAD"
+    execute_process(
+      COMMAND ${GIT_EXECUTABLE} name-rev --tags --name-only HEAD
+      WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+      OUTPUT_VARIABLE GITTAG
+      OUTPUT_STRIP_TRAILING_WHITESPACE )
+    execute_process(
+      COMMAND ${GIT_EXECUTABLE} rev-parse --short HEAD
+      WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+      OUTPUT_VARIABLE GITHASH
+      OUTPUT_STRIP_TRAILING_WHITESPACE )
+    execute_process(
+      COMMAND ${GIT_EXECUTABLE} diff-index --name-only HEAD
+      WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
       OUTPUT_VARIABLE GITDIRTY
       OUTPUT_STRIP_TRAILING_WHITESPACE)
     if(GITDIRTY)
@@ -99,7 +98,11 @@ add_definitions(-DGIT_REVISION=\"${UltraNote_GITREV}\")
 #
 
 # Find Boost
-set(Boost_USE_STATIC_LIBS ON)
+if (APPLE)
+  set(Boost_USE_STATIC_LIBS OFF)
+else()
+  set(Boost_USE_STATIC_LIBS ON)
+endif()
 Set(Boost_NO_BOOST_CMAKE ON)
 if(WIN32)
   set(Boost_USE_STATIC_RUNTIME OFF)
@@ -107,7 +110,7 @@ else(WIN32)
   set(Boost_USE_STATIC_RUNTIME ON)
 endif(WIN32)
 
-find_package(Boost 1.55 COMPONENTS date_time filesystem program_options regex serialization system thread chrono REQUIRED)
+find_package(Boost 1.55 COMPONENTS date_time filesystem program_options regex serialization thread chrono REQUIRED)
 if ((${Boost_MAJOR_VERSION} EQUAL 1) AND (${Boost_MINOR_VERSION} EQUAL 54))
   message(SEND_ERROR "Boost version 1.54 is unsupported, more details are available here http://goo.gl/RrCFmA")
 endif ()
@@ -387,6 +390,7 @@ target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES} ${QTMAIN} zlibstatic ${
 # Platform-dependent properties
 if (APPLE)
   set_target_properties(${PROJECT_NAME} PROPERTIES MACOSX_BUNDLE_INFO_PLIST "${CMAKE_SOURCE_DIR}/contrib/macos/MacOSXBundleInfo.plist.in")
+  set_target_properties(${PROJECT_NAME} PROPERTIES INSTALL_RPATH "@executable_path/../Frameworks")
   target_link_libraries(${PROJECT_NAME} -lresolv)
 elseif (UNIX)
   target_link_libraries(${PROJECT_NAME} -lpthread -lresolv)
@@ -408,11 +412,11 @@ if (APPLE)
   set(CPACK_GENERATOR DragNDrop)
   set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}")
   find_program(MACDEPLOYQT macdeployqt PATHS ${QT5_ROOT_PATH}/bin/)
+  if (NOT MACDEPLOYQT)
+    message(FATAL_ERROR "macdeployqt not found within ${QT5_ROOT_PATH}/bin/")
+  endif()
 
-  # Run Qt5 Packager for MacOS Bundles
-  install(CODE "execute_process( COMMAND \"${MACDEPLOYQT}\" \"${PROJECT_NAME}.app\" \"-qmldir=${QML_DIRS}\")" COMPONENT Runtime)
-  # Run again to fix libqsvg.dylib deployment (QTBUG-55199)
-  install(CODE "execute_process( COMMAND \"${MACDEPLOYQT}\" \"${PROJECT_NAME}.app\" \"-qmldir=${QML_DIRS}\")" COMPONENT Runtime)
+
   install(TARGETS ${PROJECT_NAME} BUNDLE DESTINATION . COMPONENT Runtime)
   install(PROGRAMS build/release/tor/bin/tor DESTINATION ./${PROJECT_NAME}.app/Contents/Resources COMPONENT Runtime)
 
@@ -423,6 +427,10 @@ if (APPLE)
       build/release/languages/UltraNoteInfinity_ru.qm
       build/release/languages/UltraNoteInfinity_tr.qm
       DESTINATION ./${PROJECT_NAME}.app/Contents/Resources COMPONENT Runtime)
+
+  # Run Qt5 Packager for MacOS Bundles
+  # Must run AFTER all other install commands to ensure the bundle is complete
+  install(CODE "execute_process( COMMAND \"${MACDEPLOYQT}\" \"\${CMAKE_INSTALL_PREFIX}/${PROJECT_NAME}.app\" \"-qmldir=${QML_DIRS}\" -verbose=1)" COMPONENT Runtime)
 
 elseif (UNIX)
   install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)

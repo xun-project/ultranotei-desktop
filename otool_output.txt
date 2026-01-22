@@ -1,0 +1,636 @@
+build/release/_CPack_Packages/Darwin/DragNDrop/UltraNoteInfinity-2.5/ALL_IN_ONE/UltraNoteInfinity.app/Contents/MacOS/UltraNoteInfinity:
+Load command 0
+      cmd LC_SEGMENT_64
+  cmdsize 72
+  segname __PAGEZERO
+   vmaddr 0x0000000000000000
+   vmsize 0x0000000100000000
+  fileoff 0
+ filesize 0
+  maxprot 0x00000000
+ initprot 0x00000000
+   nsects 0
+    flags 0x0
+Load command 1
+      cmd LC_SEGMENT_64
+  cmdsize 712
+  segname __TEXT
+   vmaddr 0x0000000100000000
+   vmsize 0x0000000000988000
+  fileoff 0
+ filesize 9994240
+  maxprot 0x00000005
+ initprot 0x00000005
+   nsects 8
+    flags 0x0
+Section
+  sectname __text
+   segname __TEXT
+      addr 0x000000010000db50
+      size 0x000000000030eb37
+    offset 56144
+     align 2^4 (16)
+    reloff 0
+    nreloc 0
+     flags 0x80000400
+ reserved1 0
+ reserved2 0
+Section
+  sectname __stubs
+   segname __TEXT
+      addr 0x000000010031c688
+      size 0x0000000000001bfc
+    offset 3262088
+     align 2^1 (2)
+    reloff 0
+    nreloc 0
+     flags 0x80000408
+ reserved1 0 (index into indirect symbol table)
+ reserved2 6 (size of stubs)
+Section
+  sectname __stub_helper
+   segname __TEXT
+      addr 0x000000010031e284
+      size 0x0000000000002e82
+    offset 3269252
+     align 2^2 (4)
+    reloff 0
+    nreloc 0
+     flags 0x80000400
+ reserved1 0
+ reserved2 0
+Section
+  sectname __gcc_except_tab
+   segname __TEXT
+      addr 0x0000000100321108
+      size 0x0000000000021a60
+    offset 3281160
+     align 2^2 (4)
+    reloff 0
+    nreloc 0
+     flags 0x00000000
+ reserved1 0
+ reserved2 0
+Section
+  sectname __const
+   segname __TEXT
+      addr 0x0000000100342b70
+      size 0x0000000000606f38
+    offset 3418992
+     align 2^4 (16)
+    reloff 0
+    nreloc 0
+     flags 0x00000000
+ reserved1 0
+ reserved2 0
+Section
+  sectname __cstring
+   segname __TEXT
+      addr 0x0000000100949ab0
+      size 0x00000000000337e6
+    offset 9738928
+     align 2^4 (16)
+    reloff 0
+    nreloc 0
+     flags 0x00000002
+ reserved1 0
+ reserved2 0
+Section
+  sectname __objc_methname
+   segname __TEXT
+      addr 0x000000010097d296
+      size 0x0000000000000052
+    offset 9949846
+     align 2^0 (1)
+    reloff 0
+    nreloc 0
+     flags 0x00000002
+ reserved1 0
+ reserved2 0
+Section
+  sectname __unwind_info
+   segname __TEXT
+      addr 0x000000010097d2e8
+      size 0x000000000000ad0c
+    offset 9949928
+     align 2^2 (4)
+    reloff 0
+    nreloc 0
+     flags 0x00000000
+ reserved1 0
+ reserved2 0
+Load command 2
+      cmd LC_SEGMENT_64
+  cmdsize 1272
+  segname __DATA
+   vmaddr 0x0000000100988000
+   vmsize 0x0000000000024000
+  fileoff 9994240
+ filesize 147456
+  maxprot 0x00000003
+ initprot 0x00000003
+   nsects 15
+    flags 0x0
+Section
+  sectname __nl_symbol_ptr
+   segname __DATA
+      addr 0x0000000100988000
+      size 0x0000000000000008
+    offset 9994240
+     align 2^3 (8)
+    reloff 0
+    nreloc 0
+     flags 0x00000006
+ reserved1 1194 (index into indirect symbol table)
+ reserved2 0
+Section
+  sectname __got
+   segname __DATA
+      addr 0x0000000100988008
+      size 0x0000000000001708
+    offset 9994248
+     align 2^3 (8)
+    reloff 0
+    nreloc 0
+     flags 0x00000006
+ reserved1 1195 (index into indirect symbol table)
+ reserved2 0
+Section
+  sectname __la_symbol_ptr
+   segname __DATA
+      addr 0x0000000100989710
+      size 0x0000000000002550
+    offset 10000144
+     align 2^3 (8)
+    reloff 0
+    nreloc 0
+     flags 0x00000007
+ reserved1 1932 (index into indirect symbol table)
+ reserved2 0
+Section
+  sectname __mod_init_func
+   segname __DATA
+      addr 0x000000010098bc60
+      size 0x00000000000001a0
+    offset 10009696
+     align 2^3 (8)
+    reloff 0
+    nreloc 0
+     flags 0x00000009
+ reserved1 0
+ reserved2 0
+Section
+  sectname __const
+   segname __DATA
+      addr 0x000000010098be00
+      size 0x0000000000013380
+    offset 10010112
+     align 2^4 (16)
+    reloff 0
+    nreloc 0
+     flags 0x00000000
+ reserved1 0
+ reserved2 0
+Section
+  sectname __cfstring
+   segname __DATA
+      addr 0x000000010099f180
+      size 0x0000000000000020
+    offset 10088832
+     align 2^3 (8)
+    reloff 0
+    nreloc 0
+     flags 0x00000000
+ reserved1 0
+ reserved2 0
+Section
+  sectname __objc_imageinfo
+   segname __DATA
+      addr 0x000000010099f1a0
+      size 0x0000000000000008
+    offset 10088864
+     align 2^2 (4)
+    reloff 0
+    nreloc 0
+     flags 0x00000000
+ reserved1 0
+ reserved2 0
+Section
+  sectname __objc_selrefs
+   segname __DATA
+      addr 0x000000010099f1a8
+      size 0x0000000000000020
+    offset 10088872
+     align 2^3 (8)
+    reloff 0
+    nreloc 0
+     flags 0x10000005
+ reserved1 0
+ reserved2 0
+Section
+  sectname __objc_classrefs
+   segname __DATA
+      addr 0x000000010099f1c8
+      size 0x0000000000000008
+    offset 10088904
+     align 2^3 (8)
+    reloff 0
+    nreloc 0
+     flags 0x10000000
+ reserved1 0
+ reserved2 0
+Section
+  sectname __data
+   segname __DATA
+      addr 0x000000010099f1d0
+      size 0x0000000000009c40
+    offset 10088912
+     align 2^3 (8)
+    reloff 0
+    nreloc 0
+     flags 0x00000000
+ reserved1 0
+ reserved2 0
+Section
+  sectname __thread_vars
+   segname __DATA
+      addr 0x00000001009a8e10
+      size 0x0000000000000018
+    offset 10128912
+     align 2^3 (8)
+    reloff 0
+    nreloc 0
+     flags 0x00000013
+ reserved1 0
+ reserved2 0
+Section
+  sectname __thread_ptrs
+   segname __DATA
+      addr 0x00000001009a8e28
+      size 0x0000000000000008
+    offset 10128936
+     align 2^3 (8)
+    reloff 0
+    nreloc 0
+     flags 0x00000014
+ reserved1 3126 (index into indirect symbol table)
+ reserved2 0
+Section
+  sectname __thread_bss
+   segname __DATA
+      addr 0x00000001009a8e30
+      size 0x0000000000000008
+    offset 0
+     align 2^3 (8)
+    reloff 0
+    nreloc 0
+     flags 0x00000012
+ reserved1 0
+ reserved2 0
+Section
+  sectname __bss
+   segname __DATA
+      addr 0x00000001009a8e40
+      size 0x0000000000001670
+    offset 0
+     align 2^4 (16)
+    reloff 0
+    nreloc 0
+     flags 0x00000001
+ reserved1 0
+ reserved2 0
+Section
+  sectname __common
+   segname __DATA
+      addr 0x00000001009aa4b0
+      size 0x0000000000000338
+    offset 0
+     align 2^3 (8)
+    reloff 0
+    nreloc 0
+     flags 0x00000001
+ reserved1 0
+ reserved2 0
+Load command 3
+      cmd LC_SEGMENT_64
+  cmdsize 72
+  segname __LINKEDIT
+   vmaddr 0x00000001009ac000
+   vmsize 0x00000000000eabe0
+  fileoff 10141696
+ filesize 961504
+  maxprot 0x00000001
+ initprot 0x00000001
+   nsects 0
+    flags 0x0
+Load command 4
+            cmd LC_DYLD_INFO_ONLY
+        cmdsize 48
+     rebase_off 10141696
+    rebase_size 2480
+       bind_off 10144176
+      bind_size 31112
+  weak_bind_off 10175288
+ weak_bind_size 97216
+  lazy_bind_off 10272504
+ lazy_bind_size 52464
+     export_off 10324968
+    export_size 251512
+Load command 5
+     cmd LC_SYMTAB
+ cmdsize 24
+  symoff 10588832
+   nsyms 6748
+  stroff 10709312
+ strsize 393888
+Load command 6
+            cmd LC_DYSYMTAB
+        cmdsize 80
+      ilocalsym 0
+      nlocalsym 1
+     iextdefsym 1
+     nextdefsym 5158
+      iundefsym 5159
+      nundefsym 1589
+         tocoff 0
+           ntoc 0
+      modtaboff 0
+        nmodtab 0
+   extrefsymoff 0
+    nextrefsyms 0
+ indirectsymoff 10696800
+  nindirectsyms 3127
+      extreloff 0
+        nextrel 0
+      locreloff 0
+        nlocrel 0
+Load command 7
+          cmd LC_LOAD_DYLINKER
+      cmdsize 32
+         name /usr/lib/dyld (offset 12)
+Load command 8
+     cmd LC_UUID
+ cmdsize 24
+    uuid D8D1F0E7-7477-3F15-9385-C33667F6A566
+Load command 9
+      cmd LC_VERSION_MIN_MACOSX
+  cmdsize 16
+  version 10.10
+      sdk 13.1
+Load command 10
+      cmd LC_SOURCE_VERSION
+  cmdsize 16
+  version 0.0
+Load command 11
+       cmd LC_MAIN
+   cmdsize 24
+  entryoff 825216
+ stacksize 0
+Load command 12
+          cmd LC_LOAD_DYLIB
+      cmdsize 88
+         name /System/Library/Frameworks/Cocoa.framework/Versions/A/Cocoa (offset 24)
+   time stamp 2 Thu Jan  1 01:00:02 1970
+      current version 23.0.0
+compatibility version 1.0.0
+Load command 13
+          cmd LC_LOAD_DYLIB
+      cmdsize 88
+         name /System/Library/Frameworks/OpenGL.framework/Versions/A/OpenGL (offset 24)
+   time stamp 2 Thu Jan  1 01:00:02 1970
+      current version 1.0.0
+compatibility version 1.0.0
+Load command 14
+          cmd LC_LOAD_DYLIB
+      cmdsize 104
+         name /System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation (offset 24)
+   time stamp 2 Thu Jan  1 01:00:02 1970
+      current version 1953.255.0
+compatibility version 150.0.0
+Load command 15
+          cmd LC_LOAD_DYLIB
+      cmdsize 88
+         name /System/Library/Frameworks/Carbon.framework/Versions/A/Carbon (offset 24)
+   time stamp 2 Thu Jan  1 01:00:02 1970
+      current version 169.0.0
+compatibility version 2.0.0
+Load command 16
+          cmd LC_LOAD_DYLIB
+      cmdsize 88
+         name /System/Library/Frameworks/IOKit.framework/Versions/A/IOKit (offset 24)
+   time stamp 2 Thu Jan  1 01:00:02 1970
+      current version 275.0.0
+compatibility version 1.0.0
+Load command 17
+          cmd LC_LOAD_DYLIB
+      cmdsize 80
+         name @executable_path/../Frameworks/libboost_date_time.dylib (offset 24)
+   time stamp 2 Thu Jan  1 01:00:02 1970
+      current version 0.0.0
+compatibility version 0.0.0
+Load command 18
+          cmd LC_LOAD_DYLIB
+      cmdsize 88
+         name @executable_path/../Frameworks/libboost_filesystem.dylib (offset 24)
+   time stamp 2 Thu Jan  1 01:00:02 1970
+      current version 0.0.0
+compatibility version 0.0.0
+Load command 19
+          cmd LC_LOAD_DYLIB
+      cmdsize 88
+         name @executable_path/../Frameworks/libboost_program_options.dylib (offset 24)
+   time stamp 2 Thu Jan  1 01:00:02 1970
+      current version 0.0.0
+compatibility version 0.0.0
+Load command 20
+          cmd LC_LOAD_DYLIB
+      cmdsize 80
+         name @executable_path/../Frameworks/libboost_regex.dylib (offset 24)
+   time stamp 2 Thu Jan  1 01:00:02 1970
+      current version 0.0.0
+compatibility version 0.0.0
+Load command 21
+          cmd LC_LOAD_DYLIB
+      cmdsize 88
+         name @executable_path/../Frameworks/libboost_serialization.dylib (offset 24)
+   time stamp 2 Thu Jan  1 01:00:02 1970
+      current version 0.0.0
+compatibility version 0.0.0
+Load command 22
+          cmd LC_LOAD_DYLIB
+      cmdsize 80
+         name @executable_path/../Frameworks/libboost_thread.dylib (offset 24)
+   time stamp 2 Thu Jan  1 01:00:02 1970
+      current version 0.0.0
+compatibility version 0.0.0
+Load command 23
+          cmd LC_LOAD_DYLIB
+      cmdsize 80
+         name @executable_path/../Frameworks/libboost_chrono.dylib (offset 24)
+   time stamp 2 Thu Jan  1 01:00:02 1970
+      current version 0.0.0
+compatibility version 0.0.0
+Load command 24
+          cmd LC_LOAD_DYLIB
+      cmdsize 80
+         name @executable_path/../Frameworks/libboost_atomic.dylib (offset 24)
+   time stamp 2 Thu Jan  1 01:00:02 1970
+      current version 0.0.0
+compatibility version 0.0.0
+Load command 25
+          cmd LC_LOAD_DYLIB
+      cmdsize 88
+         name @rpath/QtQuickControls2.framework/Versions/5/QtQuickControls2 (offset 24)
+   time stamp 2 Thu Jan  1 01:00:02 1970
+      current version 5.14.2
+compatibility version 5.14.0
+Load command 26
+          cmd LC_LOAD_DYLIB
+      cmdsize 80
+         name @rpath/QtMultimedia.framework/Versions/5/QtMultimedia (offset 24)
+   time stamp 2 Thu Jan  1 01:00:02 1970
+      current version 5.14.2
+compatibility version 5.14.0
+Load command 27
+          cmd LC_LOAD_DYLIB
+      cmdsize 80
+         name @rpath/QtWebEngine.framework/Versions/5/QtWebEngine (offset 24)
+   time stamp 2 Thu Jan  1 01:00:02 1970
+      current version 5.14.2
+compatibility version 5.14.0
+Load command 28
+          cmd LC_LOAD_DYLIB
+      cmdsize 96
+         name @rpath/QtWebEngineWidgets.framework/Versions/5/QtWebEngineWidgets (offset 24)
+   time stamp 2 Thu Jan  1 01:00:02 1970
+      current version 5.14.2
+compatibility version 5.14.0
+Load command 29
+          cmd LC_LOAD_DYLIB
+      cmdsize 56
+         name /usr/lib/libresolv.9.dylib (offset 24)
+   time stamp 2 Thu Jan  1 01:00:02 1970
+      current version 1.0.0
+compatibility version 1.0.0
+Load command 30
+          cmd LC_LOAD_DYLIB
+      cmdsize 88
+         name @rpath/QtWebEngineCore.framework/Versions/5/QtWebEngineCore (offset 24)
+   time stamp 2 Thu Jan  1 01:00:02 1970
+      current version 5.14.2
+compatibility version 5.14.0
+Load command 31
+          cmd LC_LOAD_DYLIB
+      cmdsize 72
+         name @rpath/QtQuick.framework/Versions/5/QtQuick (offset 24)
+   time stamp 2 Thu Jan  1 01:00:02 1970
+      current version 5.14.2
+compatibility version 5.14.0
+Load command 32
+          cmd LC_LOAD_DYLIB
+      cmdsize 80
+         name @rpath/QtQmlModels.framework/Versions/5/QtQmlModels (offset 24)
+   time stamp 2 Thu Jan  1 01:00:02 1970
+      current version 5.14.2
+compatibility version 5.14.0
+Load command 33
+          cmd LC_LOAD_DYLIB
+      cmdsize 80
+         name @rpath/QtWebChannel.framework/Versions/5/QtWebChannel (offset 24)
+   time stamp 2 Thu Jan  1 01:00:02 1970
+      current version 5.14.2
+compatibility version 5.14.0
+Load command 34
+          cmd LC_LOAD_DYLIB
+      cmdsize 64
+         name @rpath/QtQml.framework/Versions/5/QtQml (offset 24)
+   time stamp 2 Thu Jan  1 01:00:02 1970
+      current version 5.14.2
+compatibility version 5.14.0
+Load command 35
+          cmd LC_LOAD_DYLIB
+      cmdsize 72
+         name @rpath/QtNetwork.framework/Versions/5/QtNetwork (offset 24)
+   time stamp 2 Thu Jan  1 01:00:02 1970
+      current version 5.14.2
+compatibility version 5.14.0
+Load command 36
+          cmd LC_LOAD_DYLIB
+      cmdsize 80
+         name @rpath/QtPositioning.framework/Versions/5/QtPositioning (offset 24)
+   time stamp 2 Thu Jan  1 01:00:02 1970
+      current version 5.14.2
+compatibility version 5.14.0
+Load command 37
+          cmd LC_LOAD_DYLIB
+      cmdsize 88
+         name @rpath/QtPrintSupport.framework/Versions/5/QtPrintSupport (offset 24)
+   time stamp 2 Thu Jan  1 01:00:02 1970
+      current version 5.14.2
+compatibility version 5.14.0
+Load command 38
+          cmd LC_LOAD_DYLIB
+      cmdsize 72
+         name @rpath/QtWidgets.framework/Versions/5/QtWidgets (offset 24)
+   time stamp 2 Thu Jan  1 01:00:02 1970
+      current version 5.14.2
+compatibility version 5.14.0
+Load command 39
+          cmd LC_LOAD_DYLIB
+      cmdsize 64
+         name @rpath/QtGui.framework/Versions/5/QtGui (offset 24)
+   time stamp 2 Thu Jan  1 01:00:02 1970
+      current version 5.14.2
+compatibility version 5.14.0
+Load command 40
+          cmd LC_LOAD_DYLIB
+      cmdsize 72
+         name @rpath/QtCore.framework/Versions/5/QtCore (offset 24)
+   time stamp 2 Thu Jan  1 01:00:02 1970
+      current version 5.14.2
+compatibility version 5.14.0
+Load command 41
+          cmd LC_LOAD_DYLIB
+      cmdsize 48
+         name /usr/lib/libc++.1.dylib (offset 24)
+   time stamp 2 Thu Jan  1 01:00:02 1970
+      current version 1300.36.0
+compatibility version 1.0.0
+Load command 42
+          cmd LC_LOAD_DYLIB
+      cmdsize 56
+         name /usr/lib/libSystem.B.dylib (offset 24)
+   time stamp 2 Thu Jan  1 01:00:02 1970
+      current version 1319.0.0
+compatibility version 1.0.0
+Load command 43
+          cmd LC_LOAD_DYLIB
+      cmdsize 88
+         name /System/Library/Frameworks/AppKit.framework/Versions/C/AppKit (offset 24)
+   time stamp 2 Thu Jan  1 01:00:02 1970
+      current version 2299.30.112
+compatibility version 45.0.0
+Load command 44
+          cmd LC_LOAD_DYLIB
+      cmdsize 96
+         name /System/Library/Frameworks/Foundation.framework/Versions/C/Foundation (offset 24)
+   time stamp 2 Thu Jan  1 01:00:02 1970
+      current version 1953.255.0
+compatibility version 300.0.0
+Load command 45
+          cmd LC_LOAD_DYLIB
+      cmdsize 56
+         name /usr/lib/libobjc.A.dylib (offset 24)
+   time stamp 2 Thu Jan  1 01:00:02 1970
+      current version 228.0.0
+compatibility version 1.0.0
+Load command 46
+      cmd LC_FUNCTION_STARTS
+  cmdsize 16
+  dataoff 10576480
+ datasize 11040
+Load command 47
+      cmd LC_DATA_IN_CODE
+  cmdsize 16
+  dataoff 10587520
+ datasize 1312
