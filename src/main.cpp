@@ -107,7 +107,7 @@ int main(int argc, char* argv[]) {
         }
         Settings::instance().load();
 
-        //qInstallMessageHandler(customMessageHandler);
+        qInstallMessageHandler(customMessageHandler);
 
 #ifdef Q_OS_WIN
         if (!cmdLineParseResult) {

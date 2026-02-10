@@ -1078,8 +1078,18 @@ void WalletAdapter::sendTransaction(const QVector<cn::WalletLegacyTransfer>& _tr
         std::vector<cn::WalletLegacyTransfer> transfers = _transfers.toStdVector();
         m_sentTransactionId = m_wallet->sendTransaction(_transactionsk, transfers, _fee, NodeAdapter::instance().convertPaymentId(_paymentId), _mixin, 0, _messages.toStdVector());
         setStatusBarText(tr("Sending transaction"));
-    } catch (std::system_error&) {
+    } catch (std::system_error& e) {
+        qDebug() << "[WalletAdapter] sendTransaction failed: " << e.what();
         unlock();
+        Q_EMIT walletSendTransactionCompletedSignal(m_sentTransactionId, e.code().value(), QString::fromStdString(e.code().message()));
+    } catch (std::exception& e) {
+        qDebug() << "[WalletAdapter] sendTransaction exception: " << e.what();
+        unlock();
+        Q_EMIT walletSendTransactionCompletedSignal(m_sentTransactionId, -1, QString::fromStdString(e.what()));
+    } catch (...) {
+        qDebug() << "[WalletAdapter] sendTransaction unknown exception";
+        unlock();
+        Q_EMIT walletSendTransactionCompletedSignal(m_sentTransactionId, -1, "Unknown error");
     }
 }
 
@@ -1594,6 +1604,7 @@ void WalletAdapter::send(const QString& payTo, const QString& paymentId,
 	qreal amount, int fee, int anonLevel)
 {
     qDebug() << "[WalletAdapter] send called with payTo:" << payTo << "amount:" << amount << "fee:" << fee;
+    QString finalPaymentId = paymentId;
     
     if (Settings::instance().isTrackingMode())
     {
@@ -1648,7 +1659,61 @@ void WalletAdapter::send(const QString& payTo, const QString& paymentId,
             return;
         }
     } else {
-        qDebug() << "[WalletAdapter] payTo is already a valid UltraNote address";
+         qDebug() << "[WalletAdapter] payTo is already a valid UltraNote address";
+         // check if it is an integrated address
+         if (payTo.length() == 187) {
+             qDebug() << "[WalletAdapter] Detected integrated address";
+             std::string decoded;
+             uint64_t prefix;
+             if (tools::base_58::decode_addr(payTo.toStdString(), prefix, decoded)) {
+                 const size_t keysSize = 64; // Standard address keys are 64 bytes
+                 // Integrated Address Layout: [PaymentID (64 bytes)] + [Keys (64 bytes)]
+                 // Source: UltraNoteWallet/TransferCmd.cpp
+                 
+                 if (decoded.length() >= 128) {
+                     // Extract Keys (Last 64 bytes)
+                     std::string keys = decoded.substr(64, keysSize);
+                     
+                     // Extract Payment ID (First 64 bytes)
+                     std::string paymentIDFull = decoded.substr(0, 64);
+                     
+                     // We only need the first 32 bytes for Legacy Payment ID (64 hex chars)
+                     std::string paymentIDLegacy = paymentIDFull.substr(0, 32);
+                     
+                     qDebug() << "[WalletAdapter] Decoded Integrated Payload Size:" << decoded.length();
+                     qDebug() << "[WalletAdapter] Keys extracted (offset 64):" << keys.length();
+                     qDebug() << "[WalletAdapter] Payment ID extracted (offset 0):" << paymentIDLegacy.length();
+                     
+                     std::string hexPaymentId = common::toHex(paymentIDLegacy.data(), paymentIDLegacy.size());
+                     qDebug() << "[WalletAdapter] Extracted Payment ID (Hex):" << QString::fromStdString(hexPaymentId);
+                     
+                     // Re-encode keys to get standard address
+                     const uint64_t standardPrefix = CurrencyAdapter::instance().getAddressPrefix();
+                     qDebug() << "[WalletAdapter] Re-encoding with Standard Prefix:" << standardPrefix << " (Integrated Prefix was:" << prefix << ")";
+                     resolvedAddress = QString::fromStdString(tools::base_58::encode_addr(standardPrefix, keys));
+                     
+                     // Validate the generated address immediately
+                     if (CurrencyAdapter::instance().validateAddress(resolvedAddress)) {
+                         qDebug() << "[WalletAdapter] Re-encoded address validated successfully.";
+                     } else {
+                         qDebug() << "[WalletAdapter] CRITICAL: Re-encoded address FAILED validation!";
+                         // Fallback attempt: maybe keys are at 0? (Log just in case, though we are sure it's 64)
+                     }
+             
+                     // Use extracted payment ID if none was provided
+                     if (finalPaymentId.isEmpty()) {
+                         qDebug() << "[WalletAdapter] Using extracted Payment ID";
+                         finalPaymentId = QString::fromStdString(hexPaymentId);
+                     } else {
+                         qDebug() << "[WalletAdapter] Payment ID was already provided, ignoring extracted one";
+                     }
+                 } else {
+                     qDebug() << "[WalletAdapter] Error: Decoded address too short (expected >128 bytes)";
+                 }
+             } else {
+                  qDebug() << "[WalletAdapter] Failed to decode integrated address";
+             }
+         }
     }
     
     qDebug() << "[WalletAdapter] Final resolved address:" << resolvedAddress;
@@ -1670,7 +1735,7 @@ void WalletAdapter::send(const QString& payTo, const QString& paymentId,
     }
 
     qDebug() << "[WalletAdapter] Calling sendTransaction with resolved address";
-    sendTransaction(walletTransfers, static_cast<quint64>(fee), paymentId,
+    sendTransaction(walletTransfers, static_cast<quint64>(fee), finalPaymentId,
         static_cast<quint64>(anonLevel), walletMessages);
     }
 }

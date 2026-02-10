@@ -17,13 +17,7 @@ LoggerAdapter& LoggerAdapter::instance() {
 
 void LoggerAdapter::init() {
   common::JsonValue loggerConfiguration(common::JsonValue::OBJECT);
-  int64_t logLevel =
-    #ifdef DEBUG
-	  logging::TRACE
-	#else
-		logging::INFO
-	#endif
-  ;
+  int64_t logLevel = logging::TRACE;
   loggerConfiguration.insert("globalLevel", logLevel);
   common::JsonValue& cfgLoggers = loggerConfiguration.insert("loggers", common::JsonValue::ARRAY);
   common::JsonValue& fileLogger = cfgLoggers.pushBack(common::JsonValue::OBJECT);

@@ -2,6 +2,7 @@ set QT_PATH=C:/Qt/Qt5.13.2/5.13.2/msvc2017_64
 set OPENSSL_PATH=C:/Program Files/OpenSSL-Win64/bin
 set VC_VARSALL_PATH="C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build"
 set CMAKE_PATH=C:\Program Files\CMake\bin
+set PATH=%PATH%;C:\Program Files (x86)\NSIS
 
 rmdir /S /Q build
 
