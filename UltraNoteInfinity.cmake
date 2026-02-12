@@ -1,7 +1,7 @@
 set(UN_PROJECT_NAME "UltraNoteInfinity")
 set(UN_CURRENCY_DISPLAY_NAME "UltraNote")
 set(UN_CURRENCY_TICKER "XUNI")
-set(UN_VERSION 2.6)
+set(UN_VERSION 2.7)
 set(UN_COPYRIGHT "Copyright (c) 2026 UltraNote.org")
 set(UN_IDENTIFIER "org.ultranote.UltraNoteInfinity")
 set(UN_CONTACT "https://ultranote.org/")

@@ -1678,13 +1678,15 @@ void WalletAdapter::send(const QString& payTo, const QString& paymentId,
                      std::string paymentIDFull = decoded.substr(0, 64);
                      
                      // We only need the first 32 bytes for Legacy Payment ID (64 hex chars)
-                     std::string paymentIDLegacy = paymentIDFull.substr(0, 32);
+                     // std::string paymentIDLegacy = paymentIDFull.substr(0, 32);
+                     std::string paymentIDLegacy = paymentIDFull; // Using full 64-char hex string
                      
                      qDebug() << "[WalletAdapter] Decoded Integrated Payload Size:" << decoded.length();
                      qDebug() << "[WalletAdapter] Keys extracted (offset 64):" << keys.length();
                      qDebug() << "[WalletAdapter] Payment ID extracted (offset 0):" << paymentIDLegacy.length();
                      
-                     std::string hexPaymentId = common::toHex(paymentIDLegacy.data(), paymentIDLegacy.size());
+                     // std::string hexPaymentId = common::toHex(paymentIDLegacy.data(), paymentIDLegacy.size());
+                     std::string hexPaymentId = paymentIDLegacy; // Already hex
                      qDebug() << "[WalletAdapter] Extracted Payment ID (Hex):" << QString::fromStdString(hexPaymentId);
                      
                      // Re-encode keys to get standard address
